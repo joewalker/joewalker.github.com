@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Incompleteness</title>
+  <link href="http://incompleteness.me/mozilla/mozblog/atom.xml" rel="self"/>
+  <link href="http://incompleteness.me/mozilla/mozblog/"/>
+  <updated>2011-09-16T18:52:27+01:00</updated>
+  <id>http://incompleteness.me/mozilla/</id>
+  <author>
+    <name>Joe Walker</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>How to Eat an Elephant</title>
+    <link href="http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/"/>
+    <updated>2011-09-16T13:50:00+01:00</updated>
+    <id>http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant</id>
+    <content type="html">&lt;p&gt;This is about levels of change. It&amp;#8217;s not really about git vs hg, but we could
+get distracted by that. Better would be to focus on
+&lt;a href=&quot;hg.mozilla.org&quot;&gt;hg.mozilla.org&lt;/a&gt; vs &lt;a href=&quot;github.com&quot;&gt;GitHub&lt;/a&gt;
+(or &lt;a href=&quot;bitbucket.org&quot;&gt;BitBucket&lt;/a&gt;). Better still would be to focus on our
+devt/review/commit process.&lt;/p&gt;
+
+&lt;p&gt;Moz-central demands patches that solve significant issues, and it&amp;#8217;s probably
+right in wanting this, but this bite size comes with a number of problems, and
+I think GitHub has some answers.&lt;/p&gt;
+
+&lt;p&gt;The way I see it there are 3 levels of change worth discussing:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;detail&lt;/strong&gt; level we&amp;#8217;re used to working at: &amp;#8216;Added foo&amp;#8217;, &amp;#8216;Renamed foo to
+bar&amp;#8217;, etc.
+i.e. a series of &lt;a href=&quot;https://github.com/joewalker/gcli/commit/3d5a5ff2187f0a363cd7c89cb78f7bb24dd168aa&quot;&gt;commits&lt;/a&gt;
+which are easy to understand.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;review&lt;/strong&gt; level which is an ideal chunk for someone to review.
+Unless you&amp;#8217;re doing pair programming, you don&amp;#8217;t want to be asked to review
+something every new commit. We do this daily.
+So we group the detailed changes into something bigger.
+i.e. a &lt;a href=&quot;https://github.com/joewalker/gcli/pull/2&quot;&gt;pull request&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;patch&lt;/strong&gt; level which mozilla-central is used to, and which is ideal for
+commit. When a bug is fixed we can extract a patch to be committed,
+&lt;a href=&quot;https://bug684958.bugzilla.mozilla.org/attachment.cgi?id=559115&quot;&gt;like this one for bug 684958&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;In effect we&amp;#8217;re using GitHub as a tool to develop patches for Firefox, rather
+than to develop Firefox itself. In some ways I &lt;a href=&quot;https://github.com/joewalker/gcli/tree/review/mozilla/patches&quot;&gt;mean this literally&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are many reasons why what works for GCLI might not exactly work in other
+places, but I&amp;#8217;m willing to bet that these ideas could be adapted to be of more
+general use.&lt;/p&gt;
+
+&lt;p&gt;The benefits to the existence of more detailed change levels are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Review is faster and deeper. You can review this pull request far better than
+a conventional patch because you can see what I&amp;#8217;m intending by each change -
+you don&amp;#8217;t need to reverse engineer the intent and mentally hold together all
+the bits of mashed together bits of intent.&lt;/li&gt;
+&lt;li&gt;Smaller changes are easier. Our current process prevents us from clearing up
+small things that are not directly related to the bug in hand. We can think
+about variable renaming because it doesn&amp;#8217;t confuse the patch.&lt;/li&gt;
+&lt;li&gt;Progress is visible. Everyone gets to see what&amp;#8217;s happening. There is a
+feeling of momentum - progress is the norm. Just like a 6-week cycle is
+better than an 18-month cycle, a daily commit/pull cycle is better than a
+weekly patch/review cycle.&lt;/li&gt;
+&lt;li&gt;Fundamentally we solve big problems by breaking them down into smaller steps.
+I can eat an elephant, but not by opening really wide.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+  </entry>
+  
+</feed>

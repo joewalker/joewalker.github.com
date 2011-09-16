@@ -1,0 +1,19 @@
+
+# Junk that could exist anywhere:
+.DS_Store
+*.swp
+*.tmp
+.*.gz
+
+# A handy place to put stuff that git should ignore:
+/ignore
+
+# Editor junk
+/.project
+/.pydevproject
+/.settings/
+/.settings.xml
+/.settings.xml.old
+
+# Manually installed node packages should be ignored
+/node_modules/

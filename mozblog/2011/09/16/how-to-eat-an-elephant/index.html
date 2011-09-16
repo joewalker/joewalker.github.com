@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Eat an Elephant - Incompleteness</title>
+  <meta name="author" content="Joe Walker">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+  <link rel="canonical" href="http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/"/>
+  <link href="/favicon.png" rel="shortcut icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="http://s3.amazonaws.com/ender-js/jeesh.min.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/mozblog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml"/>
+  
+</head>
+
+<body  >
+  <header><!--
+<hgroup>
+  <h1><a href="/">Incompleteness</a></h1>
+</hgroup>
+-->
+
+</header>
+  <nav role=navigation><ul role=subscription data-subscription="rss">
+  <li><a href="/mozblog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="site-search">
+    <input type="hidden" name="q" value="site:incompleteness.me/mozilla" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul role=main-navigation>
+  <li><a href="/">Incompleteness</a></li>
+  <!--
+  <li><a href="/mozblog/archives">Archives</a></li>
+  -->
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Eat an Elephant</h1>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is about levels of change. It&#8217;s not really about git vs hg, but we could
+get distracted by that. Better would be to focus on
+<a href="hg.mozilla.org">hg.mozilla.org</a> vs <a href="github.com">GitHub</a>
+(or <a href="bitbucket.org">BitBucket</a>). Better still would be to focus on our
+devt/review/commit process.</p>
+
+<p>Moz-central demands patches that solve significant issues, and it&#8217;s probably
+right in wanting this, but this bite size comes with a number of problems, and
+I think GitHub has some answers.</p>
+
+<p>The way I see it there are 3 levels of change worth discussing:</p>
+
+<ol>
+<li>The <strong>detail</strong> level we&#8217;re used to working at: &#8216;Added foo&#8217;, &#8216;Renamed foo to
+bar&#8217;, etc.
+i.e. a series of <a href="https://github.com/joewalker/gcli/commit/3d5a5ff2187f0a363cd7c89cb78f7bb24dd168aa">commits</a>
+which are easy to understand.</li>
+<li>The <strong>review</strong> level which is an ideal chunk for someone to review.
+Unless you&#8217;re doing pair programming, you don&#8217;t want to be asked to review
+something every new commit. We do this daily.
+So we group the detailed changes into something bigger.
+i.e. a <a href="https://github.com/joewalker/gcli/pull/2">pull request</a>.</li>
+<li>The <strong>patch</strong> level which mozilla-central is used to, and which is ideal for
+commit. When a bug is fixed we can extract a patch to be committed,
+<a href="https://bug684958.bugzilla.mozilla.org/attachment.cgi?id=559115">like this one for bug 684958</a>.</li>
+</ol>
+
+
+<p>In effect we&#8217;re using GitHub as a tool to develop patches for Firefox, rather
+than to develop Firefox itself. In some ways I <a href="https://github.com/joewalker/gcli/tree/review/mozilla/patches">mean this literally</a>.</p>
+
+<p>There are many reasons why what works for GCLI might not exactly work in other
+places, but I&#8217;m willing to bet that these ideas could be adapted to be of more
+general use.</p>
+
+<p>The benefits to the existence of more detailed change levels are:</p>
+
+<ul>
+<li>Review is faster and deeper. You can review this pull request far better than
+a conventional patch because you can see what I&#8217;m intending by each change -
+you don&#8217;t need to reverse engineer the intent and mentally hold together all
+the bits of mashed together bits of intent.</li>
+<li>Smaller changes are easier. Our current process prevents us from clearing up
+small things that are not directly related to the bug in hand. We can think
+about variable renaming because it doesn&#8217;t confuse the patch.</li>
+<li>Progress is visible. Everyone gets to see what&#8217;s happening. There is a
+feeling of momentum - progress is the norm. Just like a 6-week cycle is
+better than an 18-month cycle, a daily commit/pull cycle is better than a
+weekly patch/review cycle.</li>
+<li>Fundamentally we solve big problems by breaking them down into smaller steps.
+I can eat an elephant, but not by opening really wide.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Joe Walker</span></span>
+
+      
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-09-16T13:50:00+01:00" pubdate  data-updated="true" >Sep 16<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/mozblog/categories/process/'>process</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/" data-via="joewalker" data-counturl="http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+</div>
+
+    
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread"><div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'incompletenessme';
+  var disqus_identifier = 'http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/';
+  var disqus_url = 'http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/';
+  //var disqus_developer = 1;
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside role=sidebar>
+  
+    
+<section>
+
+  <h1>About</h1>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    This blog is just about Mozilla stuff. If that's not you, try my
+    <a href="http://directwebremoting.org/blog/joe/">other blog</a> which is
+    of wider tech interest.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter.
+  </p>
+
+  <h1>Projects</h1>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/mozblog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+  
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer><p>
+  Copyright &copy; 2011 - Joe Walker -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+  
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+</body>
+</html>
