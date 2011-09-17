@@ -1,15 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://incompleteness.me/mozilla/mozblog/2011/09/16/how-to-eat-an-elephant/</loc>
-        <lastmod>2011-09-16T18:40:31+01:00</lastmod>
+        <loc>
+            http://incompleteness.me//mozblog/2010/09/13/marketing-according-to-the-browser-makers/
+        </loc>
+        <lastmod>2011-09-17T08:12:04+01:00</lastmod>
     </url>
     <url>
-        <loc>http://incompleteness.me/mozilla/mozblog/archives/</loc>
-        <lastmod>2011-09-16T18:40:31+01:00</lastmod>
+        <loc>http://incompleteness.me//mozblog/2011/09/16/how-to-eat-an-elephant/</loc>
+        <lastmod>2011-09-16T19:09:51+01:00</lastmod>
     </url>
     <url>
-        <loc>http://incompleteness.me/mozilla/mozblog/</loc>
-        <lastmod>2011-09-16T18:40:31+01:00</lastmod>
+        <loc>http://incompleteness.me//mozblog/archives/</loc>
+        <lastmod>2011-09-17T08:12:04+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://incompleteness.me//mozblog/</loc>
+        <lastmod>2011-09-17T08:12:04+01:00</lastmod>
     </url>
 </urlset>
