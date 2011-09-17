@@ -4,7 +4,7 @@
   <title>Incompleteness</title>
   <link href="http://incompleteness.me/mozblog/atom.xml" rel="self"/>
   <link href="http://incompleteness.me/mozblog/"/>
-  <updated>2011-09-17T09:39:21+01:00</updated>
+  <updated>2011-09-17T12:39:45+01:00</updated>
   <id>http://incompleteness.me/</id>
   <author>
     <name>Joe Walker</name>
@@ -27,7 +27,7 @@ devt/review/commit process.&lt;/p&gt;
 right in wanting this, but this bite size comes with a number of problems, and
 I think GitHub has some answers.&lt;/p&gt;
 
-&lt;p&gt;The way I see it there are 3 levels of change worth discussing:&lt;/p&gt;
+&lt;p&gt;There are 3 levels of change worth discussing:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;The &lt;strong&gt;detail&lt;/strong&gt; level we&amp;#8217;re used to working at: &amp;#8216;Added foo&amp;#8217;, &amp;#8216;Renamed foo to
@@ -45,31 +45,36 @@ commit. When a bug is fixed we can extract a patch to be committed,
 &lt;/ol&gt;
 
 
+&lt;p&gt;The problem with the Mozilla process is that steps 1 and 2 don&amp;#8217;t exist at all.
+The benefits to the existence of more detailed change levels are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Review is faster and deeper. You could review &lt;a href=&quot;https://github.com/joewalker/gcli/pull/2&quot;&gt;this pull request&lt;/a&gt;
+far better than &lt;a href=&quot;https://bugzilla.mozilla.org/attachment.cgi?id=559115&amp;amp;action=diff&quot;&gt;a conventional patch&lt;/a&gt;
+because you can see what I&amp;#8217;m intending by each change - you don&amp;#8217;t need to
+reverse engineer the intent and mentally hold together all the bits of mashed
+together bits of intent.&lt;/li&gt;
+&lt;li&gt;Smaller changes are easier. Our current process prevents us from clearing up
+small things that are not directly related to the bug in hand. We can (for
+example) entertain the thought of variable renaming because it won&amp;#8217;t confuse
+the patch. There may be other reasons not to go crazy with this, but at least
+the process won&amp;#8217;t be one.&lt;/li&gt;
+&lt;li&gt;Progress is visible. Because we can commit before we&amp;#8217;re done, everyone gets
+to see what&amp;#8217;s happening. There is a feeling of momentum - progress is the
+norm. Just like a 6-week cycle is better than an 18-month cycle, a daily
+commit/pull cycle is better than a weekly patch/review cycle.&lt;/li&gt;
+&lt;/ul&gt;
+
+
 &lt;p&gt;In effect we&amp;#8217;re using GitHub as a tool to develop patches for Firefox, rather
-than to develop Firefox itself. In some ways I &lt;a href=&quot;https://github.com/joewalker/gcli/tree/review/mozilla/patches&quot;&gt;mean this literally&lt;/a&gt;.&lt;/p&gt;
+than to develop Firefox itself. In some ways &lt;a href=&quot;https://github.com/joewalker/gcli/tree/review/mozilla/patches&quot;&gt;I mean this literally&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;There are many reasons why what works for GCLI might not exactly work in other
 places, but I&amp;#8217;m willing to bet that these ideas could be adapted to be of more
 general use.&lt;/p&gt;
 
-&lt;p&gt;The benefits to the existence of more detailed change levels are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Review is faster and deeper. You can review this pull request far better than
-a conventional patch because you can see what I&amp;#8217;m intending by each change -
-you don&amp;#8217;t need to reverse engineer the intent and mentally hold together all
-the bits of mashed together bits of intent.&lt;/li&gt;
-&lt;li&gt;Smaller changes are easier. Our current process prevents us from clearing up
-small things that are not directly related to the bug in hand. We can think
-about variable renaming because it doesn&amp;#8217;t confuse the patch.&lt;/li&gt;
-&lt;li&gt;Progress is visible. Everyone gets to see what&amp;#8217;s happening. There is a
-feeling of momentum - progress is the norm. Just like a 6-week cycle is
-better than an 18-month cycle, a daily commit/pull cycle is better than a
-weekly patch/review cycle.&lt;/li&gt;
-&lt;li&gt;Fundamentally we solve big problems by breaking them down into smaller steps.
-I can eat an elephant, but not by opening really wide.&lt;/li&gt;
-&lt;/ul&gt;
-
+&lt;p&gt;Fundamentally we solve big problems by breaking them down into smaller steps.
+I can eat an elephant, but not by opening really wide.&lt;/p&gt;
 </content>
   </entry>
   

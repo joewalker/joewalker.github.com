@@ -46,6 +46,7 @@
 </form>
 <ul role=main-navigation>
   <li><a href="/">Incompleteness</a></li>
+  <li><a href="http://directwebremoting.org/blog/joe/">My other blog</a></li>
   <!--
   <li><a href="/mozblog/archives">Archives</a></li>
   -->
@@ -74,7 +75,7 @@ devt/review/commit process.</p>
 right in wanting this, but this bite size comes with a number of problems, and
 I think GitHub has some answers.</p>
 
-<p>The way I see it there are 3 levels of change worth discussing:</p>
+<p>There are 3 levels of change worth discussing:</p>
 
 <ol>
 <li>The <strong>detail</strong> level we&#8217;re used to working at: &#8216;Added foo&#8217;, &#8216;Renamed foo to
@@ -92,31 +93,36 @@ commit. When a bug is fixed we can extract a patch to be committed,
 </ol>
 
 
+<p>The problem with the Mozilla process is that steps 1 and 2 don&#8217;t exist at all.
+The benefits to the existence of more detailed change levels are:</p>
+
+<ul>
+<li>Review is faster and deeper. You could review <a href="https://github.com/joewalker/gcli/pull/2">this pull request</a>
+far better than <a href="https://bugzilla.mozilla.org/attachment.cgi?id=559115&amp;action=diff">a conventional patch</a>
+because you can see what I&#8217;m intending by each change - you don&#8217;t need to
+reverse engineer the intent and mentally hold together all the bits of mashed
+together bits of intent.</li>
+<li>Smaller changes are easier. Our current process prevents us from clearing up
+small things that are not directly related to the bug in hand. We can (for
+example) entertain the thought of variable renaming because it won&#8217;t confuse
+the patch. There may be other reasons not to go crazy with this, but at least
+the process won&#8217;t be one.</li>
+<li>Progress is visible. Because we can commit before we&#8217;re done, everyone gets
+to see what&#8217;s happening. There is a feeling of momentum - progress is the
+norm. Just like a 6-week cycle is better than an 18-month cycle, a daily
+commit/pull cycle is better than a weekly patch/review cycle.</li>
+</ul>
+
+
 <p>In effect we&#8217;re using GitHub as a tool to develop patches for Firefox, rather
-than to develop Firefox itself. In some ways I <a href="https://github.com/joewalker/gcli/tree/review/mozilla/patches">mean this literally</a>.</p>
+than to develop Firefox itself. In some ways <a href="https://github.com/joewalker/gcli/tree/review/mozilla/patches">I mean this literally</a>.</p>
 
 <p>There are many reasons why what works for GCLI might not exactly work in other
 places, but I&#8217;m willing to bet that these ideas could be adapted to be of more
 general use.</p>
 
-<p>The benefits to the existence of more detailed change levels are:</p>
-
-<ul>
-<li>Review is faster and deeper. You can review this pull request far better than
-a conventional patch because you can see what I&#8217;m intending by each change -
-you don&#8217;t need to reverse engineer the intent and mentally hold together all
-the bits of mashed together bits of intent.</li>
-<li>Smaller changes are easier. Our current process prevents us from clearing up
-small things that are not directly related to the bug in hand. We can think
-about variable renaming because it doesn&#8217;t confuse the patch.</li>
-<li>Progress is visible. Everyone gets to see what&#8217;s happening. There is a
-feeling of momentum - progress is the norm. Just like a 6-week cycle is
-better than an 18-month cycle, a daily commit/pull cycle is better than a
-weekly patch/review cycle.</li>
-<li>Fundamentally we solve big problems by breaking them down into smaller steps.
-I can eat an elephant, but not by opening really wide.</li>
-</ul>
-
+<p>Fundamentally we solve big problems by breaking them down into smaller steps.
+I can eat an elephant, but not by opening really wide.</p>
 </div>
 
 
