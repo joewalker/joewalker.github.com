@@ -4,13 +4,112 @@
   <title>Incompleteness</title>
   <link href="http://incompleteness.me/mozblog/atom.xml" rel="self"/>
   <link href="http://incompleteness.me/mozblog/"/>
-  <updated>2011-10-10T10:05:49+01:00</updated>
+  <updated>2011-12-16T12:22:33+00:00</updated>
   <id>http://incompleteness.me/</id>
   <author>
     <name>Joe Walker</name>
     
   </author>
 
+  
+  <entry>
+    <title>Combating Self-XSS</title>
+    <link href="http://incompleteness.me/mozblog/2011/12/14/combating-self-xss/"/>
+    <updated>2011-12-14T12:00:00+00:00</updated>
+    <id>http://incompleteness.me/mozblog/2011/12/14/combating-self-xss</id>
+    <content type="html">&lt;h3&gt;What is Self-XSS?&lt;/h3&gt;
+
+&lt;p&gt;Dr. Evil has several options for getting his script to execute in the page of
+another site. Generically we call this &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-site_scripting&quot;&gt;XSS&lt;/a&gt;. Self-XSS involves using
+social engineering to coerce a user into manually executing javascript using
+the location bar or developer tools.
+For more, see &lt;a href=&quot;https://blogs.msdn.com/themes/blogs/generic/post.aspx?WeblogApp=ieinternals&amp;amp;WeblogPostName=socially-engineered-xss-attacks-and-pasting-javascript-in-the-address-bar-in-ie9&quot;&gt;socially-engineered XSS attacks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://blog.commtouch.com/cafe/web-security/nasty-facebook-picture-attack-based-on-self-xss/&quot;&gt;recent Facebook attack&lt;/a&gt; signals that something needs to be done, but
+knowing the right response is tricky.&lt;/p&gt;
+
+&lt;h3&gt;What is Mozilla doing about it?&lt;/h3&gt;
+
+&lt;p&gt;We&amp;#8217;re proposing adding a directive to &lt;a href=&quot;https://developer.mozilla.org/en/Security/CSP&quot; title=&quot;Content Security Policy&quot;&gt;CSP&lt;/a&gt; that says &lt;em&gt;&amp;#8216;Please disallow
+user supplied Javascript in the context of this resource&amp;#8217;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;It will probably look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;X-Content-Security-Policy: no-user-js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;#8217;re also going to add a way for developers to opt out of this protection.
+Effectively saying &lt;em&gt;&amp;#8216;I can take care of the JavaScript that I ask my browser to
+execute&amp;#8217;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3&gt;How does this affect other Firefox developer tools?&lt;/h3&gt;
+
+&lt;p&gt;It doesn&amp;#8217;t. &lt;a href=&quot;https://hacks.mozilla.org/2011/11/developer-tools-in-firefox-aurora-10/&quot;&gt;The Highligher, Style Inspector&lt;/a&gt;, &lt;a href=&quot;https://wiki.mozilla.org/DevTools/Features/CSSEditor&quot;&gt;Style Editor&lt;/a&gt; and
+&lt;a href=&quot;https://blog.mozilla.com/tilt/&quot;&gt;Tilt&lt;/a&gt; are all unaffected. This is only about JavaScript executed via
+the Web Console and &lt;a href=&quot;https://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/&quot;&gt;Scratchpad&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;How does this affect users?&lt;/h3&gt;
+
+&lt;div&gt;
+&lt;style&gt;
+table.custom { border-collapse: collapse; }
+table.custom td, table.custom th { border: 1px solid #aaa; padding: 5px; }
+table.custom th { text-align: center; font-weight: bold; }
+&lt;/style&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;table class=custom&gt;
+  &lt;tr&gt;
+    &lt;th colspan=2 rowspan=2&gt;User
+    &lt;th colspan=2&gt;Is a developer?
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;No
+    &lt;th&gt;Yes
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th rowspan=2&gt;Can recognize Self-XSS attack?
+    &lt;th&gt;No
+    &lt;td&gt;Added Self-XSS attacks protection.
+    &lt;td&gt;Warned about Self-XSS, may benefit from protection.
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Yes
+    &lt;td&gt;Unchanged
+    &lt;td&gt;Minor inconvenience of having to set a preference (one time only) to enable user JavaScript on sites using this Self-XSS protection.
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;I think this is a fairly clear net win: Minor, one time only, inconvenience to
+a sub-set of web developers, vs. full-time protection for the many that
+wouldn&amp;#8217;t recognize a self-xss attack.&lt;/p&gt;
+
+&lt;h3&gt;Objections: This is a user problem&lt;/h3&gt;
+
+&lt;p&gt;The goal of educating 7 billion people about what JavaScript can do is lofty,
+grandiose, ambitious and utterly unattainable. There has to be another solution.&lt;/p&gt;
+
+&lt;h3&gt;Objections: This is a Facebook problem&lt;/h3&gt;
+
+&lt;p&gt;While it&amp;#8217;s true that allowing untrusted, unvetted third party dynamic content
+onto your site is something that I would generally advise against. However I
+don&amp;#8217;t think that fixing this would fix the problem. The attack could easily
+forward you to another site to see the clipboard injecting flash, before
+returning you to the original site for the &amp;#8216;paste&amp;#8217; step&lt;/p&gt;
+
+&lt;h3&gt;Objections: This is a Flash problem&lt;/h3&gt;
+
+&lt;p&gt;While it&amp;#8217;s true that Adobe&amp;#8217;s clipboard policies are more relaxed than those of
+major web browsers, we&amp;#8217;ve seen people caught by instructions that ask people to
+select/copy their own attack script. We think that the level of pain caused to
+developers by the CSP solution is low enough that we can justify the additional
+protection.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>How to Eat an Elephant</title>
