@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Canvas element for IE - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/08/02/canvas-element-for-ie/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2005/08/02/canvas-element-for-ie/">Canvas element for IE</a></h1><section class="content"><p>
+<code>&lt;canvas .../&gt;</code> is an HTML element that first popped up in Safari, where it helped Apple create <a href="http://www.apple.com/macosx/features/dashboard/">Dashboard</a>.
+It is being standardized by <a href="http://www.whatwg.org/specs/web-apps/current-work/#canvas">What-WG</a>
+and <a href="http://www.mozillazine.org/talkback.html?article=6461">added into Mozilla 1.5</a>. I guess that Konqueror may be able to get support easily from Safari, it is <a href="http://bugs.kde.org/show_bug.cgi?id=108069">on the list</a> at least.
+</p><p>I've thought a number of times that this is all irrelevant for the next 5 years at least. Currently there is no <code>&lt;canvas .../&gt;</code> in IE, and I can't see Microsoft adding one into IE7, so we'd need to wait for IE8, or for IE to fall to less than 10% market-share. Even at the current 1% a month we've got another 5/6 years to go and I'm sure IE7 will slow down the decline.</p><p>So while <code>&lt;canvas .../&gt;</code> is neat I didn't plan on adding it into my list of things to investigate, until now.</p><p>I stumbled across the magic incantation: <code>369303C2-D7AC-11D0-89D5-00A0C90833E6</code> which happens to be the GUID for <a href="http://msdn.microsoft.com/archive/default.asp?url=/archive/en-us/samples/internet/imedia/wmrmedia/pick3/default.asp">DirectAnimation</a>. DirectAnimation is part of ActiveX, but so is XML.HTTP which is the foundation of Ajax in I.E.</p><p>You can see a <a href="http://www.hypergurl.com/textwheel1.html">demo of DirectAnimation</a> - I.E. only, obviously. And it is described <a href="http://www.webdevelopersjournal.com/articles/directx2/direct_animation_sgc2.html">by WebDevelopersJournal</a> if you want to know more.</p><p>So here is the challenge: Write some Javascript that detects lack of support for canvas, and support for DirectAnimation.  It then replaces the <code>&lt;canvas .../&gt;</code> element with an <code>&lt;object .../&gt;</code> element which invokes DirectAnimation. The Javascript will then have some wrappers that convert the <code>&lt;canvas .../&gt;</code> Javascript function into DirectAnimation calls.</p><p>I have no idea if it is possible, but it sounds like it could be very interesting if it works.</p><p><b>Update:</b> Emil A Eklund has <a href="http://me.eae.net/archive/2005/12/29/canvas-in-ie/">implemented the Canvas Tag for IE using VML</a>
+</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2005-08-2T12:08:59+00:00" pubdate="pubdate">
+    <span class="day">2</span>
+    <span class="month">Aug</span>
+    <span class="year">2005</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/08/02/canvas-element-for-ie/" data-counturl="http://incompleteness.me/blog/2005/08/02/canvas-element-for-ie/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          <div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://blog.xdraw.org">Gavin Doughtie</a>
+                
+              </strong>
+              <span class="comment-title">Working on it</span>
+            </div>
+            <p class="comment-body"><div>I'm working on a javascript abstraction layer atop VML/SVG, based loosely on the HotDraw framework. I'll be making announcements as stuff starts working.<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://mir.aculo.us/articles/2005/08/04/update-on-the-canvas-element">mir.aculo.us</a>
+                
+              </strong>
+              <span class="comment-title">Update on the canvas element</span>
+            </div>
+            <p class="comment-body"><div>With support for the canvas element coming in Firefox 1.5, the two major alternatives to Internet Explorer (Firefox and Safari) will be one step ahead–of IE 7, that is. Some ideas are floating around how to add support for canvas to IE, however.<div></div></div></p>
+          </div>
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Ajax: Single-page vs. Multi-page - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">Ajax: Single-page vs. Multi-page</a></h1><section class="content"><p>You've designing an Ajax web application, do you plan to have multiple pages or a single page? So far I've not seen much informed debate about how to decide, so here are the pointers that I've gathered from the several Ajax web applications that I've developed so far.</p><h2>Multi-page is easier</h2><p>There are 3 reasons why starting with multi-page is easier:</p><ul>
+<li>It's what you're used to</li>
+<li>Bookmarking comes for free with multi-page</li>
+<li>History (Back button support) also comes for free</li>
+</ul><h2>Library Options</h2><p>In the Java world there are 2 groups of Ajax libraries, I guess many languages are the same. There are RPC based Ajax libraries (<a href="http://directwebremoting.org/dwr/">DWR</a>, <a href="http://oss.metaparadigm.com/jsonrpc/">JSON-RPC-Java</a>...) which work best with a good Javascript library (<a href="http://dojotoolkit.com/">Dojo</a>, <a href="http://script.aculo.us/">Script.aculo.us</a>, <a href="http://directwebremoting.org/dwr/browser/util">DWRUtil</a>...) and Tag based Ajax libraries (<a href="http://ajaxtags.sourceforge.net/">AjaxTags</a>, <a href="http://ajaxanywhere.sourceforge.net/">AjaxAnywhere</a>...). RPC based libraries can be used in either context, but tag based libraries are only of any use in the multi-page model. So if you were intent on using a tag based library, go with the multi-page option.</p><p>Is the situation in the PHP world the same? – please comment.</p><h2>Multi-page can give a faster initial download</h2><p>'Can' is the operative word here. Generally speaking HTML is a small part of an Ajax application, so the extra download might not be significant. If your Javascript is in separate files then you might be in for a bigger gain, however by going multi-page your total download will be bigger.</p><p>Microsoft are doing some interesting things with <a href="http://www.start.com/">start.com</a> and dynamic downloading, and componentizing the download. Advanced techniques like these can turn this on its head. Of all the advantages of the multi-page style, this is clearly the weakest.</p><h1>BUT</h1><p>However if you're interested in creating the best possible user experience, there are a number of advantages of a single-page design:</p><h2>Advanced History</h2><p>There are a number of directions to go in to get back-button support for your web-application:</p><ul>
+<li><a href="http://dojotoolkit.org/docs/intro_to_dojo_io.html#bookmarking">Dojo</a></li>
+<li><a href="http://codinginparadise.org/weblog/2005/09/ajax-history-libraries.html">RSH</a></li>
+<li><a href="http://contentwithstyle.co.uk/Articles/38/fixing-the-back-button-and-enabling-bookmarking-for-ajax-apps">Roll-your-own</a></li>
+</ul><p>If you are prepared to put in the extra effort (even with Dojo or RSH you need to do some work yourself, you can create some neat value added tools like a "Things you've looked at" section which enables the user to jump around to any point in the history with a single mouse click and too see where they are going.</p><h2>Faster Rendering</h2><p>One of the benefits of Ajax is faster page load times. The single page approach can get pages in front of the user faster, and it enables you to add neat effects like using Script.aculo.us effects to fade page section in and out. This kind of technique isn't just pure eye-candy, there has been a fair bit of research to demonstrate that users perceive the wait time as the time when nothing is happening on the screen, some simple animation can make the web application feel faster even when it's not.</p><h2>Shared Components</h2><p>In a recent web application I had a number of dialogs that where relevant in multiple sections of the site, single page design made the sharing easier, and gave the users less to download.</p><h2>Recommendations</h2><p>It's probably fairly obvious from this that there is no one correct answer. The best route for you will depend on what you are trying to do.</p><p>I've painted it a bit of an all or nothing so far - one page or many. In reality there is often a reduced-page option that keeps the advantages of automatic history and bookmarking, but adds some of the advantages of a single page design.</p><p>Depending on how you code, it might be possible to change make changes in direction during development, so it is a good idea to make sure your HTML ids are unique across your entire web application. I have taken to giving each section of my web apps a name to prefix HTML ids to help keeping things unique.</p><p>I've recently taken a 74 page JSP application and turned it into a single page DWR application. This has been a very interesting process. The result is surprisingly small – 450 lines of HTML and 200 of CSS – this isn't the behemoth that you might expect.</p><p>If I were to start again I'd probably create a 3 or 4 page application. This would create a simple solution to the back button and book-marking issues without needing support from RSH or Dojo.</p><p>In summary - there is no "correct" answer, but more of an it-depends.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2005-11-1T09:01:32+00:00" pubdate="pubdate">
+    <span class="day">1</span>
+    <span class="month">Nov</span>
+    <span class="year">2005</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/" data-counturl="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

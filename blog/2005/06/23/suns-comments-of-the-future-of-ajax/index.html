@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Sun's comments of the future of AJAX  - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/06/23/suns-comments-of-the-future-of-ajax/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2005/06/23/suns-comments-of-the-future-of-ajax/">Sun's comments of the future of AJAX </a></h1><section class="content"><p>Greg Murray wrote an interesting article a few days ago about AJAX and some of the issues with writing AJAX websites. The <a href="http://java.sun.com/developer/technicalArticles/J2EE/AJAX/">article</a> makes the following points about AJAX websites:</p><div style="margin: 20px; color: #333366;">
+<b>Complexity:</b> Server-side developers will need to understand that presentation logic will be required in the HTML client pages as well as in the server-side logic to generate the XML content needed by the client HTML pages. HTML page developers must have JavaScript technology skills. Creating AJAX-enabled applications will become easier as new frameworks are created and existing frameworks evolve to support the interaction model.
+</div><p>And those frameworks are arriving. <a href="http://directwebremoting.org/dwr/">DWR</a> has just reached version 1.0RC1 and clearly having written most of DWR, I think it's the best Java and Ajax solution out there. It looks like <a href="http://www.google.com/search?q=java+ajax">Google agrees with me</a>, but if you want options there is always Echo2 or JSON-RPC-Java.</p><div style="margin: 20px; color: #333366;">
+<b>Standardization of the XMLHttpRequest Object:</b> The XMLHttpRequestobject is not yet part of the JavaScript technology specification, which means that the behavior may vary depending on the client.
+</div><p>This is one of the best reasons for using a tool like DWR. You don't need to get bogged down in discovering that Safari doesn't support XHR/POST or that various versions of IE have all sorts of quirks that you need to tak into account.</p><div style="margin: 20px; color: #333366;">
+<b>JavaScript Technology Implementations:</b> AJAX interactions depend heavily on JavaScript technology, which has subtle differences depending on the client. See <a href="http://www.quirksmode.org">http://www.quirksmode.org</a> for more details on browser-specific differences.
+</div><p>This is why DWR comes with its DWRUtil.js function that help you take data returned from the server and put it on your web page. DWRUtil.js is not a full-blown widget framework like Dojo - It is a set of easy to understand functions that create tables, lists and manipulate text and form fields.</p><div style="margin: 20px; color: #333366;">
+<b>Debugging:</b> AJAX applications are also difficult to debug because the processing logic is embedded both in the client and on the server.
+</div><p>Tell me about it! There are now a number of tools like greasemonkey scripts that help with this issue. But if you use DWR you should not need them at all. DWR has been debugged so you don't need to.</p><div style="margin: 20px; color: #333366;">
+<b>Viewable Source:</b> The client-side JavaScript technology may be viewed simply by selecting View Source from an AJAX-enabled HTML page. A poorly designed AJAX-based application could open itself up to hackers or plagiarism.
+</div><p>DWR takes security very seriously; using J2EE authentication and role based authorization, along with other security measures. I believe this makes the process of auditing what is allowed and what is dis-allowed easier than it was before the days of AJAX.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2005-06-23T09:11:55+00:00" pubdate="pubdate">
+    <span class="day">23</span>
+    <span class="month">Jun</span>
+    <span class="year">2005</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/06/23/suns-comments-of-the-future-of-ajax/" data-counturl="http://incompleteness.me/blog/2005/06/23/suns-comments-of-the-future-of-ajax/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

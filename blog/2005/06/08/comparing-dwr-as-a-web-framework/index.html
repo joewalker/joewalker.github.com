@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Comparing DWR as a web framework - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">Comparing DWR as a web framework</a></h1><section class="content"><p>
+Matt Raible recently <a href="http://raibledesigns.com/page/rd?anchor=updated_presentations_spring_appfuse_and">blogged</a>
+about his updated presentation on <a href="http://equinox.dev.java.net/framework-comparison/WebFrameworks.pdf">Comparing
+Java Web Frameworks</a>, and already in the comments there are people asking about how Ajax fits in. So here's my take from a <a href="http://directwebremoting.org/dwr/">DWR</a> point of view:
+</p><p>First a comment on architecture. In my experience it is easy to create a service layer that works with POJOs and have DWR integrate with that directly, so your service methods are remoted to Javascript. This cuts down on a huge amount of boiler-plate code, and really gets you off to a fast start.</p><p>DWR will work with any of the major web frameworks - it ties into Spring well and Bram Smeets and I are working on making this integration better. The next version of WebWork even comes with DWR. BUT the more you get into the Ajax model the more you realize that you are using your standard web framework less and less. Ajax won't do away with the need for a web framework, but it does mean that less server-side code is needed.</p><h3>Pros and Cons for AJAX / DWR </h3><p><b>Pros:</b></p><ul>
+  <li>Better user interfaces</li>
+  <li>Fast response times</li>
+  <li>Ajax is the "new thing", so it is easy to get enthusiastic about</li>
+  <li>It will integrate with your existing framework</li>
+</ul><p><b>Cons:</b></p><ul>
+  <li>The need to learn Javascript</li>
+  <li>Extra time needed for an accessible site</li>
+  <li>All quite new, so maybe it is all hype after all?</li>
+</ul><h3>Comparing DWR with other frameworks</h3><p>Recognising that DWR does not exclude more traditional frameworks, it is worth comparing using Matt's criteria:</p><p>
+<b>List Screens: How easy is it to code pageable, sortable lists?</b><br />
+For server side generated tables you can still use DisplayTag. For client side tables, use DWRUtil.drawTable which is not as feature-full yet.
+</p><p>
+<b>Bookmarkability: Can users bookmark pages and return to them easily?</b><br />
+It depends how you organize your site, AJAX sites that exist in only 1 page (like Google maps) may have to take extra steps for bookmarkability.
+</p><p>
+<b>Validation: How easy is it to use and does it support client-side (JavaScript) validation?</b><br />
+Very easy. DWR integrates with commons-validation and any other validation framework.
+</p><p>
+<b>Testability: How easy is it to test Controllers out of container?</b><br />
+Very easy. Server side code with DWR is just a collection of Java beans
+</p><p>
+<b>Post and Redirect: How does the framework handle the duplicate post problem?</b><br />
+AJAX has 2 solutions, firstly AJAX can be so fast that the problem just goes away, secondly since the pages are controlled by Javascript, disabling a button is fairly easy.
+</p><p>
+<b>Spring Integration: Does the framework support using Spring in the middle tier; how easily?</b><br />
+Yes. DWR can remote spring beans - it doesn't get much easier than that!
+</p><p>
+<b>Internationalization: How is i18n supported and how easy is it to get messages in Controllers?</b><br />
+AJAX in general and DWR in particular do not attempt to solve the i18n issue, use one of the other frameworks in tandem with DWR to get i18n.
+</p><p>
+<b>Page Decoration: What sort of page decoration/ composition mechanisms does the framework support?</b><br />
+DWR works with both Tiles and SiteMesh.
+</p><p>
+<b>Tools: Is there good tool (particularly IDE) support for the framework?</b><br />
+IDEA v5 has updated Javascript editing functions that can really help web development.
+</p><p>
+<b>Marketability of Skills: If you learn the framework, will it help you get a job?</b><br />
+Maybe not today, but certainly tomorrow.
+</p><p>
+<b>Job Count: What is the demand for framework skills on dice.com?</b><br />
+9 for AJAX (wow!)
+</p><p>
+<small>
+[Update: Fixed the spelling of Raible! - Sorry Matt.]<br />
+[Update: Fixed a typo.]</small>
+</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2005-06-8T10:26:21+00:00" pubdate="pubdate">
+    <span class="day">8</span>
+    <span class="month">Jun</span>
+    <span class="year">2005</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/" data-counturl="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

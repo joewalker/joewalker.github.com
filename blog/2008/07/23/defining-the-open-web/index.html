@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Defining The Open Web - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2008/07/23/defining-the-open-web/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2008/07/23/defining-the-open-web/">Defining The Open Web</a></h1><section class="content"><p>Brad asked what the '<a href="http://codinginparadise.org/weblog/2008/07/what-heck-is-open-web.html">Open Web</a>' is. <a href="http://codinginparadise.org/weblog/2008/04/whats-open-web-and-why-is-it-important.html">Twice</a>. My mum was always cross if she had to ask 3 times, so here's my stab.</p><p style="margin-left: 20px; margin-right: 20px;"><strong>The Open Web is the user-remixable technologies that are shipped by the clear majority of major browsers</strong></p><p>So, for example:</p><ul>
+<li>XHTML 2.0 is not part of the open web because the browsers didn't go for it even though the W3C did.</li>
+<li>XMLHttpRequest is part of the open web even though the W3C haven't gone for it (<a href="http://www.w3.org/TR/2008/WD-XMLHttpRequest-20080415/">yet</a>) because it's in all the browsers.</li>
+<li>Canvas is part of the open web since it's in everything except IE these days.</li>
+<li>XUL is not part of the open web and wouldn't be even if Opera supported it, but if Opera and Safari did, then it would.</li>
+</ul><p>Some rationale might be needed:</p><h3>'User-Remixable Technologies'</h3><p>One of the key things about the web is how anyone can take part. It's easy for technologists to dismiss what 'normal people' want to do. But cutting and pasting the HTML to embed a YouTube video into your profile is within reach of many people. Maybe not your grandma, but certainly most school leavers.</p><p>Are there any significant parts of current browsers that are not user-remixable? Maybe this is built into the ecosystem enough that it doesn't need stating?</p><h3>'Shipped'</h3><p>I considered 'endorsed/implemented/supported', but I think the vote comes when it's included in a download.</p><h3>'Clear Majority'</h3><p>I don't think we need to be totally unanimous. Indeed requiring unanimity implies a simple lowest common denominator approach. Maybe you could argue for a 75% majority or something. I just went with something simple for now. The implication is that 3 out of the 4 must agree. But that requires me to justify the 4 ...</p><h3>'Major browsers'</h3><p>I'd venture to suggest that today there are 4 major rendering engines <a href="http://msdn.microsoft.com/en-us/library/aa741317.aspx">Trident</a>, <a href="http://wiki.mozilla.org/Gecko:Home_Page">Gecko</a>, <a href="http://webkit.org/">WebKit</a> and <a href="http://my.opera.com/saito/blog/index.dml/tag/Presto">Presto/Core 2</a>. Sorry to Amaya, Lynx and WGet. This isn't a fixed list - if the Java <a href="http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/text/html/HTMLEditorKit.html">HTMLEditorKit</a> suddenly becomes useful as a browser and widely used, we should pick our jaws off the floor, and include it in the list.</p><h3>No W3C</h3><p>Some people would like to make the W3C king and have all innovation be standards lead. But I don't think that history has shown that to be a successful strategy. Some people think the W3C is totally irrelevant, but it is a place where the browser vendors 'sit down' together (by which I mean argue over email). I thought about saying 'major browsers and the W3C' but in the end left it simply with 'major browsers'. Feel free to disagree.</p><h2>Implications</h2><p>If this is right, then it turns out that Flash and Silverlight are not part of the Open Web. I think this is perhaps what many people intuitively feel. I'm not sure that either qualify as user-remixable and they are not shipped with the majority of browsers either.</p><p>I wondered about defining the term based on browser usage: For example: "The open web is the technologies available to 80% of the web using public". But this is bad because it's against innovation. The old and dying, but still highly used browsers get to hold the open web back, and it opens up the chance that one browser can get to define what the Open Web is. The whole idea behind 'Open' is lack of lock-in. Maybe the Web is defined in this way, but not the Open Web.</p><p>I think this definition builds in many of the concepts of Decentralization, Transparency, Openness that Brad <a href="http://codinginparadise.org/weblog/2008/04/whats-open-web-and-why-is-it-important.html">originally argued for</a>, and stuff that is not explicit is perhaps included by implication.</p><p>There are some interesting implications for <a href="http://gears.google.com/">Gears</a> in this proposal. While the purpose behind Gears is to support the Open Web, it is itself not part of it for the same reason that Flash and Silverlight are not.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2008-07-23T12:00:41+00:00" pubdate="pubdate">
+    <span class="day">23</span>
+    <span class="month">Jul</span>
+    <span class="year">2008</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/07/23/defining-the-open-web/" data-counturl="http://incompleteness.me/blog/2008/07/23/defining-the-open-web/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

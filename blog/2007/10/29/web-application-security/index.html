@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Web Application Security - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/10/29/web-application-security/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2007/10/29/web-application-security/">Web Application Security</a></h1><section class="content"><p>A few people asked for slides and links from the security talk from <a href="http://ajaxexperience.techtarget.com/">The Ajax Experience</a> last week:</p><div style="width: 425px; text-align: left;" id="__ss_147905"><object style="margin: 0px;" width="425" height="355"><param name="movie" value="http://s3.amazonaws.com/slideshare/ssplayer2.swf?doc=web-app-security-1193579768112939-1" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><embed src="http://s3.amazonaws.com/slideshare/ssplayer2.swf?doc=web-app-security-1193579768112939-1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355" /></object><div style="font-size: 11px; font-family: tahoma,arial; height: 26px; padding-top: 2px;"><a href="http://www.slideshare.net/?src=embed"><img src="http://s3.amazonaws.com/slideshare/logo_embd.png" style="border: 0px none; margin-bottom: -5px;" alt="SlideShare" /></a> | <a href="http://www.slideshare.net/joewalker/web-app-security" title="View 'Web App Security' on SlideShare">View</a> | <a href="http://www.slideshare.net/upload">Upload your own</a></div></div><p>General Links:</p><ul>
+<li><a href="http://www.owasp.org/index.php/Main_Page">OWASP</a>: Open Web App Security Project</li>
+
+<li>Security Resources from the <a href="http://www.openajax.org/member/wiki/Ajax_Security_Resources">OpenAjax Alliance Wiki</a></li>
+
+<li>Mozilla on <a href="http://www.mozilla.org/projects/security/components/same-origin.html">Same-Origin Policy</a></li>
+</ul><p>XSS:</p><ul>
+<li>Introductions from: <a href="http://en.wikipedia.org/wiki/XSS">Wikipedia</a> and <a href="http://httpd.apache.org/info/css-security/">Apache</a></li>
+
+<li><a href="http://ha.ckers.org/xss.html">Cheat Sheet</a>: Long list of XSS vectors from RSnake</li>
+
+<li>Explanation of <a href="http://www.webappsec.org/projects/articles/071105.shtml">DOM Based XSS</a></li>
+
+<li>Explanation of <a href="http://namb.la/popular/tech.html">Samy is my Hero</a> worm</li>
+
+<li>Fairly old <a href="http://www.cgisecurity.com/articles/xss-faq.shtml">FAQ at CGI Security</a></li>
+
+<li>List of <a href="http://www.xssed.com/">XSS holes</a> in popular web applications</li>
+</ul><p>CSRF:</p><ul>
+<li>Introduction from: <a href="http://en.wikipedia.org/wiki/Csrf">Wikipedia</a> and here</li>
+
+<li>Article by <a href="http://shiflett.org/articles/cross-site-request-forgeries">Chris Shiflett</a> and <a href="http://shiflett.org/blog/2007/jul/csrf-redirector">CSRF Redirector</a> test tool</li>
+
+<li><a href="http://www.cgisecurity.com/articles/csrf-faq.shtml">CSRF FAQ</a> at CGI Security</li>
+
+<li><a href="http://incompleteness.me/blog/2007/03/05/json-is-not-as-safe-as-people-think-it-is/">Array constructor overriding</a></li>
+
+<li>A solution: <a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">SameRefererOnly</a></li>
+
+<li>Protecting a <a href="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/">JSON or JavaScript Service</a></li>
+</ul><p>Blogs:</p><ul>
+<li><a href="http://jeremiahgrossman.blogspot.com/">Jeremiah Grossman</a></li>
+
+<li><a href="http://shiflett.org/blog">Chris Shiflett</a></li>
+
+<li><a href="http://ha.ckers.org/blog/">RSnake</a></li>
+
+<li><a href="http://www.gnucitizen.org/">GNUCITIZEN</a></li>
+
+<li><a href="http://googleonlinesecurity.blogspot.com/">Google Online Security</a></li>
+
+<li><a href="http://www.0x000000.com/">0x000000</a></li>
+
+<li><a href="http://www.darknet.org.uk/tag/xss/">Darknet</a></li>
+</ul></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2007-10-29T11:00:51+00:00" pubdate="pubdate">
+    <span class="day">29</span>
+    <span class="month">Oct</span>
+    <span class="year">2007</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/10/29/web-application-security/" data-counturl="http://incompleteness.me/blog/2007/10/29/web-application-security/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

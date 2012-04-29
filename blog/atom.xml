@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Incompleteness</title>
+  <link href="http://incompleteness.me/blog/atom.xml" rel="self" />
+  <link href="http://incompleteness.me/blog" />
+  <updated>2011-12-16T12:22:33+00:00</updated>
+  <id>http://incompleteness.me</id>
+  <author><name>Joe Walker</name></author>
+
+  <entry>
+    <title>Combating Self-XSS</title>
+    <link href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/" />
+    <updated>2011-12-14T12:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2011/12/14/combating-self-xss/</id>
+    <content type="html">&lt;h3&gt;What is Self-XSS?&lt;/h3&gt;&lt;p&gt;Dr. Evil has several options for getting his script to execute in the page of
+another site. Generically we call this &lt;a href="https://en.wikipedia.org/wiki/Cross-site_scripting"&gt;XSS&lt;/a&gt;. Self-XSS involves using
+social engineering to coerce a user into manually executing JavaScript using
+the location bar or developer tools.
+For more, see &lt;a href="https://blogs.msdn.com/themes/blogs/generic/post.aspx?WeblogApp=ieinternals&amp;amp;WeblogPostName=socially-engineered-xss-attacks-and-pasting-javascript-in-the-address-bar-in-ie9"&gt;socially-engineered XSS attacks&lt;/a&gt;.
+
+&lt;/p&gt;&lt;p&gt;The &lt;a href="http://blog.commtouch.com/cafe/web-security/nasty-facebook-picture-attack-based-on-self-xss/"&gt;recent Facebook attack&lt;/a&gt; signals that something needs to be done, but
+knowing the right response is tricky.
+
+&lt;/p&gt;&lt;h3&gt;What is Mozilla doing about it?&lt;/h3&gt;&lt;p&gt;We're proposing adding a directive to &lt;a href="https://developer.mozilla.org/en/Security/CSP"&gt;CSP&lt;/a&gt; that says &lt;em&gt;'Please disallow
+user supplied JavaScript in the context of this resource'&lt;/em&gt;.
+
+&lt;/p&gt;&lt;p&gt;It will probably look something like this:
+
+&lt;/p&gt;&lt;pre&gt;&lt;code&gt;X-Content-Security-Policy: no-user-js&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We're also going to add a way for developers to opt out of this protection.
+Effectively saying &lt;em&gt;'I can take care of the JavaScript that I ask my browser to
+execute'&lt;/em&gt;.
+
+
+&lt;/p&gt;&lt;h3&gt;How does this affect other Firefox developer tools?&lt;/h3&gt;&lt;p&gt;It doesn't. &lt;a href="https://hacks.mozilla.org/2011/11/developer-tools-in-firefox-aurora-10/"&gt;The Highligher, Style Inspector&lt;/a&gt;, &lt;a href="https://wiki.mozilla.org/DevTools/Features/CSSEditor"&gt;Style Editor&lt;/a&gt; and
+&lt;a href="https://blog.mozilla.com/tilt/"&gt;Tilt&lt;/a&gt; are all unaffected. This is only about JavaScript executed via
+the Web Console and &lt;a href="https://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/"&gt;Scratchpad&lt;/a&gt;.
+
+&lt;/p&gt;&lt;h3&gt;How does this affect users?&lt;/h3&gt;&lt;div&gt;
+&lt;style&gt;
+table.custom { border-collapse: collapse; }
+table.custom td, table.custom th { border: 1px solid #aaa; padding: 5px; }
+table.custom th { text-align: center; }
+&lt;/style&gt;
+&lt;/div&gt;&lt;table class="custom"&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;User&lt;/th&gt;
+    &lt;th colspan="2"&gt;Is a developer?&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;No&lt;/th&gt;
+    &lt;th&gt;Yes&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th rowspan="2"&gt;Can recognize Self-XSS attack?&lt;/th&gt;
+    &lt;th&gt;No&lt;/th&gt;
+    &lt;td&gt;Added Self-XSS attacks protection.&lt;/td&gt;
+    &lt;td&gt;Warned about Self-XSS, may benefit from protection.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Yes&lt;/th&gt;
+    &lt;td&gt;Unchanged&lt;/td&gt;
+    &lt;td&gt;Minor inconvenience of having to set a preference (one time only) to enable user JavaScript on sites using this Self-XSS protection.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;&lt;p&gt;I think this is a fairly clear net win: Minor, one time only, inconvenience to
+a sub-set of web developers, vs. full-time protection for the many that
+wouldn't recognize a self-xss attack.
+
+
+&lt;/p&gt;&lt;h3&gt;Objections: This is a user problem&lt;/h3&gt;&lt;p&gt;The goal of educating 7 billion people about what JavaScript can do is lofty,
+grandiose, ambitious and utterly unattainable. There has to be another solution.
+
+
+&lt;/p&gt;&lt;h3&gt;Objections: This is a Facebook problem&lt;/h3&gt;&lt;p&gt;While it's true that allowing untrusted, unvetted, third party, dynamic content
+onto your site is something to avoid, I don't think that fixing this either is
+going to happen, or would fix the problem. The attack could easily forward you
+to another site to see the clipboard injecting flash, before returning you to
+the original site for the 'paste' step.
+
+
+&lt;/p&gt;&lt;h3&gt;Objections: This is a Flash problem&lt;/h3&gt;&lt;p&gt;While it's true that Adobe's clipboard policies are more relaxed than those of
+major web browsers, we've seen people caught by instructions that ask people to
+select/copy their own attack script. We think that the level of pain caused to
+developers by the CSP solution is low enough that we can justify the additional
+protection.
+
+&lt;/p&gt;</content>
+  </entry><entry>
+    <title>How to Eat an Elephant</title>
+    <link href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/" />
+    <updated>2011-09-16T13:50:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/</id>
+    <content type="html">&lt;p&gt;This is about levels of change. It's partly about &lt;a href="http://hg.mozilla.org"&gt;hg.mozilla.org&lt;/a&gt; vs &lt;a href="http://github.com"&gt;GitHub&lt;/a&gt;
+(or &lt;a href="http://bitbucket.org"&gt;BitBucket&lt;/a&gt;). But it's more about our
+devt/review/commit process.
+
+&lt;/p&gt;&lt;p&gt;Moz-central demands patches that solve significant issues, and it's probably
+right in wanting this, but this bite size comes with problems.
+
+&lt;/p&gt;&lt;p&gt;There are 3 levels of change worth discussing:
+
+&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;detail&lt;/strong&gt; level we're used to working at: '&lt;em&gt;Added foo&lt;/em&gt;', '&lt;em&gt;Renamed foo
+to bar&lt;/em&gt;', etc. If working in a small team, this is probably the level we
+would commit at. At this level it's easy to understand the
+&lt;a href="https://github.com/joewalker/gcli/commit/3d5a5ff2187f0a363cd7c89cb78f7bb24dd168aa"&gt;intent behind each change&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;review&lt;/strong&gt; level which is an ideal chunk for someone to review.
+You probably don't want to review every new commit as it's done, but on the
+other hand, you don't want to be told that you made a mistake weeks ago and
+need to redo lots of work. So ideally this happens on something like a daily
+basis. It's the scale that &lt;a href="https://github.com/joewalker/gcli/pull/2"&gt;pull requests&lt;/a&gt;
+were designed for.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;patch&lt;/strong&gt; level which mozilla-central is used to, and which is ideal for
+commit. The work is 'done' and useful for a much wider audience. When a bug
+is fixed we can extract a patch to be committed,
+&lt;a href="https://bug684958.bugzilla.mozilla.org/attachment.cgi?id=559115"&gt;like this one for bug 684958&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;The problem with the Mozilla process is that steps 1 and 2 don't exist at all.
+The benefits to the existence of more detailed change levels are:
+
+&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Review is faster and deeper. You can review &lt;a href="https://github.com/joewalker/gcli/pull/2"&gt;this pull request&lt;/a&gt;
+far better than &lt;a href="https://bugzilla.mozilla.org/attachment.cgi?id=559115&amp;amp;action=diff"&gt;a conventional patch&lt;/a&gt;
+because you can see what I'm intending by each change - you don't need to
+reverse engineer the intent and mentally hold together all the bits of mashed
+together bits of intent.&lt;/li&gt;
+&lt;li&gt;Smaller changes are easier. Our current process prevents us from clearing up
+small things that are not directly related to the bug in hand. We can (for
+example) entertain the thought of variable renaming because it won't confuse
+the patch. There may be other reasons not to go crazy with this, but at least
+the process won't be one.&lt;/li&gt;
+&lt;li&gt;Progress is visible. Because we can share to a smaller team before we're done,
+everyone gets to see what's happening. There is a feeling of momentum -
+progress is the norm. Just like a 6-week cycle is better than an 18-month
+cycle, a daily commit/pull cycle is better than a weekly patch/review cycle.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;In effect we're using GitHub as a tool to develop patches for Firefox, rather
+than to develop Firefox itself. In some ways &lt;a href="https://github.com/joewalker/gcli/tree/review/mozilla/patches"&gt;I mean this literally&lt;/a&gt;.
+
+&lt;/p&gt;&lt;p&gt;There are probably reasons why the detail of what works for GCLI might not
+exactly work in other places, but I'm willing to bet that these ideas could be
+adapted to be of more general use.
+
+&lt;/p&gt;&lt;p&gt;Fundamentally we solve big problems by breaking them down into smaller steps.
+
+&lt;/p&gt;&lt;p&gt;I can eat an elephant, but not by opening really wide.
+&lt;/p&gt;</content>
+  </entry><entry>
+    <title>Marketing (according to the browser makers)</title>
+    <link href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/" />
+    <updated>2010-09-13T16:47:32+00:00</updated>
+    <id>http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/</id>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Mozilla: &lt;a href="http://twitter.com/paulrouget/status/19734735459"&gt;Go Open Web, Go Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google: &lt;a href="http://twitter.com/diveintomark/status/21115916946"&gt;Go Google, Go Open Web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Apple: &lt;a href="http://www.guardian.co.uk/technology/blog/2010/jun/04/html5-apple-browser-standard-mistake"&gt;Go Apple&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Microsoft: &lt;a href="http://tech.slashdot.org/story/10/09/12/2018229/IE9-Team-Says-Our-GPU-Acceleration-Is-Better-Than-Yours"&gt;The others are teh suck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry><entry>
+    <title>Apple and Adobe, Obituaries and Idealism</title>
+    <link href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/" />
+    <updated>2010-02-1T07:22:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/</id>
+    <content type="html">&lt;p&gt;Practical reasons for thinking that Flash is dying:
+
+&lt;ol&gt;
+&lt;li&gt;You can't get flash on an iPhone, iPod or iPad
+&lt;li&gt;&lt;a href="http://lists.w3.org/Archives/Public/public-html/2009Sep/0049.html"&gt;IE9 looks like it could get HTML5 video&lt;/a&gt;
+&lt;/li&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;p&gt;Idealistic reasons why Flash should be dying:
+
+&lt;ol&gt;
+&lt;li&gt;The spec is controlled by a single entity.
+&lt;li&gt;The Flash wire-format is binary. View-source is important.
+&lt;li&gt;The Flash runtime can't be fully open-sourced due to patent encumbered codecs.
+&lt;/li&gt;&lt;/li&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;p&gt;It's obvious, but you can't beat a good venn diagram:
+
+&lt;p&gt;&lt;img src="http://incompleteness.me/images/posts/flash-death.png" alt="ven diagram showing that practice and idealism are non-overlapping sets" /&gt;
+
+&lt;p&gt;The Idealism isn't having much effect.
+
+&lt;h3&gt;Apple&lt;/h3&gt;
+
+&lt;p&gt;There's a parallel post to this one, with the subject being the iPad instead of Flash, and that it's a Bad Thing when you're &lt;a href="http://al3x.net/2010/01/28/ipad.html"&gt;not allowed to tinker with devices that you own&lt;/a&gt;.
+
+&lt;p&gt;Idealistically the world would wait until something Chromey, Androidy, WebOSy or Maemoy came along out of principle. But we all know &lt;a href="http://twitter.com/diveintomark/status/8292775700"&gt;that's not going to happen&lt;/a&gt; however much we complain.
+
+&lt;p&gt;Shame really. All the talk is for nothing.
+
+&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content>
+  </entry><entry>
+    <title>Collaboration in Bespin</title>
+    <link href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/" />
+    <updated>2009-08-13T16:29:02+00:00</updated>
+    <id>http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/</id>
+    <content type="html">&lt;p&gt;Recently I've been working on adding collaboration features to Bespin, Mozilla's web code editor. Today they're getting pushed out into &lt;a href="http://bespin.mozilla.com"&gt;bespin.mozilla.com&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Enhanced collaboration is one of the best reasons to do an IDE on the web. It’s possible in a traditional IDE or code editor, but there are lots of features of a web based editor that make it an obvious thing to do on the web.&lt;/p&gt;&lt;p&gt;Our new collaboration feature is still fairly new, and like the rest of Bespin, still fairly beta, but we’ve got it working in Firefox, Safari and Chrome right now.&lt;/p&gt;&lt;p&gt;We’ve released a webcast showing it off here:&lt;/p&gt;&lt;object width="647" height="529"&gt;&lt;param name="allowfullscreen" value="true" /&gt;&lt;param name="allowscriptaccess" value="always" /&gt;&lt;param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=6036944&amp;amp;server=vimeo.com&amp;amp;show_title=1&amp;amp;show_byline=1&amp;amp;show_portrait=0&amp;amp;color=00ADEF&amp;amp;fullscreen=1" /&gt;&lt;embed src="http://vimeo.com/moogaloop.swf?clip_id=6036944&amp;amp;server=vimeo.com&amp;amp;show_title=1&amp;amp;show_byline=1&amp;amp;show_portrait=0&amp;amp;color=00ADEF&amp;amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="647" height="529" /&gt;&lt;/object&gt;&lt;h2&gt;Taking it for a spin&lt;/h2&gt;&lt;p&gt;Want a go real quick? Here are the steps:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Sign up or login &lt;a href="https://bespin.mozilla.com/" target="_blank"&gt;to Bespin&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Press CTRL+J/CMD+J to open the command line.&lt;/li&gt;
+&lt;li&gt;Type '&lt;code&gt;follow joewalker&lt;/code&gt;' to get someone to share files with. I've shared a project called pubproj globally.&lt;/li&gt;
+&lt;li&gt;Type '&lt;code&gt;project list&lt;/code&gt;'. You should see &lt;code&gt;joewalker+pubproj&lt;/code&gt; in your list of projects.&lt;/li&gt;
+&lt;li&gt;Type '&lt;code&gt;set collaborate on&lt;/code&gt;' to turn on shared editing.&lt;/li&gt;
+&lt;li&gt;Open a shared file by typing '&lt;code&gt;open /joewalker+pubproj/example.txt&lt;/code&gt;'.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Or, in one graphic:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/collab-steps.png" /&gt;&lt;p&gt;You should then be in a collaborative editing session with the rest of the Internet.&lt;/p&gt;&lt;p&gt;Click on the collaboration icon (2 people) in the top right hand corner show you who's editing with you.&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/collab-people.png" /&gt;&lt;h2&gt;How it Works&lt;/h2&gt;&lt;p&gt;There are 2 parts to what's new. Firstly there's a way to decide who you want to share stuff with and secondly there's the shared editor.  We’re adding 3 or 4 new commands:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;follow/unfollow&lt;/strong&gt;: allow you to decide whose shared projects you want to see in your project navigator. We've gone for a lightweight &lt;a href="http://twitter.com/joewalker"&gt;Twitter&lt;/a&gt; style model so it's easy to get started. As we evolve Bespin this will become a way to get all sorts of information about the people you are working with
+
+&lt;li&gt;&lt;strong&gt;group&lt;/strong&gt;: allows you to put the people you are interested in into groups to make it easy to manage sharing
+
+&lt;li&gt;&lt;strong&gt;share&lt;/strong&gt;: allows you to export your projects read-only or editable to individuals, groups, or to everyone
+&lt;/li&gt;&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Expressing an interest in someone is as easy as “&lt;code&gt;follow username&lt;/code&gt;”. You can then group these users together to make sharing easier. So for me to add Kevin, Ben and Dion to a group, I would do “&lt;code&gt;group add mozlabs Kevin ben dion&lt;/code&gt;”. Grouping people like this is totally optional, but it will make maintaining sharing rules a lot easier going forward, when you’re working on a number of projects.&lt;/p&gt;&lt;p&gt;Then if you want to share a project in read-only mode, to someone that is following you, you just type: “&lt;code&gt;share add projectname username&lt;/code&gt;”. Replace username with groupname to share with one of your defined groups, or with “&lt;code&gt;everyone&lt;/code&gt;” to just throw everything wide open. To allow editing you add “&lt;code&gt;edit&lt;/code&gt;” to the end. So for ultimate wiki-like promiscuity: “&lt;code&gt;share add projectname everyone edit&lt;/code&gt;”.&lt;/p&gt;&lt;p&gt;Projects shared to you by people you follow will now show up in your file-explorer, or you can edit them from the command line. Type “&lt;code&gt;load /owner+projectname/path/to/file&lt;/code&gt;”.&lt;/p&gt;&lt;h2&gt;Future Extensions&lt;/h2&gt;&lt;p&gt;We’re currently using &lt;a href="http://code.google.com/p/google-mobwrite/"&gt;Mobwrite&lt;/a&gt; to provide the diffing and synchronization with some additions to allow us to share collaborator information. We’re hopeful that we will be able to share collaboration systems with a number of other editors in the future. Various developers are working on plug-ins for GEdit, Eclipse, emacs, etc.&lt;/p&gt;&lt;p&gt;Other things that we’re working on include plans for a quick share mode where you can grab a URL post it to an IRC session and instantly be in a shared edit session with the other IRC users.&lt;/p&gt;&lt;p&gt;We've also been discussing in-page chat. We've left it for now because many Bespin users will already have IM or IRC or even Skype or similar, and we want to do something smart with the chat transcripts other than just throwing them away.&lt;/p&gt;&lt;p&gt;Next we’ll be working on getting smooth undo so you have a time machine that can smoothly walk through changes from the current revision back in time through recent saves, and into VCS history, and then into a more lightweight collaboration where when 2 people have 2 check-outs of 1 file, they can both see each others changes to reduce merge pain, without directly affecting each others work.&lt;/p&gt;</content>
+  </entry><entry>
+    <title>Command Lines</title>
+    <link href="http://incompleteness.me/blog/2009/05/27/command-lines/" />
+    <updated>2009-05-27T20:08:19+00:00</updated>
+    <id>http://incompleteness.me/blog/2009/05/27/command-lines/</id>
+    <content type="html">&lt;p&gt;When I was fresh out of college, my first job was working for the &lt;a href="http://www.opengroup.org/"&gt;OpenGroup&lt;/a&gt;, and my command line looked something like this:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/motif.png" /&gt;&lt;p&gt;In 2009, fired by the white heat of years of cutting edge research and development, my command line looks a lot more like this:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/terminal.png" /&gt;&lt;p&gt;To be fair, we've now got transparency, anti-aliasing, our shells now do better completion. But that's about it for changes. Considering how much the rest of the industry has changed, that's shockingly glacial.&lt;/p&gt;&lt;p&gt;For the past week or so, I've had the privilege of working on the &lt;a href="http://bespin.mozilla.com/"&gt;Bespin&lt;/a&gt; command line, and I think there's a lot that we can do to make things better.&lt;/p&gt;&lt;p&gt;This is what my Bespin command line looks like now:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/main.png" /&gt;&lt;p&gt;This post is all about how we can make command lines better.&lt;/p&gt;&lt;p&gt;The core of the unix command line philosophy seems to be: &lt;a href="http://www.faqs.org/docs/artu/ch01s06.html"&gt;small programs and pipe&lt;/a&gt;. There’s a lot to be said for &lt;a href="http://en.wikipedia.org/wiki/Loose_coupling"&gt;loose coupling&lt;/a&gt; but there are some drawbacks as well...&lt;/p&gt;&lt;h2&gt;Zsh&lt;/h2&gt;&lt;p&gt;I love Zsh, and love the fancy completion that it does. Basic file completion has been around since ksh, IIRC:&lt;/p&gt;&lt;pre&gt;
+$ ls &lt;strong&gt;[TAB]&lt;/strong&gt;
+Applications/  Mesh/       Projects/
+Desktop/       Movies/     Public/
+Documents/     Music/      Sites/
+Downloads/     Parallels/  backup/
+Library/       Pictures/   bin/
+&lt;/pre&gt;&lt;p&gt;But zsh can complete against more than just files:&lt;/p&gt;&lt;pre&gt;
+$ telnet &lt;strong&gt;[TAB]&lt;/strong&gt;
+192.168.0.1
+192.168.0.12
+download.directwebremoting.org
+download.dojotoolkit.org
+getahead.org
+hg.mozilla.com
+localhost
+people.mozilla.com
+sandbox.dojotoolkit.org
+svn.directwebremoting.org
+&lt;/pre&gt;&lt;p&gt;Zsh knows that you don’t telnet to a file, so it completes against hosts (Does anyone know where that host list came from BTW?)&lt;/p&gt;&lt;p&gt;Zsh also knows about other commands:&lt;/p&gt;&lt;pre&gt;
+$ git &lt;strong&gt;[TAB]&lt;/strong&gt;
+add                 -- add paths to the index
+apply               -- apply patch on a git index file and a work tree
+applymbox           -- apply patches from a mailbox
+applypatch          -- apply one patch extracted from an e-mail
+archimport          -- import an Arch repository into git
+bisect              -- find the change that introduced a bug
+branch              -- create and show branches
+checkout            -- checkout and switch to a branch
+cherry              -- find commits not merged upstream
+cherry-pick         -- cherry-pick the effect of an existing commit
+clone               -- clones a repository into a new directory
+commit              -- record changes to the repository
+...
+&lt;/pre&gt;&lt;p&gt;That list of commands is the result of a 'git help' command, but that's not what I typed. Zsh has been doing something funky behind my back when I pressed [TAB].&lt;/p&gt;&lt;p&gt;Zsh can do different things depending on where in a command you are:&lt;/p&gt;&lt;pre&gt;
+$ git add &lt;strong&gt;[TAB]&lt;/strong&gt;
+Applications/  Mesh/       Projects/
+Desktop/       Movies/     Public/
+Documents/     Music/      Sites/
+Downloads/     Parallels/  backup/
+Library/       Pictures/   bin/
+&lt;/pre&gt;&lt;p&gt;My point, is that, whilst all of this is very clever, the implementation is also &lt;em&gt;insane&lt;/em&gt;.&lt;/p&gt;&lt;p&gt;In order to make this work, the zsh guys have had to reverse engineer every single unix command (or at least all most of the ones that I use). And any time those commands change, then zsh is going to have to change too.&lt;/p&gt;&lt;p&gt;It's very useful, and I'm glad that zsh has done it, and they probably didn't have much of a choice, but this way of going about things is not the Best Idea ever.&lt;/p&gt;&lt;p&gt;I'm sure somewhere the bash guys are working on the same feature themselves, or maybe they've already done it. I don’t care - it just strengthens the point about the lunacy of the situation.&lt;/p&gt;&lt;p&gt;The Unix philosophy of small programs and pipe has a lot to be said for it, but there are serious drawbacks too.&lt;/p&gt;&lt;p&gt;Here's some of the ways that we're innovating when it comes to the Bespin command line, and benefiting from being about to integrate things better.&lt;/p&gt;&lt;h2&gt;GUI integration&lt;/h2&gt;&lt;p&gt;Traditionally you've had a set of shells (bash, zsh, etc) that work in a set of terminal emulators (xterm, terminal, gnome-terminal, konsole, etc) But there's so much more you could do if you had one program do both.&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/gui-integ.png" /&gt;&lt;p&gt;In Bespin:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;If you click on an old command, it gets copied to the prompt (the blue highlight is a mouseover).&lt;/li&gt;
+&lt;li&gt;If you double click it's re-executed.&lt;/li&gt;
+&lt;li&gt;Output is not restricted to ascii in a grid. We (predictably) use HTML.&lt;/li&gt;
+&lt;li&gt;Error output is visually different to normal output&lt;/li&gt;
+&lt;li&gt;You can minimize or maximize output (the help output has been minimized above) - I hate it when a vcs diff operation takes up 4k lines of scrollback obliterating what I wanted to see.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;There's no reason why you couldn't do this in Unix (or even Windows). I don't think you’d want such a gui-shell as your login shell, but since its use is very much from within a GUI, that's OK - you’d probably launch it from the GUI anyway.&lt;/p&gt;&lt;p&gt;In Bespin we don't have pipes yet, but would it be neat to be able to inspect a pipeline visually as it's working, I'm sure it's possible with a gui-shell.&lt;/p&gt;&lt;h2&gt;Linking Output to Commands&lt;/h2&gt;&lt;p&gt;We link the output from a command to the command that created it. The obvious effect is that output from slow running commands no longer gets confused with what's happening now.&lt;/p&gt;&lt;object width="647" height="529"&gt;&lt;param name="allowfullscreen" value="true" /&gt;&lt;param name="allowscriptaccess" value="always" /&gt;&lt;param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=4868659&amp;amp;server=vimeo.com&amp;amp;show_title=1&amp;amp;show_byline=1&amp;amp;show_portrait=0&amp;amp;color=00ADEF&amp;amp;fullscreen=1" /&gt;&lt;embed src="http://vimeo.com/moogaloop.swf?clip_id=4868659&amp;amp;server=vimeo.com&amp;amp;show_title=1&amp;amp;show_byline=1&amp;amp;show_portrait=0&amp;amp;color=00ADEF&amp;amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="647" height="529" /&gt;&lt;/object&gt;&lt;p&gt;The 'slow' command is just something I hacked up to demonstrate asynchronous behavior.&lt;/p&gt;&lt;p&gt;A nice upshot of this is that we can implicitly add &amp;amp; to the end of every command, and you no longer have to wait for anything.&lt;/p&gt;&lt;p&gt;In essence, each command has it’s own separate stdout, which goes to it’s own div. Maybe there is a reason why unix shells don’t do something similar. Would it mean shells being curses based or something?&lt;/p&gt;&lt;h2&gt;Command Meta-Data&lt;/h2&gt;&lt;p&gt;With the exception of the reverse-engineering of the command line structure done by zsh, the integration between commands and the shell is limited. In Bespin, a command is a structure like this&lt;/p&gt;&lt;pre&gt;
+{
+    name: 'createproject',
+    takes: ['projectname'],
+    preview: 'create a new project',
+    usage: '[newprojectname]',
+    execute: function(commandLine, projectname) {
+        /* code to do the work */
+    }
+}
+&lt;/pre&gt;&lt;p&gt;This means that we can provide help as the user is typing. The idea is that TAB will guess what you want to do at all times.&lt;/p&gt;&lt;p&gt;This ties in a lot with GUI integration too. If the command line knows that the next parameter is a file, when the user presses TAB without typing anything to complete on, we can offer a dialog to allow selection of a file, and so on. This isn’t about forcing the user to switch to the mouse, but it is about allowing better feedback from the system about what options are available.&lt;/p&gt;&lt;p&gt;We've only really got started with this part - there’s a lot more work to do. I hope we'll be able to do some of the funky GUI integration that &lt;a href="http://labs.mozilla.com/projects/ubiquity/"&gt;Ubiquity&lt;/a&gt; has been pioneering.&lt;/p&gt;&lt;h2&gt;Attention Guides&lt;/h2&gt;&lt;p&gt;There's a lot to look at on any command line, I want to find ways to keep the most important bits in front of your eyes at all times. I'd like to expire older commands more intelligently than a standard terminal (oldest dies first), Commands are more important if:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;They are still in progress&lt;/li&gt;
+&lt;li&gt;They keep being re-executed&lt;/li&gt;
+&lt;li&gt;They are waiting for input&lt;/li&gt;
+&lt;li&gt;etc&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;We've only basically started on this right now, with the ability to hide/show output, but there's potential for it to make the command line lots more usable.&lt;/p&gt;&lt;h2&gt;Plug-ins&lt;/h2&gt;&lt;p&gt;Linking everything together is easy if you make one big monolithic lump. That's not the plan - we're evolving a plug-in strategy as we go, and planning on making as much of Bespin itself use the plug-in system. The key to coupling is to get the right level of coupling.&lt;/p&gt;&lt;h2&gt;Status Messages&lt;/h2&gt;&lt;p&gt;My other integration obsession is about status messages. There's a &lt;strong&gt;huge&lt;/strong&gt; amount we could do to integrate the &lt;a href="http://twitter.com/joewalker"&gt;familiar concept&lt;/a&gt; of "what are you doing now" with commit messages, bug trackers, chat, and team tracking. More soon.&lt;/p&gt;&lt;p&gt;What other things could we do to trick out the command line?&lt;/p&gt;</content>
+  </entry><entry>
+    <title>Introducing David Marginian</title>
+    <link href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/" />
+    <updated>2009-04-15T19:47:48+00:00</updated>
+    <id>http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/</id>
+    <content type="html">&lt;p&gt;The &lt;a href="http://directwebremoting.org/dwr"&gt;DWR project&lt;/a&gt; has a new lead developer - We've just closed a unanimous vote that declares &lt;a href="http://www.butterdev.com/"&gt;David Marginian&lt;/a&gt; to be the new lead.&lt;/p&gt;&lt;p&gt;David had been around DWR since the beginning, and has been consistently one of the most helpful people on the mailing list, and has contributed to many areas, most particularly the documentation.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: Why?&lt;/strong&gt; Because David is already doing a better job of leading DWR than I am, and because for a while I've had too many projects on and been trying to do a better job of less things.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: Am I gone for good?&lt;/strong&gt; No, I certainly don't intend to disappear, and I've still got a lot of love for DWR - this is mostly just me admitting that I'm not the best man for the job, and that DWR deserves better.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: What are you doing instead?&lt;/strong&gt; Quite a bit of &lt;a href="https://bespin.mozilla.com/"&gt;Bespin&lt;/a&gt;. Oh, and like everyone else, I'm excusing my lack of blog activity to the whole &lt;a href="http://twitter.com/joewalker"&gt;140 char thing&lt;/a&gt;. It's a cheap excuse, but if everyone else can use it...&lt;/p&gt;&lt;p&gt;I'd like to thank the David, and the whole DWR community for helping make DWR a success.&lt;/p&gt;</content>
+  </entry><entry>
+    <title>The Power of Bespin</title>
+    <link href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/" />
+    <updated>2009-02-16T12:38:54+00:00</updated>
+    <id>http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/</id>
+    <content type="html">&lt;p&gt;Yeah, so &lt;a href="https://bespin.mozilla.com/"&gt;Bespin&lt;/a&gt; a cool editor, and it makes use of lots of bleeding edge tech, (and it's got several annoying bugs - sorry about those). But I think Bespin has potential way beyond just looking nice ...
+
+&lt;p&gt;Open source development: You hear about project X, use it, and it’s nice, but to use a worn out phrase - there’s an itch to scratch ... 
+
+&lt;p&gt;So what do you do?
+
+&lt;h2&gt;Open Source Development Before Bespin&lt;/h2&gt;
+
+&lt;p&gt;You search the project website for the directions to the source control system, you check that you’re up to date with cvs/svn/git/hg/whatever and checkout the source. Next you need to figure out how to build the project with ant/make/maven/paver/rake/whatever, and maybe download new libraries to make the compile clean and you then configure your IDE or editor to the new project. You can then go about editing the code. When you’re done with that you might need to figure out xunit/yunix/zunit to run the unit tests. Then you have to join a mailing list to work out how to send your changes in, which might be a patch or a bundle or a zip or direct commit access. You might discover that you need to sign a CLA so the project knows who you are, so you mess about with printing/signing/scanning/emailing/whatever.
+
+&lt;p&gt;And then you’re done. With complex projects there could be lost more to it.
+
+&lt;p&gt;While you’re doing this you have no idea what the other developers are doing. Maybe they’re working on a totally different branch. Maybe they’ve done something similar already. Maybe they’re making changes that mean you should try a different approach. It would be good to know because you might be wasting your time.
+
+&lt;h2&gt;Open Source Development After Bespin&lt;/h2&gt;
+
+&lt;p&gt;You visit Bespin, and elect to edit project X. When you’re done, you click submit, and the project owners get your change.
+
+&lt;p&gt;Plus you can see what the project owners are doing with the source, and how your changes fit in.
+
+&lt;h2&gt;The Power of Bespin&lt;/h2&gt;
+
+&lt;p&gt;For me, what I find interesting about Bespin isn't the tech, it's the lowering of the barriers to entry and the socializing of open development.
+
+&lt;p&gt;Virtually no software is perfect, and there are billions of people that are affected by the imperfections. There are hundreds of ways to contribute to any development project, and millions of people who could use their skills to help if only we could find ways to get the sources of help to the problems needing work
+
+&lt;p&gt;This application of huge resource to complex problems is what the Internet has always been good at, but so far we've not really done much to help software development. I hope that Bespin can become part of the solution.
+
+&lt;p&gt;This isn’t going to become a Bespin blog (&lt;a href="http://labs.mozilla.com/tag/bespin/feed"&gt;that’s here&lt;a&gt;&lt;/a&gt; or &lt;a href="http://twitter.com/bespin"&gt;we're on twitter&lt;/a&gt;). Irregular DWR/Ajax/Security programming will return to my blog and &lt;a href="http://twitter.com/joewalker"&gt;twitter feed&lt;/a&gt; shortly.
+
+&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content>
+  </entry><entry>
+    <title>Undoable Silent Autoupdate</title>
+    <link href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/" />
+    <updated>2009-02-4T09:49:23+00:00</updated>
+    <id>http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/</id>
+    <content type="html">&lt;p&gt;Recently:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Aaron Boodman - "&lt;a href="http://www.aaronboodman.com/2009/01/update-fail.html"&gt;I'm a big believer in silent autoupdates&lt;/a&gt;"
+&lt;li&gt;PPK/Quirksmode - "&lt;a href="http://www.quirksmode.org/blog/archives/2009/02/state_of_the_br.html"&gt;I hate automatic updating&lt;/a&gt;"
+&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Something Aaron didn’t mention - What happens when a silent auto-update breaks something? Anyone that's had to do battle with the demo-pixies silently changing something just before an important demo hates the idea that something might be silently altering their rendering engine as they are opening their laptop on-stage.&lt;/p&gt;&lt;p&gt;PPK's issue basically comes down to testing older versions - how can I test version X-1, when it's just been replaced by version X. On the one hand with silent auto-update virtually everyone will be on version X, so X-1 isn’t important, however I don't think that removes all need for testing on X-1.&lt;/p&gt;&lt;h2&gt;Solution?&lt;/h2&gt;&lt;p&gt;We should have silent auto-update. It makes the Internet safer, and we badly need that. But we should also have a system that keeps old versions around for some period of time with a way for users to revert. Maybe there is then an entry in the help menu that allows users to say 'it broke take me back', and maybe a preference that configures the number of old versions left lying around.&lt;/p&gt;&lt;p&gt;I have a suspicion that many corporates turn auto-update off in order to test the updates batches before internal release (or to put it another way - it's a cost saving) Maybe with undoable silent autoupdate they would allow the system to work without getting in the way?&lt;/p&gt;&lt;p&gt;I'm a big believer in &lt;em&gt;undoable&lt;/em&gt; silent autoupdates.&lt;/p&gt;</content>
+  </entry><entry>
+    <title>Bespin and Mozilla</title>
+    <link href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/" />
+    <updated>2009-02-4T11:27:33+00:00</updated>
+    <id>http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/</id>
+    <content type="html">&lt;p&gt;I’m very excited to be going to work for &lt;a href="http://labs.mozilla.com/"&gt;Mozilla Labs&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;I have very much enjoyed my time working at &lt;a href="http://www.sitepen.com/"&gt;SitePen&lt;/a&gt; - they are doing awesome work with Dojo and DWR, but with the main development on DWR 3 being done, it's time to move on. SitePen has some amazing talent, and it's been a huge privilege for me to have been able to share the ride, so I'm very grateful to Dylan and everyone at SitePen for allowing me to be part of it. I'm not going to be ignoring DWR either, so between me and the excellent team of Mike, Jose, David, Lance and many others I'm sure it has a long future.&lt;/p&gt;&lt;p&gt;My new role will be working with &lt;a href="http://benzilla.galbraiths.org/"&gt;Ben&lt;/a&gt;, &lt;a href="http://almaer.com/blog/"&gt;Dion&lt;/a&gt; and &lt;a href="http://www.blueskyonmars.com/"&gt;Kevin&lt;/a&gt; on Bespin.&lt;/p&gt;&lt;p&gt;You might be able to get hints about Bespin from &lt;a href="http://ajaxian.com/archives/ajaxians-join-mozilla-creating-developer-tools"&gt;postings&lt;/a&gt; &lt;a href="http://labs.mozilla.com/2008/10/developer-tools-and-the-open-web/"&gt;that&lt;/a&gt; &lt;a href="http://almaer.com/blog/joining-mozilla-to-create-new-developer-tools-for-the-web-hoping-to-create-a-new-chapter-in-the-book-of-mozilla"&gt;are&lt;/a&gt; &lt;a href="http://www.blueskyonmars.com/2009/01/05/making-web-development-suck-less/"&gt;around&lt;/a&gt; &lt;a href="http://benzilla.galbraiths.org/2008/10/13/a-new-direction/"&gt;already&lt;/a&gt;. Oh, and &lt;a href="http://en.wikipedia.org/wiki/Cloud_City"&gt;the name&lt;/a&gt; - that might be a clue too. Needless to say I’m excited about the project. More soon.&lt;/p&gt;</content>
+  </entry>
+
+</feed>

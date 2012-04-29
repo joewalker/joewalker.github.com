@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>DWR 2.0 milestone 1 does Reverse Ajax - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/04/11/dwr-2-0-milestone-1-does-reverse-ajax/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2006/04/11/dwr-2-0-milestone-1-does-reverse-ajax/">DWR 2.0 milestone 1 does Reverse Ajax</a></h1><section class="content"><a href="http://directwebremoting.org/dwr/"><img src="http://incompleteness.me/images/posts/dwr-logo.png" align="right" style="margin: 0px 10px;" border="0" /></a><p>We've just released <a href="http://directwebremoting.org/dwr/">DWR</a> version 2.0 milestone 1 - This is probably the biggest release we've ever done in terms of new features.</p><p><b>Reverse Ajax</b>: DWR 1.x allowed you to asynchronously call Java code from Javascript. DWR 2.0 builds on this to allow you to asynchronously call Javascript code from Java. Reverse Ajax makes writing interactive applications much easier. It can use polling or <a href="http://alex.dojotoolkit.org/?p=545">Comet</a> (long-lived HTTP) queries.</p><p>Our 'chat' example contains Java code like this:</p><style type="text/css">
+.paste { background:#F8F8F8; font-size:90% ; border:1px dotted #999; padding:10px; margin:2px 10px; }
+.java_type { color:#33C; }
+.java_comment { color:#383; }
+.java_operator { color:#999; }
+.java_plain { color:#444; }
+.java_separator { color:#999; }
+.xml_tag_symbols { color:#999; }
+.xml_tag_name { color:#33C; }
+.xml_attribute_name { color:#619; }
+.xml_attribute_value { color:#660; }
+</style><div class="paste">
+<div><code> <span class="java_comment">//&nbsp;Get&nbsp;the&nbsp;current&nbsp;page</span> </code></div>
+<div><code> <span class="java_type">WebContext</span><span class="java_plain">&nbsp;wctx&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_type">WebContextFactory</span><span class="java_separator">.</span><span class="java_plain">get</span><span class="java_separator">();</span><span class="java_plain"></span> </code></div>
+<div><code> <span class="java_type">String</span><span class="java_plain">&nbsp;currentPage&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;wctx</span><span class="java_separator">.</span><span class="java_plain">getCurrentPage</span><span class="java_separator">();</span><span class="java_plain"></span></code></div>
+<div><code> <span class="java_plain"></span>&nbsp;</code></div>
+<div><code> <span class="java_comment">//&nbsp;'messages' is a List<string> of recent messages for a browser to display</string></span></code></div>
+<div><code> <span class="java_comment">//&nbsp;Java objects converted to Javascript have a declaration and a declared variable name.</span></code></div>
+<div><code> <span class="java_type">OutboundVariable</span><span class="java_plain">&nbsp;ov&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;wctx</span><span class="java_separator">.</span><span class="java_plain">toJavascript</span><span class="java_separator">(</span><span class="java_plain">messages</span><span class="java_separator">);</span><span class="java_plain"></span></code></div>
+<div><code> <span class="java_plain"></span>&nbsp;</code></div>
+<div><code> <span class="java_comment">//&nbsp;Loop&nbsp;over&nbsp;all&nbsp;the&nbsp;users&nbsp;on&nbsp;the&nbsp;current&nbsp;page</span></code></div>
+<div><code> <span class="java_keyword">for</span><span class="java_plain">&nbsp;</span><span class="java_separator">(</span><span class="java_type">ScriptSession</span><span class="java_plain">&nbsp;otherSession&nbsp;</span><span class="java_operator">:</span><span class="java_plain">&nbsp;wctx</span><span class="java_separator">.</span><span class="java_plain">getScriptSessionsByPage</span><span class="java_separator">(</span><span class="java_plain">currentPage</span><span class="java_separator">))&nbsp;{</span></code></div>
+<div><code> <span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;otherSession</span><span class="java_separator">.</span><span class="java_plain">addScript</span><span class="java_separator">(</span><span class="java_plain">ov</span><span class="java_separator">.</span><span class="java_plain">getInitCode</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">);</span><span class="java_plain"></span></code></div>
+<div><code> <span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;otherSession</span><span class="java_separator">.</span><span class="java_plain">addScript</span><span class="java_separator">(</span><span class="java_literal">"receiveMessages("</span><span class="java_plain">&nbsp;</span><span class="java_operator">+</span><span class="java_plain">&nbsp;ov</span><span class="java_separator">.</span><span class="java_plain">getAssignCode</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_operator">+</span><span class="java_plain">&nbsp;</span><span class="java_literal">");"</span><span class="java_plain">&nbsp;</span><span class="java_separator">);</span><span class="java_plain"></span></code></div>
+<div><code> <span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">//&nbsp;receiveMessages&nbsp;is&nbsp;a&nbsp;Javascript&nbsp;function&nbsp;that&nbsp;displays&nbsp;the&nbsp;current&nbsp;messages</span></code></div>
+<div><code> <span class="java_separator">}</span><span class="java_plain"></span></code></div>
+</div><p>In essence we are looping over all the users on the current page and sending them some Javascript to update their display. The Javascript is even simpler. You just turn polling on:</p><div class="paste">
+<div><code><span class="java_type">DWREngine</span><span class="java_separator">.</span><span class="java_plain">setPolling</span><span class="java_separator">(<span class="java_type">true</span><span class="java_separator">);</span></span></code></div>
+</div><p>Chat example (included in the war download) includes the Javascript source to <code>receiveMessages()</code> which is a 4-liner that uses DWRUtil to put the messages on the screen.</p><p>Other uses for this technology include progress bars, online games, stock tickers and any system where server state changes and we need to push updates to a browser or browsers.</p><p><b>Cross-Domain Ajax</b>: We now allow script tag remoting to enable cross-domain Ajax. This is in addition to XMLHttpRequest and iframe remoting.</p><p><b>Automatic signatures Element</b>: If you are using DWR 2.0 with JDK5 generics then you can skip the signatures element in dwr.xml. DWR can now work out the correct mapping all for itself.</p><p><b>DWRUtil Updates</b>: The biggest change is to allow template style DOM manipulation. Using cloneNode() you can create a repeated HTML structure from an array of Javascript data.</p><p><b>Other new features</b>: See the release notes for details of the refactoring to the org.directwebremoting package, new script scope for creators and attributes, and the new call meta-data abilities.</p><p>For more information see the <a href="http://directwebremoting.org/dwr/changelog/dwr20m1">detailed release notes</a>, or go straight to the <a href="http://directwebremoting.org/dwr/download">download area</a>.</p><p>We've got an aggressive list of new features to add to DWR for the upcoming milestones. What would you like us to add?</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2006-04-11T16:43:36+00:00" pubdate="pubdate">
+    <span class="day">11</span>
+    <span class="month">Apr</span>
+    <span class="year">2006</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/04/11/dwr-2-0-milestone-1-does-reverse-ajax/" data-counturl="http://incompleteness.me/blog/2006/04/11/dwr-2-0-milestone-1-does-reverse-ajax/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

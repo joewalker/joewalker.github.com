@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Collaboration in Bespin - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a></h1><section class="content"><p>Recently I've been working on adding collaboration features to Bespin, Mozilla's web code editor. Today they're getting pushed out into <a href="http://bespin.mozilla.com">bespin.mozilla.com</a>.</p><p>Enhanced collaboration is one of the best reasons to do an IDE on the web. It’s possible in a traditional IDE or code editor, but there are lots of features of a web based editor that make it an obvious thing to do on the web.</p><p>Our new collaboration feature is still fairly new, and like the rest of Bespin, still fairly beta, but we’ve got it working in Firefox, Safari and Chrome right now.</p><p>We’ve released a webcast showing it off here:</p><object width="647" height="529"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=6036944&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=6036944&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="647" height="529" /></object><h2>Taking it for a spin</h2><p>Want a go real quick? Here are the steps:</p><ul>
+<li>Sign up or login <a href="https://bespin.mozilla.com/" target="_blank">to Bespin</a>.</li>
+<li>Press CTRL+J/CMD+J to open the command line.</li>
+<li>Type '<code>follow joewalker</code>' to get someone to share files with. I've shared a project called pubproj globally.</li>
+<li>Type '<code>project list</code>'. You should see <code>joewalker+pubproj</code> in your list of projects.</li>
+<li>Type '<code>set collaborate on</code>' to turn on shared editing.</li>
+<li>Open a shared file by typing '<code>open /joewalker+pubproj/example.txt</code>'.</li>
+</ul><p>Or, in one graphic:</p><img src="http://incompleteness.me/images/posts/collab-steps.png" /><p>You should then be in a collaborative editing session with the rest of the Internet.</p><p>Click on the collaboration icon (2 people) in the top right hand corner show you who's editing with you.</p><img src="http://incompleteness.me/images/posts/collab-people.png" /><h2>How it Works</h2><p>There are 2 parts to what's new. Firstly there's a way to decide who you want to share stuff with and secondly there's the shared editor.  We’re adding 3 or 4 new commands:</p><ul>
+<li><strong>follow/unfollow</strong>: allow you to decide whose shared projects you want to see in your project navigator. We've gone for a lightweight <a href="http://twitter.com/joewalker">Twitter</a> style model so it's easy to get started. As we evolve Bespin this will become a way to get all sorts of information about the people you are working with
+
+<li><strong>group</strong>: allows you to put the people you are interested in into groups to make it easy to manage sharing
+
+<li><strong>share</strong>: allows you to export your projects read-only or editable to individuals, groups, or to everyone
+</li></li></li></ul><p>Expressing an interest in someone is as easy as “<code>follow username</code>”. You can then group these users together to make sharing easier. So for me to add Kevin, Ben and Dion to a group, I would do “<code>group add mozlabs Kevin ben dion</code>”. Grouping people like this is totally optional, but it will make maintaining sharing rules a lot easier going forward, when you’re working on a number of projects.</p><p>Then if you want to share a project in read-only mode, to someone that is following you, you just type: “<code>share add projectname username</code>”. Replace username with groupname to share with one of your defined groups, or with “<code>everyone</code>” to just throw everything wide open. To allow editing you add “<code>edit</code>” to the end. So for ultimate wiki-like promiscuity: “<code>share add projectname everyone edit</code>”.</p><p>Projects shared to you by people you follow will now show up in your file-explorer, or you can edit them from the command line. Type “<code>load /owner+projectname/path/to/file</code>”.</p><h2>Future Extensions</h2><p>We’re currently using <a href="http://code.google.com/p/google-mobwrite/">Mobwrite</a> to provide the diffing and synchronization with some additions to allow us to share collaborator information. We’re hopeful that we will be able to share collaboration systems with a number of other editors in the future. Various developers are working on plug-ins for GEdit, Eclipse, emacs, etc.</p><p>Other things that we’re working on include plans for a quick share mode where you can grab a URL post it to an IRC session and instantly be in a shared edit session with the other IRC users.</p><p>We've also been discussing in-page chat. We've left it for now because many Bespin users will already have IM or IRC or even Skype or similar, and we want to do something smart with the chat transcripts other than just throwing them away.</p><p>Next we’ll be working on getting smooth undo so you have a time machine that can smoothly walk through changes from the current revision back in time through recent saves, and into VCS history, and then into a more lightweight collaboration where when 2 people have 2 check-outs of 1 file, they can both see each others changes to reduce merge pain, without directly affecting each others work.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2009-08-13T16:29:02+00:00" pubdate="pubdate">
+    <span class="day">13</span>
+    <span class="month">Aug</span>
+    <span class="year">2009</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/" data-counturl="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

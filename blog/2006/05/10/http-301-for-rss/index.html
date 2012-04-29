@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>HTTP-301 for RSS - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">HTTP-301 for RSS</a></h1><section class="content"><a href="http://directwebremoting.org/dwr/"><img src="http://incompleteness.me/images/posts/autoresubscribe.png" align="right" style="margin: 10px 10px;" border="0" /></a><p>RSS feeds are way too static. A blogger can’t easily change feed URL without the co-operation of their entire subscriber base.</p><p>2 examples:</p><p><a href="http://scobleizer.wordpress.com/">Robert Scoble</a> <a href="http://radio.weblogs.com/0001011/2005/11/27.html#a11433">changed</a> his feed URL, and six months later his subscriber count is under half of his original subscriber count (according to Bloglines). I'm sure Robert would have loved to have automatically moved the thousands of subscribers to his new blog automatically, and I would prefer not to need to re-subscribe.</p><p>Russell Beattie decided to stop blogging, but his several thousand subscribers couldn't be bothered to unsubscribe - and why would they; he might start blogging again, and anyway it's only a hassle to unsubscribe. However for Russell, this means his server gets perpetually swamped by hundreds of update checks for an update that will probably never happen.</p><p>The reality of the situation is that you can't change your feed URL without a huge effort. How long does it take one person to change the feed URL for one blog? Maybe 30 secs or less if you are quick, but the average is probably longer and it depends a lot on how simple your aggregator it. So it's easy to understand why people don't bother, and that's if they noticed the "re-subscribe over there" message in the first place.</p><p>I'm sure Robert would like to aggregate his 2 subscriber lists. I'm sure Russell would really quite like to point his subscribers at a holding blog hosted somewhere else so he doesn't get the traffic and maybe that even gives him the option to start again at a later date.</p><p>These problems make sites like Feedburner both very valuable and a "sell your soul" type service. But what happens if Feedburner gets greedy? Maybe the Feedburner servers get "overloaded" and it takes a long time for your updates to get propagated, and maybe they introduce a premium service to help people get the word out fast. Would you want to pay? If your feed URL is very hard to change don't you want to control it yourself?</p><p>These problems are compounded by the how ill defined your feed URL actually is. The RSS feed I’d prefer people to use for my blog is <a href="http://getahead.org/blog/joe/rss.xml">http://getahead.org/blog/joe/rss.xml</a> but you can also get it via <a href="http://getahead.org/blog/joe/rss.xml">http://getahead.org/blog/joe/rss.xml</a> or <a href="http://getahead.org/blog/joe/atom.xml">http://getahead.org/blog/joe/atom.xml</a> or <a href="http://getahead.org/blog/joe/atom.xml">http://getahead.org/blog/joe/atom.xml</a> and all have subscribers at Bloglines.</p><p>We need a way to say, "this is not the feed you are looking for", a bit like an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3">HTTP-301</a>, but one that you can create simply by editing the text of a blog.</p><p>We need a micro-format for blog redirecting.</p><p>This new micro-format must:</p><ul>
+<li>Be readable by the worlds feed aggregators.</li>
+
+<li>Allow bloggers to point subscribers to a new feed URL.</li>
+
+<li>Be simple enough that it can be used by bloggers with a limited ability to edit the text of their blog.</li>
+
+<li>Make sense in a HTTP form as well as an RSS form. This rules out (this and the last rule out HTTP-301)</li>
+</ul><p>It would be also be nice if:</p><ul>
+<li>The honchos at MySpace couldn't block it easily.</li>
+
+<li>It gave people that have had their blogs hacked a chance to change their minds.</li>
+</ul><p>So how about this for a solution; the micro-format looks like this:</p><p style="margin-left: 20px;"><code>&lt;p&gt;autoresubscribe using &lt;a href="url"&gt;url&lt;/a&gt;&lt;/p&gt;</code></p><p>In fact we could probably dispense with the <code>&lt;p&gt;&lt;/p&gt;</code> elements to make life simple.</p><p>The rule could be that the "autoresubscribe" blog entry must remain on in the RSS feed of the blog for 30 days or more to become permanent. If it is removed before then, it is assumed that the blog was tampered with and the redirect is cancelled.</p><p>There is a slight worry about false positives. What happens if the text above matches somewhere else by mistake? As far as I can tell, so far the web it totally devoid of any mentions of the phrase <a href="http://www.google.com/search?&amp;q=%22autoresubscribe+using%22">"autoresubscribe using"</a>, so if we combine that with a requirement to have a url in a link to that url, I think we should be safe. Even this blog entry describing the micro-format with examples shouldn't match.</p><p>There is the issue of internationalization; the proposed solution is great for the English speaking world but not so good for non-English blogs. On the other hand "autoresubscribe" isn't exactly a real English word in the first place. Maybe the spec would define a number of languages in which this could be written. Probably support for every one of the worlds 300 trillion languages is over the top, and we could limit ourselves to the top few. It is only 2 words after all. Or am I being too colonialist?</p><p>All we need to make this work is the support of all the world's feed-readers. Surely that's a simple problem?</p><p>Right?</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2006-05-10T18:48:12+00:00" pubdate="pubdate">
+    <span class="day">10</span>
+    <span class="month">May</span>
+    <span class="year">2006</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/" data-counturl="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          <div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://www.burningdoor.com/eric">Eric Lunt</a>
+                
+              </strong>
+              <span class="comment-title">Re: HTTP-301 for RSS</span>
+            </div>
+            <p class="comment-body"><div><p>Hi Joe. Believe it or not, something like this has existed since 2002, but not many readers support it. Check it out here: <a href="http://radio.userland.com/stories/storyReader$19964">Bootstrap: How to redirect an RSS feed</a>.</p><p>We also talk about how to use FeedBurner without selling your soul in our post <a href="http://blogs.feedburner.com/feedburner/archives/001251.html">"Ciao, FeedBurner"</a>.</p><p>Thanks for thinking about this stuff!</p><p>Eric Lunt<br />CTO, FeedBurner</p><div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://incompleteness.me/">Joe Waker</a>
+                
+              </strong>
+              <span class="comment-title">Re: HTTP-301 for RSS</span>
+            </div>
+            <p class="comment-body"><div>Thanks Eric I wasn't aware of either of those posts.<p>The redirect document is neat, but it fails to be usable by normal people. How many bloggers know about RSS? I'd suggest a shrinking percentage. If the redirect document proposal didn't work 3 years ago, it's even less likely to work now when less people could make use of it.<p>I'm not sure how many feed readers actually respond properly to 301. My guess is not many, from what I can tell Bloglines doesn't for example.<p>Your Feedburner exit strategy certainly makes the argument for Feedburner stronger. Thanks.<p>Joe.</p></p></p></p><div></div></div></p>
+          </div>
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>

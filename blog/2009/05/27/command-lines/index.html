@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Command Lines - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2009/05/27/command-lines/" />
+  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <nav role="navigation">
+  <ul role="subscription" data-subscription="rss">
+    <li><a href="http://incompleteness.me/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  </ul>
+  <form action="http://google.com/search" method="get">
+    <fieldset role="site-search">
+      <input type="hidden" name="q" value="site:incompleteness.me" />
+      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+    </fieldset>
+  </form>
+  <ul role="main-navigation">
+    <li><a href="http://incompleteness.me/">Incompleteness</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <article class="hentry">
+      <h1><a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a></h1><section class="content"><p>When I was fresh out of college, my first job was working for the <a href="http://www.opengroup.org/">OpenGroup</a>, and my command line looked something like this:</p><img src="http://incompleteness.me/images/posts/motif.png" /><p>In 2009, fired by the white heat of years of cutting edge research and development, my command line looks a lot more like this:</p><img src="http://incompleteness.me/images/posts/terminal.png" /><p>To be fair, we've now got transparency, anti-aliasing, our shells now do better completion. But that's about it for changes. Considering how much the rest of the industry has changed, that's shockingly glacial.</p><p>For the past week or so, I've had the privilege of working on the <a href="http://bespin.mozilla.com/">Bespin</a> command line, and I think there's a lot that we can do to make things better.</p><p>This is what my Bespin command line looks like now:</p><img src="http://incompleteness.me/images/posts/main.png" /><p>This post is all about how we can make command lines better.</p><p>The core of the unix command line philosophy seems to be: <a href="http://www.faqs.org/docs/artu/ch01s06.html">small programs and pipe</a>. There’s a lot to be said for <a href="http://en.wikipedia.org/wiki/Loose_coupling">loose coupling</a> but there are some drawbacks as well...</p><h2>Zsh</h2><p>I love Zsh, and love the fancy completion that it does. Basic file completion has been around since ksh, IIRC:</p><pre>
+$ ls <strong>[TAB]</strong>
+Applications/  Mesh/       Projects/
+Desktop/       Movies/     Public/
+Documents/     Music/      Sites/
+Downloads/     Parallels/  backup/
+Library/       Pictures/   bin/
+</pre><p>But zsh can complete against more than just files:</p><pre>
+$ telnet <strong>[TAB]</strong>
+192.168.0.1
+192.168.0.12
+download.directwebremoting.org
+download.dojotoolkit.org
+getahead.org
+hg.mozilla.com
+localhost
+people.mozilla.com
+sandbox.dojotoolkit.org
+svn.directwebremoting.org
+</pre><p>Zsh knows that you don’t telnet to a file, so it completes against hosts (Does anyone know where that host list came from BTW?)</p><p>Zsh also knows about other commands:</p><pre>
+$ git <strong>[TAB]</strong>
+add                 -- add paths to the index
+apply               -- apply patch on a git index file and a work tree
+applymbox           -- apply patches from a mailbox
+applypatch          -- apply one patch extracted from an e-mail
+archimport          -- import an Arch repository into git
+bisect              -- find the change that introduced a bug
+branch              -- create and show branches
+checkout            -- checkout and switch to a branch
+cherry              -- find commits not merged upstream
+cherry-pick         -- cherry-pick the effect of an existing commit
+clone               -- clones a repository into a new directory
+commit              -- record changes to the repository
+...
+</pre><p>That list of commands is the result of a 'git help' command, but that's not what I typed. Zsh has been doing something funky behind my back when I pressed [TAB].</p><p>Zsh can do different things depending on where in a command you are:</p><pre>
+$ git add <strong>[TAB]</strong>
+Applications/  Mesh/       Projects/
+Desktop/       Movies/     Public/
+Documents/     Music/      Sites/
+Downloads/     Parallels/  backup/
+Library/       Pictures/   bin/
+</pre><p>My point, is that, whilst all of this is very clever, the implementation is also <em>insane</em>.</p><p>In order to make this work, the zsh guys have had to reverse engineer every single unix command (or at least all most of the ones that I use). And any time those commands change, then zsh is going to have to change too.</p><p>It's very useful, and I'm glad that zsh has done it, and they probably didn't have much of a choice, but this way of going about things is not the Best Idea ever.</p><p>I'm sure somewhere the bash guys are working on the same feature themselves, or maybe they've already done it. I don’t care - it just strengthens the point about the lunacy of the situation.</p><p>The Unix philosophy of small programs and pipe has a lot to be said for it, but there are serious drawbacks too.</p><p>Here's some of the ways that we're innovating when it comes to the Bespin command line, and benefiting from being about to integrate things better.</p><h2>GUI integration</h2><p>Traditionally you've had a set of shells (bash, zsh, etc) that work in a set of terminal emulators (xterm, terminal, gnome-terminal, konsole, etc) But there's so much more you could do if you had one program do both.</p><img src="http://incompleteness.me/images/posts/gui-integ.png" /><p>In Bespin:</p><ul>
+<li>If you click on an old command, it gets copied to the prompt (the blue highlight is a mouseover).</li>
+<li>If you double click it's re-executed.</li>
+<li>Output is not restricted to ascii in a grid. We (predictably) use HTML.</li>
+<li>Error output is visually different to normal output</li>
+<li>You can minimize or maximize output (the help output has been minimized above) - I hate it when a vcs diff operation takes up 4k lines of scrollback obliterating what I wanted to see.</li>
+</ul><p>There's no reason why you couldn't do this in Unix (or even Windows). I don't think you’d want such a gui-shell as your login shell, but since its use is very much from within a GUI, that's OK - you’d probably launch it from the GUI anyway.</p><p>In Bespin we don't have pipes yet, but would it be neat to be able to inspect a pipeline visually as it's working, I'm sure it's possible with a gui-shell.</p><h2>Linking Output to Commands</h2><p>We link the output from a command to the command that created it. The obvious effect is that output from slow running commands no longer gets confused with what's happening now.</p><object width="647" height="529"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=4868659&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=4868659&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="647" height="529" /></object><p>The 'slow' command is just something I hacked up to demonstrate asynchronous behavior.</p><p>A nice upshot of this is that we can implicitly add &amp; to the end of every command, and you no longer have to wait for anything.</p><p>In essence, each command has it’s own separate stdout, which goes to it’s own div. Maybe there is a reason why unix shells don’t do something similar. Would it mean shells being curses based or something?</p><h2>Command Meta-Data</h2><p>With the exception of the reverse-engineering of the command line structure done by zsh, the integration between commands and the shell is limited. In Bespin, a command is a structure like this</p><pre>
+{
+    name: 'createproject',
+    takes: ['projectname'],
+    preview: 'create a new project',
+    usage: '[newprojectname]',
+    execute: function(commandLine, projectname) {
+        /* code to do the work */
+    }
+}
+</pre><p>This means that we can provide help as the user is typing. The idea is that TAB will guess what you want to do at all times.</p><p>This ties in a lot with GUI integration too. If the command line knows that the next parameter is a file, when the user presses TAB without typing anything to complete on, we can offer a dialog to allow selection of a file, and so on. This isn’t about forcing the user to switch to the mouse, but it is about allowing better feedback from the system about what options are available.</p><p>We've only really got started with this part - there’s a lot more work to do. I hope we'll be able to do some of the funky GUI integration that <a href="http://labs.mozilla.com/projects/ubiquity/">Ubiquity</a> has been pioneering.</p><h2>Attention Guides</h2><p>There's a lot to look at on any command line, I want to find ways to keep the most important bits in front of your eyes at all times. I'd like to expire older commands more intelligently than a standard terminal (oldest dies first), Commands are more important if:</p><ul>
+<li>They are still in progress</li>
+<li>They keep being re-executed</li>
+<li>They are waiting for input</li>
+<li>etc</li>
+</ul><p>We've only basically started on this right now, with the ability to hide/show output, but there's potential for it to make the command line lots more usable.</p><h2>Plug-ins</h2><p>Linking everything together is easy if you make one big monolithic lump. That's not the plan - we're evolving a plug-in strategy as we go, and planning on making as much of Bespin itself use the plug-in system. The key to coupling is to get the right level of coupling.</p><h2>Status Messages</h2><p>My other integration obsession is about status messages. There's a <strong>huge</strong> amount we could do to integrate the <a href="http://twitter.com/joewalker">familiar concept</a> of "what are you doing now" with commit messages, bug trackers, chat, and team tracking. More soon.</p><p>What other things could we do to trick out the command line?</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2009-05-27T20:08:19+00:00" pubdate="pubdate">
+    <span class="day">27</span>
+    <span class="month">May</span>
+    <span class="year">2009</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2009/05/27/command-lines/" data-counturl="http://incompleteness.me/blog/2009/05/27/command-lines/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+      <section class="comments">
+        <h2>Comments</h2>
+        
+
+        <div>
+          <div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://baltimoresquirrels.com">Tom von Schwerdtner</a>
+                
+              </strong>
+              <span class="comment-title">auto-completed host list</span>
+            </div>
+            <p class="comment-body"><div>The host list comes from, I believe, a combination of /etc/hosts and ~/.ssh/known_hosts<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://incompleteness.me/">Joe Walker</a>
+                
+              </strong>
+              <span class="comment-title">auto-completed host list</span>
+            </div>
+            <p class="comment-body"><div>Thanks, that would make sense.<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                <a href="http://ynniv.com">Vinny Fiano</a>
+                
+              </strong>
+              <span class="comment-title">bash completion</span>
+            </div>
+            <p class="comment-body"><div>I was curious about this a while back, and I found that bash has similar functionality implemented via the bash-completion project (http://www.caliban.org/bash/).  Basically, bash fills the autocomplete by passing the command line into a series of shell scripts.  Third parties can add additional scripts to a directory (/opt/local/etc/bash_completion on Mac OS X dports) to enable completion for a new command. Also, yes, commands are not auto backgrounded in shells because they may need full control over the output stream to use curses-like functionality.  In fact, implementing a shell such that curses features work correctly is quite difficult, and even emacs does a poor job. I have been thinking about these exact shell features in an AJAX environment for about a year now without doing anything about it. I clearly need to get involved with Bespin.<div></div></div></p>
+          </div><div class="comment comment-indent-undefined">
+            <div>
+              <strong>
+                
+                <span>Yoz</span>
+              </strong>
+              <span class="comment-title">"xmlshell"</span>
+            </div>
+            <p class="comment-body"><div>Thanks for bringing this up, as there's so much unexplored potential here! Back in the early days of Mozilla Seamonkey - 1999 or so - someone cooked up the beginnings of a Mozilla-based command shell which would execute commands on the given machine and then display the XML/HTML returned inline. It had its own versions of common commands like "ls" which - because it had the full HTML renderer at its disposal - could do things like image thumbnails in the file listing. The project was called something like "XMLShell" but Google is not returning anything useful, alas.<div></div></div></p>
+          </div>
+          <section class="comments">
+            <p>Comments have been turned off on old posts</p>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <aside role="sidebar">
+  <section>
+
+  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
+  <p class="indent">
+    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
+    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  </p>
+  <p>
+    If it's a choice between<br />
+    incomplete or wrong,<br />
+    side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
+  </p>
+
+  <h2>About</h2>
+  <p>
+    I'm Joe Walker. I work for Mozilla making developer tools better
+    i.e. creating tomorrow's Firebug.
+  </p>
+  <p>
+    See also <a href="https://github.com/joewalker">joewalker</a> on Github
+    and <a href="https://twitter.com/joewalker">@joewalker</a> on Twitter, and
+    <a href="https://plus.google.com/103130341946168853745/posts">103130341946168853745</a>
+    on Google+.
+  </p>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/joewalker/gcli">GCLI</a> is a web developers
+      command-line that's being used in Firefox Developer Tools, and alongside
+      Ace
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/domtemplate">DOM Template</a>
+      is an experimental DOM template engine with some nice features like
+      asynchronous layout
+    </li>
+    <li>
+      <a href="https://github.com/joewalker/csstools">CSS Doctor</a> is an
+      experiment into how we can improve the CSS telemetry in a browser
+    </li>
+    <li>
+      <a href="http://directwebremoting.org/dwr/index.html">DWR</a> is a Java
+      library that enables Java on the server and JavaScript in a browser to
+      interact and call each other as simply as possible
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Recent Posts</h2>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/">Introducing David Marginian</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/">Undoable Silent Autoupdate</a>
+    </li><li class="post">
+      <a href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/">Bespin and Mozilla</a>
+    </li>
+  </ul>
+</section>
+  <section>
+  <h2>Latest Tweets</h2>
+
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      getTwitterFeed("joewalker", 4, false);
+    });
+  </script>
+
+  <script src="http://incompleteness.me/scripts/twitter.js" type="text/javascript"></script>
+  <a href="http://twitter.com/joewalker" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @joewalker</a>
+</section>
+</aside>
+  </div>
+
+  <footer>
+  <p>
+    Copyright © 2011 - Joe Walker -
+    <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
+  </p>
+</footer><script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script><script type="text/javascript">
+  (function() {
+    var twitterWidgets = document.createElement('script');
+    twitterWidgets.type = 'text/javascript';
+    twitterWidgets.async = true;
+    twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+    document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+  })();
+</script>
+</body>
+</html>
