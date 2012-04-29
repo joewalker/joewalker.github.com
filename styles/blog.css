@@ -82,15 +82,15 @@ a img { border: none; }
 
 a {
   color: #888;
-  -moz-transition: color 0.5s;
-  -webkit-transition: color 0.5s;
-  -o-transition: color 0.5s;
-  transition: color 0.5s;
   text-decoration: none;
 }
 
 article:hover a,
 aside:hover a {
+  -moz-transition: color 0.5s;
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
   color: #07d;
 }
 
@@ -101,7 +101,7 @@ aside:hover a:visited {
 
 article:hover a:hover,
 aside:hover a:hover {
-  color: #19f;
+  color: #f91;
 }
 
 nav {
@@ -146,15 +146,12 @@ nav form {
 
 nav form .search {
   width: 80px;
-  padding: .2em .2em 0;
+  padding: .2em .2em 0 2em;
   font-size: .8em;
   border-radius: 0.2em;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding;
-  -o-background-clip: padding-box;
-  -ms-background-clip: padding-box;
-  -khtml-background-clip: padding-box;
-  background-clip: padding-box;
+  background-image: url('http://incompleteness.me/images/search.png');
+  background-repeat: no-repeat;
+  background-position: 3% 50%;
   -moz-box-shadow: #d1d1d1 0 1px;
   -webkit-box-shadow: #d1d1d1 0 1px;
   -o-box-shadow: #d1d1d1 0 1px;
@@ -192,6 +189,23 @@ nav li {
   padding: 0 5px;
 }
 
+@media all and (max-width: 600px) {
+  #main > article {
+    max-width: 1000px;
+    margin-right: 0px;
+  }
+
+  #main > aside[role=sidebar] {
+    position: static;
+    border-left: none;
+  }
+
+  #main > aside[role=sidebar] > section {
+    display: inline-block;
+    width: inherit;
+  }
+}
+
 article {
   max-width: 750px;
   margin-right: 220px;
@@ -212,7 +226,6 @@ aside[role=sidebar] {
   padding-bottom: 40px;
   top: 50px;
   right: 20px;
-  width: 180px;
   font-size: .8em;
   line-height: 1.5em;
   color: #4b4b4b;
@@ -240,6 +253,10 @@ aside[role=sidebar] li {
 
 aside[role=sidebar] li:last-child {
   border-bottom: 0;
+}
+
+aside[role=sidebar] > section {
+  width: 180px;
 }
 
 .meta {
