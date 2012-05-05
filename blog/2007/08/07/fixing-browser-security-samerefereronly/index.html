@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">Fixing browser security: SameRefererOnly</a></h1><section class="content"><p>Web security is horribly broken, and lot has been said about CSRF, XSS, DNS-Pinning, etc, but not enough about what we can do to fix the mess.</p><p>I think we could adapt an idea like HttpOnly to tackle CSRF - I'd like to see a "<em>SameRefererOnly</em>" marker for cookies.</p><p><em>SameRefererOnly</em> is an indication that a cookie should <strong>only</strong> be sent to a Site when the referring domain matches the destination domain.</p><p>A number of people have commented that you could use server based referer checking to fix CSRF, however that doesn't work for 2 reasons, firstly sometimes referers are not sent, and secondly using old versions of Flash, you can forge referer headers anyway.</p><p>However if we move the checking into the browser, then we should be able to instruct browsers to be more careful what they do without our cookies.</p><p>The official spec for Set-Cookie is RFC
 <a style="text-decoration: line-through;" href="http://www.ietf.org/rfc/rfc2109.txt">2109</a>/<a href="http://www.ietf.org/rfc/rfc2965.txt">2965</a> 
 which says this:</p><pre>Set-Cookie: &lt;name&gt;=&lt;value&gt;[; &lt;name&gt;=&lt;value&gt;][; expires=&lt;date&gt;] \

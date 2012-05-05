@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2006/05/16/$/">$</a></h1><section class="content"><p>There is a problem brewing for people that wish to use more than one Ajax library in the same page. It ought to be easy, but it's not...</p><p>Javascript has a problem - lack of language level namespacing / packaging. So if I write a web page that uses Javascript from 2 authors, both of whom defined a wibble() function, the result will probably be broken, and worse, since the second definition silently overwrites the first, the result will probably be silently broken. Rather than a compile/link error like in most languages, it will just blow up in your face at some stage.</p><p>According to Brendan Eich's Javascript talk, this problem is being fixed in Javascript2, but the Sun will be getting dim before all browsers support it enough that we can rely on it.</p><img src="http://incompleteness.me/images/posts/dollar.png" align="right" style="margin: 10px 10px;" /><p>In the mean time the there is the very real danger of mid air collisions.</p><p>DWR has a $ function, copied from Prototype. So do Atlas and many other frameworks. Alex Russell says it is a very frequently requested feature for Dojo.</p><p>The $ function is the only function in DWR that isn't in an object based namespace. I'm not keen on it for this reason, but it is very useful: document.getElementById() is just such a mouthful.</p><p>But there is a problem:</p><ul>
 <li>When Prototype changes their definition of $, what is everyone else supposed to do? </li>
 <li>What happens when Prototype's $ gets over written by a $ from another library without the new features? </li>

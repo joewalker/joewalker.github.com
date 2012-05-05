@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2005/06/28/security-warning-watch-out-using-cvs-at-javaone/">Security Warning: Watch out using CVS at JavaOne</a></h1><section class="content"><p>Very nearly got bit by this one today. I wanted to show someone the DWR code at JavaOne, so I flipped up the the lid on my laptop and was just about to double click on a java class when it occurred to me that doing so would probably be telling someone my password.</p><p>Whenever you open a file in a CVS project using Eclipse it checks CVS to see what you have changed compared to the CVS version (the same goes for Intellij as well I think). Since java.net advises you to use pserver for CVS access, this means you password will be being broadcast in clear-text using wifi to 15,000 developers at JavaOne?</p><p>How many of those 15,000 developers will be snooping on the network do you think? Anyone want to bet their password on 0?</p><p>The good news is that there is a solution, the shame is that java.net don't publicize it more.</p><p>
 I pointed it out to the java.net people, who said, roughly speaking "<a href="https://java-net.dev.java.net/servlets/ProjectForumMessageView?forumID=95&amp;messageID=1290">there is a special 'tunnel' ssh user that can fix the issue</a>". (The lady I was speaking to even spoke in HTML - very impressive!)
 </p><p>It's a bit of a shame that java.net don't publicize this one more, but appatently it has something to do with the 'tunnel' user being a Sun enhancement, and the website descriptions are provided by Colab.net.</p></section><section class="meta">

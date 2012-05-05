@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2005/06/20/javaworld-article-on-dwr/">Javaworld article on DWR</a></h1><section class="content"><p>JavaWorld have published a good <a href="http://www.javaworld.com/javaworld/jw-06-2005/jw-0620-dwr_p.html">tutorial</a> on using <a href="http://directwebremoting.org/dwr/">DWR</a>. The article misses a few recent changes to DWR so you'll need to know about the following:</p><p>In place of, <code>DWRUtil.showById("id");</code> you should use <code>$("id").style.display = '';</code>.</p><p>And in place of <code>DWRUtil.drawTable(...)</code> you should use <code>DWRUtil.addRows(...)</code>.</p><p>The reason for the changes is that we are trying to concentrate on being a AJAX library and not a set of generic Javascript functions. So DWR will help you get data from a server using AJAX, but it won't help you mucking with CSS and so on. Other libraries can do that better.</p></section><section class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Joe Walker</span>

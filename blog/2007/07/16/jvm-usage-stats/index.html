@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2007/07/16/jvm-usage-stats/">JVM Usage Stats</a></h1><section class="content"><p>Often when you open an XML config file in a DTD/Schema aware editor, and you're connected to the internet, the editor will reach out over the net to fetch the DTD/XSD, which gives webmasters some interesting usage stats.</p><p>I've commented before on how you can use this technique to look at the <a href="http://incompleteness.me/blog/2006/11/28/dwr-usage-is-exploding/">big growth in DWR usage</a>, but I noticed that you could also use it to suss out some JVM usage stats because when Eclipse etc come read the DTD they use the Java version number as their <a href="http://en.wikipedia.org/wiki/User_agent">User Agent</a>.</p><p>Anyway, the numbers:</p><img src="http://incompleteness.me/images/posts/jvm-usage.png" /><p>Caveat - there are about a million reasons why this is un-scientific. It may be interesting to some though.</p><p>Aside: I wonder if Java should adopt the 'standard' formatting for the User Agent string that is employed by all major browsers?</p></section><section class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Joe Walker</span>

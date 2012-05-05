@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/">Re: Ajax Latency: Myth, Reality, and Solutions</a></h1><section class="content"><p><a href="http://www.ajaxian.com/archives/2005/09/ajax_latency_my.html#comments">Dion</a>, <a href="http://richui.blogspot.com/2005/09/ajax-reducing-latency-with-cdn.html">Jep</a> and
 <a href="http://ajaxblog.com/archives/2005/06/01/async-requests-over-an-unreliable-network">Harry</a> have all wondered about how to cope with multiple concurrent XMLHttpRequest calls, and asked what will break.</p><p>One of the <a href="http://directwebremoting.org/dwr/">DWR</a> unit tests configurations is to run all 200+ tests in parallel. I then load up IE/FF/Op all doing their 200 tests at the same time, at the same time.</p><p>I can say that the iframe implementation of Ajax on DWR creaks under IE, but XHR works just fine everywhere. That is to say the server correctly replies to all 600 vaguely concurrent requests without error. To be honest I'm even surprised that Windows can cope.</p><p>The lesson is - don't write your own Ajax code. Use a library like prototype or DWR.</p><p>You can run the tests yourself. Just <a href="http://directwebremoting.org/dwr/download">download</a> the war file, deploy, go to the /dwr URL, click on the unit tests link and play. Tell me if you manage to break it!</p></section><section class="meta">
   <span class="byline author vcard">

@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/">Neat Spring Trick</a></h1><section class="content"><p>I don't think this trick is common knowledge because Google doesn't appear to have any reference to it, so maybe it's new to you.</p><p><code>Void</code> (with a capital V) is a valid type in Java (actually this is Java in general not just Spring). Pre Java 5 I'm not sure it was of any at all, but with generics it can be.</p><p>Normally you would use <code>void</code> (small v) as a return type to say "nothing is returned". There was nothing to stop you returning <code>Void</code> (big V), but the compiler would insist on you specifically returning nothing using <code>return null;</code>, so there wasn't much point.</p><p>Generics demand Objects and not native types, so <code>Void</code> (big V) can be useful to say "a collection of nothing", and the context where I found a use for this is Spring 2's JDBC templates.</p><p>A few times I've been using Spring's <code>JdbcTemplate</code>, or specifically here <code>SimpleJdbcTemplate</code>, and wanted to create some objects and put them in a Set or a Map. This is what <code>SimpleJdbcTemplate.query()</code> was designed for, except that it only works with Lists. So you alter a Set (or Map etc) defined elsewhere, and then <code>.query()</code> returns a <code>List&lt;Void&gt;</code>.</p><p>So you can use this trick:</p><pre>
 final Set&lt;Page&gt; data = new HashSet&lt;Page&gt;();
 jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;">Void</strong>&gt;()

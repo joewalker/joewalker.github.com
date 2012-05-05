@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/">The right way to create an XMLHttpRequest Object</a></h1><section class="content"><p>Microsoft <a href="http://blogs.msdn.com/ie/archive/2005/09/13/465338.aspx">announced </a> that they were going to support the native XMLHttpRequest object in IE7. This changes how you should do Ajax calls ...</p><img src="http://incompleteness.me/images/posts/ajax-logo.gif" align="right" style="margin: 0px 10px;" /><p>With IE5.0 - 6.0 the only option for Ajax calls is one of the ActiveX objects (Msxml2.XMLHTTP, Microsoft.XMLHTTP, etc), however with IE7 the will support the window.XMLHttpRequest object.</p><p>Why are they doing this? Is the ActiveX control not good enough? Are there bugs that can not be fixed in the ActiveX control?</p><p>I think the reality is that Microsoft would like to <a href="http://blogs.msdn.com/ie/archive/2005/09/19/471316.aspx">deprecate ActiveX completely</a>. It can't be done today without breaking things, but it makes good sense in the future. Microsoft are already changing things in that direction; IE6  in Windows Server 2003 runs with ActiveX disabled and in Vista installing <a href="http://blogs.msdn.com/ie/archive/2005/09/20/471975.aspx">new Active objects has been made harder</a>.</p><p>Depending on how the ActiveX Ajax object is retired, and how bugs are fixed in the various IE7 implementations we need to be using the native XMLHttpRequest object in preference to the ActiveX objects starting now.</p><p>So, wrong code:</p><pre style="padding: 5px; margin-left: 20px; background-color: #eee;">
 var xhr;
 if (window.ActiveXObject) {

@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a></h1><section class="content"><p>When I was fresh out of college, my first job was working for the <a href="http://www.opengroup.org/">OpenGroup</a>, and my command line looked something like this:</p><img src="http://incompleteness.me/images/posts/motif.png" /><p>In 2009, fired by the white heat of years of cutting edge research and development, my command line looks a lot more like this:</p><img src="http://incompleteness.me/images/posts/terminal.png" /><p>To be fair, we've now got transparency, anti-aliasing, our shells now do better completion. But that's about it for changes. Considering how much the rest of the industry has changed, that's shockingly glacial.</p><p>For the past week or so, I've had the privilege of working on the <a href="http://bespin.mozilla.com/">Bespin</a> command line, and I think there's a lot that we can do to make things better.</p><p>This is what my Bespin command line looks like now:</p><img src="http://incompleteness.me/images/posts/main.png" /><p>This post is all about how we can make command lines better.</p><p>The core of the unix command line philosophy seems to be: <a href="http://www.faqs.org/docs/artu/ch01s06.html">small programs and pipe</a>. There’s a lot to be said for <a href="http://en.wikipedia.org/wiki/Loose_coupling">loose coupling</a> but there are some drawbacks as well...</p><h2>Zsh</h2><p>I love Zsh, and love the fancy completion that it does. Basic file completion has been around since ksh, IIRC:</p><pre>
 $ ls <strong>[TAB]</strong>
 Applications/  Mesh/       Projects/

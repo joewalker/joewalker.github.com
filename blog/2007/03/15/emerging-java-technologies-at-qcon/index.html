@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Emerging Java Technologies at QCon</a></h1><section class="content"><p>I've just finished opening the "<a href="http://qcon.infoq.com/qcon/schedule/thursday.jsp">Java Emerging Technologies</a>" track at <a href="http://qcon.infoq.com/qcon/conference/">QCon</a> and spent some time talking about Closures. This is a summary of what I said:</p><p>You can look at closures as blocks of code that you can pass around for execution. You can look at them as syntax sugar for inner classes. I think there is some significant power behind full closures that you miss when just looking at them from those perspectives.</p><p>This is how you define an integer 'a', in Java:</p><pre>int a;</pre><p>This is how you define a function 'b', in a Java Interface:</p><pre>String b(int p1, int p2);</pre><p>This is how you define a closure 'c', according to the <a href="http://www.javac.info/closures-v05.html
 ">BGGA proposal</a>:</p><pre>{ int, int =&gt; String } c;</pre><p>This defines a closure to which you pass 2 integers and it returns a String.</p><p>Another closure 'd' takes a String and returns nothing:</p><pre>{ String =&gt; } d;</pre><p>We can provide an implementation of this closure:</p><pre>
 { String =&gt; } d = { String m =

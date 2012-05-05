@@ -24,7 +24,7 @@
 </nav>
 
   <div id="main">
-    <article class="hentry">
+    <article>
       <h1><a href="http://incompleteness.me/blog/2005/07/06/ajax-how-dwr-handles-xml/">Ajax: How DWR handles XML</a></h1><section class="content"><p>Greg Murray <a href="http://weblogs.java.net/blog/gmurray71/archive/2005/07/ajax_x_no_dice.html">recently noted</a> that AJAX does not need to use XML (although he clearly likes the idea). He refers to DWR using text/plain in it's place. I thought it was worth noting how <a href="http://directwebremoting.org/dwr/index.html">DWR</a> handles XML.</p><p>DWR works a bit like RMI except that instead of having 2 Java systems talking to each other using JRMP you have a web browser and a web server talking using AJAX/HTTP.</p><p>DWR marshalls all the Java and Javascript parameters over an AJAX HTTP call, but it always uses text/plain even when it is transferring XML. How does it do this?.</p><p>Suppose you have a Java method that looks like this:</p><pre>
 public org.w3c.dom.Document getNode() {
     /* some DOM code */
