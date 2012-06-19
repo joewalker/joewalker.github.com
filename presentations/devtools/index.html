@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Firefox Developer Tools</title>
+
+  <meta name="description" content="About Firefox Developer Tools">
+  <meta name="author" content="Joe Walker">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+  <link rel="stylesheet" href="lib/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!--
+    TODO: http://blog.mozilla.org/devtools/
+    -->
+
+    <!-- Used to fade in a background when a specific slide state is reached -->
+    <div class="state-background"></div>
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <p>&nbsp;</p>
+        <h1>Firefox</h1>
+        <h1>Developer</h1>
+        <h1>Tools</h1>
+      </section>
+
+      <section>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <img class="plain" width="264" height="211" src="custom/firebug-large.png">
+      </section>
+      <!--
+      Written by Joe Hewitt after he left Mozilla
+      Taken up by IBM as a research project
+      Still an IBM project when Mozilla realized they needed to be serious
+      It's no longer an IBM project and the teams are working closely together
+          sharing code etc
+      Also we wanted to do things differently
+      -->
+
+      <section>
+        <p>&nbsp;</p>
+        <div id="channels">
+          <h3>Firefox &nbsp;<img class="plain" width="50" height="50" src="custom/logo-only.png"></h3>
+          <p>&uarr;</p>
+          <h3>Beta &nbsp;<img class="plain" width="50" height="50" src="custom/logo-mobile-beta.png"></h3>
+          <p>&uarr;</p>
+          <h3>Aurora &nbsp;<img class="plain" width="50" height="50" src="custom/logo-only-aurora.png"></h3>
+          <p>&uarr;</p>
+          <h3>Nightly &nbsp;<img class="plain" width="50" height="50" src="custom/logo-only-nightly.png"></h3>
+        </div>
+      </section>
+      <!--
+      Every 6 weeks we all move up one
+      Fixes always land on Nightly first
+      Think of it as a scale of experimental not stability
+      Use Aurora
+      I'm using Nightly
+      -->
+
+      <section>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p><a href="http://j.mp/devtools-shownotes">http://j.mp/devtools-shownotes</a></p>
+      </section>
+
+      <section>
+        <p>&nbsp;</p>
+        <h2>Editing</h2>
+        <h2>Inspection</h2>
+        <h2>History</h2>
+        <h2>Control</h2>
+      </section>
+      <!--
+      Some basics - Explain UI:
+      2 views of each of the panels - expanded/contracted
+      Developer toolbar - open most of the time
+      Command line for all the 'other tools'
+      -->
+
+      <section>
+        <h2>Editing: Style Editor</h2>
+        <img class="plain" width="597" height="523" src="custom/style-editor.png">
+      </section>
+      <!--
+      Style editor - change background color
+        open main.css in vi
+        main.css:46 mess with rgba(40,40,40,1)
+        save to current
+      -->
+
+      <section>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <h2>Editing: Scratchpad</h2>
+        <ul>
+          <li>Scheme on the web</li>
+          <li><a href="https://raw.github.com/campd/scratchpad-gist/master/bootstrap.js">Github integration</a></li>
+          <li>Loupe: 2944388</li>
+        </ul>
+      </section>
+      <!--
+      Useful for writing JS in before you add to <script> tag
+        Next page - Reveal.navigateNext();
+        Runs against current page automatically
+        It's more permanent - quit/reopen
+      Chrome hacking:
+        alert('hi');
+        devtools.chrome.enabled, repeat
+        Scratchpad upgrade - Bug 739261
+          https://gist.github.com/2145830/
+          https://raw.github.com/campd/scratchpad-gist/master/bootstrap.js
+        Magnifier - You'll need your own clone
+          https://gist.github.com/2944388
+
+      Live Scratchpad
+        function getDocument() {
+          return document;
+        }
+
+        function check(input) {
+          if (input == 2) return 'II';
+          else if (input == 10) return 'X';
+          else return 'unknown';
+        }
+      -->
+
+      <section>
+        <section>
+          <p>&nbsp;</p>
+          <h2>Responsive Design View</h2>
+          <ul>
+            <li><a href="http://www.abookapart.com/products/responsive-web-design">A Book Apart</a></li>
+            <li><a href="http://www.alistapart.com/d/responsive-web-design/ex/ex-site-FINAL.html">A List Apart</a></li>
+            <li><a href="http://interim.it/">Interim.it</a></li>
+            <li><a href="http://seesparkbox.com/">SeeSparkBox.com</a></li>
+            <li><a href="http://coding.smashingmagazine.com/2011/01/12/guidelines-for-responsive-web-design/">Smashing Magazine</a></li>
+            <li><a href="http://www.thismanslife.co.uk/projects/lab/responsiveillustration/">This Man's Life</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <p>&nbsp;</p>
+          <h2>The Preset Problem</h2>
+          <ul>
+            <li>Many factors affect the options. See:
+              <ul>
+              <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=752473#c19">Our discussions</a>
+              <li><a href="http://tripleodeon.com/wp-content/uploads/2011/12/table.html">Presets list</a></li>
+              </ul>
+            </li>
+            <li>Future command?</li>
+          </ul>
+        </section>
+      </section>
+      <!--
+      * Physical device dimensions
+      * OS / version
+      * Browser / version
+      * Screen orientation
+      * Viewport settings
+      The options are evolving
+      -->
+
+      <section>
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Tilt</h2>
+          <ul>
+            <li><a href="http://www.infoq.com/">Info Q</a></li>
+            <li><a href="http://www.dev-kitchen.com/ff3d/">Dev Kitchen</a></li>
+            <li><a href="http://piccsy.com/investors/">Piccsy</a></li>
+          </ul>
+        </section>
+        <!--
+        Investigating a page you don't understand
+            Someone else's page (how does it work e.g. slides)
+            'Your' page (what is going on here)
+        Use it with the Inspector
+        x - hide node
+        f - focus node
+
+        Show HTML view alongside Tilt
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Tilt Add-on</h2>
+          <p><a href="https://addons.mozilla.org/en-US/firefox/addon/tilt/">On A.M.O.</a></p>
+        </section>
+
+        <section>
+          <iframe width="853" height="480" src="http://www.youtube.com/embed/rbTLwVEfPn0?rel=0" frameborder="0" allowfullscreen></iframe>
+        </section>
+
+        <section>
+          <img class="plain" width="853" height="480" src="custom/tilt-blender.png"/>
+        </section>
+
+        <section>
+          <img class="plain" width="853" height="480" src="custom/ncc.png"/>
+        </section>
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Future Tilt</h2>
+          <p>Live Tilt (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=703910">Bug 703910</a>)</p>
+          <p>3D CSS Transforms</p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Inspector</h2>
+          <ul>
+            <li>Pseudo-Class Lock</li>
+            <li>Doc links in Computed Style View</li>
+            <li>Layout View</li>
+          </ul>
+        </section>
+        <!--
+        Recently added:
+          Retaining rules with invalid property values
+          Displaying @media queries
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Future</h2>
+          <ul>
+            <li>Live HTML Editing</li>
+            <li>Merge Style Editor with Rule View</li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <p>&nbsp;</p>
+          <h2>Debugger</h2>
+          <ul>
+            <li>JSD is dead, long live JSD2</li>
+            <li>Demo</li>
+            <li>Remote Debugging</li>
+            <li>Soon: Chrome Debugging</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Debugger Demo</h2>
+          <script>
+          function factorial(n) {
+            return n < 2 ? 1 : n * factorial(n - 1);
+          }
+          </script>
+          <p>&nbsp;</p>
+          <pre style="margin-top: 20px; display: inline-block; margin: auto; width: auto;"><code contenteditable style="display: inline-block; font-size: 18px;">function factorial(n) {
+  return n &lt; 2 ? 1 : n * factorial(n-1);
+}</code></pre>
+          <p>&nbsp;</p>
+          <button style="font-size: 18px;" onclick="alert(factorial(3));">alert(factorial(3));</button>
+        </section>
+        <!--
+        https://gist.github.com/2944434
+        -->
+
+        <section>
+          <h2>Ziggurat demo</h2>
+          <iframe width="640" height="480" src="http://www.youtube.com/embed/mT-6IQB4vi4?rel=0" frameborder="0" allowfullscreen></iframe>
+        </section>
+        <!--
+        Debugger object: the ziggurat demo
+          youtu.be/mT-6IQB4vi4
+        -->
+
+        <section>
+          <h2>How JS Works</h2>
+          <iframe width="853" height="480" src="http://www.youtube.com/embed/WKIkOcuVG7w?rel=0" frameborder="0" allowfullscreen></iframe>
+        </section>
+        <!--
+        How JS works and the Debugger API
+          youtu.be/WKIkOcuVG7w
+        -->
+      </section>
+
+      <section>
+        <h2>History: Web Console</h2>
+        <img class="plain" width="688" height="298" src="custom/web-console.png">
+      </section>
+      <!--
+      Just undergoing significant re-write to make it asynchronous
+      Adding lots of security warnings
+      -->
+
+      <section>
+        <h2>History: Network Monitor</h2>
+        <img class="plain" width="770" height="191" src="custom/network-monitor.png">
+      </section>
+      <!--
+      Sharing code with Firebug
+      -->
+
+      <section>
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Control: Command Line</h2>
+        </section>
+        <!--
+        One of my go-to tools for a long time was Web Developer Toolbar
+             *demo*
+         The problem is the UI - it's too complex
+             but it's also too simple - often it didn't have quite the tool I wanted
+         How do we in developer tools, support this, but better?
+
+         Developers like command lines because:
+             they can contain a huge amount of power and not become bloated
+             they can be customized
+             speed - keyboard > mouse
+
+         The trouble is, we're using this ...
+        -->
+        <section>
+          <img class="plain" width="800" height="600" src="custom/gcli-teletype.png">
+        </section>
+
+        <section>
+          <img class="plain" width="800" height="600" src="custom/gcli-pdp7.png">
+        </section>
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1>|</h1>
+        </section>
+        <!--
+        pipe
+        very clever way to solve the problem of building something up from parts
+                when you have less than 1k to play with
+        today 6 orders of magnitude more
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1>&amp;</h1>
+        </section>
+        <!--
+        when unix was invented computers needed tricks to enable them to do
+          more than one thing at a time
+        now the problem is the opposite
+          we have to break a problem down for the computer
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1>ꃕ</h1>
+        </section>
+        <!--
+        YI SYLLABLE FOX
+        unix command line is nearly tied to ascii. it is tied to a character
+        set that is monospaced
+        most of the world isn’t
+        graphics certainly out
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1>0</h1>
+        </section>
+        <!--
+        shell knows nothing about the commands that it is about to execute
+
+        As a result our command lines are opaque, hard to learn, unfriendly
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1><a href="http://localhost:9999/">Demo</a></h1>
+        </section>
+        <!--
+        echo hello world
+        sleep hello
+        sleep 6<UP><DOWN>
+        sleep 2
+        intro
+        s
+        edit css#gcli-menu
+        gcli node #gcli-display
+
+        https://gist.github.com/2944612
+        -->
+
+        <section>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1>Command Line</h1>
+          <ul>
+            <li>Separate Window</li>
+            <li>More Commands: Hackathon</li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <h1>Thanks</h1>
+        <h3><a href="http://twitter.com/joewalker">@joewalker</a></h3>
+      </section>
+
+      <!--
+      <section>
+        <p class="fragment">... to step through ...</p>
+        <ol>
+          <li class="fragment"><code>any type</code></li>
+        </ol>
+      </section>
+      -->
+
+    </div>
+
+    <!-- The navigational controls UI -->
+    <aside class="controls">
+      <a class="left" href="#">&#x25C4;</a>
+      <a class="right" href="#">&#x25BA;</a>
+      <a class="up" href="#">&#x25B2;</a>
+      <a class="down" href="#">&#x25BC;</a>
+    </aside>
+
+    <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+    <div class="progress"><span></span></div>
+
+  </div>
+
+  <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+  <script src="lib/highlight.js"></script>
+  <script src="lib/classList.js"></script>
+
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // Parse the query string into a key/value object
+    var query = {};
+    location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+      query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+    } );
+
+    // Fires when a slide with data-state=customevent is activated
+    Reveal.addEventListener( 'customevent', function() {
+      alert( '"customevent" has fired' );
+    } );
+
+    // Fires each time a new slide is activated
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+      // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+    } );
+
+    Reveal.initialize({
+      // Display controls in the bottom right corner
+      controls: true,
+
+      // Display a presentation progress bar
+      progress: true,
+
+      // If true; each slide will be pushed to the browser history
+      history: true,
+
+      // Loops the presentation, defaults to false
+      loop: false,
+
+      // Flags if mouse wheel navigation should be enabled
+      mouseWheel: true,
+
+      // Apply a 3D roll to links on hover
+      rollingLinks: false,
+
+      // UI style
+      theme: query.theme || 'default', // default/neon
+
+      // Transition style
+      transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+    });
+
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</body>
+</html>

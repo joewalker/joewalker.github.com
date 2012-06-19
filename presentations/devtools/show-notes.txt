@@ -1,0 +1,69 @@
+
+http://blog.mozilla.org/devtools/
+
+Firefox Channels:
+  TODO
+
+Style Editor:
+  URL TODO
+
+Scratchpad:
+  URL TODO
+  Pref to enable chrome hacking: devtools.chrome.enabled=true
+  Gist in Scratchpad
+    Bug 739261
+    https://gist.github.com/2145830/
+    https://raw.github.com/campd/scratchpad-gist/master/bootstrap.js
+    You'll need to clone a gist to be able to change it
+
+Live Scratchpad:
+  URL TODO
+
+Responsive Design
+  Examples:
+    http://www.alistapart.com/d/responsive-web-design/ex/ex-site-FINAL.html
+    http://interim.it/
+    http://seesparkbox.com/
+    http://coding.smashingmagazine.com/2011/01/12/guidelines-for-responsive-web-design/
+    http://www.thismanslife.co.uk/projects/lab/responsiveillustration/
+  Preset Problem
+    https://bugzilla.mozilla.org/show_bug.cgi?id=752473#c19
+    http://tripleodeon.com/wp-content/uploads/2011/12/table.html
+
+Loupe / Magnifier:
+  https://gist.github.com/2944388
+
+Tilt:
+  http://www.dev-kitchen.com/ff3d/
+  Secret key sequences:
+    x - hide node
+    f - center (focus) node
+    arrows - scroll
+  Tilt Add-on:
+    https://addons.mozilla.org/en-US/firefox/addon/tilt/
+  Tilting tilt:
+    http://www.youtube.com/embed/rbTLwVEfPn0?rel=0
+  Tilt / Blender
+    URL TODO
+  Live Tilt
+    https://bugzilla.mozilla.org/show_bug.cgi?id=703910
+
+Debugger
+  Alert Gist
+    https://gist.github.com/2944434
+  Debugger object: the ziggurat demo
+    http://youtu.be/mT-6IQB4vi4
+  How JS works and the Debugger API
+    http://youtu.be/WKIkOcuVG7w
+
+Command Line
+  PDP-7 on which the unix command line was developed
+  https://gist.github.com/2944612
+
+
+Meta
+  http://twitter.com/joewalker
+
+Presentation Software:
+    reveal.js
+
