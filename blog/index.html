@@ -25,7 +25,50 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a></h1><section class="content"><h3>What is Self-XSS?</h3><p>Dr. Evil has several options for getting his script to execute in the page of
+      <h1><a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/">Firefox Command Line for Developers</a></h1><section class="content"><p>TL;DR: We're adding a toolbar to Firefox, for developers, which includes a
+command line.
+It's a great place to add small tools and experimental features, and we're
+making it easy to add your own commands.
+
+</p><p>The toolbar should land in Firefox 16 or 17 and will look like this:
+
+</p><div style="overflow-x: hidden;">
+  <img src="http://incompleteness.me/images/posts/gcli-look-mac.png" alt="GCLI on a Mac" />
+</div><p>The buttons are useful, but I'm most excited about the commands.
+We can add an almost unlimited set of commands here without cluttering up the
+UI, or making things slow, and we've done lots of work to make the command line
+easy to use.
+
+</p><p>The challenge: It might be stretching things a little to call the command line
+a 'platform', and commands 'apps', but the command line still needs commands to
+be successful. There's a list of commands that we're working on for
+manipulating Firefox developer tools, and we'll be expanding this list to
+include system level commands too.
+
+</p><p>We're planning on a hackathon in a couple of weeks to add to the list of
+commands and to check that it really as as easy as we think it is to extend.
+Details soon.
+
+</p><p>If you want to try it out, it's in Nightly now, you'll need to flip the
+<code>devtools.toolbar.enable</code> preference in <code>about:config</code>.
+</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2012-06-18T12:00:00+00:00" pubdate="pubdate">
+    <span class="day">18</span>
+    <span class="month">Jun</span>
+    <span class="year">2012</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" data-counturl="http://incompleteness.me/blog/2012/06/18/firefox-command-line/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+    </article><article>
+      <h1><a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a></h1><section class="content"><aside>
+  <img src="http://incompleteness.me/images/posts/self-xss-gun.png" alt="gun with barrel pointing at user" />
+  <div>Friends don't let friends etc</div>
+</aside><h3>What is Self-XSS?</h3><p>Dr. Evil has several options for getting his script to execute in the page of
 another site. Generically we call this <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS</a>. Self-XSS involves using
 social engineering to coerce a user into manually executing JavaScript using
 the location bar or developer tools.
@@ -107,72 +150,6 @@ protection.
   </time>
 </section><section class="sharing">
   <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2011/12/14/combating-self-xss/" data-counturl="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
-    </article><article>
-      <h1><a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a></h1><section class="content"><p>This is about levels of change. It's partly about <a href="http://hg.mozilla.org">hg.mozilla.org</a> vs <a href="http://github.com">GitHub</a>
-(or <a href="http://bitbucket.org">BitBucket</a>). But it's more about our
-devt/review/commit process.
-
-</p><p>Moz-central demands patches that solve significant issues, and it's probably
-right in wanting this, but this bite size comes with problems.
-
-</p><p>There are 3 levels of change worth discussing:
-
-</p><ol>
-<li>The <strong>detail</strong> level we're used to working at: '<em>Added foo</em>', '<em>Renamed foo
-to bar</em>', etc. If working in a small team, this is probably the level we
-would commit at. At this level it's easy to understand the
-<a href="https://github.com/joewalker/gcli/commit/3d5a5ff2187f0a363cd7c89cb78f7bb24dd168aa">intent behind each change</a>.</li>
-<li>The <strong>review</strong> level which is an ideal chunk for someone to review.
-You probably don't want to review every new commit as it's done, but on the
-other hand, you don't want to be told that you made a mistake weeks ago and
-need to redo lots of work. So ideally this happens on something like a daily
-basis. It's the scale that <a href="https://github.com/joewalker/gcli/pull/2">pull requests</a>
-were designed for.</li>
-<li>The <strong>patch</strong> level which mozilla-central is used to, and which is ideal for
-commit. The work is 'done' and useful for a much wider audience. When a bug
-is fixed we can extract a patch to be committed,
-<a href="https://bug684958.bugzilla.mozilla.org/attachment.cgi?id=559115">like this one for bug 684958</a>.</li>
-</ol><p>The problem with the Mozilla process is that steps 1 and 2 don't exist at all.
-The benefits to the existence of more detailed change levels are:
-
-</p><ul>
-<li>Review is faster and deeper. You can review <a href="https://github.com/joewalker/gcli/pull/2">this pull request</a>
-far better than <a href="https://bugzilla.mozilla.org/attachment.cgi?id=559115&amp;action=diff">a conventional patch</a>
-because you can see what I'm intending by each change - you don't need to
-reverse engineer the intent and mentally hold together all the bits of mashed
-together bits of intent.</li>
-<li>Smaller changes are easier. Our current process prevents us from clearing up
-small things that are not directly related to the bug in hand. We can (for
-example) entertain the thought of variable renaming because it won't confuse
-the patch. There may be other reasons not to go crazy with this, but at least
-the process won't be one.</li>
-<li>Progress is visible. Because we can share to a smaller team before we're done,
-everyone gets to see what's happening. There is a feeling of momentum -
-progress is the norm. Just like a 6-week cycle is better than an 18-month
-cycle, a daily commit/pull cycle is better than a weekly patch/review cycle.</li>
-</ul><p>In effect we're using GitHub as a tool to develop patches for Firefox, rather
-than to develop Firefox itself. In some ways <a href="https://github.com/joewalker/gcli/tree/review/mozilla/patches">I mean this literally</a>.
-
-</p><p>There are probably reasons why the detail of what works for GCLI might not
-exactly work in other places, but I'm willing to bet that these ideas could be
-adapted to be of more general use.
-
-</p><p>Fundamentally we solve big problems by breaking them down into smaller steps.
-
-</p><p>I can eat an elephant, but not by opening really wide.
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2011-09-16T13:50:00+00:00" pubdate="pubdate">
-    <span class="day">16</span>
-    <span class="month">Sep</span>
-    <span class="year">2011</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/" data-counturl="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
 </section>
     </article><article>
@@ -438,10 +415,26 @@ Library/       Pictures/   bin/
     <aside role="sidebar">
   <section>
 
-  <h2><a href="http://incompleteness.me/blog/">Incompleteness</a></h2>
-  <p class="indent">
-    <a href="http://incompleteness.me/blog/archives/">Archives</a><br />
-    <a href="http://incompleteness.me/blog/atom.xml">atom.xml</a><br />
+  <h2>Incompleteness</h2>
+
+  <p>
+    <a href="http://incompleteness.me/blog/" style="float: right;">
+      <img src="http://incompleteness.me/images/rss_icon.png" />
+    </a>
+    The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
+    (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
+  </p>
+  <p>
+    <a href="http://incompleteness.me/mozblog/" style="float: right;">
+      <img src="http://incompleteness.me/images/firefox_40.png" />
+    </a>
+    <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
+    stuff for <a href="http://planet.mozilla.org/">planet</a>
+    (<a href="http://incompleteness.me/mozblog/atom.xml">Atom feed</a>).
+  </p>
+
+  <p>
+    See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
     If it's a choice between<br />
@@ -488,9 +481,9 @@ Library/       Pictures/   bin/
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
-      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
+      <a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/">Firefox Command Line for Developers</a>
     </li><li class="post">
-      <a href="http://incompleteness.me/blog/2011/09/16/how-to-eat-an-elephant/">How to Eat an Elephant</a>
+      <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">

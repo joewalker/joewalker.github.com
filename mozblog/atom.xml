@@ -8,6 +8,38 @@
   <id>http://incompleteness.me/</id>
   <author><name>Joe Walker</name></author>
 
-  
+  <entry>
+    <title>Firefox Command Line for Developers</title>
+    <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
+    <updated>2012-06-18T12:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2012/06/18/firefox-command-line/</id>
+    <content type="html">&lt;p&gt;TL;DR: We're adding a toolbar to Firefox, for developers, which includes a
+command line.
+It's a great place to add small tools and experimental features, and we're
+making it easy to add your own commands.
+
+&lt;/p&gt;&lt;p&gt;The toolbar should land in Firefox 16 or 17 and will look like this:
+
+&lt;/p&gt;&lt;div style="overflow-x: hidden;"&gt;
+  &lt;img src="http://incompleteness.me/images/posts/gcli-look-mac.png" alt="GCLI on a Mac" /&gt;
+&lt;/div&gt;&lt;p&gt;The buttons are useful, but I'm most excited about the commands.
+We can add an almost unlimited set of commands here without cluttering up the
+UI, or making things slow, and we've done lots of work to make the command line
+easy to use.
+
+&lt;/p&gt;&lt;p&gt;The challenge: It might be stretching things a little to call the command line
+a 'platform', and commands 'apps', but the command line still needs commands to
+be successful. There's a list of commands that we're working on for
+manipulating Firefox developer tools, and we'll be expanding this list to
+include system level commands too.
+
+&lt;/p&gt;&lt;p&gt;We're planning on a hackathon in a couple of weeks to add to the list of
+commands and to check that it really as as easy as we think it is to extend.
+Details soon.
+
+&lt;/p&gt;&lt;p&gt;If you want to try it out, it's in Nightly now, you'll need to flip the
+&lt;code&gt;devtools.toolbar.enable&lt;/code&gt; preference in &lt;code&gt;about:config&lt;/code&gt;.
+&lt;/p&gt;</content>
+  </entry>
 
 </feed>

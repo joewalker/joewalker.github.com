@@ -86,7 +86,7 @@ a {
 }
 
 article:hover a,
-aside:hover a {
+aside[role=sidebar]:hover a {
   -moz-transition: color 0.5s;
   -webkit-transition: color 0.5s;
   -o-transition: color 0.5s;
@@ -95,12 +95,12 @@ aside:hover a {
 }
 
 article:hover a:visited,
-aside:hover a:visited {
+aside[role=sidebar]:hover a:visited {
   color: #70d;
 }
 
 article:hover a:hover,
-aside:hover a:hover {
+aside[role=sidebar]:hover a:hover {
   color: #f91;
 }
 
@@ -324,4 +324,14 @@ footer {
 
 .comment-indent-3 {
   margin-left: 60px;
+}
+
+aside {
+  float: right;
+  padding: 5px 0 5px 5px;
+}
+
+aside div {
+  font-size: 80%;
+  text-align: center;
 }
