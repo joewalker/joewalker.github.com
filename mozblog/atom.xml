@@ -9,6 +9,35 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Firefox Command Line Hackathon</title>
+    <link href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/" />
+    <updated>2012-06-20T12:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2012/06/20/command-line-hackathon/</id>
+    <content type="html">&lt;p&gt;TL;DR: On June 27th, the Firefox developer tools team is holding a hackathon to
+add to the list of commands for the Firefox developers toolbar.
+
+&lt;/p&gt;&lt;aside&gt;
+  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517/sizes/z/in/set-72157594420250681/"&gt;
+    &lt;img src="http://incompleteness.me/images/posts/hackathon1.jpg" alt="people hacking" /&gt;
+  &lt;/a&gt;
+&lt;/aside&gt;&lt;p&gt;See this recent &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;blog post for context on the new developers command line&lt;/a&gt;.
+
+&lt;/p&gt;&lt;p&gt;I'm in the process of finishing off &lt;a href="https://bugzilla.mozilla.org/show_bug.cgi?id=724055"&gt;bug 724055&lt;/a&gt; which will make it as
+easy as is possible to create new commands, just set a pref to point to a
+directory where your commands are stored in JSON (ish) files, and you're done.
+
+&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post with a set of resources for creating
+commands and ideas for commands. We'll hang out in IRC and crank away and see
+how many commands we can get written in a day.
+
+&lt;/p&gt;&lt;p&gt;If you can spare some time, we'd love to have some help.
+
+&lt;/p&gt;&lt;p&gt;&lt;a href="http://www.flickr.com/photos/donotlick/5272510170/sizes/l/in/photostream/"&gt;
+  &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
+&lt;/a&gt;
+
+&lt;/p&gt;</content>
+  </entry><entry>
     <title>Firefox Command Line for Developers</title>
     <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
     <updated>2012-06-18T12:00:00+00:00</updated>

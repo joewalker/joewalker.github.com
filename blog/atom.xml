@@ -9,6 +9,35 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Firefox Command Line Hackathon</title>
+    <link href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/" />
+    <updated>2012-06-20T12:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2012/06/20/command-line-hackathon/</id>
+    <content type="html">&lt;p&gt;TL;DR: On June 27th, the Firefox developer tools team is holding a hackathon to
+add to the list of commands for the Firefox developers toolbar.
+
+&lt;/p&gt;&lt;aside&gt;
+  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517/sizes/z/in/set-72157594420250681/"&gt;
+    &lt;img src="http://incompleteness.me/images/posts/hackathon1.jpg" alt="people hacking" /&gt;
+  &lt;/a&gt;
+&lt;/aside&gt;&lt;p&gt;See this recent &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;blog post for context on the new developers command line&lt;/a&gt;.
+
+&lt;/p&gt;&lt;p&gt;I'm in the process of finishing off &lt;a href="https://bugzilla.mozilla.org/show_bug.cgi?id=724055"&gt;bug 724055&lt;/a&gt; which will make it as
+easy as is possible to create new commands, just set a pref to point to a
+directory where your commands are stored in JSON (ish) files, and you're done.
+
+&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post with a set of resources for creating
+commands and ideas for commands. We'll hang out in IRC and crank away and see
+how many commands we can get written in a day.
+
+&lt;/p&gt;&lt;p&gt;If you can spare some time, we'd love to have some help.
+
+&lt;/p&gt;&lt;p&gt;&lt;a href="http://www.flickr.com/photos/donotlick/5272510170/sizes/l/in/photostream/"&gt;
+  &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
+&lt;/a&gt;
+
+&lt;/p&gt;</content>
+  </entry><entry>
     <title>Firefox Command Line for Developers</title>
     <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
     <updated>2012-06-18T12:00:00+00:00</updated>
@@ -304,12 +333,6 @@ Library/       Pictures/   bin/
 &lt;li&gt;Aaron Boodman - "&lt;a href="http://www.aaronboodman.com/2009/01/update-fail.html"&gt;I'm a big believer in silent autoupdates&lt;/a&gt;"
 &lt;li&gt;PPK/Quirksmode - "&lt;a href="http://www.quirksmode.org/blog/archives/2009/02/state_of_the_br.html"&gt;I hate automatic updating&lt;/a&gt;"
 &lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Something Aaron didn’t mention - What happens when a silent auto-update breaks something? Anyone that's had to do battle with the demo-pixies silently changing something just before an important demo hates the idea that something might be silently altering their rendering engine as they are opening their laptop on-stage.&lt;/p&gt;&lt;p&gt;PPK's issue basically comes down to testing older versions - how can I test version X-1, when it's just been replaced by version X. On the one hand with silent auto-update virtually everyone will be on version X, so X-1 isn’t important, however I don't think that removes all need for testing on X-1.&lt;/p&gt;&lt;h2&gt;Solution?&lt;/h2&gt;&lt;p&gt;We should have silent auto-update. It makes the Internet safer, and we badly need that. But we should also have a system that keeps old versions around for some period of time with a way for users to revert. Maybe there is then an entry in the help menu that allows users to say 'it broke take me back', and maybe a preference that configures the number of old versions left lying around.&lt;/p&gt;&lt;p&gt;I have a suspicion that many corporates turn auto-update off in order to test the updates batches before internal release (or to put it another way - it's a cost saving) Maybe with undoable silent autoupdate they would allow the system to work without getting in the way?&lt;/p&gt;&lt;p&gt;I'm a big believer in &lt;em&gt;undoable&lt;/em&gt; silent autoupdates.&lt;/p&gt;</content>
-  </entry><entry>
-    <title>Bespin and Mozilla</title>
-    <link href="http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/" />
-    <updated>2009-02-4T11:27:33+00:00</updated>
-    <id>http://incompleteness.me/blog/2009/02/04/bespin-and-mozilla/</id>
-    <content type="html">&lt;p&gt;I’m very excited to be going to work for &lt;a href="http://labs.mozilla.com/"&gt;Mozilla Labs&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;I have very much enjoyed my time working at &lt;a href="http://www.sitepen.com/"&gt;SitePen&lt;/a&gt; - they are doing awesome work with Dojo and DWR, but with the main development on DWR 3 being done, it's time to move on. SitePen has some amazing talent, and it's been a huge privilege for me to have been able to share the ride, so I'm very grateful to Dylan and everyone at SitePen for allowing me to be part of it. I'm not going to be ignoring DWR either, so between me and the excellent team of Mike, Jose, David, Lance and many others I'm sure it has a long future.&lt;/p&gt;&lt;p&gt;My new role will be working with &lt;a href="http://benzilla.galbraiths.org/"&gt;Ben&lt;/a&gt;, &lt;a href="http://almaer.com/blog/"&gt;Dion&lt;/a&gt; and &lt;a href="http://www.blueskyonmars.com/"&gt;Kevin&lt;/a&gt; on Bespin.&lt;/p&gt;&lt;p&gt;You might be able to get hints about Bespin from &lt;a href="http://ajaxian.com/archives/ajaxians-join-mozilla-creating-developer-tools"&gt;postings&lt;/a&gt; &lt;a href="http://labs.mozilla.com/2008/10/developer-tools-and-the-open-web/"&gt;that&lt;/a&gt; &lt;a href="http://almaer.com/blog/joining-mozilla-to-create-new-developer-tools-for-the-web-hoping-to-create-a-new-chapter-in-the-book-of-mozilla"&gt;are&lt;/a&gt; &lt;a href="http://www.blueskyonmars.com/2009/01/05/making-web-development-suck-less/"&gt;around&lt;/a&gt; &lt;a href="http://benzilla.galbraiths.org/2008/10/13/a-new-direction/"&gt;already&lt;/a&gt;. Oh, and &lt;a href="http://en.wikipedia.org/wiki/Cloud_City"&gt;the name&lt;/a&gt; - that might be a clue too. Needless to say I’m excited about the project. More soon.&lt;/p&gt;</content>
   </entry>
 
 </feed>
