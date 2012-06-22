@@ -13,7 +13,7 @@
     <link href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/" />
     <updated>2012-06-20T12:00:00+00:00</updated>
     <id>http://incompleteness.me/blog/2012/06/20/command-line-hackathon/</id>
-    <content type="html">&lt;p&gt;TL;DR: On June 27th, the Firefox developer tools team is holding a hackathon to
+    <content type="html">&lt;p&gt;TL;DR: On June 26th, the Firefox developer tools team is holding a hackathon to
 add to the list of commands for the Firefox developers toolbar.
 
 &lt;/p&gt;&lt;aside&gt;
@@ -26,11 +26,15 @@ add to the list of commands for the Firefox developers toolbar.
 easy as is possible to create new commands, just set a pref to point to a
 directory where your commands are stored in JSON (ish) files, and you're done.
 
-&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post with a set of resources for creating
-commands and ideas for commands. We'll hang out in IRC and crank away and see
-how many commands we can get written in a day.
+&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post 
+with a set of resources for creating commands and ideas for commands.
+We'll hang out in IRC and crank away and see how many commands we can get
+written in a day.
 
 &lt;/p&gt;&lt;p&gt;If you can spare some time, we'd love to have some help.
+
+&lt;/p&gt;&lt;p&gt;&lt;small&gt;Update: Originally this post had a date typo and said the 27th. The real date
+is the 26th.&lt;/small&gt;
 
 &lt;/p&gt;</content>
   </entry><entry>
