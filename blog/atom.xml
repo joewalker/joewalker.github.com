@@ -9,6 +9,59 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Command Line Hackathon Details</title>
+    <link href="http://incompleteness.me/blog/2012/06/25/hackathon-details/" />
+    <updated>2012-06-24T13:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2012/06/25/hackathon-details/</id>
+    <content type="html">&lt;p&gt;I &lt;a href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/"&gt;promised&lt;/a&gt;
+details of how to take part in the command line hackathon on June 26th ...&lt;/p&gt;&lt;h2&gt;Getting Started&lt;/h2&gt;&lt;p&gt;The command line is part of the developer toolbar, which is currently
+prefed off. You enable it by visiting &lt;code&gt;about:config&lt;/code&gt; in Firefox and
+setting the 'devtools.toolbar.enabled' pref to true and restarting.&lt;/p&gt;&lt;p&gt;Then use the new Tools → Web Developer → Developer Toolbar menu or
+press &lt;code&gt;Ctrl+Shift+V&lt;/code&gt; (Win/Linux) or &lt;code&gt;Alt+Cmd+V&lt;/code&gt; (Mac) to
+open the toolbar&lt;/p&gt;&lt;p&gt;If you want a way to keep your commands around, you'll want to use the
+command directory method, if you just want a quick hack, use scratchpad.&lt;/p&gt;&lt;h3&gt;Creating commands with Scratchpad&lt;/h3&gt;&lt;p&gt;Make sure you've &lt;a href="http://antennasoft.net/robcee/2011/05/10/scratchpad-nee-workspace-web-developer-menu-landed/"&gt;enabled
+chrome privilages on your scratchpad&lt;/a&gt;. Then &lt;a href="https://gist.github.com/2944612"&gt;start
+with a template like this&lt;/a&gt;, and your ready to play.&lt;/p&gt;&lt;p&gt;See the docs &lt;a href="https://developer.mozilla.org/en/Tools/GCLI/Scratchpad"&gt;creating
+commands with scratchpad&lt;/a&gt; on MDN for more.&lt;/p&gt;&lt;h3&gt;Creating commands from a Command Directory&lt;/h3&gt;&lt;p&gt;Find somewhere to store commands and copy &lt;a href="https://github.com/joewalker/mozcmd/blob/master/hello.mozcmd"&gt;this template&lt;/a&gt;
+to a file called &lt;code&gt;hello.mozcmd&lt;/code&gt; (or you could clone the repo which
+could come in handy for submitting your commands). The filename isn't important
+but it should end &lt;code&gt;.mozcmd&lt;/code&gt;. Then tell Firefox where your directory
+is with this command: » &lt;code&gt;pref set devtools.command.dir &amp;lt;PATH-TO-DIR&amp;gt;&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Then refresh the commands from the command dir using » &lt;code&gt;cmd refresh&lt;/code&gt;
+and try out the new command: » &lt;code&gt;hello&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;See the docs &lt;a href="https://developer.mozilla.org/en/Tools/GCLI/Scratchpad"&gt;creating
+commands with scratchpad&lt;/a&gt; on MDN for more.&lt;/p&gt;&lt;h2&gt;Finding Out More&lt;/h2&gt;&lt;p&gt;You can probably guess most of what you need from &lt;a href="https://github.com/joewalker/mozcmd/blob/master/hello.mozcmd"&gt;the example&lt;/a&gt;,
+however there is &lt;a href="https://developer.mozilla.org/en/Tools/GCLI/Writing_GCLI_Commands"&gt;documentation and links&lt;/a&gt; on MDN if you need more detail.&lt;/p&gt;&lt;h2&gt;Taking Part&lt;/h2&gt;&lt;p&gt;We're collecting ideas for commands on
+&lt;a href="https://etherpad.mozilla.org/command-line-hackathon"&gt;https://etherpad.mozilla.org/command-line-hackathon&lt;/a&gt;,
+and we'll keep that updated during the day to coordinate things.&lt;/p&gt;&lt;p&gt;To get help and support, the best option is #devtools on irc.mozilla.org
+(SSL:on, Port:6697) or see &lt;a href="https://wiki.mozilla.org/IRC"&gt;the connection
+docs&lt;/a&gt; or use IRC on the web at &lt;a href="chat.mibbit.com"&gt;mibbit.com&lt;/a&gt;
+(Connect to Mozilla, Channel: #devtools).&lt;/p&gt;&lt;aside&gt;
+  &lt;a href="http://www.flickr.com/photos/robhawkes/7231923050/"&gt;
+    &lt;img src="http://incompleteness.me/images/posts/hackathon3.jpg" alt="people hacking" /&gt;
+  &lt;/a&gt;
+&lt;/aside&gt;&lt;h2&gt;How to raise a bug&lt;/h2&gt;&lt;p&gt;Use &lt;a href="https://bugzilla.mozilla.org/enter_bug.cgi?alias=&amp;amp;assigned_to=nobody%40mozilla.org&amp;amp;blocked=&amp;amp;bug_file_loc=http%3A%2F%2F&amp;amp;bug_severity=normal&amp;amp;bug_status=NEW&amp;amp;cf_blocking_basecamp=---&amp;amp;cf_blocking_kilimanjaro=---&amp;amp;cf_crash_signature=&amp;amp;cf_status_esr10=---&amp;amp;cf_status_firefox13=---&amp;amp;cf_status_firefox14=---&amp;amp;cf_status_firefox15=---&amp;amp;cf_status_firefox16=---&amp;amp;cf_tracking_esr10=---&amp;amp;cf_tracking_firefox13=---&amp;amp;cf_tracking_firefox14=---&amp;amp;cf_tracking_firefox15=---&amp;amp;cf_tracking_firefox16=---&amp;amp;comment=%0D%0AWhat%20did%20you%20do%20%28steps%20to%20reproduce%29%3F%0D%0A%0D%0A%0D%0AWhat%20happened%3F%0D%0A%0D%0A%0D%0AWhat%20should%20have%20happened%3F%0D%0A%0D%0A&amp;amp;component=Developer%20Tools%3A%20Console&amp;amp;contenttypeentry=&amp;amp;contenttypemethod=autodetect&amp;amp;contenttypeselection=text%2Fplain&amp;amp;data=&amp;amp;defined_groups=1&amp;amp;dependson=&amp;amp;description=&amp;amp;flag_type-203=X&amp;amp;flag_type-325=X&amp;amp;flag_type-37=X&amp;amp;flag_type-41=X&amp;amp;flag_type-5=X&amp;amp;flag_type-607=X&amp;amp;flag_type-720=X&amp;amp;flag_type-721=X&amp;amp;flag_type-737=X&amp;amp;flag_type-748=X&amp;amp;flag_type-775=X&amp;amp;flag_type-780=X&amp;amp;flag_type-781=X&amp;amp;form_name=enter_bug&amp;amp;keywords=&amp;amp;maketemplate=Remember%20values%20as%20bookmarkable%20template&amp;amp;op_sys=All&amp;amp;priority=--&amp;amp;product=Firefox&amp;amp;qa_contact=developer.tools.console%40firefox.bugs&amp;amp;rep_platform=All&amp;amp;requestee_type-203=&amp;amp;requestee_type-325=&amp;amp;requestee_type-41=&amp;amp;requestee_type-5=&amp;amp;requestee_type-607=&amp;amp;requestee_type-748=&amp;amp;requestee_type-781=&amp;amp;short_desc=GCLI&amp;amp;status_whiteboard=&amp;amp;target_milestone=---&amp;amp;version=Trunk"&gt;this link&lt;/a&gt;
+to tell us about any problems with the command line.&lt;/p&gt;&lt;h2&gt;Submitting a Command&lt;/h2&gt;&lt;p&gt;You can submit a command any of the following ways:&lt;p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Best:&lt;/strong&gt; Fork &lt;a href="https://github.com/joewalker/mozcmd"&gt;this repo&lt;/a&gt; and
+  create a pull request (preferred)&lt;/li&gt;
+  &lt;li&gt;Create a new etherpad containing your submission and put a link to your
+  new etherpad in the &lt;a href="https://etherpad.mozilla.org/command-line-hackathon"&gt;main
+  etherpad&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Email it to jwalker at mozilla.com.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Whichever way you choose, please include the following in your submission so
+we know you're happy for us to distribute your work:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Signed-off-by: Your Name &amp;lt;email@example.com&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Adding this text is a statement that you have the right to contribute the
+code under the MPLv2 for inclusion in the Mozilla codebase.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hope to see you on June 26th&lt;/strong&gt;&lt;/p&gt;
+
+&lt;/p&gt;&lt;/p&gt;</content>
+  </entry><entry>
     <title>Firefox Command Line Hackathon</title>
     <link href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/" />
     <updated>2012-06-20T12:00:00+00:00</updated>
@@ -17,7 +70,7 @@
 add to the list of commands for the Firefox developers toolbar.
 
 &lt;/p&gt;&lt;aside&gt;
-  &lt;a href="http://www.flickr.com/photos/donotlick/5272510170/sizes/l/in/photostream/"&gt;
+  &lt;a href="http://www.flickr.com/photos/donotlick/5272510170"&gt;
     &lt;img src="http://incompleteness.me/images/posts/hackathon1.jpg" alt="people hacking" /&gt;
   &lt;/a&gt;
 &lt;/aside&gt;&lt;p&gt;See this recent &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;blog post for context on the new developers command line&lt;/a&gt;.
@@ -26,7 +79,7 @@ add to the list of commands for the Firefox developers toolbar.
 easy as is possible to create new commands, just set a pref to point to a
 directory where your commands are stored in JSON (ish) files, and you're done.
 
-&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post 
+&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post (Update: &lt;a href="http://incompleteness.me/blog/2012/06/25/hackathon-details/"&gt;see here&lt;/a&gt;)
 with a set of resources for creating commands and ideas for commands.
 We'll hang out in IRC and crank away and see how many commands we can get
 written in a day.
@@ -36,7 +89,11 @@ written in a day.
 &lt;/p&gt;&lt;p&gt;&lt;small&gt;Update: Originally this post had a date typo and said the 27th. The real date
 is the 26th.&lt;/small&gt;
 
-&lt;/p&gt;</content>
+&lt;/p&gt;&lt;div style="text-align: center;"&gt;
+  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517"&gt;
+    &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</content>
   </entry><entry>
     <title>Firefox Command Line for Developers</title>
     <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
@@ -324,15 +381,6 @@ Library/       Pictures/   bin/
 &lt;p&gt;This isn’t going to become a Bespin blog (&lt;a href="http://labs.mozilla.com/tag/bespin/feed"&gt;that’s here&lt;a&gt;&lt;/a&gt; or &lt;a href="http://twitter.com/bespin"&gt;we're on twitter&lt;/a&gt;). Irregular DWR/Ajax/Security programming will return to my blog and &lt;a href="http://twitter.com/joewalker"&gt;twitter feed&lt;/a&gt; shortly.
 
 &lt;/a&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content>
-  </entry><entry>
-    <title>Undoable Silent Autoupdate</title>
-    <link href="http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/" />
-    <updated>2009-02-4T09:49:23+00:00</updated>
-    <id>http://incompleteness.me/blog/2009/02/04/undoable-silent-autoupdate/</id>
-    <content type="html">&lt;p&gt;Recently:&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;Aaron Boodman - "&lt;a href="http://www.aaronboodman.com/2009/01/update-fail.html"&gt;I'm a big believer in silent autoupdates&lt;/a&gt;"
-&lt;li&gt;PPK/Quirksmode - "&lt;a href="http://www.quirksmode.org/blog/archives/2009/02/state_of_the_br.html"&gt;I hate automatic updating&lt;/a&gt;"
-&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Something Aaron didn’t mention - What happens when a silent auto-update breaks something? Anyone that's had to do battle with the demo-pixies silently changing something just before an important demo hates the idea that something might be silently altering their rendering engine as they are opening their laptop on-stage.&lt;/p&gt;&lt;p&gt;PPK's issue basically comes down to testing older versions - how can I test version X-1, when it's just been replaced by version X. On the one hand with silent auto-update virtually everyone will be on version X, so X-1 isn’t important, however I don't think that removes all need for testing on X-1.&lt;/p&gt;&lt;h2&gt;Solution?&lt;/h2&gt;&lt;p&gt;We should have silent auto-update. It makes the Internet safer, and we badly need that. But we should also have a system that keeps old versions around for some period of time with a way for users to revert. Maybe there is then an entry in the help menu that allows users to say 'it broke take me back', and maybe a preference that configures the number of old versions left lying around.&lt;/p&gt;&lt;p&gt;I have a suspicion that many corporates turn auto-update off in order to test the updates batches before internal release (or to put it another way - it's a cost saving) Maybe with undoable silent autoupdate they would allow the system to work without getting in the way?&lt;/p&gt;&lt;p&gt;I'm a big believer in &lt;em&gt;undoable&lt;/em&gt; silent autoupdates.&lt;/p&gt;</content>
   </entry>
 
 </feed>
