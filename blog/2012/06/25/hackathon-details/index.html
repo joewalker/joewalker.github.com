@@ -28,7 +28,7 @@
       <h1><a href="http://incompleteness.me/blog/2012/06/25/hackathon-details/">Command Line Hackathon Details</a></h1><section class="content"><p>I <a href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/">promised</a>
 details of how to take part in the command line hackathon on June 26th ...</p><h2>Getting Started</h2><p>The command line is part of the developer toolbar, which is currently
 prefed off. You enable it by visiting <code>about:config</code> in Firefox and
-setting the 'devtools.toolbar.enabled' pref to true and restarting.</p><p>Then use the new Tools → Web Developer → Developer Toolbar menu or
+setting <code>devtools.toolbar.enabled</code> to true and restarting.</p><p>Then use the new Tools → Web Developer → Developer Toolbar menu or
 press <code>Ctrl+Shift+V</code> (Win/Linux) or <code>Alt+Cmd+V</code> (Mac) to
 open the toolbar</p><p>If you want a way to keep your commands around, you'll want to use the
 command directory method, if you just want a quick hack, use scratchpad.</p><h3>Creating commands with Scratchpad</h3><p>Make sure you've <a href="http://antennasoft.net/robcee/2011/05/10/scratchpad-nee-workspace-web-developer-menu-landed/">enabled
@@ -38,23 +38,23 @@ commands with scratchpad</a> on MDN for more.</p><h3>Creating commands from a Co
 to a file called <code>hello.mozcmd</code> (or you could clone the repo which
 could come in handy for submitting your commands). The filename isn't important
 but it should end <code>.mozcmd</code>. Then tell Firefox where your directory
-is with this command: » <code>pref set devtools.command.dir &lt;PATH-TO-DIR&gt;</code>.</p><p>Then refresh the commands from the command dir using » <code>cmd refresh</code>
-and try out the new command: » <code>hello</code>.</p><p>See the docs <a href="https://developer.mozilla.org/en/Tools/GCLI/Scratchpad">creating
+is with this command: <code>pref set devtools.command.dir &lt;PATH-TO-DIR&gt;</code>.</p><p>Then refresh the commands from the command dir using <code>cmd refresh</code>
+and try out the new command: <code>hello</code>.</p><p>See the docs <a href="https://developer.mozilla.org/en/Tools/GCLI/Scratchpad">creating
 commands with scratchpad</a> on MDN for more.</p><h2>Finding Out More</h2><p>You can probably guess most of what you need from <a href="https://github.com/joewalker/mozcmd/blob/master/hello.mozcmd">the example</a>,
 however there is <a href="https://developer.mozilla.org/en/Tools/GCLI/Writing_GCLI_Commands">documentation and links</a> on MDN if you need more detail.</p><h2>Taking Part</h2><p>We're collecting ideas for commands on
 <a href="https://etherpad.mozilla.org/command-line-hackathon">https://etherpad.mozilla.org/command-line-hackathon</a>,
 and we'll keep that updated during the day to coordinate things.</p><p>To get help and support, the best option is #devtools on irc.mozilla.org
 (SSL:on, Port:6697) or see <a href="https://wiki.mozilla.org/IRC">the connection
-docs</a> or use IRC on the web at <a href="chat.mibbit.com">mibbit.com</a>
-(Connect to Mozilla, Channel: #devtools).</p><aside>
+docs</a> or use IRC on the web at <a href="http://chat.mibbit.com">mibbit.com</a>
+(Connect to Mozilla, Channel: #devtools).</p><div>
   <a href="http://www.flickr.com/photos/robhawkes/7231923050/">
     <img src="http://incompleteness.me/images/posts/hackathon3.jpg" alt="people hacking" />
   </a>
-</aside><h2>How to raise a bug</h2><p>Use <a href="https://bugzilla.mozilla.org/enter_bug.cgi?alias=&amp;assigned_to=nobody%40mozilla.org&amp;blocked=&amp;bug_file_loc=http%3A%2F%2F&amp;bug_severity=normal&amp;bug_status=NEW&amp;cf_blocking_basecamp=---&amp;cf_blocking_kilimanjaro=---&amp;cf_crash_signature=&amp;cf_status_esr10=---&amp;cf_status_firefox13=---&amp;cf_status_firefox14=---&amp;cf_status_firefox15=---&amp;cf_status_firefox16=---&amp;cf_tracking_esr10=---&amp;cf_tracking_firefox13=---&amp;cf_tracking_firefox14=---&amp;cf_tracking_firefox15=---&amp;cf_tracking_firefox16=---&amp;comment=%0D%0AWhat%20did%20you%20do%20%28steps%20to%20reproduce%29%3F%0D%0A%0D%0A%0D%0AWhat%20happened%3F%0D%0A%0D%0A%0D%0AWhat%20should%20have%20happened%3F%0D%0A%0D%0A&amp;component=Developer%20Tools%3A%20Console&amp;contenttypeentry=&amp;contenttypemethod=autodetect&amp;contenttypeselection=text%2Fplain&amp;data=&amp;defined_groups=1&amp;dependson=&amp;description=&amp;flag_type-203=X&amp;flag_type-325=X&amp;flag_type-37=X&amp;flag_type-41=X&amp;flag_type-5=X&amp;flag_type-607=X&amp;flag_type-720=X&amp;flag_type-721=X&amp;flag_type-737=X&amp;flag_type-748=X&amp;flag_type-775=X&amp;flag_type-780=X&amp;flag_type-781=X&amp;form_name=enter_bug&amp;keywords=&amp;maketemplate=Remember%20values%20as%20bookmarkable%20template&amp;op_sys=All&amp;priority=--&amp;product=Firefox&amp;qa_contact=developer.tools.console%40firefox.bugs&amp;rep_platform=All&amp;requestee_type-203=&amp;requestee_type-325=&amp;requestee_type-41=&amp;requestee_type-5=&amp;requestee_type-607=&amp;requestee_type-748=&amp;requestee_type-781=&amp;short_desc=GCLI&amp;status_whiteboard=&amp;target_milestone=---&amp;version=Trunk">this link</a>
+</div><h2>How to raise a bug</h2><p>Use <a href="https://bugzilla.mozilla.org/enter_bug.cgi?alias=&amp;assigned_to=nobody%40mozilla.org&amp;blocked=&amp;bug_file_loc=http%3A%2F%2F&amp;bug_severity=normal&amp;bug_status=NEW&amp;cf_blocking_basecamp=---&amp;cf_blocking_kilimanjaro=---&amp;cf_crash_signature=&amp;cf_status_esr10=---&amp;cf_status_firefox13=---&amp;cf_status_firefox14=---&amp;cf_status_firefox15=---&amp;cf_status_firefox16=---&amp;cf_tracking_esr10=---&amp;cf_tracking_firefox13=---&amp;cf_tracking_firefox14=---&amp;cf_tracking_firefox15=---&amp;cf_tracking_firefox16=---&amp;comment=%0D%0AWhat%20did%20you%20do%20%28steps%20to%20reproduce%29%3F%0D%0A%0D%0A%0D%0AWhat%20happened%3F%0D%0A%0D%0A%0D%0AWhat%20should%20have%20happened%3F%0D%0A%0D%0A&amp;component=Developer%20Tools%3A%20Console&amp;contenttypeentry=&amp;contenttypemethod=autodetect&amp;contenttypeselection=text%2Fplain&amp;data=&amp;defined_groups=1&amp;dependson=&amp;description=&amp;flag_type-203=X&amp;flag_type-325=X&amp;flag_type-37=X&amp;flag_type-41=X&amp;flag_type-5=X&amp;flag_type-607=X&amp;flag_type-720=X&amp;flag_type-721=X&amp;flag_type-737=X&amp;flag_type-748=X&amp;flag_type-775=X&amp;flag_type-780=X&amp;flag_type-781=X&amp;form_name=enter_bug&amp;keywords=&amp;maketemplate=Remember%20values%20as%20bookmarkable%20template&amp;op_sys=All&amp;priority=--&amp;product=Firefox&amp;qa_contact=developer.tools.console%40firefox.bugs&amp;rep_platform=All&amp;requestee_type-203=&amp;requestee_type-325=&amp;requestee_type-41=&amp;requestee_type-5=&amp;requestee_type-607=&amp;requestee_type-748=&amp;requestee_type-781=&amp;short_desc=GCLI&amp;status_whiteboard=&amp;target_milestone=---&amp;version=Trunk">this link</a>
 to tell us about any problems with the command line.</p><h2>Submitting a Command</h2><p>You can submit a command any of the following ways:<p>
 
 <ol>
-  <li><strong>Best:</strong> Fork <a href="https://github.com/joewalker/mozcmd">this repo</a> and
+  <li>Fork <a href="https://github.com/joewalker/mozcmd">this repo</a> and
   create a pull request (preferred)</li>
   <li>Create a new etherpad containing your submission and put a link to your
   new etherpad in the <a href="https://etherpad.mozilla.org/command-line-hackathon">main
