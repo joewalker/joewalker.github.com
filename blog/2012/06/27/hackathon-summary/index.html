@@ -2,8 +2,8 @@
 
 <html lang="en">
 <head>
-  <title>Emerging Java Technologies at QCon - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/" />
+  <title>Hackathon Summary - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/" />
   <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -25,58 +25,164 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Emerging Java Technologies at QCon</a></h1><section class="content"><p>I've just finished opening the "<a href="http://qcon.infoq.com/qcon/schedule/thursday.jsp">Java Emerging Technologies</a>" track at <a href="http://qcon.infoq.com/qcon/conference/">QCon</a> and spent some time talking about Closures. This is a summary of what I said:</p><p>You can look at closures as blocks of code that you can pass around for execution. You can look at them as syntax sugar for inner classes. I think there is some significant power behind full closures that you miss when just looking at them from those perspectives.</p><p>This is how you define an integer 'a', in Java:</p><pre>int a;</pre><p>This is how you define a function 'b', in a Java Interface:</p><pre>String b(int p1, int p2);</pre><p>This is how you define a closure 'c', according to the <a href="http://www.javac.info/closures-v05.html
-">BGGA proposal</a>:</p><pre>{ int, int =&gt; String } c;</pre><p>This defines a closure to which you pass 2 integers and it returns a String.</p><p>Another closure 'd' takes a String and returns nothing:</p><pre>{ String =&gt; } d;</pre><p>We can provide an implementation of this closure:</p><pre>
-{ String =&gt; } d = { String m =
-    System.out.println(m);
-};
-</pre><p>And then execute the closure like this:</p><pre>d.invoke("Hello, World!");</pre><p>The standard example (standard because it is the one used in the spec) looks like this:</p><pre>
-public static &lt;T,throws E extends Exception&gt;
-T withLock(Lock lock, {=&gt;T throws E} block) throws E {
-    lock.lock();
-    try {
-        return block.invoke();
-    } finally {
-        lock.unlock();
-    }
-}
-</pre><p>This example can be made much easier to understand if we ignore exceptions and return types for a while:</p><pre>
-public static void withLock(Lock lock, {=&gt;} block) {
-    lock.lock();
-    try {
-        block.invoke();
-    } finally {
-        lock.unlock();
-    }
-}
-</pre><p>This is a method that takes a lock object and a closure. It then surrounds the execution of the closure with lock and unlock commands.</p><p>Normally speaking you would use this as follows:</p><pre>
-withLock(lock, {=&gt; System.out.println("hello"); });
-</pre><p>However there is a special rule in the closures spec that says: If the last parameter to a method is a closure then you can write the closure outside the parameter list like this:</p><pre>
-withLock(lock) {
-    System.out.println("hello");
-}
-</pre><p>It's likely that we would not have needed the synchronized keyword if closures had been around in the beginning. It's also likely that a large amount of Java could have been defined in terms of closures. For example:</p><pre>
-public static &lt;throws E extends Exception&gt;
-void If(boolean condition, {=&gt; throws E} block) throws E {
-    if (condition) {
-        block.invoke();
-    }
-}
-</pre><p>You would use this function like this (note the capital I on If:</p><pre>
-If (a == b) {
-  System.out.println("a equals b");
-}
-</pre><p>So closures as defined by the BGGA proposal allow you to do some fairly fundamental things with the Java language.</p></section><section class="meta">
+      <h1><a href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/">Hackathon Summary</a></h1><section class="content"><p>So yesterday a whole bunch of people to together to hack on some commands for
+the new <a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/">Developer
+Tools Command Line</a>. Thanks to everyone that took part.</p><p>This is a quick summary of the commands and hacks that we created. We've now
+got to work out what to do with them. Some we'll clean up, localize, test and
+ship, and some we'll do some we'll suggest putting onto AMO.</p><table>
+ <tr>
+   <th>Command</th>
+   <th>Description</th>
+   <th>Author(s)</th>
+   <th>Source</th>
+ </tr>
+ <tr>
+  <td>color</td>
+  <td>Several commands to convert between rgb, hex, hsl and color names</td>
+  <td><a href="https://github.com/elvisds">elvisds</a></td>
+  <td><a href="https://gist.github.com/2998893">Gist</a></td>
+ </tr>
+ <tr>
+  <td>scratchpad</td>
+  <td>Extra commands to open a empty and pre-<span>populated scratchpads</span></td>
+  <td><a href="http://antennasoft.net/robcee/">Rob Campbell</a></td>
+  <td><a href="https://gist.github.com/2995780">Gist</a></td>
+ </tr>
+ <tr>
+  <td>debugger</td>
+  <td>Several commands to control the debugger</td>
+  <td><a href="https://blog.mozilla.org/tilt/">Victor Porof</a></td>
+  <td><a href="https://bugzilla.mozilla.org/attachment.cgi?id=636656&amp;action=diff">Bug</a></td>
+ </tr>
+ <tr>
+  <td>tilt refresh</td>
+  <td>Rebuilds the visualization 3D mesh and webpage texture if any changes to the DOM were made</td>
+  <td><a href="https://blog.mozilla.org/tilt/">Victor Porof</a></td>
+  <td><a href="https://bugzilla.mozilla.org/attachment.cgi?id=636659&amp;action=diff">Bug</a></td>
+ </tr>
+ <tr>
+  <td>calllog</td>
+  <td>Use new Debugger API to log function calls</td>
+  <td><a href="http://theunfocused.net/">Blair McBride</a></td>
+  <td><a href="https://github.com/Unfocused/gcli-commands/blob/master/calllog.mozcmd">Repo</a></td>
+ </tr>
+ <tr>
+  <td>idl</td>
+  <td>Show the IDL file for a specified XPCOM int<span>erface</span></td>
+  <td><a href="http://theunfocused.net/">Blair McBride</a></td>
+  <td><a href="https://github.com/Unfocused/gcli-commands/blob/master/idl.mozcmd">Repo</a></td>
+ </tr>
+ <tr>
+  <td>memory</td>
+  <td>Get a memory report for the current page</td>
+  <td><a href="http://theunfocused.net/">Blair McBride</a></td>
+  <td><a href="https://github.com/Unfocused/gcli-commands/blob/master/memory.mozcmd">Repo</a></td>
+ </tr>
+ <tr>
+  <td>restart</td>
+  <td>Commands to restart Firefox</td>
+  <td><a href="https://gist.github.com/scrapmac">Girish Sharma</a></td>
+  <td><a href="https://gist.github.com/2995968">Gist</a></td>
+ </tr>
+ <tr>
+  <td>sorttabs</td>
+  <td>Sorts visible tabs based on url</td>
+  <td><a href="https://gist.github.com/scrapmac">Girish Sharma</a></td>
+  <td><a href="https://gist.github.com/2997619">Gist</a></td>
+ </tr>
+ <tr>
+  <td>addon</td>
+  <td>Commands to enable and disable plugins</td>
+  <td><a href="http://www.flailingmonkey.com/">Mike Ratcliffe</a>, <a href="http://astithas.com/">Panagiotis Astithas</a>, <a href="https://github.com/Pimm">Pimm Hogeling</a></td>
+  <td><a href="https://gist.github.com/3003149">Gist 1</a>, <a href="https://gist.github.com/2998412">Gist 2</a></td>
+ </tr>
+ <tr>
+  <td>time</td>
+  <td>Time how long it takes a command to run</td>
+  <td><a href="http://martndemus.nl/">Marten Schilstra</a></td>
+  <td><a href="https://bug768562.bugzilla.mozilla.org/attachment.cgi?id=636791">Bug</a></td>
+ </tr>
+ <tr>
+  <td>date</td>
+  <td>Prints the date to the command line</td>
+  <td><a href="http://martndemus.nl/">Marten Schilstra</a></td>
+  <td><a href="https://gist.github.com/2997578">Gist</a></td>
+ </tr>
+ <tr>
+  <td>loadscript</td>
+  <td>Loads a JavaScript resource into the current page</td>
+  <td><a href="http://martndemus.nl/">Marten Schilstra</a></td>
+  <td><a href="https://gist.github.com/2998222">Gist</a></td>
+ </tr>
+ <tr>
+  <td>mdn</td>
+  <td>Searches the Mozilla Developer Network</td>
+  <td><a href="http://martndemus.nl/">Marten Schilstra</a></td>
+  <td><a href="https://gist.github.com/2998645">Gist</a></td>
+ </tr>
+ <tr>
+  <td>mdn</td>
+  <td>mdn</td>
+  <td><a href="http://paulrouget.com/">Paul Rouget</a></td>
+  <td><a href="https://gist.github.com/1d943933ffb43a72946d">Gist</a></td>
+ </tr>
+ <tr>
+  <td>find</td>
+  <td>Go to a tab (fuzzy matched)</td>
+  <td><a href="https://github.com/espadrine">Thaddee Tyl</a></td>
+  <td><a href="https://github.com/espadrine/mozcmd/blob/master/find.mozcmd">Repo</a></td>
+ </tr>
+ <tr>
+  <td>search</td>
+  <td>Search and replace in page</td>
+  <td><a href="https://github.com/graememcc">graememcc</a></td>
+  <td><a href="https://gist.github.com/2996890">Gist</a></td>
+ </tr>
+ <tr>
+  <td>bug</td>
+  <td>Open a numbered bug</td>
+  <td><a href="https://github.com/zombie">zombie</a></td>
+  <td><a href="https://gist.github.com/3000409">Gist</a></td>
+ </tr>
+ <tr>
+  <td>basename/dirname</td>
+  <td>Split up file paths</td>
+  <td><a href="https://twitter.com/fitzgen">Nick Fitzgerald</a></td>
+  <td><a href="https://github.com/joewalker/mozcmd/pull/4">Pull</a></td>
+ </tr>
+ <tr>
+  <td>qsa</td>
+  <td>Perform querySelectorAll on the current document and return number of matches</td>
+  <td><a href="http://twitter.com/zii">Zach Carter</a></td>
+  <td><a href="https://gist.github.com/3000231">Gist</a></td>
+ </tr>
+ <tr>
+  <td>jsbeautifier</td>
+  <td>Loads a URL, JS-beautifies it, and opens a new tab with the result</td>
+  <td><a href="http://www.open-mike.org/about">Mike Hanson</a></td>
+  <td><a href="https://github.com/michaelrhanson/mozcmd">Repo</a></td>
+ </tr>
+ <tr>
+  <td>replace/rm/export</td>
+  <td>Commands to edit and export page details</td>
+  <td><a href="http://www.robodesign.ro/mihai/blog">Mihai Sucan</a></td>
+  <td><a href="https://github.com/joewalker/mozcmd/pull/1">Pull</a></td>
+ </tr>
+</table><p style="text-align: center;">
+  <a href="http://www.flickr.com/photos/robceemoz/322394517">
+    <img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" />
+  </a>
+</p></section><section class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Joe Walker</span>
   </span>
-  <time datetime="2007-03-15T13:42:19+00:00" pubdate="pubdate">
-    <span class="day">15</span>
-    <span class="month">Mar</span>
-    <span class="year">2007</span>
+  <time datetime="2012-06-27T13:00:00+00:00" pubdate="pubdate">
+    <span class="day">27</span>
+    <span class="month">Jun</span>
+    <span class="year">2012</span>
   </time>
 </section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/" data-counturl="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2012/06/27/hackathon-summary/" data-counturl="http://incompleteness.me/blog/2012/06/27/hackathon-summary/">Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
 </section>
       <section class="comments">

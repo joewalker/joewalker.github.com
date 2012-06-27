@@ -9,6 +9,159 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Hackathon Summary</title>
+    <link href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/" />
+    <updated>2012-06-27T13:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2012/06/27/hackathon-summary/</id>
+    <content type="html">&lt;p&gt;So yesterday a whole bunch of people to together to hack on some commands for
+the new &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;Developer
+Tools Command Line&lt;/a&gt;. Thanks to everyone that took part.&lt;/p&gt;&lt;p&gt;This is a quick summary of the commands and hacks that we created. We've now
+got to work out what to do with them. Some we'll clean up, localize, test and
+ship, and some we'll do some we'll suggest putting onto AMO.&lt;/p&gt;&lt;table&gt;
+ &lt;tr&gt;
+   &lt;th&gt;Command&lt;/th&gt;
+   &lt;th&gt;Description&lt;/th&gt;
+   &lt;th&gt;Author(s)&lt;/th&gt;
+   &lt;th&gt;Source&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;color&lt;/td&gt;
+  &lt;td&gt;Several commands to convert between rgb, hex, hsl and color names&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/elvisds"&gt;elvisds&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2998893"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;scratchpad&lt;/td&gt;
+  &lt;td&gt;Extra commands to open a empty and pre-&lt;span&gt;populated scratchpads&lt;/span&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://antennasoft.net/robcee/"&gt;Rob Campbell&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2995780"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;debugger&lt;/td&gt;
+  &lt;td&gt;Several commands to control the debugger&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://blog.mozilla.org/tilt/"&gt;Victor Porof&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://bugzilla.mozilla.org/attachment.cgi?id=636656&amp;amp;action=diff"&gt;Bug&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;tilt refresh&lt;/td&gt;
+  &lt;td&gt;Rebuilds the visualization 3D mesh and webpage texture if any changes to the DOM were made&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://blog.mozilla.org/tilt/"&gt;Victor Porof&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://bugzilla.mozilla.org/attachment.cgi?id=636659&amp;amp;action=diff"&gt;Bug&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;calllog&lt;/td&gt;
+  &lt;td&gt;Use new Debugger API to log function calls&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://theunfocused.net/"&gt;Blair McBride&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/Unfocused/gcli-commands/blob/master/calllog.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;idl&lt;/td&gt;
+  &lt;td&gt;Show the IDL file for a specified XPCOM int&lt;span&gt;erface&lt;/span&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://theunfocused.net/"&gt;Blair McBride&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/Unfocused/gcli-commands/blob/master/idl.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;memory&lt;/td&gt;
+  &lt;td&gt;Get a memory report for the current page&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://theunfocused.net/"&gt;Blair McBride&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/Unfocused/gcli-commands/blob/master/memory.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;restart&lt;/td&gt;
+  &lt;td&gt;Commands to restart Firefox&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/scrapmac"&gt;Girish Sharma&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2995968"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;sorttabs&lt;/td&gt;
+  &lt;td&gt;Sorts visible tabs based on url&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/scrapmac"&gt;Girish Sharma&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2997619"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;addon&lt;/td&gt;
+  &lt;td&gt;Commands to enable and disable plugins&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://www.flailingmonkey.com/"&gt;Mike Ratcliffe&lt;/a&gt;, &lt;a href="http://astithas.com/"&gt;Panagiotis Astithas&lt;/a&gt;, &lt;a href="https://github.com/Pimm"&gt;Pimm Hogeling&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/3003149"&gt;Gist 1&lt;/a&gt;, &lt;a href="https://gist.github.com/2998412"&gt;Gist 2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;time&lt;/td&gt;
+  &lt;td&gt;Time how long it takes a command to run&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://bug768562.bugzilla.mozilla.org/attachment.cgi?id=636791"&gt;Bug&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;date&lt;/td&gt;
+  &lt;td&gt;Prints the date to the command line&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2997578"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;loadscript&lt;/td&gt;
+  &lt;td&gt;Loads a JavaScript resource into the current page&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2998222"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;mdn&lt;/td&gt;
+  &lt;td&gt;Searches the Mozilla Developer Network&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2998645"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;mdn&lt;/td&gt;
+  &lt;td&gt;mdn&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://paulrouget.com/"&gt;Paul Rouget&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/1d943933ffb43a72946d"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;find&lt;/td&gt;
+  &lt;td&gt;Go to a tab (fuzzy matched)&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/espadrine"&gt;Thaddee Tyl&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/espadrine/mozcmd/blob/master/find.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;search&lt;/td&gt;
+  &lt;td&gt;Search and replace in page&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/graememcc"&gt;graememcc&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2996890"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;bug&lt;/td&gt;
+  &lt;td&gt;Open a numbered bug&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/zombie"&gt;zombie&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/3000409"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;basename/dirname&lt;/td&gt;
+  &lt;td&gt;Split up file paths&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://twitter.com/fitzgen"&gt;Nick Fitzgerald&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/joewalker/mozcmd/pull/4"&gt;Pull&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;qsa&lt;/td&gt;
+  &lt;td&gt;Perform querySelectorAll on the current document and return number of matches&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://twitter.com/zii"&gt;Zach Carter&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/3000231"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;jsbeautifier&lt;/td&gt;
+  &lt;td&gt;Loads a URL, JS-beautifies it, and opens a new tab with the result&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://www.open-mike.org/about"&gt;Mike Hanson&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/michaelrhanson/mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;replace/rm/export&lt;/td&gt;
+  &lt;td&gt;Commands to edit and export page details&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://www.robodesign.ro/mihai/blog"&gt;Mihai Sucan&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/joewalker/mozcmd/pull/1"&gt;Pull&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;&lt;p style="text-align: center;"&gt;
+  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517"&gt;
+    &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
+  &lt;/a&gt;
+&lt;/p&gt;</content>
+  </entry><entry>
     <title>Command Line Hackathon Details</title>
     <link href="http://incompleteness.me/blog/2012/06/25/hackathon-details/" />
     <updated>2012-06-24T13:00:00+00:00</updated>
@@ -89,11 +242,7 @@ written in a day.
 &lt;/p&gt;&lt;p&gt;&lt;small&gt;Update: Originally this post had a date typo and said the 27th. The real date
 is the 26th.&lt;/small&gt;
 
-&lt;/p&gt;&lt;div style="text-align: center;"&gt;
-  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517"&gt;
-    &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
-  &lt;/a&gt;
-&lt;/div&gt;</content>
+&lt;/p&gt;</content>
   </entry><entry>
     <title>Firefox Command Line for Developers</title>
     <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
@@ -345,42 +494,6 @@ Library/       Pictures/   bin/
     <updated>2009-04-15T19:47:48+00:00</updated>
     <id>http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/</id>
     <content type="html">&lt;p&gt;The &lt;a href="http://directwebremoting.org/dwr"&gt;DWR project&lt;/a&gt; has a new lead developer - We've just closed a unanimous vote that declares &lt;a href="http://www.butterdev.com/"&gt;David Marginian&lt;/a&gt; to be the new lead.&lt;/p&gt;&lt;p&gt;David had been around DWR since the beginning, and has been consistently one of the most helpful people on the mailing list, and has contributed to many areas, most particularly the documentation.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: Why?&lt;/strong&gt; Because David is already doing a better job of leading DWR than I am, and because for a while I've had too many projects on and been trying to do a better job of less things.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: Am I gone for good?&lt;/strong&gt; No, I certainly don't intend to disappear, and I've still got a lot of love for DWR - this is mostly just me admitting that I'm not the best man for the job, and that DWR deserves better.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: What are you doing instead?&lt;/strong&gt; Quite a bit of &lt;a href="https://bespin.mozilla.com/"&gt;Bespin&lt;/a&gt;. Oh, and like everyone else, I'm excusing my lack of blog activity to the whole &lt;a href="http://twitter.com/joewalker"&gt;140 char thing&lt;/a&gt;. It's a cheap excuse, but if everyone else can use it...&lt;/p&gt;&lt;p&gt;I'd like to thank the David, and the whole DWR community for helping make DWR a success.&lt;/p&gt;</content>
-  </entry><entry>
-    <title>The Power of Bespin</title>
-    <link href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/" />
-    <updated>2009-02-16T12:38:54+00:00</updated>
-    <id>http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/</id>
-    <content type="html">&lt;p&gt;Yeah, so &lt;a href="https://bespin.mozilla.com/"&gt;Bespin&lt;/a&gt; a cool editor, and it makes use of lots of bleeding edge tech, (and it's got several annoying bugs - sorry about those). But I think Bespin has potential way beyond just looking nice ...
-
-&lt;p&gt;Open source development: You hear about project X, use it, and it’s nice, but to use a worn out phrase - there’s an itch to scratch ... 
-
-&lt;p&gt;So what do you do?
-
-&lt;h2&gt;Open Source Development Before Bespin&lt;/h2&gt;
-
-&lt;p&gt;You search the project website for the directions to the source control system, you check that you’re up to date with cvs/svn/git/hg/whatever and checkout the source. Next you need to figure out how to build the project with ant/make/maven/paver/rake/whatever, and maybe download new libraries to make the compile clean and you then configure your IDE or editor to the new project. You can then go about editing the code. When you’re done with that you might need to figure out xunit/yunix/zunit to run the unit tests. Then you have to join a mailing list to work out how to send your changes in, which might be a patch or a bundle or a zip or direct commit access. You might discover that you need to sign a CLA so the project knows who you are, so you mess about with printing/signing/scanning/emailing/whatever.
-
-&lt;p&gt;And then you’re done. With complex projects there could be lost more to it.
-
-&lt;p&gt;While you’re doing this you have no idea what the other developers are doing. Maybe they’re working on a totally different branch. Maybe they’ve done something similar already. Maybe they’re making changes that mean you should try a different approach. It would be good to know because you might be wasting your time.
-
-&lt;h2&gt;Open Source Development After Bespin&lt;/h2&gt;
-
-&lt;p&gt;You visit Bespin, and elect to edit project X. When you’re done, you click submit, and the project owners get your change.
-
-&lt;p&gt;Plus you can see what the project owners are doing with the source, and how your changes fit in.
-
-&lt;h2&gt;The Power of Bespin&lt;/h2&gt;
-
-&lt;p&gt;For me, what I find interesting about Bespin isn't the tech, it's the lowering of the barriers to entry and the socializing of open development.
-
-&lt;p&gt;Virtually no software is perfect, and there are billions of people that are affected by the imperfections. There are hundreds of ways to contribute to any development project, and millions of people who could use their skills to help if only we could find ways to get the sources of help to the problems needing work
-
-&lt;p&gt;This application of huge resource to complex problems is what the Internet has always been good at, but so far we've not really done much to help software development. I hope that Bespin can become part of the solution.
-
-&lt;p&gt;This isn’t going to become a Bespin blog (&lt;a href="http://labs.mozilla.com/tag/bespin/feed"&gt;that’s here&lt;a&gt;&lt;/a&gt; or &lt;a href="http://twitter.com/bespin"&gt;we're on twitter&lt;/a&gt;). Irregular DWR/Ajax/Security programming will return to my blog and &lt;a href="http://twitter.com/joewalker"&gt;twitter feed&lt;/a&gt; shortly.
-
-&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content>
   </entry>
 
 </feed>

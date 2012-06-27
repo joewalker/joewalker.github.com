@@ -9,6 +9,159 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Hackathon Summary</title>
+    <link href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/" />
+    <updated>2012-06-27T13:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2012/06/27/hackathon-summary/</id>
+    <content type="html">&lt;p&gt;So yesterday a whole bunch of people to together to hack on some commands for
+the new &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;Developer
+Tools Command Line&lt;/a&gt;. Thanks to everyone that took part.&lt;/p&gt;&lt;p&gt;This is a quick summary of the commands and hacks that we created. We've now
+got to work out what to do with them. Some we'll clean up, localize, test and
+ship, and some we'll do some we'll suggest putting onto AMO.&lt;/p&gt;&lt;table&gt;
+ &lt;tr&gt;
+   &lt;th&gt;Command&lt;/th&gt;
+   &lt;th&gt;Description&lt;/th&gt;
+   &lt;th&gt;Author(s)&lt;/th&gt;
+   &lt;th&gt;Source&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;color&lt;/td&gt;
+  &lt;td&gt;Several commands to convert between rgb, hex, hsl and color names&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/elvisds"&gt;elvisds&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2998893"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;scratchpad&lt;/td&gt;
+  &lt;td&gt;Extra commands to open a empty and pre-&lt;span&gt;populated scratchpads&lt;/span&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://antennasoft.net/robcee/"&gt;Rob Campbell&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2995780"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;debugger&lt;/td&gt;
+  &lt;td&gt;Several commands to control the debugger&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://blog.mozilla.org/tilt/"&gt;Victor Porof&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://bugzilla.mozilla.org/attachment.cgi?id=636656&amp;amp;action=diff"&gt;Bug&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;tilt refresh&lt;/td&gt;
+  &lt;td&gt;Rebuilds the visualization 3D mesh and webpage texture if any changes to the DOM were made&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://blog.mozilla.org/tilt/"&gt;Victor Porof&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://bugzilla.mozilla.org/attachment.cgi?id=636659&amp;amp;action=diff"&gt;Bug&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;calllog&lt;/td&gt;
+  &lt;td&gt;Use new Debugger API to log function calls&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://theunfocused.net/"&gt;Blair McBride&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/Unfocused/gcli-commands/blob/master/calllog.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;idl&lt;/td&gt;
+  &lt;td&gt;Show the IDL file for a specified XPCOM int&lt;span&gt;erface&lt;/span&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://theunfocused.net/"&gt;Blair McBride&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/Unfocused/gcli-commands/blob/master/idl.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;memory&lt;/td&gt;
+  &lt;td&gt;Get a memory report for the current page&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://theunfocused.net/"&gt;Blair McBride&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/Unfocused/gcli-commands/blob/master/memory.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;restart&lt;/td&gt;
+  &lt;td&gt;Commands to restart Firefox&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/scrapmac"&gt;Girish Sharma&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2995968"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;sorttabs&lt;/td&gt;
+  &lt;td&gt;Sorts visible tabs based on url&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/scrapmac"&gt;Girish Sharma&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2997619"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;addon&lt;/td&gt;
+  &lt;td&gt;Commands to enable and disable plugins&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://www.flailingmonkey.com/"&gt;Mike Ratcliffe&lt;/a&gt;, &lt;a href="http://astithas.com/"&gt;Panagiotis Astithas&lt;/a&gt;, &lt;a href="https://github.com/Pimm"&gt;Pimm Hogeling&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/3003149"&gt;Gist 1&lt;/a&gt;, &lt;a href="https://gist.github.com/2998412"&gt;Gist 2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;time&lt;/td&gt;
+  &lt;td&gt;Time how long it takes a command to run&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://bug768562.bugzilla.mozilla.org/attachment.cgi?id=636791"&gt;Bug&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;date&lt;/td&gt;
+  &lt;td&gt;Prints the date to the command line&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2997578"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;loadscript&lt;/td&gt;
+  &lt;td&gt;Loads a JavaScript resource into the current page&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2998222"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;mdn&lt;/td&gt;
+  &lt;td&gt;Searches the Mozilla Developer Network&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://martndemus.nl/"&gt;Marten Schilstra&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2998645"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;mdn&lt;/td&gt;
+  &lt;td&gt;mdn&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://paulrouget.com/"&gt;Paul Rouget&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/1d943933ffb43a72946d"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;find&lt;/td&gt;
+  &lt;td&gt;Go to a tab (fuzzy matched)&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/espadrine"&gt;Thaddee Tyl&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/espadrine/mozcmd/blob/master/find.mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;search&lt;/td&gt;
+  &lt;td&gt;Search and replace in page&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/graememcc"&gt;graememcc&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/2996890"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;bug&lt;/td&gt;
+  &lt;td&gt;Open a numbered bug&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/zombie"&gt;zombie&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/3000409"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;basename/dirname&lt;/td&gt;
+  &lt;td&gt;Split up file paths&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://twitter.com/fitzgen"&gt;Nick Fitzgerald&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/joewalker/mozcmd/pull/4"&gt;Pull&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;qsa&lt;/td&gt;
+  &lt;td&gt;Perform querySelectorAll on the current document and return number of matches&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://twitter.com/zii"&gt;Zach Carter&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://gist.github.com/3000231"&gt;Gist&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;jsbeautifier&lt;/td&gt;
+  &lt;td&gt;Loads a URL, JS-beautifies it, and opens a new tab with the result&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://www.open-mike.org/about"&gt;Mike Hanson&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/michaelrhanson/mozcmd"&gt;Repo&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;replace/rm/export&lt;/td&gt;
+  &lt;td&gt;Commands to edit and export page details&lt;/td&gt;
+  &lt;td&gt;&lt;a href="http://www.robodesign.ro/mihai/blog"&gt;Mihai Sucan&lt;/a&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;a href="https://github.com/joewalker/mozcmd/pull/1"&gt;Pull&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;&lt;p style="text-align: center;"&gt;
+  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517"&gt;
+    &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
+  &lt;/a&gt;
+&lt;/p&gt;</content>
+  </entry><entry>
     <title>Command Line Hackathon Details</title>
     <link href="http://incompleteness.me/blog/2012/06/25/hackathon-details/" />
     <updated>2012-06-24T13:00:00+00:00</updated>
@@ -89,11 +242,7 @@ written in a day.
 &lt;/p&gt;&lt;p&gt;&lt;small&gt;Update: Originally this post had a date typo and said the 27th. The real date
 is the 26th.&lt;/small&gt;
 
-&lt;/p&gt;&lt;div style="text-align: center;"&gt;
-  &lt;a href="http://www.flickr.com/photos/robceemoz/322394517"&gt;
-    &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
-  &lt;/a&gt;
-&lt;/div&gt;</content>
+&lt;/p&gt;</content>
   </entry><entry>
     <title>Firefox Command Line for Developers</title>
     <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
