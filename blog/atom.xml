@@ -9,6 +9,39 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Work for Mozilla building Developer Tools</title>
+    <link href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/" />
+    <updated>2013-03-7T16:30:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/</id>
+    <content type="html">&lt;p&gt;Short version:
+&lt;a href="https://twitter.com/paulrouget"&gt;Paul&lt;/a&gt;,
+&lt;a href="https://twitter.com/harthvader"&gt;Heather&lt;/a&gt;,
+&lt;a href="https://twitter.com/ratcliffe_mike"&gt;Mike&lt;/a&gt;
+&lt;a href="https://twitter.com/joewalker"&gt;and I&lt;/a&gt;
+are hiring. &lt;a href="http://jobvite.com/m?3T1TJfwg"&gt;Apply here&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;The built-in developer tools are mostly
+&lt;a href="https://github.com/mozilla/mozilla-central/tree/master/browser/devtools"&gt;built in JavaScript&lt;/a&gt;.
+So you'll need to be comfortable with using JavaScript to create applications
+(rather than just tweaking pages). Obviously our tools are just for Firefox so
+we can take advantage of
+&lt;a href="https://developer.mozilla.org/en-US/docs/JavaScript/ECMAScript_5_support_in_Mozilla"&gt;ES5&lt;/a&gt; and
+&lt;a href="https://developer.mozilla.org/en-US/docs/JavaScript/ECMAScript_6_support_in_Mozilla"&gt;ES6&lt;/a&gt;
+features the second they're added to Firefox so knowing about what's new would help too.&lt;/p&gt;&lt;p&gt;But our team is particularly about helping people understand content
+(i.e. HTML and CSS) so you'll also need to understand how pages are laid out
+and how to get a browser to bow to your bidding. You'll also need to be good
+at creating interfaces that people want to use, and fast at learning because
+there's a lot to &lt;a href="https://developer.mozilla.org/en-US/docs/The_Mozilla_platform"&gt;our platform&lt;/a&gt;.
+Knowing some C++ could be useful too.&lt;/p&gt;&lt;p&gt;Perfect would be if you've spent time in the trenches of web development
+thinking "&lt;em&gt;If only the tools would tell me X, Y and Z, I could be soooo much
+better&lt;/em&gt;". This is your chance to make millions of people better at their
+jobs.&lt;/p&gt;&lt;p&gt;Our team is all around the world, so you can enjoy working from home, and
+you'll need to communicate well over IRC, video chat and email. But you'll
+also be working on open source software that changes the lives of hundreds of
+millions of users worldwide.&lt;/p&gt;&lt;p&gt;If you can help,
+&lt;a href="http://jobvite.com/m?3T1TJfwg"&gt;apply here&lt;/a&gt;,
+and contact me directly (&lt;a href="https://twitter.com/joewalker"&gt;twitter&lt;/a&gt; or
+&lt;code&gt;jwalker at mozilla.com&lt;/code&gt;) to make sure you're in
+the system, or to ask questions.&lt;/p&gt;</content>
+  </entry><entry>
     <title>Hackathon Summary</title>
     <link href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/" />
     <updated>2012-06-27T13:00:00+00:00</updated>
@@ -488,12 +521,6 @@ Library/       Pictures/   bin/
 &lt;li&gt;They are waiting for input&lt;/li&gt;
 &lt;li&gt;etc&lt;/li&gt;
 &lt;/ul&gt;&lt;p&gt;We've only basically started on this right now, with the ability to hide/show output, but there's potential for it to make the command line lots more usable.&lt;/p&gt;&lt;h2&gt;Plug-ins&lt;/h2&gt;&lt;p&gt;Linking everything together is easy if you make one big monolithic lump. That's not the plan - we're evolving a plug-in strategy as we go, and planning on making as much of Bespin itself use the plug-in system. The key to coupling is to get the right level of coupling.&lt;/p&gt;&lt;h2&gt;Status Messages&lt;/h2&gt;&lt;p&gt;My other integration obsession is about status messages. There's a &lt;strong&gt;huge&lt;/strong&gt; amount we could do to integrate the &lt;a href="http://twitter.com/joewalker"&gt;familiar concept&lt;/a&gt; of "what are you doing now" with commit messages, bug trackers, chat, and team tracking. More soon.&lt;/p&gt;&lt;p&gt;What other things could we do to trick out the command line?&lt;/p&gt;</content>
-  </entry><entry>
-    <title>Introducing David Marginian</title>
-    <link href="http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/" />
-    <updated>2009-04-15T19:47:48+00:00</updated>
-    <id>http://incompleteness.me/blog/2009/04/15/introducing-david-marginian/</id>
-    <content type="html">&lt;p&gt;The &lt;a href="http://directwebremoting.org/dwr"&gt;DWR project&lt;/a&gt; has a new lead developer - We've just closed a unanimous vote that declares &lt;a href="http://www.butterdev.com/"&gt;David Marginian&lt;/a&gt; to be the new lead.&lt;/p&gt;&lt;p&gt;David had been around DWR since the beginning, and has been consistently one of the most helpful people on the mailing list, and has contributed to many areas, most particularly the documentation.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: Why?&lt;/strong&gt; Because David is already doing a better job of leading DWR than I am, and because for a while I've had too many projects on and been trying to do a better job of less things.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: Am I gone for good?&lt;/strong&gt; No, I certainly don't intend to disappear, and I've still got a lot of love for DWR - this is mostly just me admitting that I'm not the best man for the job, and that DWR deserves better.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Q: What are you doing instead?&lt;/strong&gt; Quite a bit of &lt;a href="https://bespin.mozilla.com/"&gt;Bespin&lt;/a&gt;. Oh, and like everyone else, I'm excusing my lack of blog activity to the whole &lt;a href="http://twitter.com/joewalker"&gt;140 char thing&lt;/a&gt;. It's a cheap excuse, but if everyone else can use it...&lt;/p&gt;&lt;p&gt;I'd like to thank the David, and the whole DWR community for helping make DWR a success.&lt;/p&gt;</content>
   </entry>
 
 </feed>
