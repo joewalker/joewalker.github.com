@@ -40,12 +40,12 @@ the victims’ scam-detection, timeouts and errors.</p><p>These problems mean th
 complexity vs completion rate (where ‘completion’ is a scam that succeeded).
 It might look like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off" /><p>I’d like to suggest that humans are not that simple and that we shouldn’t
 expect something as predictable as that.</p><p>Many (most?) of the tasks that we complete on computers can be done purely
-using unconcious / heuristic / System 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
+using unconcious / heuristic / system 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
 terms. That is to say using parts of the brain that are fast, pattern-based and
 non-analytical. Its less common that we need to use concious / systematic /
-System 2 processing (slow, lazy, analytical). (“Thinking, Fast and Slow” is
+system 2 processing (slow, lazy, analytical). (“Thinking, Fast and Slow” is
 probably the canonical work to understand these terms in more depth)</p><p>I’d suggest that, for most people, scam detection is a system 2 operation.
-So forcing use of System 2 to prevent scams might help. (Obviously this is at
+So forcing use of system 2 to prevent scams might help. (Obviously this is at
 odds with the “<a href="http://www.amazon.com/Think-Common-Sense-Approach-Usability/dp/0789723107/">don’t make me think</a>”
 approach to good UX design - I’m obviously not arguing that bad design is a
 good thing).</p><p>We don’t have a lot of data for Self-XSS. The data that I know of is:</p><table>
@@ -74,16 +74,31 @@ and that at some point of complexity the completion rate will drop to 0. So
 that something like 5 data points.</p><p>It would be fair to criticise this as ‘not much data’, which is part of the
 point:</p><ul>
   <li>If you have more data in places where Self-XSS attacks have worked, please publish them and tell me.</li>
-  <li>If you know of research into the use of System 1 vs. System 2 in detecting scams, I’d love to hear about it.</li>
+  <li>If you know of research into the use of system 1 vs. system 2 in detecting scams, I’d love to hear about it.</li>
 </ul><p>However, given the lack of data, it seems to me that there is a surprising
 drop-off in completion rate with increasing script complexity. There isn’t much
 any evidence for attacks that were somewhat complex, and got some people - it
 looks as though all attacks that were somewhat complex were surprisingly
-unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /><p>Which might in some small way indicate a point in script complexity where system 2 needed to get involved, and where the analytical part of system 2 said “Wait, am I being scammed?”</p><p>Notes:</p><p>[1]: Pressing Win+R on Windows systems gets you a system level command
+unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /><p>Which might in some small way indicate a point in script complexity where
+system 2 needed to get involved, and where the analytical part of system 2 said
+“Wait, am I being scammed?”</p><p>Summary: We shouldn't think of scams purely in terms of smart people not
+getting scammed, and some sort of level of intellegence providing scam
+protection. Perhaps for many people, scams are detected when system 2 gets
+involved, and there may be ways in which we can design software to protect
+people.</p><p>How does this affect browser developer tools? I believe that we have
+solutions [3] to the problem that tailor the addition of complexity only to
+places where people are most at risk, so 99.99% of people won't be affected.
+Also the level of complexity that is being added is a low as it can be whilst
+still being effective.</p><p>Notes:</p><p>[1]: Pressing Win+R on Windows systems gets you a system level command
 prompt. I have no evidence that this has been used in Self-XSS attacks,
 probably due to limitations in cmd.exe forced an attack script that is 5 or
 more steps.</p><p>[2]: I've seen several demonstrations of Self-XSS that involve 4 or more
-steps, but none that have a high completion rate.</p></section><section class="meta">
+steps, but none that have a high completion rate.</p><p>[3]: Relevant bugs:
+Firefox <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=994134">994134</a>,
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=664589">664589</a>,
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=953166">953166</a>,
+also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=345205">345205</a>,
+</p></section><section class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Joe Walker</span>
   </span>
