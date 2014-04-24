@@ -61,8 +61,8 @@ good thing).&lt;/p&gt;&lt;p&gt;We don’t have a lot of data for Self-XSS. The d
 and that at some point of complexity the completion rate will drop to 0. So
 that something like 5 data points.&lt;/p&gt;&lt;p&gt;It would be fair to criticise this as ‘not much data’, which is part of the
 point:&lt;/p&gt;&lt;ul&gt;
-  &lt;li&gt;What other data do we have on places where Self-XSS attacks have worked?&lt;/li&gt;
-  &lt;li&gt;Is there research in the use of System 1 vs. System 2 in detecting scams?&lt;/li&gt;
+  &lt;li&gt;If you have more data in places where Self-XSS attacks have worked, please publish them and tell me.&lt;/li&gt;
+  &lt;li&gt;If you know of research into the use of System 1 vs. System 2 in detecting scams, I’d love to hear about it.&lt;/li&gt;
 &lt;/ul&gt;&lt;p&gt;However, given the lack of data, it seems to me that there is a surprising
 drop-off in completion rate with increasing script complexity. There isn’t much
 any evidence for attacks that were somewhat complex, and got some people - it
