@@ -25,7 +25,80 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a></h1><section class="content"><p>Short version:
+      <h1><a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a></h1><section class="content"><p>The immediate context to this post is
+<a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Self-XSS</a>
+but it may have a wider context in avoiding other Internet scams.</p><p>I’d like to frame Self-XSS in terms of a human script execution engine. It’s
+an interpreter - and probably not JITed, but it works with a broad and poorly
+specified grammar. Not all humans have the same interpreter, but there’s enough
+of a dominant language to provide a mono-culture which makes attack easy.</p><p>However not all script execution engines are created equal. Some come with
+advanced scam detection routines. Some have random timeouts and many have
+surprising execution errors. It’s not my intention to be derogatory, but it’s a
+fact that not everyone has English skills the same.</p><p>So Self-XSS is a script that uses this script execution engine to coerce
+someone to do the attacker’s bidding, probably to their own detriment. If you're
+writing a scam script, you need to keep the scripts simple enough to avoid
+the victims’ scam-detection, timeouts and errors.</p><p>These problems mean that we might be able to draw a graph of script
+complexity vs completion rate (where ‘completion’ is a scam that succeeded).
+It might look like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off" /><p>I’d like to suggest that humans are not that simple and that we shouldn’t
+expect something as predictable as that.</p><p>Many (most?) of the tasks that we complete on computers can be done purely
+using unconcious / heuristic / System 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
+terms. That is to say using parts of the brain that are fast, pattern-based and
+non-analytical. Its less common that we need to use concious / systematic /
+System 2 processing (slow, lazy, analytical). (“Thinking, Fast and Slow” is
+probably the canonical work to understand these terms in more depth)</p><p>I’d suggest that, for most people, scam detection is a system 2 operation.
+So forcing use of System 2 to prevent scams might help. (Obviously this is at
+odds with the “<a href="http://www.amazon.com/Think-Common-Sense-Approach-Usability/dp/0789723107/">don’t make me think</a>”
+approach to good UX design - I’m obviously not arguing that bad design is a
+good thing).</p><p>We don’t have a lot of data for Self-XSS. The data that I know of is:</p><table>
+  <tr>
+    <th>Attack</th>
+    <th>Completion Rate</th>
+    <th>Complexity</th>
+  </tr>
+  <tr>
+    <td>Facebook</td>
+    <td>&lt;10%</td>
+    <td>3 steps</td>
+  </tr>
+  <tr>
+    <td>Win+R [1]</td>
+    <td>&lt;1%</td>
+    <td>5+ steps</td>
+  </tr>
+  <tr>
+    <td>Other attacks [2]</td>
+    <td>&lt;1%</td>
+    <td>4+ steps</td>
+  </tr>
+</table><p>It seems reasonable that an infinitely simple script would always succeed,
+and that at some point of complexity the completion rate will drop to 0. So
+that something like 5 data points.</p><p>It would be fair to criticise this as ‘not much data’, which is part of the
+point:</p><ul>
+  <li>What other data do we have on places where Self-XSS attacks have worked?</li>
+  <li>Is there research in the use of System 1 vs. System 2 in detecting scams?</li>
+</ul><p>However, given the lack of data, it seems to me that there is a surprising
+drop-off in completion rate with increasing script complexity. There isn’t much
+any evidence for attacks that were somewhat complex, and got some people - it
+looks as though all attacks that were somewhat complex were surprisingly
+unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /><p>Which might in some small way indicate a point in script complexity where system 2 needed to get involved, and where the analytical part of system 2 said “Wait, am I being scammed?”</p><p>Notes:</p><p>[1]: Pressing Win+R on Windows systems gets you a system level command
+prompt. I have no evidence that this has been used in Self-XSS attacks,
+probably due to limitations in cmd.exe forced an attack script that is 5 or
+more steps.</p><p>[2]: I've seen several demonstrations of Self-XSS that involve 4 or more
+steps, but none that have a high completion rate.</p></section><section class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Joe Walker</span>
+  </span>
+  <time datetime="2014-04-24T17:30:00+00:00" pubdate="pubdate">
+    <span class="day">24</span>
+    <span class="month">Apr</span>
+    <span class="year">2014</span>
+  </time>
+</section><section class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" data-counturl="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+</section>
+    </article><article>
+      <h1><a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a></h1><section class="content"><p><strong>Update</strong>: We've hired now, and very happy that Brian and
+Patrick are on the team.</p><p>Short version:
 <a href="https://twitter.com/paulrouget">Paul</a>,
 <a href="https://twitter.com/harthvader">Heather</a>,
 <a href="https://twitter.com/ratcliffe_mike">Mike</a>
@@ -541,82 +614,6 @@ protection.
   <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/" data-counturl="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
 </section>
-    </article><article>
-      <h1><a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a></h1><section class="content"><p>When I was fresh out of college, my first job was working for the <a href="http://www.opengroup.org/">OpenGroup</a>, and my command line looked something like this:</p><img src="http://incompleteness.me/images/posts/motif.png" /><p>In 2009, fired by the white heat of years of cutting edge research and development, my command line looks a lot more like this:</p><img src="http://incompleteness.me/images/posts/terminal.png" /><p>To be fair, we've now got transparency, anti-aliasing, our shells now do better completion. But that's about it for changes. Considering how much the rest of the industry has changed, that's shockingly glacial.</p><p>For the past week or so, I've had the privilege of working on the <a href="http://bespin.mozilla.com/">Bespin</a> command line, and I think there's a lot that we can do to make things better.</p><p>This is what my Bespin command line looks like now:</p><img src="http://incompleteness.me/images/posts/main.png" /><p>This post is all about how we can make command lines better.</p><p>The core of the unix command line philosophy seems to be: <a href="http://www.faqs.org/docs/artu/ch01s06.html">small programs and pipe</a>. There’s a lot to be said for <a href="http://en.wikipedia.org/wiki/Loose_coupling">loose coupling</a> but there are some drawbacks as well...</p><h2>Zsh</h2><p>I love Zsh, and love the fancy completion that it does. Basic file completion has been around since ksh, IIRC:</p><pre>
-$ ls <strong>[TAB]</strong>
-Applications/  Mesh/       Projects/
-Desktop/       Movies/     Public/
-Documents/     Music/      Sites/
-Downloads/     Parallels/  backup/
-Library/       Pictures/   bin/
-</pre><p>But zsh can complete against more than just files:</p><pre>
-$ telnet <strong>[TAB]</strong>
-192.168.0.1
-192.168.0.12
-download.directwebremoting.org
-download.dojotoolkit.org
-getahead.org
-hg.mozilla.com
-localhost
-people.mozilla.com
-sandbox.dojotoolkit.org
-svn.directwebremoting.org
-</pre><p>Zsh knows that you don’t telnet to a file, so it completes against hosts (Does anyone know where that host list came from BTW?)</p><p>Zsh also knows about other commands:</p><pre>
-$ git <strong>[TAB]</strong>
-add                 -- add paths to the index
-apply               -- apply patch on a git index file and a work tree
-applymbox           -- apply patches from a mailbox
-applypatch          -- apply one patch extracted from an e-mail
-archimport          -- import an Arch repository into git
-bisect              -- find the change that introduced a bug
-branch              -- create and show branches
-checkout            -- checkout and switch to a branch
-cherry              -- find commits not merged upstream
-cherry-pick         -- cherry-pick the effect of an existing commit
-clone               -- clones a repository into a new directory
-commit              -- record changes to the repository
-...
-</pre><p>That list of commands is the result of a 'git help' command, but that's not what I typed. Zsh has been doing something funky behind my back when I pressed [TAB].</p><p>Zsh can do different things depending on where in a command you are:</p><pre>
-$ git add <strong>[TAB]</strong>
-Applications/  Mesh/       Projects/
-Desktop/       Movies/     Public/
-Documents/     Music/      Sites/
-Downloads/     Parallels/  backup/
-Library/       Pictures/   bin/
-</pre><p>My point, is that, whilst all of this is very clever, the implementation is also <em>insane</em>.</p><p>In order to make this work, the zsh guys have had to reverse engineer every single unix command (or at least all most of the ones that I use). And any time those commands change, then zsh is going to have to change too.</p><p>It's very useful, and I'm glad that zsh has done it, and they probably didn't have much of a choice, but this way of going about things is not the Best Idea ever.</p><p>I'm sure somewhere the bash guys are working on the same feature themselves, or maybe they've already done it. I don’t care - it just strengthens the point about the lunacy of the situation.</p><p>The Unix philosophy of small programs and pipe has a lot to be said for it, but there are serious drawbacks too.</p><p>Here's some of the ways that we're innovating when it comes to the Bespin command line, and benefiting from being about to integrate things better.</p><h2>GUI integration</h2><p>Traditionally you've had a set of shells (bash, zsh, etc) that work in a set of terminal emulators (xterm, terminal, gnome-terminal, konsole, etc) But there's so much more you could do if you had one program do both.</p><img src="http://incompleteness.me/images/posts/gui-integ.png" /><p>In Bespin:</p><ul>
-<li>If you click on an old command, it gets copied to the prompt (the blue highlight is a mouseover).</li>
-<li>If you double click it's re-executed.</li>
-<li>Output is not restricted to ascii in a grid. We (predictably) use HTML.</li>
-<li>Error output is visually different to normal output</li>
-<li>You can minimize or maximize output (the help output has been minimized above) - I hate it when a vcs diff operation takes up 4k lines of scrollback obliterating what I wanted to see.</li>
-</ul><p>There's no reason why you couldn't do this in Unix (or even Windows). I don't think you’d want such a gui-shell as your login shell, but since its use is very much from within a GUI, that's OK - you’d probably launch it from the GUI anyway.</p><p>In Bespin we don't have pipes yet, but would it be neat to be able to inspect a pipeline visually as it's working, I'm sure it's possible with a gui-shell.</p><h2>Linking Output to Commands</h2><p>We link the output from a command to the command that created it. The obvious effect is that output from slow running commands no longer gets confused with what's happening now.</p><object width="647" height="529"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=4868659&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=4868659&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="647" height="529" /></object><p>The 'slow' command is just something I hacked up to demonstrate asynchronous behavior.</p><p>A nice upshot of this is that we can implicitly add &amp; to the end of every command, and you no longer have to wait for anything.</p><p>In essence, each command has it’s own separate stdout, which goes to it’s own div. Maybe there is a reason why unix shells don’t do something similar. Would it mean shells being curses based or something?</p><h2>Command Meta-Data</h2><p>With the exception of the reverse-engineering of the command line structure done by zsh, the integration between commands and the shell is limited. In Bespin, a command is a structure like this</p><pre>
-{
-    name: 'createproject',
-    takes: ['projectname'],
-    preview: 'create a new project',
-    usage: '[newprojectname]',
-    execute: function(commandLine, projectname) {
-        /* code to do the work */
-    }
-}
-</pre><p>This means that we can provide help as the user is typing. The idea is that TAB will guess what you want to do at all times.</p><p>This ties in a lot with GUI integration too. If the command line knows that the next parameter is a file, when the user presses TAB without typing anything to complete on, we can offer a dialog to allow selection of a file, and so on. This isn’t about forcing the user to switch to the mouse, but it is about allowing better feedback from the system about what options are available.</p><p>We've only really got started with this part - there’s a lot more work to do. I hope we'll be able to do some of the funky GUI integration that <a href="http://labs.mozilla.com/projects/ubiquity/">Ubiquity</a> has been pioneering.</p><h2>Attention Guides</h2><p>There's a lot to look at on any command line, I want to find ways to keep the most important bits in front of your eyes at all times. I'd like to expire older commands more intelligently than a standard terminal (oldest dies first), Commands are more important if:</p><ul>
-<li>They are still in progress</li>
-<li>They keep being re-executed</li>
-<li>They are waiting for input</li>
-<li>etc</li>
-</ul><p>We've only basically started on this right now, with the ability to hide/show output, but there's potential for it to make the command line lots more usable.</p><h2>Plug-ins</h2><p>Linking everything together is easy if you make one big monolithic lump. That's not the plan - we're evolving a plug-in strategy as we go, and planning on making as much of Bespin itself use the plug-in system. The key to coupling is to get the right level of coupling.</p><h2>Status Messages</h2><p>My other integration obsession is about status messages. There's a <strong>huge</strong> amount we could do to integrate the <a href="http://twitter.com/joewalker">familiar concept</a> of "what are you doing now" with commit messages, bug trackers, chat, and team tracking. More soon.</p><p>What other things could we do to trick out the command line?</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2009-05-27T20:08:19+00:00" pubdate="pubdate">
-    <span class="day">27</span>
-    <span class="month">May</span>
-    <span class="year">2009</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2009/05/27/command-lines/" data-counturl="http://incompleteness.me/blog/2009/05/27/command-lines/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
     </article>
 
     <article>
@@ -692,6 +689,8 @@ Library/       Pictures/   bin/
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/">Hackathon Summary</a>
@@ -709,8 +708,6 @@ Library/       Pictures/   bin/
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/05/27/command-lines/">Command Lines</a>
     </li>
   </ul>
 </section>

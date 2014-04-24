@@ -9,11 +9,76 @@
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>Combatting Self-XSS (Part 2)</title>
+    <link href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" />
+    <updated>2014-04-24T17:30:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/</id>
+    <content type="html">&lt;p&gt;The immediate context to this post is
+&lt;a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/"&gt;Self-XSS&lt;/a&gt;
+but it may have a wider context in avoiding other Internet scams.&lt;/p&gt;&lt;p&gt;I’d like to frame Self-XSS in terms of a human script execution engine. It’s
+an interpreter - and probably not JITed, but it works with a broad and poorly
+specified grammar. Not all humans have the same interpreter, but there’s enough
+of a dominant language to provide a mono-culture which makes attack easy.&lt;/p&gt;&lt;p&gt;However not all script execution engines are created equal. Some come with
+advanced scam detection routines. Some have random timeouts and many have
+surprising execution errors. It’s not my intention to be derogatory, but it’s a
+fact that not everyone has English skills the same.&lt;/p&gt;&lt;p&gt;So Self-XSS is a script that uses this script execution engine to coerce
+someone to do the attacker’s bidding, probably to their own detriment. If you're
+writing a scam script, you need to keep the scripts simple enough to avoid
+the victims’ scam-detection, timeouts and errors.&lt;/p&gt;&lt;p&gt;These problems mean that we might be able to draw a graph of script
+complexity vs completion rate (where ‘completion’ is a scam that succeeded).
+It might look like this:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off" /&gt;&lt;p&gt;I’d like to suggest that humans are not that simple and that we shouldn’t
+expect something as predictable as that.&lt;/p&gt;&lt;p&gt;Many (most?) of the tasks that we complete on computers can be done purely
+using unconcious / heuristic / System 1 processing (in &lt;a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems"&gt;dual process&lt;/a&gt;)
+terms. That is to say using parts of the brain that are fast, pattern-based and
+non-analytical. Its less common that we need to use concious / systematic /
+System 2 processing (slow, lazy, analytical). (“Thinking, Fast and Slow” is
+probably the canonical work to understand these terms in more depth)&lt;/p&gt;&lt;p&gt;I’d suggest that, for most people, scam detection is a system 2 operation.
+So forcing use of System 2 to prevent scams might help. (Obviously this is at
+odds with the “&lt;a href="http://www.amazon.com/Think-Common-Sense-Approach-Usability/dp/0789723107/"&gt;don’t make me think&lt;/a&gt;”
+approach to good UX design - I’m obviously not arguing that bad design is a
+good thing).&lt;/p&gt;&lt;p&gt;We don’t have a lot of data for Self-XSS. The data that I know of is:&lt;/p&gt;&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Attack&lt;/th&gt;
+    &lt;th&gt;Completion Rate&lt;/th&gt;
+    &lt;th&gt;Complexity&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Facebook&lt;/td&gt;
+    &lt;td&gt;&amp;lt;10%&lt;/td&gt;
+    &lt;td&gt;3 steps&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Win+R [1]&lt;/td&gt;
+    &lt;td&gt;&amp;lt;1%&lt;/td&gt;
+    &lt;td&gt;5+ steps&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Other attacks [2]&lt;/td&gt;
+    &lt;td&gt;&amp;lt;1%&lt;/td&gt;
+    &lt;td&gt;4+ steps&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;&lt;p&gt;It seems reasonable that an infinitely simple script would always succeed,
+and that at some point of complexity the completion rate will drop to 0. So
+that something like 5 data points.&lt;/p&gt;&lt;p&gt;It would be fair to criticise this as ‘not much data’, which is part of the
+point:&lt;/p&gt;&lt;ul&gt;
+  &lt;li&gt;What other data do we have on places where Self-XSS attacks have worked?&lt;/li&gt;
+  &lt;li&gt;Is there research in the use of System 1 vs. System 2 in detecting scams?&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;However, given the lack of data, it seems to me that there is a surprising
+drop-off in completion rate with increasing script complexity. There isn’t much
+any evidence for attacks that were somewhat complex, and got some people - it
+looks as though all attacks that were somewhat complex were surprisingly
+unsuccessful.&lt;/p&gt;&lt;p&gt;So the drop-off rate might look something a bit more like this:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /&gt;&lt;p&gt;Which might in some small way indicate a point in script complexity where system 2 needed to get involved, and where the analytical part of system 2 said “Wait, am I being scammed?”&lt;/p&gt;&lt;p&gt;Notes:&lt;/p&gt;&lt;p&gt;[1]: Pressing Win+R on Windows systems gets you a system level command
+prompt. I have no evidence that this has been used in Self-XSS attacks,
+probably due to limitations in cmd.exe forced an attack script that is 5 or
+more steps.&lt;/p&gt;&lt;p&gt;[2]: I've seen several demonstrations of Self-XSS that involve 4 or more
+steps, but none that have a high completion rate.&lt;/p&gt;</content>
+  </entry><entry>
     <title>Work for Mozilla building Developer Tools</title>
     <link href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/" />
     <updated>2013-03-7T16:30:00+00:00</updated>
     <id>http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/</id>
-    <content type="html">&lt;p&gt;Short version:
+    <content type="html">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: We've hired now, and very happy that Brian and
+Patrick are on the team.&lt;/p&gt;&lt;p&gt;Short version:
 &lt;a href="https://twitter.com/paulrouget"&gt;Paul&lt;/a&gt;,
 &lt;a href="https://twitter.com/harthvader"&gt;Heather&lt;/a&gt;,
 &lt;a href="https://twitter.com/ratcliffe_mike"&gt;Mike&lt;/a&gt;

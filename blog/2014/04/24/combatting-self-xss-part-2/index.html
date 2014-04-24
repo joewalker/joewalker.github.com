@@ -2,8 +2,8 @@
 
 <html lang="en">
 <head>
-  <title>Tibco to open source GI - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/10/02/tibco-to-open-source-gi/" />
+  <title>Combatting Self-XSS (Part 2) - Incompleteness</title>
+  <link rel="canonical" href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" />
   <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -25,29 +25,98 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/10/02/tibco-to-open-source-gi/">Tibco to open source GI</a></h1><section class="content"><p>I see that Tibco have decided to <a href="http://tibco.com/company/news/releases/press746.jsp">open source their Ajax toolkit</a> - <a href="http://www.tibco.com/software/ria/gi_resource_center.jsp">General Interface</a> and that they've added support for Firefox too. Wow!</p><p>"General Interface, which was rated as the best AJAX Rich Internet Application toolkit by IDG's Infoworld this year."</p><p>Open sourcing your library certainly helps it's adoption. The Ajaxian <a href="http://ajaxian.com/archives/ajaxiancom-2006-survey-results">market share survey</a> had the top 8 places, and well over 90% market share, go to open source libraries. So this should help GI a lot.</p></section><section class="meta">
+      <h1><a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a></h1><section class="content"><p>The immediate context to this post is
+<a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Self-XSS</a>
+but it may have a wider context in avoiding other Internet scams.</p><p>I’d like to frame Self-XSS in terms of a human script execution engine. It’s
+an interpreter - and probably not JITed, but it works with a broad and poorly
+specified grammar. Not all humans have the same interpreter, but there’s enough
+of a dominant language to provide a mono-culture which makes attack easy.</p><p>However not all script execution engines are created equal. Some come with
+advanced scam detection routines. Some have random timeouts and many have
+surprising execution errors. It’s not my intention to be derogatory, but it’s a
+fact that not everyone has English skills the same.</p><p>So Self-XSS is a script that uses this script execution engine to coerce
+someone to do the attacker’s bidding, probably to their own detriment. If you're
+writing a scam script, you need to keep the scripts simple enough to avoid
+the victims’ scam-detection, timeouts and errors.</p><p>These problems mean that we might be able to draw a graph of script
+complexity vs completion rate (where ‘completion’ is a scam that succeeded).
+It might look like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off" /><p>I’d like to suggest that humans are not that simple and that we shouldn’t
+expect something as predictable as that.</p><p>Many (most?) of the tasks that we complete on computers can be done purely
+using unconcious / heuristic / System 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
+terms. That is to say using parts of the brain that are fast, pattern-based and
+non-analytical. Its less common that we need to use concious / systematic /
+System 2 processing (slow, lazy, analytical). (“Thinking, Fast and Slow” is
+probably the canonical work to understand these terms in more depth)</p><p>I’d suggest that, for most people, scam detection is a system 2 operation.
+So forcing use of System 2 to prevent scams might help. (Obviously this is at
+odds with the “<a href="http://www.amazon.com/Think-Common-Sense-Approach-Usability/dp/0789723107/">don’t make me think</a>”
+approach to good UX design - I’m obviously not arguing that bad design is a
+good thing).</p><p>We don’t have a lot of data for Self-XSS. The data that I know of is:</p><table>
+  <tr>
+    <th>Attack</th>
+    <th>Completion Rate</th>
+    <th>Complexity</th>
+  </tr>
+  <tr>
+    <td>Facebook</td>
+    <td>&lt;10%</td>
+    <td>3 steps</td>
+  </tr>
+  <tr>
+    <td>Win+R [1]</td>
+    <td>&lt;1%</td>
+    <td>5+ steps</td>
+  </tr>
+  <tr>
+    <td>Other attacks [2]</td>
+    <td>&lt;1%</td>
+    <td>4+ steps</td>
+  </tr>
+</table><p>It seems reasonable that an infinitely simple script would always succeed,
+and that at some point of complexity the completion rate will drop to 0. So
+that something like 5 data points.</p><p>It would be fair to criticise this as ‘not much data’, which is part of the
+point:</p><ul>
+  <li>What other data do we have on places where Self-XSS attacks have worked?</li>
+  <li>Is there research in the use of System 1 vs. System 2 in detecting scams?</li>
+</ul><p>However, given the lack of data, it seems to me that there is a surprising
+drop-off in completion rate with increasing script complexity. There isn’t much
+any evidence for attacks that were somewhat complex, and got some people - it
+looks as though all attacks that were somewhat complex were surprisingly
+unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /><p>Which might in some small way indicate a point in script complexity where system 2 needed to get involved, and where the analytical part of system 2 said “Wait, am I being scammed?”</p><p>Notes:</p><p>[1]: Pressing Win+R on Windows systems gets you a system level command
+prompt. I have no evidence that this has been used in Self-XSS attacks,
+probably due to limitations in cmd.exe forced an attack script that is 5 or
+more steps.</p><p>[2]: I've seen several demonstrations of Self-XSS that involve 4 or more
+steps, but none that have a high completion rate.</p></section><section class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Joe Walker</span>
   </span>
-  <time datetime="2006-10-2T14:55:00+00:00" pubdate="pubdate">
-    <span class="day">2</span>
-    <span class="month">Oct</span>
-    <span class="year">2006</span>
+  <time datetime="2014-04-24T17:30:00+00:00" pubdate="pubdate">
+    <span class="day">24</span>
+    <span class="month">Apr</span>
+    <span class="year">2014</span>
   </time>
 </section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/10/02/tibco-to-open-source-gi/" data-counturl="http://incompleteness.me/blog/2006/10/02/tibco-to-open-source-gi/">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" data-counturl="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
 </section>
       <section class="comments">
         <h2>Comments</h2>
-        
+        <div><div id="disqus_thread"></div><script type="text/javascript">
+  var disqus_shortname = 'incompletenessme';
+  var disqus_identifier = '/2014/04/24/combatting-self-xss-part-2/';
+  var disqus_url = 'http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/';
+  // var disqus_developer = 1;
+  (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    var parent = document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0];
+    parent.appendChild(dsq);
+  })();
+</script><noscript>Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript></div>
 
-        <div>
-          
-          <section class="comments">
-            <p>Comments have been turned off on old posts</p>
-          </section>
-        </div>
+        
       </section>
     </article>
 

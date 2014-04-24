@@ -11,6 +11,9 @@
     <loc>http://incompleteness.me/blog/archives/</loc>
   </url>
   <url>
+    <loc>http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/</loc>
+    <lastmod>2014-04-24T17:30:00+00:00</lastmod>
+  </url><url>
     <loc>http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/</loc>
     <lastmod>2013-03-7T16:30:00+00:00</lastmod>
   </url><url>
