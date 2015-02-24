@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">
+
   <title>Fixing browser security: SameRefererOnly - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,8 +35,11 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">Fixing browser security: SameRefererOnly</a></h1><section class="content"><p>Web security is horribly broken, and lot has been said about CSRF, XSS, DNS-Pinning, etc, but not enough about what we can do to fix the mess.</p><p>I think we could adapt an idea like HttpOnly to tackle CSRF - I'd like to see a "<em>SameRefererOnly</em>" marker for cookies.</p><p><em>SameRefererOnly</em> is an indication that a cookie should <strong>only</strong> be sent to a Site when the referring domain matches the destination domain.</p><p>A number of people have commented that you could use server based referer checking to fix CSRF, however that doesn't work for 2 reasons, firstly sometimes referers are not sent, and secondly using old versions of Flash, you can forge referer headers anyway.</p><p>However if we move the checking into the browser, then we should be able to instruct browsers to be more careful what they do without our cookies.</p><p>The official spec for Set-Cookie is RFC
-<a style="text-decoration: line-through;" href="http://www.ietf.org/rfc/rfc2109.txt">2109</a>/<a href="http://www.ietf.org/rfc/rfc2965.txt">2965</a> 
+
+      <h1><a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">Fixing browser security: SameRefererOnly</a></h1>
+
+      <section class="content"><p>Web security is horribly broken, and lot has been said about CSRF, XSS, DNS-Pinning, etc, but not enough about what we can do to fix the mess.</p><p>I think we could adapt an idea like HttpOnly to tackle CSRF - I'd like to see a "<em>SameRefererOnly</em>" marker for cookies.</p><p><em>SameRefererOnly</em> is an indication that a cookie should <strong>only</strong> be sent to a Site when the referring domain matches the destination domain.</p><p>A number of people have commented that you could use server based referer checking to fix CSRF, however that doesn't work for 2 reasons, firstly sometimes referers are not sent, and secondly using old versions of Flash, you can forge referer headers anyway.</p><p>However if we move the checking into the browser, then we should be able to instruct browsers to be more careful what they do without our cookies.</p><p>The official spec for Set-Cookie is RFC
+<a style="text-decoration: line-through" href="http://www.ietf.org/rfc/rfc2109.txt">2109</a>/<a href="http://www.ietf.org/rfc/rfc2965.txt">2965</a> 
 which says this:</p><pre>Set-Cookie: &lt;name&gt;=&lt;value&gt;[; &lt;name&gt;=&lt;value&gt;][; expires=&lt;date&gt;] \
             [; domain=&lt;domain_name&gt;][; path=&lt;some_path&gt;][; secure]</pre><p>Microsoft's <a href="http://msdn2.microsoft.com/en-us/library/ms533046.aspx">HttpOnly spec</a> adds this to the end:</p><pre>            [; HttpOnly]</pre><p>I propose that we further add this:</p><pre>            [; SameRefererOnly]</pre><p>Any cookie marked <em>SameRefererOnly</em> MUST <strong>only</strong> be sent to servers when the domain of the cookie matches the referring domain. The cookie MUST NOT be sent when there is no referring domain (this might help to prevent CSRF / Phishing mash-ups).</p><p>It's worth noting that this protection breaks in the presence of XSS flaws in a site, because XSSed commands come from the compromised domain, however that does not make this protection useless.</p><p>Plug-ins like Java and Flash that have their own HTTP pipelines generally don't send cookies so these systems probably do not need to be patched.</p><p>This proposal has 3 places where it can come in handy:</p><ul>
 <li>As an additional defence-in-depth layer of protection for a site that already has other CSRF protection.</li>
@@ -35,19 +48,24 @@ which says this:</p><pre>Set-Cookie: &lt;name&gt;=&lt;value&gt;[; &lt;name&gt;=&
 </ul><p>Note on spelling: The pedant might note that this should be spelt SameRefe<strong>rr</strong>erOnly - i.e. with a double 'r', and the pedant would normally be correct however this misspelling is so common that
 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.36">the 
 HTTP spec makes it</a>, and hence
-<a href="http://en.wikipedia.org/wiki/Referrer">we all follow unquestioningly</a>.</p><p>I'm sure there must be some holes in this suggestion, but I make it anyway so someone can move the discussion on.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-08-7T13:33:55+00:00" pubdate="pubdate">
-    <span class="day">7</span>
-    <span class="month">Aug</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/" data-counturl="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+<a href="http://en.wikipedia.org/wiki/Referrer">we all follow unquestioningly</a>.</p><p>I'm sure there must be some holes in this suggestion, but I make it anyway so someone can move the discussion on.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-08-7T13:33:55+00:00" pubdate="">
+          <span class="day">7</span>
+          <span class="month">Aug</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/" data-counturl="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -67,15 +85,15 @@ HTTP spec makes it</a>, and hence
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -86,8 +104,8 @@ HTTP spec makes it</a>, and hence
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -130,6 +148,8 @@ HTTP spec makes it</a>, and hence
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -147,8 +167,6 @@ HTTP spec makes it</a>, and hence
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -176,7 +194,7 @@ HTTP spec makes it</a>, and hence
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -194,5 +212,6 @@ HTTP spec makes it</a>, and hence
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

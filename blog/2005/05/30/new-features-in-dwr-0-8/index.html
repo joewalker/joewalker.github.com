@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/">
+
   <title>New features in DWR 0.8 - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,15 +35,18 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/">New features in DWR 0.8</a></h1><section class="content"><p><a href="http://directwebremoting.org/dwr/">DWR</a> version 0.8 contains a big list of new features. You can <a href="https://dwr.dev.java.net/servlets/ProjectDocumentList?folderID=3450&amp;expandFolder=3450&amp;folderID=0">download version 0.8 from java.net</a>. The change log looks like this:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/">New features in DWR 0.8</a></h1>
+
+      <section class="content"><p><a href="http://directwebremoting.org/dwr/">DWR</a> version 0.8 contains a big list of new features. You can <a href="https://dwr.dev.java.net/servlets/ProjectDocumentList?folderID=3450&amp;expandFolder=3450&amp;folderID=0">download version 0.8 from java.net</a>. The change log looks like this:</p><ul>
   <li>
-    <b>Batch sending of remote calls:</b><br />
+    <b>Batch sending of remote calls:</b><br>
     DWR will now send a group of remote calls together in a single batch to
     reduce network latency. See <code>DWREngine.beginBatch()</code> and
     <code>DWREngine.endBatch()</code> for more information.
   </li>
   <li>
-    <b>Provision of call ordering promises:</b><br />
+    <b>Provision of call ordering promises:</b><br>
     DWR can return results in the order in which they were sent using
     <code>DWREngine.setOrdered()</code>. Warning: Setting this to true will slow
     down your application, and it expose you to timeouts if a message gets lost.
@@ -41,11 +54,10 @@
     about the asynchronous model properly.    
   </li>
   <li>
-    <b>Fine grained access control:</b><br />
+    <b>Fine grained access control:</b><br>
     You can now specify exactly which methods are allowed and disallowed using
     the include and exclude elements in dwr.xml:
-<pre>
-&lt;create creator="new" javascript="JDate" class="java.util.Date"&gt;
+<pre>&lt;create creator="new" javascript="JDate" class="java.util.Date"&gt;
   &lt;include method="getSeconds"/&gt;
   &lt;include method="getMinutes"/&gt;
 &lt;/create&gt;
@@ -54,11 +66,10 @@
     other but not both.
   </li>
   <li>
-    <b>J2EE role based authorization:</b><br />
+    <b>J2EE role based authorization:</b><br>
     You can now specify that certain methods are only available to users with
     certain roles:
-<pre>
-&lt;create creator="new" javascript="JDate" class="java.util.Date"&gt;
+<pre>&lt;create creator="new" javascript="JDate" class="java.util.Date"&gt;
   &lt;auth method="toString" role="devel"/&gt;
 &lt;/create&gt;
 </pre>
@@ -68,47 +79,51 @@
     <b>Methods on java.lang.Object (like <code>wait()</code>) are now disallowed.</b>
   </li>
   <li>
-    <b>Enhanced debug pages:</b><br />
+    <b>Enhanced debug pages:</b><br>
     The debug pages at <code>http://localhost:8080/[YOUR-WEB-APP]/dwr</code>
     have been enhanced to allow you to enter parameters other than strings, to
     show more detail on returned objects and to give more feedback on why
-    methods are unavailable.<br />
+    methods are unavailable.<br>
   </li>
   <li>
-    <b>Auto-fill of Servlet Spec parameters:</b><br />
+    <b>Auto-fill of Servlet Spec parameters:</b><br>
     If you have a DWR remoted method that has an HttpServletRequest parameter
     then DWR will automatically fill it in for you. This gives you a way of
     accessing HttpServletRequest like ExecutionContext except that you don't get
     the dependency on DWR. It also works for HttpServletResponse etc.
   </li>
   <li>
-    <b>Logging is now fine grained, and there is more of it:</b><br />
+    <b>Logging is now fine grained, and there is more of it:</b><br>
     If you were turning DWR debug on globally, you probably don't want to any more!
   </li>
   <li>
-    <b>You can specify detailed type information for collections:</b><br />
+    <b>You can specify detailed type information for collections:</b><br>
     List, Set etc don't have type info (and even under 1.5 it seems you can't
     get at it) so you can specify the types in dwr.xml:
-<pre>
-&lt;create creator="new" javascript="Test" class="uk.ltd.getahead.testdwr.Test"&gt;
+<pre>&lt;create creator="new" javascript="Test" class="uk.ltd.getahead.testdwr.Test"&gt;
   &lt;parameter method="testBeanSetParam" number="0" type="uk.ltd.getahead.testdwr.TestBean"/&gt;
 &lt;/create&gt;
 </pre>
     This solution is not perfect, and there is an update planned post 1.0
   </li>
-</ul><p>We are working on a smaller list for the next version so we are not that far from 1.0.</p><p>Update: Make that 0.8.1; there was an annoying Javascript error as a result of me fixing some issues brought up by a Javascript lint program. That'll teach me to use lint.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-05-30T13:11:21+00:00" pubdate="pubdate">
-    <span class="day">30</span>
-    <span class="month">May</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/" data-counturl="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><p>We are working on a smaller list for the next version so we are not that far from 1.0.</p><p>Update: Make that 0.8.1; there was an annoying Javascript error as a result of me fixing some issues brought up by a Javascript lint program. That'll teach me to use lint.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-05-30T13:11:21+00:00" pubdate="">
+          <span class="day">30</span>
+          <span class="month">May</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/" data-counturl="http://incompleteness.me/blog/2005/05/30/new-features-in-dwr-0-8/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -128,15 +143,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -147,8 +162,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -191,6 +206,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -208,8 +225,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -237,7 +252,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -255,5 +270,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

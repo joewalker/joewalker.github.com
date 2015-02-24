@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/">
+
   <title>Neat Spring Trick - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,30 +35,37 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/">Neat Spring Trick</a></h1><section class="content"><p>I don't think this trick is common knowledge because Google doesn't appear to have any reference to it, so maybe it's new to you.</p><p><code>Void</code> (with a capital V) is a valid type in Java (actually this is Java in general not just Spring). Pre Java 5 I'm not sure it was of any at all, but with generics it can be.</p><p>Normally you would use <code>void</code> (small v) as a return type to say "nothing is returned". There was nothing to stop you returning <code>Void</code> (big V), but the compiler would insist on you specifically returning nothing using <code>return null;</code>, so there wasn't much point.</p><p>Generics demand Objects and not native types, so <code>Void</code> (big V) can be useful to say "a collection of nothing", and the context where I found a use for this is Spring 2's JDBC templates.</p><p>A few times I've been using Spring's <code>JdbcTemplate</code>, or specifically here <code>SimpleJdbcTemplate</code>, and wanted to create some objects and put them in a Set or a Map. This is what <code>SimpleJdbcTemplate.query()</code> was designed for, except that it only works with Lists. So you alter a Set (or Map etc) defined elsewhere, and then <code>.query()</code> returns a <code>List&lt;Void&gt;</code>.</p><p>So you can use this trick:</p><pre>
-final Set&lt;Page&gt; data = new HashSet&lt;Page&gt;();
-jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;">Void</strong>&gt;()
+
+      <h1><a href="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/">Neat Spring Trick</a></h1>
+
+      <section class="content"><p>I don't think this trick is common knowledge because Google doesn't appear to have any reference to it, so maybe it's new to you.</p><p><code>Void</code> (with a capital V) is a valid type in Java (actually this is Java in general not just Spring). Pre Java 5 I'm not sure it was of any at all, but with generics it can be.</p><p>Normally you would use <code>void</code> (small v) as a return type to say "nothing is returned". There was nothing to stop you returning <code>Void</code> (big V), but the compiler would insist on you specifically returning nothing using <code>return null;</code>, so there wasn't much point.</p><p>Generics demand Objects and not native types, so <code>Void</code> (big V) can be useful to say "a collection of nothing", and the context where I found a use for this is Spring 2's JDBC templates.</p><p>A few times I've been using Spring's <code>JdbcTemplate</code>, or specifically here <code>SimpleJdbcTemplate</code>, and wanted to create some objects and put them in a Set or a Map. This is what <code>SimpleJdbcTemplate.query()</code> was designed for, except that it only works with Lists. So you alter a Set (or Map etc) defined elsewhere, and then <code>.query()</code> returns a <code>List&lt;Void&gt;</code>.</p><p>So you can use this trick:</p><pre>final Set&lt;Page&gt; data = new HashSet&lt;Page&gt;();
+jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color:red;">Void</strong>&gt;()
 {
-    public <strong style="color: red;">Void</strong> mapRow(ResultSet rs, int rowNum) throws SQLException
+    public <strong style="color:red;">Void</strong> mapRow(ResultSet rs, int rowNum) throws SQLException
     {
         Page page = new Page(rs.getString(1));
         data.add(page);
         return null;
     }
 });
-</pre><p>ParameterizedRowMapper requires a type to work with, but you don't want to give it one, because (in the example above) you are filling the Set yourself. So you can use the Void type. The Void type has only one valid value as far as I am aware: null.</p><p>So here's a request for the Compiler folks at Sun: Allow methods that return Void (big V) to skip the "<code>return null;</code>" as you do for methods that return void (small v).</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-08-23T08:20:24+00:00" pubdate="pubdate">
-    <span class="day">23</span>
-    <span class="month">Aug</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/" data-counturl="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre><p>ParameterizedRowMapper requires a type to work with, but you don't want to give it one, because (in the example above) you are filling the Set yourself. So you can use the Void type. The Void type has only one valid value as far as I am aware: null.</p><p>So here's a request for the Compiler folks at Sun: Allow methods that return Void (big V) to skip the "<code>return null;</code>" as you do for methods that return void (small v).</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-08-23T08:20:24+00:00" pubdate="">
+          <span class="day">23</span>
+          <span class="month">Aug</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/" data-counturl="http://incompleteness.me/blog/2006/08/23/neat-spring-trick/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -68,15 +85,15 @@ jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;"
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -87,8 +104,8 @@ jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;"
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -131,6 +148,8 @@ jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;"
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -148,8 +167,6 @@ jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;"
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -177,7 +194,7 @@ jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;"
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -195,5 +212,6 @@ jt.query("SELECT ...", new ParameterizedRowMapper&lt;<strong style="color: red;"
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

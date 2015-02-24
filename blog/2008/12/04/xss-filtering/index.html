@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2008/12/04/xss-filtering/">
+
   <title>XSS Filtering - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2008/12/04/xss-filtering/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2008/12/04/xss-filtering/">XSS Filtering</a></h1><section class="content"><p>If you want to protect yourself from a XSS attack, what characters should you escape? I've seen 2 recommendations:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2008/12/04/xss-filtering/">XSS Filtering</a></h1>
+
+      <section class="content"><p>If you want to protect yourself from a XSS attack, what characters should you escape? I've seen 2 recommendations:</p><ul>
 <li>', ", &lt;, &gt; and &amp; should be converted to &amp;apos;, &amp;quot;, &amp;lt;, &amp;gt;, &amp;amp;</li>
 <li>Convert anything that isn't ASCII alphanumeric to &amp;#xx;</li>
 </ul><p>I've seen the second recommended more and more recently. Which is best?</p><h2>The argument for escaping all non-ASCII alphanumeric</h2><p>It's a known security tenet that whitelisting is safer than blacklisting. If you're just escaping ', ", &lt;, &gt; and &amp; then you're blacklisting, which isn't as safe as whitelisting.</p><p>There are some practical examples of how this can play out -</p><pre>&lt;a href="<strong>$</strong>"&gt;</pre><p>(I'm using <strong>$</strong> to represent the injection point. This would probably crop up in a template something like this:
@@ -43,19 +56,24 @@
 <li><code>&lt;a href="<strong>$</strong>"&gt;...</code> (The example we used above)</li>
 <li><code>&lt;img src="<strong>$</strong>"&gt;</code> (For similar reasons)</li>
 <li>etc.</li>
-</ul><p>The key it to understand the environment into which we are allowing injection. The trend for separating content, style and action into separate files is good because it more clearly defines the environment, but that doesn't stop HTML from being able to embed CSS.</p><p>I once saw some code that was JSP containing Java containing HTML containing CSS and JavaScript containing SQL all on one line. An environment so confused that it contained it's very own security hole built right in.</p><h2>Filtering in DWR</h2><p>DWR version 3 is nearly cooked, and our escaping functions use the simpler escaping system of just escaping ', ", &lt;, &gt; and &amp;. If anyone knows of any attack that a broader filtering system would protect people from, then please comment.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2008-12-4T23:47:50+00:00" pubdate="pubdate">
-    <span class="day">4</span>
-    <span class="month">Dec</span>
-    <span class="year">2008</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/12/04/xss-filtering/" data-counturl="http://incompleteness.me/blog/2008/12/04/xss-filtering/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><p>The key it to understand the environment into which we are allowing injection. The trend for separating content, style and action into separate files is good because it more clearly defines the environment, but that doesn't stop HTML from being able to embed CSS.</p><p>I once saw some code that was JSP containing Java containing HTML containing CSS and JavaScript containing SQL all on one line. An environment so confused that it contained it's very own security hole built right in.</p><h2>Filtering in DWR</h2><p>DWR version 3 is nearly cooked, and our escaping functions use the simpler escaping system of just escaping ', ", &lt;, &gt; and &amp;. If anyone knows of any attack that a broader filtering system would protect people from, then please comment.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2008-12-4T23:47:50+00:00" pubdate="">
+          <span class="day">4</span>
+          <span class="month">Dec</span>
+          <span class="year">2008</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/12/04/xss-filtering/" data-counturl="http://incompleteness.me/blog/2008/12/04/xss-filtering/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -75,15 +93,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -94,8 +112,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -138,6 +156,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -155,8 +175,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -184,7 +202,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -202,5 +220,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

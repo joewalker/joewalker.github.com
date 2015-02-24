@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/">
+
   <title>Spring 2 Namespaces and DWR - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,8 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/">Spring 2 Namespaces and DWR</a></h1><section class="content"><a href="http://www.springframework.org/"><img src="http://incompleteness.me/images/posts/spring.png" align="right" style="margin: 0px 10px;" border="0" /></a><p>The cutting edge of DWR development is being presented at <a href="http://www.springone.com/display/SpringOne06/Home">SpringOne</a> this week, and frustratingly I can't get there to hear it; Bram has been working on getting DWR v2 working with Spring 2 namespaces.</p><p>The idea is that you'll be able to configure DWR easily from within a Spring beans.xml file which should make configuration from Spring much easier. I'm sure Bram will <a href="http://bram.jteam.nl/">blog</a> his slides when he is done, and you can download a preview of DWR 2.0 milestone 3 <a href="https://dwr.dev.java.net/servlets/ProjectDocumentList?folderID=5504">here</a>.</p><p>Update: <a href="http://bram.jteam.nl/index.php/2006/06/19/springone-dwr-spring-presentation"></a>Bram's slides are now available. The really cool slide is this one:</p><pre>
-&lt;beans&gt;
+
+      <h1><a href="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/">Spring 2 Namespaces and DWR</a></h1>
+
+      <section class="content"><a href="http://www.springframework.org/"><img src="../images/posts/spring.png" align="right" style="margin:0px 10px" border="0"></a><p>The cutting edge of DWR development is being presented at <a href="http://www.springone.com/display/SpringOne06/Home">SpringOne</a> this week, and frustratingly I can't get there to hear it; Bram has been working on getting DWR v2 working with Spring 2 namespaces.</p><p>The idea is that you'll be able to configure DWR easily from within a Spring beans.xml file which should make configuration from Spring much easier. I'm sure Bram will <a href="http://bram.jteam.nl/">blog</a> his slides when he is done, and you can download a preview of DWR 2.0 milestone 3 <a href="https://dwr.dev.java.net/servlets/ProjectDocumentList?folderID=5504">here</a>.</p><p>Update: <a href="http://bram.jteam.nl/index.php/2006/06/19/springone-dwr-spring-presentation">Bram's slides are now available</a>. The really cool slide is this one:</p><pre>&lt;beans&gt;
 
   &lt;bean id="ajaxFacade" class="com.interface21.springone.AjaxFacade"&gt;
     &lt;dwr:remote javascript="AjaxFacade"/&gt;
@@ -44,19 +56,24 @@
   ...
 
 &lt;/beans&gt;
-</pre></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-06-14T23:00:53+00:00" pubdate="pubdate">
-    <span class="day">14</span>
-    <span class="month">Jun</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/" data-counturl="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-06-14T23:00:53+00:00" pubdate="">
+          <span class="day">14</span>
+          <span class="month">Jun</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/" data-counturl="http://incompleteness.me/blog/2006/06/14/spring-2-namespaces-and-dwr/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -76,15 +93,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -95,8 +112,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -139,6 +156,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -156,8 +175,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -185,7 +202,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -203,5 +220,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

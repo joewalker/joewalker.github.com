@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">
+
   <title>Emerging Java Technologies at QCon - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,13 +35,14 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Emerging Java Technologies at QCon</a></h1><section class="content"><p>I've just finished opening the "<a href="http://qcon.infoq.com/qcon/schedule/thursday.jsp">Java Emerging Technologies</a>" track at <a href="http://qcon.infoq.com/qcon/conference/">QCon</a> and spent some time talking about Closures. This is a summary of what I said:</p><p>You can look at closures as blocks of code that you can pass around for execution. You can look at them as syntax sugar for inner classes. I think there is some significant power behind full closures that you miss when just looking at them from those perspectives.</p><p>This is how you define an integer 'a', in Java:</p><pre>int a;</pre><p>This is how you define a function 'b', in a Java Interface:</p><pre>String b(int p1, int p2);</pre><p>This is how you define a closure 'c', according to the <a href="http://www.javac.info/closures-v05.html
-">BGGA proposal</a>:</p><pre>{ int, int =&gt; String } c;</pre><p>This defines a closure to which you pass 2 integers and it returns a String.</p><p>Another closure 'd' takes a String and returns nothing:</p><pre>{ String =&gt; } d;</pre><p>We can provide an implementation of this closure:</p><pre>
-{ String =&gt; } d = { String m =
+
+      <h1><a href="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Emerging Java Technologies at QCon</a></h1>
+
+      <section class="content"><p>I've just finished opening the "<a href="http://qcon.infoq.com/qcon/schedule/thursday.jsp">Java Emerging Technologies</a>" track at <a href="http://qcon.infoq.com/qcon/conference/">QCon</a> and spent some time talking about Closures. This is a summary of what I said:</p><p>You can look at closures as blocks of code that you can pass around for execution. You can look at them as syntax sugar for inner classes. I think there is some significant power behind full closures that you miss when just looking at them from those perspectives.</p><p>This is how you define an integer 'a', in Java:</p><pre>int a;</pre><p>This is how you define a function 'b', in a Java Interface:</p><pre>String b(int p1, int p2);</pre><p>This is how you define a closure 'c', according to the <a href="http://www.javac.info/closures-v05.html
+">BGGA proposal</a>:</p><pre>{ int, int =&gt; String } c;</pre><p>This defines a closure to which you pass 2 integers and it returns a String.</p><p>Another closure 'd' takes a String and returns nothing:</p><pre>{ String =&gt; } d;</pre><p>We can provide an implementation of this closure:</p><pre>{ String =&gt; } d = { String m =&gt;
     System.out.println(m);
 };
-</pre><p>And then execute the closure like this:</p><pre>d.invoke("Hello, World!");</pre><p>The standard example (standard because it is the one used in the spec) looks like this:</p><pre>
-public static &lt;T,throws E extends Exception&gt;
+</pre><p>And then execute the closure like this:</p><pre>d.invoke("Hello, World!");</pre><p>The standard example (standard because it is the one used in the spec) looks like this:</p><pre>public static &lt;T,throws E extends Exception&gt;
 T withLock(Lock lock, {=&gt;T throws E} block) throws E {
     lock.lock();
     try {
@@ -40,8 +51,7 @@ T withLock(Lock lock, {=&gt;T throws E} block) throws E {
         lock.unlock();
     }
 }
-</pre><p>This example can be made much easier to understand if we ignore exceptions and return types for a while:</p><pre>
-public static void withLock(Lock lock, {=&gt;} block) {
+</pre><p>This example can be made much easier to understand if we ignore exceptions and return types for a while:</p><pre>public static void withLock(Lock lock, {=&gt;} block) {
     lock.lock();
     try {
         block.invoke();
@@ -49,36 +59,37 @@ public static void withLock(Lock lock, {=&gt;} block) {
         lock.unlock();
     }
 }
-</pre><p>This is a method that takes a lock object and a closure. It then surrounds the execution of the closure with lock and unlock commands.</p><p>Normally speaking you would use this as follows:</p><pre>
-withLock(lock, {=&gt; System.out.println("hello"); });
-</pre><p>However there is a special rule in the closures spec that says: If the last parameter to a method is a closure then you can write the closure outside the parameter list like this:</p><pre>
-withLock(lock) {
+</pre><p>This is a method that takes a lock object and a closure. It then surrounds the execution of the closure with lock and unlock commands.</p><p>Normally speaking you would use this as follows:</p><pre>withLock(lock, {=&gt; System.out.println("hello"); });
+</pre><p>However there is a special rule in the closures spec that says: If the last parameter to a method is a closure then you can write the closure outside the parameter list like this:</p><pre>withLock(lock) {
     System.out.println("hello");
 }
-</pre><p>It's likely that we would not have needed the synchronized keyword if closures had been around in the beginning. It's also likely that a large amount of Java could have been defined in terms of closures. For example:</p><pre>
-public static &lt;throws E extends Exception&gt;
+</pre><p>It's likely that we would not have needed the synchronized keyword if closures had been around in the beginning. It's also likely that a large amount of Java could have been defined in terms of closures. For example:</p><pre>public static &lt;throws E extends Exception&gt;
 void If(boolean condition, {=&gt; throws E} block) throws E {
     if (condition) {
         block.invoke();
     }
 }
-</pre><p>You would use this function like this (note the capital I on If:</p><pre>
-If (a == b) {
+</pre><p>You would use this function like this (note the capital I on If:</p><pre>If (a == b) {
   System.out.println("a equals b");
 }
-</pre><p>So closures as defined by the BGGA proposal allow you to do some fairly fundamental things with the Java language.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-03-15T13:42:19+00:00" pubdate="pubdate">
-    <span class="day">15</span>
-    <span class="month">Mar</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/" data-counturl="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre><p>So closures as defined by the BGGA proposal allow you to do some fairly fundamental things with the Java language.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-03-15T13:42:19+00:00" pubdate="">
+          <span class="day">15</span>
+          <span class="month">Mar</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/" data-counturl="http://incompleteness.me/blog/2007/03/15/emerging-java-technologies-at-qcon/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -98,15 +109,15 @@ If (a == b) {
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -117,8 +128,8 @@ If (a == b) {
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -161,6 +172,8 @@ If (a == b) {
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -178,8 +191,6 @@ If (a == b) {
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -207,7 +218,7 @@ If (a == b) {
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -225,5 +236,6 @@ If (a == b) {
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

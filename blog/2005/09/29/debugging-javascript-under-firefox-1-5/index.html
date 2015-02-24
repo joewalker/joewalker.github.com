@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/">
+
   <title>Debugging Javascript under Firefox 1.5 - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,26 +35,34 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/">Debugging Javascript under Firefox 1.5</a></h1><section class="content"><p><strong>Update:</strong> Venkman is probably no longer the solution to any
+
+      <h1><a href="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/">Debugging Javascript under Firefox 1.5</a></h1>
+
+      <section class="content"><p><strong>Update:</strong> Venkman is probably no longer the solution to any
 problems that anyone still has.</p><ul>
 <li>For historical information see
 <a href="https://developer.mozilla.org/en/Venkman">Venkman on MDN</a></li>
 <li>To get actual debugging done, see
 the <a href="https://developer.mozilla.org/en/Tools/">built-in Firefox developer tools</a>
 or <a href="http://getfirebug.com">Firebug</a></li>
-</ul><div class="hr"></div><p>Currently you <strike>can't</strike> <b>CAN!</b>. See below for update. Previously <a href="http://www.hacksrus.com/~ginda/venkman/">Venkman</a> (the Javascript debugger) would not install, and if you tried to hack it by downloading the .xpi file, unpacking it, altering the .rdf file to allow it to install, it crashed.</p><img align="right" style="padding: 5px 10px;" src="http://incompleteness.me/images/posts/venkman.png" /><p>It <a href="http://comments.gmane.org/gmane.comp.mozilla.devel.jsdebugger/871">appears</a> that the issue is lack of interest from the developers in fighting for the attention of Mozilla central.</p><p>So I did a bit of digging and I think there is a <a href="https://bugzilla.mozilla.org/attachment.cgi?id=175775">patch</a> for Venkman that might allow it to work. The patch is attached to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=247507">this bug</a>.</p><p>Has anyone made an installable Firefox plugin using this patch?</p><p>Slight side-track: While we are on the subject of Venkman, <a href="http://silver.warwickcompsoc.co.uk/mozilla/venkman/styling">it is possible to alter the annoyingly huge fonts</a> used in the source windows.</p><p><b>UPDATE:</b> As <a href="http://rifers.org/blogs/jboyens">JR Boyens</a> noted, someone has made an XPI with the patches however it still had the version set to 1.1, so it still wouldn't install. So I had a hack, and while I was at it I reduced the size of the font in the source pane.</p><p>I am absoultely <b>not</b> about to start maintaining this thing. <a href="http://directwebremoting.org/dwr/">DWR</a> is quite enough for me, but like me you might benefit from this quick hack.</p><p>You can download the xpi from <a href="https://dwr.dev.java.net/files/documents/2427/21528/venkman-0.9.85.jw.xpi">here</a>. This is a very simple hack so I promise nothing except that this will probably break, make your computer catch flames and then run off with your partner.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-09-29T08:03:32+00:00" pubdate="pubdate">
-    <span class="day">29</span>
-    <span class="month">Sep</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/" data-counturl="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><div class="hr"></div><p>Currently you <strike>can't</strike> <b>CAN!</b>. See below for update. Previously <a href="http://www.hacksrus.com/~ginda/venkman/">Venkman</a> (the Javascript debugger) would not install, and if you tried to hack it by downloading the .xpi file, unpacking it, altering the .rdf file to allow it to install, it crashed.</p><img align="right" style="padding:5px 10px;" src="../images/posts/venkman.png"><p>It <a href="http://comments.gmane.org/gmane.comp.mozilla.devel.jsdebugger/871">appears</a> that the issue is lack of interest from the developers in fighting for the attention of Mozilla central.</p><p>So I did a bit of digging and I think there is a <a href="https://bugzilla.mozilla.org/attachment.cgi?id=175775">patch</a> for Venkman that might allow it to work. The patch is attached to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=247507">this bug</a>.</p><p>Has anyone made an installable Firefox plugin using this patch?</p><p>Slight side-track: While we are on the subject of Venkman, <a href="http://silver.warwickcompsoc.co.uk/mozilla/venkman/styling">it is possible to alter the annoyingly huge fonts</a> used in the source windows.</p><p><b>UPDATE:</b> As <a href="http://rifers.org/blogs/jboyens">JR Boyens</a> noted, someone has made an XPI with the patches however it still had the version set to 1.1, so it still wouldn't install. So I had a hack, and while I was at it I reduced the size of the font in the source pane.</p><p>I am absoultely <b>not</b> about to start maintaining this thing. <a href="http://directwebremoting.org/dwr/">DWR</a> is quite enough for me, but like me you might benefit from this quick hack.</p><p>You can download the xpi from <a href="https://dwr.dev.java.net/files/documents/2427/21528/venkman-0.9.85.jw.xpi">here</a>. This is a very simple hack so I promise nothing except that this will probably break, make your computer catch flames and then run off with your partner.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-09-29T08:03:32+00:00" pubdate="">
+          <span class="day">29</span>
+          <span class="month">Sep</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/" data-counturl="http://incompleteness.me/blog/2005/09/29/debugging-javascript-under-firefox-1-5/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -64,15 +82,15 @@ or <a href="http://getfirebug.com">Firebug</a></li>
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -83,8 +101,8 @@ or <a href="http://getfirebug.com">Firebug</a></li>
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -127,6 +145,8 @@ or <a href="http://getfirebug.com">Firebug</a></li>
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -144,8 +164,6 @@ or <a href="http://getfirebug.com">Firebug</a></li>
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -173,7 +191,7 @@ or <a href="http://getfirebug.com">Firebug</a></li>
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -191,5 +209,6 @@ or <a href="http://getfirebug.com">Firebug</a></li>
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

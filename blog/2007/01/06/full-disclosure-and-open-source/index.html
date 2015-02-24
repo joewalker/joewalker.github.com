@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/">
+
   <title>Full Disclosure and Open Source - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,24 +35,32 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/">Full Disclosure and Open Source</a></h1><section class="content"><p>Recently Amichai Shulman from Imperva found some security issues with DWR, and while I'm glad that we've had a chance to make DWR more secure, some of Imperva's press releases need comment.</p><p>The <a href="http://www.net-security.org/article.php?id=968&amp;p=1">Q and A</a> claims that the DWR developers don't know the different between client-side and server-side security. I can assure you this is utter nonsense. He fails to take into account the fact that special knowledge of the called code is required before the flaw can be exploited.</p><p>However, most disappointing is a perception that affects all open source developers.</p><p>Amichai <a href="http://www.net-security.org/article.php?id=968&amp;p=2">thinks</a> the normal rules of Full Disclosure do not apply to open source software because there is no-one to report problems to. He says:</p><p class="quote">"In the case of open source platforms, like AJAX, formal vulnerability disclosure protocols do not exist."</p><p>On the contrary: anyone that finds a hole in any open source software will find that in general it is <i>easier</i> to get the message to the people that need to know than with other software.</p><p>Take DWR for example: The researchers options were:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/">Full Disclosure and Open Source</a></h1>
+
+      <section class="content"><p>Recently Amichai Shulman from Imperva found some security issues with DWR, and while I'm glad that we've had a chance to make DWR more secure, some of Imperva's press releases need comment.</p><p>The <a href="http://www.net-security.org/article.php?id=968&amp;p=1">Q and A</a> claims that the DWR developers don't know the different between client-side and server-side security. I can assure you this is utter nonsense. He fails to take into account the fact that special knowledge of the called code is required before the flaw can be exploited.</p><p>However, most disappointing is a perception that affects all open source developers.</p><p>Amichai <a href="http://www.net-security.org/article.php?id=968&amp;p=2">thinks</a> the normal rules of Full Disclosure do not apply to open source software because there is no-one to report problems to. He says:</p><p class="quote">"In the case of open source platforms, like AJAX, formal vulnerability disclosure protocols do not exist."</p><p>On the contrary: anyone that finds a hole in any open source software will find that in general it is <i>easier</i> to get the message to the people that need to know than with other software.</p><p>Take DWR for example: The researchers options were:</p><ul>
 <li>Send mail to the DWR mailing list: [users at dwr.dev.java.net]. You don't have to subscribe. It's not hard.</li>
 <li>Even better: Send mail to the DWR security mailing list. It's setup just for this type of thing: [dwr-security at googlegroups.com]. Again, no subscription necessary.</li>
 <li>Send mail to the Getahead Support email address. It's listed on this site: [support at getahead.org]</li>
 <li>Send mail directly to me, my address isn't hard to find from the mailing list, but the above are all better options.</li>
-</ul><p>Do you know how to send email to the lead developer of, say Flash, or Windows, or Acrobat?</p><p>So why didn't he want to come to us first? From the <a href="http://www.imperva.com/application_defense_center/papers/web20-ajax-dwr-01032007.html">original article</a>:</p><p class="quote">"Imperva's SecureSphere Web Application Firewall can be used to accelerate and reduce the cost of risk mitigation – especially for existing Web applications."</p><p>I'm disappointed that Imperva took this opportunity to disregard the security of DWR users by publishing before a fix was available. Surely a few days was not too long to wait? Does Imperva care more about hype than security?</p><p>I'm very glad for <a href="http://www.feedster.com/search/dwr%20-furniture%20-water%20-site%3Awoodcraftfurniture.net%20-site%3Acraigslist.org">Feedster's blog search</a> which alerted me to the advisory, and I expect DWR users are glad we're fast at fixing issues.</p><p>I'm interested in your comments. Has Imperva gone too far? Should open source software really be treated more harshly than proprietary software? Is there anything else DWR should be doing to improve our security?</p><p>Amichai: I'm in the Bay Area next week. Do you want to meet-up to discuss how to disclose problems to open source developers?</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-01-6T18:11:00+00:00" pubdate="pubdate">
-    <span class="day">6</span>
-    <span class="month">Jan</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/" data-counturl="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><p>Do you know how to send email to the lead developer of, say Flash, or Windows, or Acrobat?</p><p>So why didn't he want to come to us first? From the <a href="http://www.imperva.com/application_defense_center/papers/web20-ajax-dwr-01032007.html">original article</a>:</p><p class="quote">"Imperva's SecureSphere Web Application Firewall can be used to accelerate and reduce the cost of risk mitigation – especially for existing Web applications."</p><p>I'm disappointed that Imperva took this opportunity to disregard the security of DWR users by publishing before a fix was available. Surely a few days was not too long to wait? Does Imperva care more about hype than security?</p><p>I'm very glad for <a href="http://www.feedster.com/search/dwr%20-furniture%20-water%20-site%3Awoodcraftfurniture.net%20-site%3Acraigslist.org">Feedster's blog search</a> which alerted me to the advisory, and I expect DWR users are glad we're fast at fixing issues.</p><p>I'm interested in your comments. Has Imperva gone too far? Should open source software really be treated more harshly than proprietary software? Is there anything else DWR should be doing to improve our security?</p><p>Amichai: I'm in the Bay Area next week. Do you want to meet-up to discuss how to disclose problems to open source developers?</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-01-6T18:11:00+00:00" pubdate="">
+          <span class="day">6</span>
+          <span class="month">Jan</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/" data-counturl="http://incompleteness.me/blog/2007/01/06/full-disclosure-and-open-source/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -62,15 +80,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -81,8 +99,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -125,6 +143,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -142,8 +162,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -171,7 +189,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -189,5 +207,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

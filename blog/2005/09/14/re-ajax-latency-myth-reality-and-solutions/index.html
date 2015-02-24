@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/">
+
   <title>Re: Ajax Latency: Myth, Reality, and Solutions - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,20 +35,28 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/">Re: Ajax Latency: Myth, Reality, and Solutions</a></h1><section class="content"><p><a href="http://www.ajaxian.com/archives/2005/09/ajax_latency_my.html#comments">Dion</a>, <a href="http://richui.blogspot.com/2005/09/ajax-reducing-latency-with-cdn.html">Jep</a> and
-<a href="http://ajaxblog.com/archives/2005/06/01/async-requests-over-an-unreliable-network">Harry</a> have all wondered about how to cope with multiple concurrent XMLHttpRequest calls, and asked what will break.</p><p>One of the <a href="http://directwebremoting.org/dwr/">DWR</a> unit tests configurations is to run all 200+ tests in parallel. I then load up IE/FF/Op all doing their 200 tests at the same time, at the same time.</p><p>I can say that the iframe implementation of Ajax on DWR creaks under IE, but XHR works just fine everywhere. That is to say the server correctly replies to all 600 vaguely concurrent requests without error. To be honest I'm even surprised that Windows can cope.</p><p>The lesson is - don't write your own Ajax code. Use a library like prototype or DWR.</p><p>You can run the tests yourself. Just <a href="http://directwebremoting.org/dwr/download">download</a> the war file, deploy, go to the /dwr URL, click on the unit tests link and play. Tell me if you manage to break it!</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-09-14T10:53:55+00:00" pubdate="pubdate">
-    <span class="day">14</span>
-    <span class="month">Sep</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/" data-counturl="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+      <h1><a href="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/">Re: Ajax Latency: Myth, Reality, and Solutions</a></h1>
+
+      <section class="content"><p><a href="http://www.ajaxian.com/archives/2005/09/ajax_latency_my.html#comments">Dion</a>, <a href="http://richui.blogspot.com/2005/09/ajax-reducing-latency-with-cdn.html">Jep</a> and
+<a href="http://ajaxblog.com/archives/2005/06/01/async-requests-over-an-unreliable-network">Harry</a> have all wondered about how to cope with multiple concurrent XMLHttpRequest calls, and asked what will break.</p><p>One of the <a href="http://directwebremoting.org/dwr/">DWR</a> unit tests configurations is to run all 200+ tests in parallel. I then load up IE/FF/Op all doing their 200 tests at the same time, at the same time.</p><p>I can say that the iframe implementation of Ajax on DWR creaks under IE, but XHR works just fine everywhere. That is to say the server correctly replies to all 600 vaguely concurrent requests without error. To be honest I'm even surprised that Windows can cope.</p><p>The lesson is - don't write your own Ajax code. Use a library like prototype or DWR.</p><p>You can run the tests yourself. Just <a href="http://directwebremoting.org/dwr/download">download</a> the war file, deploy, go to the /dwr URL, click on the unit tests link and play. Tell me if you manage to break it!</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-09-14T10:53:55+00:00" pubdate="">
+          <span class="day">14</span>
+          <span class="month">Sep</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/" data-counturl="http://incompleteness.me/blog/2005/09/14/re-ajax-latency-myth-reality-and-solutions/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -58,15 +76,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -77,8 +95,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -121,6 +139,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -138,8 +158,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -167,7 +185,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -185,5 +203,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

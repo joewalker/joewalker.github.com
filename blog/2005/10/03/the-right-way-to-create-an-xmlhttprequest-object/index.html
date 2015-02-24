@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/">
+
   <title>The right way to create an XMLHttpRequest Object - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,35 +35,41 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/">The right way to create an XMLHttpRequest Object</a></h1><section class="content"><p>Microsoft <a href="http://blogs.msdn.com/ie/archive/2005/09/13/465338.aspx">announced </a> that they were going to support the native XMLHttpRequest object in IE7. This changes how you should do Ajax calls ...</p><img src="http://incompleteness.me/images/posts/ajax-logo.gif" align="right" style="margin: 0px 10px;" /><p>With IE5.0 - 6.0 the only option for Ajax calls is one of the ActiveX objects (Msxml2.XMLHTTP, Microsoft.XMLHTTP, etc), however with IE7 the will support the window.XMLHttpRequest object.</p><p>Why are they doing this? Is the ActiveX control not good enough? Are there bugs that can not be fixed in the ActiveX control?</p><p>I think the reality is that Microsoft would like to <a href="http://blogs.msdn.com/ie/archive/2005/09/19/471316.aspx">deprecate ActiveX completely</a>. It can't be done today without breaking things, but it makes good sense in the future. Microsoft are already changing things in that direction; IE6  in Windows Server 2003 runs with ActiveX disabled and in Vista installing <a href="http://blogs.msdn.com/ie/archive/2005/09/20/471975.aspx">new Active objects has been made harder</a>.</p><p>Depending on how the ActiveX Ajax object is retired, and how bugs are fixed in the various IE7 implementations we need to be using the native XMLHttpRequest object in preference to the ActiveX objects starting now.</p><p>So, wrong code:</p><pre style="padding: 5px; margin-left: 20px; background-color: #eee;">
-var xhr;
+
+      <h1><a href="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/">The right way to create an XMLHttpRequest Object</a></h1>
+
+      <section class="content"><p>Microsoft <a href="http://blogs.msdn.com/ie/archive/2005/09/13/465338.aspx">announced </a> that they were going to support the native XMLHttpRequest object in IE7. This changes how you should do Ajax calls ...</p><img src="../images/posts/ajax-logo.gif" align="right" style="margin:0px 10px"><p>With IE5.0 - 6.0 the only option for Ajax calls is one of the ActiveX objects (Msxml2.XMLHTTP, Microsoft.XMLHTTP, etc), however with IE7 the will support the window.XMLHttpRequest object.</p><p>Why are they doing this? Is the ActiveX control not good enough? Are there bugs that can not be fixed in the ActiveX control?</p><p>I think the reality is that Microsoft would like to <a href="http://blogs.msdn.com/ie/archive/2005/09/19/471316.aspx">deprecate ActiveX completely</a>. It can't be done today without breaking things, but it makes good sense in the future. Microsoft are already changing things in that direction; IE6  in Windows Server 2003 runs with ActiveX disabled and in Vista installing <a href="http://blogs.msdn.com/ie/archive/2005/09/20/471975.aspx">new Active objects has been made harder</a>.</p><p>Depending on how the ActiveX Ajax object is retired, and how bugs are fixed in the various IE7 implementations we need to be using the native XMLHttpRequest object in preference to the ActiveX objects starting now.</p><p>So, wrong code:</p><pre style="padding:5px;margin-left:20px;background-color:#eee;">var xhr;
 if (window.ActiveXObject) {
   xhr = new ActiveXObject("Msxml2.XMLHTTP");
 }
 else if (window.XMLHttpRequest) {
   xhr = new XMLHttpRequest();
 }
-</pre><p>This is wrong because it will be using the ActiveX control in IE7 in preference to the native XMLHttpRequest object.</p><p>Instead we should be doing this:</p><pre style="padding: 5px; margin-left: 20px; background-color: #eee;">
-var xhr;
+</pre><p>This is wrong because it will be using the ActiveX control in IE7 in preference to the native XMLHttpRequest object.</p><p>Instead we should be doing this:</p><pre style="padding:5px;margin-left:20px;background-color:#eee;">var xhr;
 if (window.XMLHttpRequest) {
   xhr = new XMLHttpRequest();
 }
 else if (window.ActiveXObject) {
   xhr = new ActiveXObject("Msxml2.XMLHTTP");
 }
-</pre><p>I just checked with the <a href="http://directwebremoting.org/dwr/">DWR</a> code which gets this right (purely by fluke - I can't claim fore-thought on this one) but a number of other big implementations get it the wrong way around.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-10-3T10:15:48+00:00" pubdate="pubdate">
-    <span class="day">3</span>
-    <span class="month">Oct</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/" data-counturl="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre><p>I just checked with the <a href="http://directwebremoting.org/dwr/">DWR</a> code which gets this right (purely by fluke - I can't claim fore-thought on this one) but a number of other big implementations get it the wrong way around.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-10-3T10:15:48+00:00" pubdate="">
+          <span class="day">3</span>
+          <span class="month">Oct</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/" data-counturl="http://incompleteness.me/blog/2005/10/03/the-right-way-to-create-an-xmlhttprequest-object/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -73,15 +89,15 @@ else if (window.ActiveXObject) {
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -92,8 +108,8 @@ else if (window.ActiveXObject) {
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -136,6 +152,8 @@ else if (window.ActiveXObject) {
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -153,8 +171,6 @@ else if (window.ActiveXObject) {
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -182,7 +198,7 @@ else if (window.ActiveXObject) {
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -200,5 +216,6 @@ else if (window.ActiveXObject) {
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

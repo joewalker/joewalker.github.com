@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/">
+
   <title>Google Code Hosting - First Thoughts - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,8 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/">Google Code Hosting - First Thoughts</a></h1><section class="content"><a href="http://code.google.com/p/dwr/"><img src="http://incompleteness.me/images/posts/google_code_sm.png" align="right" style="margin: 0px 10px;" border="0" /></a><p>I've been unhappy with java.net for a while (they currently host some of DWR), so when I read about <a href="http://code.google.com/hosting/">Google Code Hosting</a>, I thought I'd take a look. Thoughts so far:</p><h3>Project Naming</h3><p>When I tried to create a project called DWR at Google Code, they checked for a project named DWR at Sourceforge (<a href="http://sourceforge.net/projects/dwr">it exists</a> - I've used it to host some child modules) and refused to create one without my permission (me here being the owner of the SF project). So once Google had asked me if it was OK if I created a project with the same name as one I created earlier, I was good to go.</p><pre style="border-left: 4px dotted #eee; padding: 4px 20px; margin: 0px 10px;">
-Subject: Request for project "dwr" on code.google.com
+
+      <h1><a href="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/">Google Code Hosting - First Thoughts</a></h1>
+
+      <section class="content"><a href="http://code.google.com/p/dwr/"><img src="../images/posts/google_code_sm.png" align="right" style="margin:0px 10px" border="0"></a><p>I've been unhappy with java.net for a while (they currently host some of DWR), so when I read about <a href="http://code.google.com/hosting/">Google Code Hosting</a>, I thought I'd take a look. Thoughts so far:</p><h3>Project Naming</h3><p>When I tried to create a project called DWR at Google Code, they checked for a project named DWR at Sourceforge (<a href="http://sourceforge.net/projects/dwr">it exists</a> - I've used it to host some child modules) and refused to create one without my permission (me here being the owner of the SF project). So once Google had asked me if it was OK if I created a project with the same name as one I created earlier, I was good to go.</p><pre style="border-left:4px dotted #eee; padding:4px 20px; margin:0px 10px;">Subject: Request for project "dwr" on code.google.com
 From: codesite-noreply at google dot com
 To: joe_fish at users dot sourceforge dot net
 
@@ -40,7 +52,7 @@ with the same name to be hosted on code.google.com:
 joseph.walker at gmail dot com
 
 [SNIP ...]
-</pre><p>And then ...</p><img src="http://incompleteness.me/images/posts/google_approve.png" style="margin: 0px 10px;" border="0" /><h3>The bug tracker might actually be useful</h3><p>One of my issues with java.net is their terrible issues system. I've generally given up with it, and replaced it with a text file. You always know if your code isn't working well when your users prefer Notepad.</p><h3>KISS</h3><p>As usual, they've got the 'keep it simple, stupid" thing nailed. Look at the <a href="http://code.google.com/p/dwr/">Google DWR page</a>, and compare it with <a href="http://sourceforge.net/projects/dwr">DWR at Sourceforge</a>, or even <a href="https://dwr.dev.java.net/">DWR at Java.net</a>. You could argue that the simplicity is because Google Code does not have important features (see below), but still a lot of the stuff that comes with java.net and sf.net is stuff <a href="http://raibledesigns.com/page/rd/20050729">you just want to get rid of</a>. Why for example would anyone looking at the DWR page on java.net be interested in the release notes for CollabNet 3.5.1?</p><h3>Project Checking</h3><p>There appears to be no human checking on the projects at all. Both java.net and sf.net require a human to authorize projects before they start. I have to wonder, looking at the junk there is on both, why they bother though.</p><h3>URLs</h3><p>Both <a href="http://www.almaer.com/blog/archives/001220.html">Dion</a> and <a href="http://www.dehora.net/journal/2006/07/18fd0fefe7bbea0f77a443cfd95f9554_1.html">Bill</a> recently blogged about clean URLs, but what is that <code>/p/</code> doing in <a href="http://code.google.com/p/dwr/" style="font-weight: normal;"><code>http://code.google.com<b>/p/</b>dwr/</code></a>. Both Sourceforge (<code>dwr.sf.net</code>) and Java.net (<code>dwr.dev.java.net</code>) have better solutions to the URL issue.</p><h3>Licences</h3><p>The options are:</p><select size="7">
+</pre><p>And then ...</p><img src="../images/posts/google_approve.png" style="margin:0px 10px" border="0"><h3>The bug tracker might actually be useful</h3><p>One of my issues with java.net is their terrible issues system. I've generally given up with it, and replaced it with a text file. You always know if your code isn't working well when your users prefer Notepad.</p><h3>KISS</h3><p>As usual, they've got the 'keep it simple, stupid" thing nailed. Look at the <a href="http://code.google.com/p/dwr/">Google DWR page</a>, and compare it with <a href="http://sourceforge.net/projects/dwr">DWR at Sourceforge</a>, or even <a href="https://dwr.dev.java.net/">DWR at Java.net</a>. You could argue that the simplicity is because Google Code does not have important features (see below), but still a lot of the stuff that comes with java.net and sf.net is stuff <a href="http://raibledesigns.com/page/rd/20050729">you just want to get rid of</a>. Why for example would anyone looking at the DWR page on java.net be interested in the release notes for CollabNet 3.5.1?</p><h3>Project Checking</h3><p>There appears to be no human checking on the projects at all. Both java.net and sf.net require a human to authorize projects before they start. I have to wonder, looking at the junk there is on both, why they bother though.</p><h3>URLs</h3><p>Both <a href="http://www.almaer.com/blog/archives/001220.html">Dion</a> and <a href="http://www.dehora.net/journal/2006/07/18fd0fefe7bbea0f77a443cfd95f9554_1.html">Bill</a> recently blogged about clean URLs, but what is that <code>/p/</code> doing in <a href="http://code.google.com/p/dwr/" style="font-weight:normal;"><code>http://code.google.com<b>/p/</b>dwr/</code></a>. Both Sourceforge (<code>dwr.sf.net</code>) and Java.net (<code>dwr.dev.java.net</code>) have better solutions to the URL issue.</p><h3>Licences</h3><p>The options are:</p><select size="7">
 <option value="asf20">&nbsp;Apache License 2.0</option>
 <option value="art">&nbsp;Artistic License/GPLv2</option>
 <option value="gpl2">&nbsp;GNU General Public License 2.0</option>
@@ -48,19 +60,24 @@ joseph.walker at gmail dot com
 <option value="mit">&nbsp;MIT License</option>
 <option value="mpl11">&nbsp;Mozilla Public License 1.1</option>
 <option value="bsd">&nbsp;New BSD License</option>
-</select><p>So there are a lot of licences that you can't use, and you can't do any dual licencing either. And why is the Artistic licence only available with GPLv2?</p><h3>Downloads</h3><p>None. Eh? - Note to Google: Please when you add a downloads section, make it easier to use that the java.net or sourceforge ones. The upload system could be really simple - "SCP to this folder, and it will appear here on the website". This would be a neat way to handle documentation too - I wonder if this system is open to any abuse that Google care about?</p><h3>Motivation</h3><p>I think that Sun are in Java.net to build community, which in turn helps Java, which helps Sun make money, albeit very indirectly. Collab.net are Java.net it to make money directly. They charge Sun and anyone else they think they can get money from - including open source projects. DWR would like to use SVN, but I can't afford the Collab.net upgrade fee.</p><p>VA are in Sourceforge for the page-views which generate ad revenue</p><p>But what about Google? Is Google Code Hosting purely altruistic?</p><p>I think it's part of the whole 'evil' thing. Google are building the worlds biggest database of personal information. They already know: who I know (Orkut, GMail) and where I am (Calendar), who my best friends are and what I talk to them about (GTalk) and all the websites I visit (Analytics, AdWords). They know what I'm writing about (Writely, Spreadsheet, Blogger), and whenever my tin foil hat slips I become sure they are working on something to compete with <a href="http://www.riya.com">Riya</a> which they'll plug into all the security cameras around the world so they can track me in real time (Maps, Earth (or is that Moon)).</p><p>I think they need to convince people that they are not evil to save people worrying about the privacy implications of what they are doing. And Google Code is part of that.</p><h3>Moving</h3><p>So am I going to move? I'd like to use Subversion because it understands file moving, which helps with refactoring. <a href="http://www.lightbody.net/~plightbo/">Patrick Lightbody</a> has done some work Mavenizing DWR but it involves moving lots of files around. (I'm not sure why, but that's another story).</p><p>I'd like a better bug system. Correction: Just a usable one would do.</p><p>Maybe I'll end up with a real hotch-potch. google code for svn and bugs, java.net for downloads, sourceforge for sub-projects and Getahead for web hosting (Not even java.net lets me host servlets!).</p><p>I'll be updating this blog entry as I learn more</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-07-28T09:16:46+00:00" pubdate="pubdate">
-    <span class="day">28</span>
-    <span class="month">Jul</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/" data-counturl="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</select><p>So there are a lot of licences that you can't use, and you can't do any dual licencing either. And why is the Artistic licence only available with GPLv2?</p><h3>Downloads</h3><p>None. Eh? - Note to Google: Please when you add a downloads section, make it easier to use that the java.net or sourceforge ones. The upload system could be really simple - "SCP to this folder, and it will appear here on the website". This would be a neat way to handle documentation too - I wonder if this system is open to any abuse that Google care about?</p><h3>Motivation</h3><p>I think that Sun are in Java.net to build community, which in turn helps Java, which helps Sun make money, albeit very indirectly. Collab.net are Java.net it to make money directly. They charge Sun and anyone else they think they can get money from - including open source projects. DWR would like to use SVN, but I can't afford the Collab.net upgrade fee.</p><p>VA are in Sourceforge for the page-views which generate ad revenue</p><p>But what about Google? Is Google Code Hosting purely altruistic?</p><p>I think it's part of the whole 'evil' thing. Google are building the worlds biggest database of personal information. They already know: who I know (Orkut, GMail) and where I am (Calendar), who my best friends are and what I talk to them about (GTalk) and all the websites I visit (Analytics, AdWords). They know what I'm writing about (Writely, Spreadsheet, Blogger), and whenever my tin foil hat slips I become sure they are working on something to compete with <a href="http://www.riya.com">Riya</a> which they'll plug into all the security cameras around the world so they can track me in real time (Maps, Earth (or is that Moon)).</p><p>I think they need to convince people that they are not evil to save people worrying about the privacy implications of what they are doing. And Google Code is part of that.</p><h3>Moving</h3><p>So am I going to move? I'd like to use Subversion because it understands file moving, which helps with refactoring. <a href="http://www.lightbody.net/~plightbo/">Patrick Lightbody</a> has done some work Mavenizing DWR but it involves moving lots of files around. (I'm not sure why, but that's another story).</p><p>I'd like a better bug system. Correction: Just a usable one would do.</p><p>Maybe I'll end up with a real hotch-potch. google code for svn and bugs, java.net for downloads, sourceforge for sub-projects and Getahead for web hosting (Not even java.net lets me host servlets!).</p><p>I'll be updating this blog entry as I learn more</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-07-28T09:16:46+00:00" pubdate="">
+          <span class="day">28</span>
+          <span class="month">Jul</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/" data-counturl="http://incompleteness.me/blog/2006/07/28/google-code-hosting-first-thoughts/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -80,15 +97,15 @@ joseph.walker at gmail dot com
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -99,8 +116,8 @@ joseph.walker at gmail dot com
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -143,6 +160,8 @@ joseph.walker at gmail dot com
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -160,8 +179,6 @@ joseph.walker at gmail dot com
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -189,7 +206,7 @@ joseph.walker at gmail dot com
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -207,5 +224,6 @@ joseph.walker at gmail dot com
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

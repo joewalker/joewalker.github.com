@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">
+
   <title>Comparing DWR as a web framework - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">Comparing DWR as a web framework</a></h1><section class="content"><p>
+
+      <h1><a href="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">Comparing DWR as a web framework</a></h1>
+
+      <section class="content"><p>
 Matt Raible recently <a href="http://raibledesigns.com/page/rd?anchor=updated_presentations_spring_appfuse_and">blogged</a>
 about his updated presentation on <a href="http://equinox.dev.java.net/framework-comparison/WebFrameworks.pdf">Comparing
 Java Web Frameworks</a>, and already in the comments there are people asking about how Ajax fits in. So here's my take from a <a href="http://directwebremoting.org/dwr/">DWR</a> point of view:
@@ -39,55 +52,60 @@ Java Web Frameworks</a>, and already in the comments there are people asking abo
   <li>Extra time needed for an accessible site</li>
   <li>All quite new, so maybe it is all hype after all?</li>
 </ul><h3>Comparing DWR with other frameworks</h3><p>Recognising that DWR does not exclude more traditional frameworks, it is worth comparing using Matt's criteria:</p><p>
-<b>List Screens: How easy is it to code pageable, sortable lists?</b><br />
+<b>List Screens: How easy is it to code pageable, sortable lists?</b><br>
 For server side generated tables you can still use DisplayTag. For client side tables, use DWRUtil.drawTable which is not as feature-full yet.
 </p><p>
-<b>Bookmarkability: Can users bookmark pages and return to them easily?</b><br />
+<b>Bookmarkability: Can users bookmark pages and return to them easily?</b><br>
 It depends how you organize your site, AJAX sites that exist in only 1 page (like Google maps) may have to take extra steps for bookmarkability.
 </p><p>
-<b>Validation: How easy is it to use and does it support client-side (JavaScript) validation?</b><br />
+<b>Validation: How easy is it to use and does it support client-side (JavaScript) validation?</b><br>
 Very easy. DWR integrates with commons-validation and any other validation framework.
 </p><p>
-<b>Testability: How easy is it to test Controllers out of container?</b><br />
+<b>Testability: How easy is it to test Controllers out of container?</b><br>
 Very easy. Server side code with DWR is just a collection of Java beans
 </p><p>
-<b>Post and Redirect: How does the framework handle the duplicate post problem?</b><br />
+<b>Post and Redirect: How does the framework handle the duplicate post problem?</b><br>
 AJAX has 2 solutions, firstly AJAX can be so fast that the problem just goes away, secondly since the pages are controlled by Javascript, disabling a button is fairly easy.
 </p><p>
-<b>Spring Integration: Does the framework support using Spring in the middle tier; how easily?</b><br />
+<b>Spring Integration: Does the framework support using Spring in the middle tier; how easily?</b><br>
 Yes. DWR can remote spring beans - it doesn't get much easier than that!
 </p><p>
-<b>Internationalization: How is i18n supported and how easy is it to get messages in Controllers?</b><br />
+<b>Internationalization: How is i18n supported and how easy is it to get messages in Controllers?</b><br>
 AJAX in general and DWR in particular do not attempt to solve the i18n issue, use one of the other frameworks in tandem with DWR to get i18n.
 </p><p>
-<b>Page Decoration: What sort of page decoration/ composition mechanisms does the framework support?</b><br />
+<b>Page Decoration: What sort of page decoration/ composition mechanisms does the framework support?</b><br>
 DWR works with both Tiles and SiteMesh.
 </p><p>
-<b>Tools: Is there good tool (particularly IDE) support for the framework?</b><br />
+<b>Tools: Is there good tool (particularly IDE) support for the framework?</b><br>
 IDEA v5 has updated Javascript editing functions that can really help web development.
 </p><p>
-<b>Marketability of Skills: If you learn the framework, will it help you get a job?</b><br />
+<b>Marketability of Skills: If you learn the framework, will it help you get a job?</b><br>
 Maybe not today, but certainly tomorrow.
 </p><p>
-<b>Job Count: What is the demand for framework skills on dice.com?</b><br />
+<b>Job Count: What is the demand for framework skills on dice.com?</b><br>
 9 for AJAX (wow!)
 </p><p>
 <small>
-[Update: Fixed the spelling of Raible! - Sorry Matt.]<br />
+[Update: Fixed the spelling of Raible! - Sorry Matt.]<br>
 [Update: Fixed a typo.]</small>
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-06-8T10:26:21+00:00" pubdate="pubdate">
-    <span class="day">8</span>
-    <span class="month">Jun</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/" data-counturl="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-06-8T10:26:21+00:00" pubdate="">
+          <span class="day">8</span>
+          <span class="month">Jun</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/" data-counturl="http://incompleteness.me/blog/2005/06/08/comparing-dwr-as-a-web-framework/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -107,15 +125,15 @@ Maybe not today, but certainly tomorrow.
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -126,8 +144,8 @@ Maybe not today, but certainly tomorrow.
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -170,6 +188,8 @@ Maybe not today, but certainly tomorrow.
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -187,8 +207,6 @@ Maybe not today, but certainly tomorrow.
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -216,7 +234,7 @@ Maybe not today, but certainly tomorrow.
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -234,5 +252,6 @@ Maybe not today, but certainly tomorrow.
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

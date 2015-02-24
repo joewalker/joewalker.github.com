@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/">
+
   <title>DWR 2.0 Release Candidate 1 - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,22 +35,30 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/">DWR 2.0 Release Candidate 1</a></h1><section class="content"><a href="http://directwebremoting.org/dwr/"><img src="http://incompleteness.me/images/posts/dwr-logo.png" align="right" style="margin: 0px 10px;" border="0" /></a><p>It's been a long time coming, but we've at last updated DWR to a version 2.0 release candidate 1 status.</p><p>For the impatient:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/">DWR 2.0 Release Candidate 1</a></h1>
+
+      <section class="content"><a href="http://directwebremoting.org/dwr/"><img src="../images/posts/dwr-logo.png" align="right" style="margin:0px 10px" border="0"></a><p>It's been a long time coming, but we've at last updated DWR to a version 2.0 release candidate 1 status.</p><p>For the impatient:</p><ul>
 <li><a href="http://directwebremoting.org/dwr/changelog/dwr20">New and Noteworthy</a></li>
 <li><a href="http://directwebremoting.org/dwr/download">Download</a></li>
-</ul><p>There is a full run-down on the changes in the <a href="http://directwebremoting.org/dwr/changelog/dwr20">new and noteworthy</a> documentation, however to whet your appetite:</p><h3>JavaScript Proxy API</h3><p>DWR can dynamically generate JavaScript from a Java API. This is done at runtime rather than compile time, so we can use it to remote control many browsers. This makes it very easy to write things like chat applications, or anything particularly dynamic. Messages are sent to clients using Reverse Ajax.</p><h3>Reverse Ajax</h3><p>DWR supports 3 ways to asynchronously transfer messages from the server to the browser: Comet (long-lived HTTP connections), Polling and Piggyback. Of these Comet and Polling are active (fast but require extra network traffic) and Piggyback is passive (slower but doesn't need extra network traffic). DWR automatically selects the best method transparently to the programmer.</p><h3>Security</h3><p>Two of the the biggest generic dangers to ajax applications today are <a href="http://en.wikipedia.org/wiki/Cross_site_scripting">Cross-Site Scripting</a> (XSS), which most people are aware of, and the new tool in the hack-box: <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross-Site Request Forgery</a> (CSRF). DWR helps you protect your site against these attacks by providing automatic protection against CSRF attacks for many configurations, and by defaulting to a mode where XSS attacks are reduced.</p><p>Check back here soon for more on CSRF and how to protect yourself against it.</p><p><strong>Update:</strong> Jurgen Van Oosterwijck has blogged with <a href="http://jroller.com/page/mom?entry=reverse_ajax_push_implementations">more details about Reverse Ajax</a>.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-12-7T10:22:27+00:00" pubdate="pubdate">
-    <span class="day">7</span>
-    <span class="month">Dec</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/" data-counturl="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><p>There is a full run-down on the changes in the <a href="http://directwebremoting.org/dwr/changelog/dwr20">new and noteworthy</a> documentation, however to whet your appetite:</p><h3>JavaScript Proxy API</h3><p>DWR can dynamically generate JavaScript from a Java API. This is done at runtime rather than compile time, so we can use it to remote control many browsers. This makes it very easy to write things like chat applications, or anything particularly dynamic. Messages are sent to clients using Reverse Ajax.</p><h3>Reverse Ajax</h3><p>DWR supports 3 ways to asynchronously transfer messages from the server to the browser: Comet (long-lived HTTP connections), Polling and Piggyback. Of these Comet and Polling are active (fast but require extra network traffic) and Piggyback is passive (slower but doesn't need extra network traffic). DWR automatically selects the best method transparently to the programmer.</p><h3>Security</h3><p>Two of the the biggest generic dangers to ajax applications today are <a href="http://en.wikipedia.org/wiki/Cross_site_scripting">Cross-Site Scripting</a> (XSS), which most people are aware of, and the new tool in the hack-box: <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross-Site Request Forgery</a> (CSRF). DWR helps you protect your site against these attacks by providing automatic protection against CSRF attacks for many configurations, and by defaulting to a mode where XSS attacks are reduced.</p><p>Check back here soon for more on CSRF and how to protect yourself against it.</p><p><strong>Update:</strong> Jurgen Van Oosterwijck has blogged with <a href="http://jroller.com/page/mom?entry=reverse_ajax_push_implementations">more details about Reverse Ajax</a>.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-12-7T10:22:27+00:00" pubdate="">
+          <span class="day">7</span>
+          <span class="month">Dec</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/" data-counturl="http://incompleteness.me/blog/2006/12/07/dwr-2-0-release-candidate-1/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -60,15 +78,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -79,8 +97,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -123,6 +141,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -140,8 +160,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -169,7 +187,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -187,5 +205,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

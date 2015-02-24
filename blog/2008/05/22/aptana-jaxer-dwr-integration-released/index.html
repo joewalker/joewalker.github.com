@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/">
+
   <title>Aptana Jaxer + DWR Integration Released - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,33 +35,39 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/">Aptana Jaxer + DWR Integration Released</a></h1><section class="content"><p>Some weeks ago <a href="http://incompleteness.me/blog/2008/03/04/dwr-aptana-jaxer/">I announced</a> that we were working with Aptana to make <a href="http://www.aptana.com/jaxer/">Jaxer</a> work well with <a href="http://directwebremoting.org/dwr/">DWR</a>. The good news is that today we're in a position to release the first part of the work.</p><p>We've changed the API slightly since I first announced it, but the general idea is the same:</p><pre>
-Jaxer.dwr.configureAccess("com.example.jaxer.Simple");
+
+      <h1><a href="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/">Aptana Jaxer + DWR Integration Released</a></h1>
+
+      <section class="content"><p>Some weeks ago <a href="http://incompleteness.me/blog/2008/03/04/dwr-aptana-jaxer/">I announced</a> that we were working with Aptana to make <a href="http://www.aptana.com/jaxer/">Jaxer</a> work well with <a href="http://directwebremoting.org/dwr/">DWR</a>. The good news is that today we're in a position to release the first part of the work.</p><p>We've changed the API slightly since I first announced it, but the general idea is the same:</p><pre>Jaxer.dwr.configureAccess("com.example.jaxer.Simple");
 
 var reply = Simple.sayHello('Jaxer');
 dwr.util.setValue('replyDiv', reply);
 </pre><p>The things to note:</p><ul>
 <li>No more callbacks. DWR now works synchronously when working with Jaxer. (This mode will be available in full DWR soon too, however we will continue to recommend against using synchronous mode on the Internet)</li>
 <li>No dwr.xml/annotations. When integrated with Jaxer, DWR is being used as the glue between 2 servers on the intranet so the security rules are different, and that means we can simplify configuration.</li>
-</ul><p style="float: right;"><a href="http://www.aptana.com/jaxer/"><img src="http://incompleteness.me/images/posts/jaxer-pageflow.png" alt="jaxer page flow" title="Jaxer" border="0" /></a></p><p>The Aptana blog has more information, including some tutorials and more documentation.</p><p>I've documented the high-level view within the DWR documentation.</p><p>For now all objects accessed by Jaxer are 'script' scope, which means they live for the lifetime of a Jaxer page. We're hoping to extend this in the future so that all the scopes that DWR supports are available. We would also like to enable a import/constructor like syntax, so you can do things like this:</p><pre>
-Jaxer.dwr.import("java.io.File");
+</ul><p style="float:right"><a href="http://www.aptana.com/jaxer/"><img src="../images/posts/jaxer-pageflow.png" alt="jaxer page flow" title="Jaxer" border="0"></a></p><p>The Aptana blog has more information, including some tutorials and more documentation.</p><p>I've documented the high-level view within the DWR documentation.</p><p>For now all objects accessed by Jaxer are 'script' scope, which means they live for the lifetime of a Jaxer page. We're hoping to extend this in the future so that all the scopes that DWR supports are available. We would also like to enable a import/constructor like syntax, so you can do things like this:</p><pre>Jaxer.dwr.import("java.io.File");
 var file = new File("settings.ini");
 if (file.canRead()) {
   // etc.
 }
-</pre></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2008-05-22T16:15:00+00:00" pubdate="pubdate">
-    <span class="day">22</span>
-    <span class="month">May</span>
-    <span class="year">2008</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/" data-counturl="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2008-05-22T16:15:00+00:00" pubdate="">
+          <span class="day">22</span>
+          <span class="month">May</span>
+          <span class="year">2008</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/" data-counturl="http://incompleteness.me/blog/2008/05/22/aptana-jaxer-dwr-integration-released/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -71,15 +87,15 @@ if (file.canRead()) {
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -90,8 +106,8 @@ if (file.canRead()) {
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -134,6 +150,8 @@ if (file.canRead()) {
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -151,8 +169,6 @@ if (file.canRead()) {
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -180,7 +196,7 @@ if (file.canRead()) {
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -198,5 +214,6 @@ if (file.canRead()) {
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

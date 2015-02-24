@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/">
+
   <title>How to Protect a JSON or Javascript Service - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/">How to Protect a JSON or Javascript Service</a></h1><section class="content"><p>There have been lots of explanations recently of the dangers of JSON or JavaScript remoting. This post is about what you can do to protect your scripts.</p><h2>The Problem</h2><p>The issues have been explained before, so I'm going to assume some knowledge of the problem. If you're not sure, some stuff to read:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/">How to Protect a JSON or Javascript Service</a></h1>
+
+      <section class="content"><p>There have been lots of explanations recently of the dangers of JSON or JavaScript remoting. This post is about what you can do to protect your scripts.</p><h2>The Problem</h2><p>The issues have been explained before, so I'm going to assume some knowledge of the problem. If you're not sure, some stuff to read:</p><ul>
 <li>I blogged that <a href="http://incompleteness.me/blog/2007/03/05/json-is-not-as-safe-as-people-think-it-is/">JSON is not as safe as people think it is</a>. I've also written <a href="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">about CSRF too</a>.</li>
 
 <li>Dan Morrill has written an <a href="http://groups.google.com/group/Google-Web-Toolkit/web/security-for-gwt-applications">excellent and lengthy summary</a>. The fixes are focused on GWT, but the issues are the same for everyone.</li>
@@ -37,57 +50,38 @@
 <li>Force POST requests</li>
 </ol><p>This post is a shortened version of the <a href="http://directwebremoting.org/dwr/security/script-tag-protection">detailed description of what DWR does</a> If you are interested in the options <a href="http://directwebremoting.org/dwr/">DWR</a> takes and how you can configure it, you should read page.
 
-<h2>1. Use a Secret in the Request</h2>
-
-<p>If you can only support one of these protections, this is the one to chose. Including a secret in the request allows the server to reject the request as invalid before any actions take place. It is common to include the secret in the URL, however this is a slightly vulnerable position for a secret since it is likely to turn up in web server log files and so on.</p>
-
-<p>It is possible to use cookie values like PHPSESSIONID or JSESSIONID read using Javascript as the secret. The browsers cross-domain rules should prevent attackers from discovering this cookie. However this method will stop working as people begin to switch to using <a href="http://msdn.microsoft.com/workshop/author/dhtml/httponly_cookies.asp">HttpOnly</a> cookies. So it is better to start with a separate secret.</p>
-
-<h2>2. Force pre-eval() Processing</h2>
-
-<p>Since &lt;script&gt; tag remoting does not allow you to process the JSON or Javascript before it is eval()ed you can protect your JSON by forcing it to be manipulated before eval(). All 3 of these techniques will prevent your request from being pure JSON, however you may rank security above purity. There are 3 ways to do this:</p>
-
-<ul>
+</p><h2>1. Use a Secret in the Request</h2><p>If you can only support one of these protections, this is the one to chose. Including a secret in the request allows the server to reject the request as invalid before any actions take place. It is common to include the secret in the URL, however this is a slightly vulnerable position for a secret since it is likely to turn up in web server log files and so on.</p><p>It is possible to use cookie values like PHPSESSIONID or JSESSIONID read using Javascript as the secret. The browsers cross-domain rules should prevent attackers from discovering this cookie. However this method will stop working as people begin to switch to using <a href="http://msdn.microsoft.com/workshop/author/dhtml/httponly_cookies.asp">HttpOnly</a> cookies. So it is better to start with a separate secret.</p><h2>2. Force pre-eval() Processing</h2><p>Since &lt;script&gt; tag remoting does not allow you to process the JSON or Javascript before it is eval()ed you can protect your JSON by forcing it to be manipulated before eval(). All 3 of these techniques will prevent your request from being pure JSON, however you may rank security above purity. There are 3 ways to do this:</p><ul>
 <li>Wrap the JSON in a comment. For example, <code>/* { 'data':'protected' } */</code>. When this is eval()ed, there will be no result, however if you have fetched the data using XHR or iframe, you can do some string manipulation before eval() to remove the leading /* and trailing */.
-<br />
+<br>
 This method is good for plain JSON, however if you are using Javascript which could contain /* comments */, then you should not use this technique because comments in Javascript do not nest.</li>
 
 <li>Prefix the script with '<code>while(1);</code>' Since this is an infinite loop, if causes browsers to hang, and maybe give an error message. Either way the script does not get executed.
-<br />
+<br>
 There is a potential vulnerability that some browser may allow you to override the action of while using something like this: '<code>function while() {}</code>'. However I don't know of any such browser.
-<br />
+<br>
 Google use this method to protect data in GMail. '<code>while(1);</code>' is possibly better than '<code>while(true);</code>' in case there are any browsers that allow you to redefine truth.</li>
 
 <li>Prefix the script with '<code>throw new Error("message");</code>'. This is a neat solution in that it allows you to explain what is wrong to users that get the message by mistake. DWR uses this method.
-<br />
+<br>
 It is potentially vulnerable to some browser allowing an attacker to redefine the Error or String constructors to prevent the throw from happening, however this does not work on any browser that I know of, and it's hard to see how it could happen.</li>
-</ul>
+</ul><h2>3. Force POST Requests</h2><p>Since browsers use GET to process <code>&lt;script&gt;</code> tags, you can prevent <code>&lt;script&gt;</code> tags from working by denying GET requests for some JavaScript resource. This is the most common solution, however it is also perhaps the weakest.</p><p>Firstly XHR-POST doesn't work with older versions of Safari, so some support for GET is often useful.</p><p>More importantly future versions of Firefox are touted to include cross-domain XHR support. While we don't have exact knowledge of how this will happen, it would be foolish to base your security plans on this technique holding up.</p><p>Finally, we're working in an environment where new possibilities are popping up every day - betting your security on a system that works more by fluke than design isn't a great idea in my opinion.</p><p>By default DWR denies POST requests for belt and braces security, however this is customizable to allow support for older versions of Safari.</p></section>
 
-<h2>3. Force POST Requests</h2>
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-04-4T09:32:14+00:00" pubdate="">
+          <span class="day">4</span>
+          <span class="month">Apr</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
 
-<p>Since browsers use GET to process <code>&lt;script&gt;</code> tags, you can prevent <code>&lt;script&gt;</code> tags from working by denying GET requests for some JavaScript resource. This is the most common solution, however it is also perhaps the weakest.</p>
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/" data-counturl="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
 
-<p>Firstly XHR-POST doesn't work with older versions of Safari, so some support for GET is often useful.</p>
-
-<p>More importantly future versions of Firefox are touted to include cross-domain XHR support. While we don't have exact knowledge of how this will happen, it would be foolish to base your security plans on this technique holding up.</p>
-
-<p>Finally, we're working in an environment where new possibilities are popping up every day - betting your security on a system that works more by fluke than design isn't a great idea in my opinion.</p>
-
-<p>By default DWR denies POST requests for belt and braces security, however this is customizable to allow support for older versions of Safari.</p>
-
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-04-4T09:32:14+00:00" pubdate="pubdate">
-    <span class="day">4</span>
-    <span class="month">Apr</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/" data-counturl="http://incompleteness.me/blog/2007/04/04/how-to-protect-a-json-or-javascript-service/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
       <section class="comments">
         <h2>Comments</h2>
         
@@ -107,15 +101,15 @@ It is potentially vulnerable to some browser allowing an attacker to redefine th
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -126,8 +120,8 @@ It is potentially vulnerable to some browser allowing an attacker to redefine th
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -170,6 +164,8 @@ It is potentially vulnerable to some browser allowing an attacker to redefine th
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -187,8 +183,6 @@ It is potentially vulnerable to some browser allowing an attacker to redefine th
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -216,7 +210,7 @@ It is potentially vulnerable to some browser allowing an attacker to redefine th
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -234,5 +228,6 @@ It is potentially vulnerable to some browser allowing an attacker to redefine th
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

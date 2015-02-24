@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">
+
   <title>The Power of Bespin - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,49 +35,53 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a></h1><section class="content"><p>Yeah, so <a href="https://bespin.mozilla.com/">Bespin</a> a cool editor, and it makes use of lots of bleeding edge tech, (and it's got several annoying bugs - sorry about those). But I think Bespin has potential way beyond just looking nice ...
 
-<p>Open source development: You hear about project X, use it, and it’s nice, but to use a worn out phrase - there’s an itch to scratch ... 
+      <h1><a href="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">The Power of Bespin</a></h1>
 
-<p>So what do you do?
+      <section class="content"><p>Yeah, so <a href="https://bespin.mozilla.com/">Bespin</a> a cool editor, and it makes use of lots of bleeding edge tech, (and it's got several annoying bugs - sorry about those). But I think Bespin has potential way beyond just looking nice ...
 
-<h2>Open Source Development Before Bespin</h2>
+</p><p>Open source development: You hear about project X, use it, and it’s nice, but to use a worn out phrase - there’s an itch to scratch ... 
 
-<p>You search the project website for the directions to the source control system, you check that you’re up to date with cvs/svn/git/hg/whatever and checkout the source. Next you need to figure out how to build the project with ant/make/maven/paver/rake/whatever, and maybe download new libraries to make the compile clean and you then configure your IDE or editor to the new project. You can then go about editing the code. When you’re done with that you might need to figure out xunit/yunix/zunit to run the unit tests. Then you have to join a mailing list to work out how to send your changes in, which might be a patch or a bundle or a zip or direct commit access. You might discover that you need to sign a CLA so the project knows who you are, so you mess about with printing/signing/scanning/emailing/whatever.
+</p><p>So what do you do?
 
-<p>And then you’re done. With complex projects there could be lost more to it.
+</p><h2>Open Source Development Before Bespin</h2><p>You search the project website for the directions to the source control system, you check that you’re up to date with cvs/svn/git/hg/whatever and checkout the source. Next you need to figure out how to build the project with ant/make/maven/paver/rake/whatever, and maybe download new libraries to make the compile clean and you then configure your IDE or editor to the new project. You can then go about editing the code. When you’re done with that you might need to figure out xunit/yunix/zunit to run the unit tests. Then you have to join a mailing list to work out how to send your changes in, which might be a patch or a bundle or a zip or direct commit access. You might discover that you need to sign a CLA so the project knows who you are, so you mess about with printing/signing/scanning/emailing/whatever.
 
-<p>While you’re doing this you have no idea what the other developers are doing. Maybe they’re working on a totally different branch. Maybe they’ve done something similar already. Maybe they’re making changes that mean you should try a different approach. It would be good to know because you might be wasting your time.
+</p><p>And then you’re done. With complex projects there could be lost more to it.
 
-<h2>Open Source Development After Bespin</h2>
+</p><p>While you’re doing this you have no idea what the other developers are doing. Maybe they’re working on a totally different branch. Maybe they’ve done something similar already. Maybe they’re making changes that mean you should try a different approach. It would be good to know because you might be wasting your time.
 
-<p>You visit Bespin, and elect to edit project X. When you’re done, you click submit, and the project owners get your change.
+</p><h2>Open Source Development After Bespin</h2><p>You visit Bespin, and elect to edit project X. When you’re done, you click submit, and the project owners get your change.
 
-<p>Plus you can see what the project owners are doing with the source, and how your changes fit in.
+</p><p>Plus you can see what the project owners are doing with the source, and how your changes fit in.
 
-<h2>The Power of Bespin</h2>
+</p><h2>The Power of Bespin</h2><p>For me, what I find interesting about Bespin isn't the tech, it's the lowering of the barriers to entry and the socializing of open development.
 
-<p>For me, what I find interesting about Bespin isn't the tech, it's the lowering of the barriers to entry and the socializing of open development.
+</p><p>Virtually no software is perfect, and there are billions of people that are affected by the imperfections. There are hundreds of ways to contribute to any development project, and millions of people who could use their skills to help if only we could find ways to get the sources of help to the problems needing work
 
-<p>Virtually no software is perfect, and there are billions of people that are affected by the imperfections. There are hundreds of ways to contribute to any development project, and millions of people who could use their skills to help if only we could find ways to get the sources of help to the problems needing work
+</p><p>This application of huge resource to complex problems is what the Internet has always been good at, but so far we've not really done much to help software development. I hope that Bespin can become part of the solution.
 
-<p>This application of huge resource to complex problems is what the Internet has always been good at, but so far we've not really done much to help software development. I hope that Bespin can become part of the solution.
+</p><p>This isn’t going to become a Bespin blog (<a href="http://labs.mozilla.com/tag/bespin/feed">that’s here</a><a> or </a><a href="http://twitter.com/bespin">we're on twitter</a>). Irregular DWR/Ajax/Security programming will return to my blog and <a href="http://twitter.com/joewalker">twitter feed</a> shortly.
 
-<p>This isn’t going to become a Bespin blog (<a href="http://labs.mozilla.com/tag/bespin/feed">that’s here<a></a> or <a href="http://twitter.com/bespin">we're on twitter</a>). Irregular DWR/Ajax/Security programming will return to my blog and <a href="http://twitter.com/joewalker">twitter feed</a> shortly.
 
-</a></p></p></p></p></p></p></p></p></p></p></p></p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2009-02-16T12:38:54+00:00" pubdate="pubdate">
-    <span class="day">16</span>
-    <span class="month">Feb</span>
-    <span class="year">2009</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/" data-counturl="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2009-02-16T12:38:54+00:00" pubdate="">
+          <span class="day">16</span>
+          <span class="month">Feb</span>
+          <span class="year">2009</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/" data-counturl="http://incompleteness.me/blog/2009/02/16/the-power-of-bespin/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -87,15 +101,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -106,8 +120,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -150,6 +164,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -167,8 +183,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -196,7 +210,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -214,5 +228,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

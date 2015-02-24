@@ -1,16 +1,70 @@
 <?xml version='1.0' encoding='utf-8'?>
-
-<feed xmlns="http://www.w3.org/2005/Atom">
+<!--?xml version="1.0" encoding="utf-8"?--><html><head></head><body><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Incompleteness</title>
-  <link href="http://incompleteness.me/mozblog/atom.xml" rel="self" />
-  <link href="http://incompleteness.me/blog" />
+  <link href="http://incompleteness.me/mozblog/atom.xml" rel="self">
+  <link href="http://incompleteness.me/blog">
   <updated>2011-12-16T12:22:33+00:00</updated>
   <id>http://incompleteness.me/</id>
   <author><name>Joe Walker</name></author>
 
   <entry>
+    <title>console.mihai();</title>
+    <link href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">
+    <updated>2015-02-16T00:00:00+00:00</updated>
+    <id>http://incompleteness.me/blog/2015/02/09/console-dot-mihai/</id>
+    <content type="html">&lt;p&gt;A few days ago &lt;a href="http://www.robodesign.ro/mihai/blog/thanks"&gt;Mihai Șucan&lt;/a&gt;
+went home to Romania. We're not expecting him to fix any more bugs in Firefox,
+but I'd like to raise a glass of
+&lt;a href="https://en.wikipedia.org/wiki/%C8%9Auic%C4%83"&gt;Țuică&lt;/a&gt;, to the
+1919 bugs that he has been involved in fixing in Firefox.&lt;/p&gt;&lt;p&gt;Devtools at Mozilla has only been a serious thing for a bit under 5 years.
+Firebug is much older, but wasn't really a Mozilla project. We started for real
+in the middle on 2010, and Mihai was one of the first people to start
+helping.&lt;/p&gt;&lt;p&gt;The console code was initially a complete mess. Code that everyone touched
+and no-one loved, born before there was momentum, when landing code was a dark
+art.&lt;/p&gt;&lt;p&gt;I remember more than once looking at console code thinking - 'I can do the
+right fix in a few weeks or the wrong fix in a few hours', and like many before
+me, leaving the root problem for someone else to fix.&lt;/p&gt;&lt;p&gt;That someone was Mihai.&lt;/p&gt;&lt;p&gt;Most of the Devtools team at Mozilla is remote, so all I knew of Mihai to
+start with, was his strange voice. I'm no expert on Romanian accents, but this
+was different. His voice was compressed and clearly a struggle. He coughed
+regularly. So we listened more carefully when he spoke and thought nothing of
+it.&lt;/p&gt;&lt;p&gt;And Mihai continued to fix the console. Kevin Dangoor, who ran Devtools at
+the time said to me once - "You know the problem with Mihai is simply feeding
+him enough bugs - that's nearly a full time job!"&lt;/p&gt;&lt;p&gt;When video chat became a thing, I think we all noticed Mihai's hands, and
+wondered how he typed, but were probably too embarrassed to ask what was up.&lt;/p&gt;&lt;p&gt;I'm not sure who asked first, but around the time we first all got together
+in London I asked if he could travel easily, and found out the detail.&lt;/p&gt;&lt;p&gt;Mihai has
+&lt;a href="https://en.wikipedia.org/wiki/Epidermolysis_bullosa"&gt;Epidermolysis
+Bullosa&lt;/a&gt; (sometimes known as E.B.) specifically - Recessive Dystrophic
+Epidermolysis Bullosa.&lt;/p&gt;&lt;p&gt;E.B. is a brutal skin condition which causes chronic blistering, and makes
+everyday objects dangerous. Those with it are sometimes called butterfly
+children because of their brittle skin. In Mihai's case it has left him in a
+wheelchair, and having to very gently punch the keyboard to get anything
+done.&lt;/p&gt;&lt;p&gt;E.B. makes you very vulnerable to skin cancer from the continued scarring
+from the blisters. So everyday objects that wouldn't pose a risk to those with
+normal skin become sharp and dangerous to people with E.B. Needless to say -
+anyone with E.B. has a huge mountain to climb every single day.&lt;/p&gt;&lt;p&gt;When presented with the mountain that &lt;em&gt;just existing&lt;/em&gt; presents to
+EB sufferers, I think many people would be happy to just exist. But that's not
+Mihai, who has made developer tools for the web a personal mission. There
+aren't many things you can do when the outside is so dangerous, but Mihai found
+something he could do and did it with a passion.&lt;/p&gt;&lt;p&gt;Mihai's illness has meant he hasn't been able to work on the console
+recently, and we've probably not adjusted properly, but that's temporary.&lt;/p&gt;&lt;p&gt;Mihai's legacy is that there are hundreds of millions of people using a
+product, Firefox, that Mihai contributed to, hundreds of thousands of them of
+them spend a significant proportion of their time in the console that was his
+responsibility. And there are billions of people using websites created by
+people directly helped by Mihai's work.&lt;/p&gt;&lt;p&gt;In all but his darkest moments, Mihai copes without complaining. The
+annoying molehills that we complain about are largely irrelevant sideshows to
+Mihai, and working with him has been an honour.&lt;/p&gt;&lt;p&gt;If you've used Firefox Devtools, or if you've used any website where the
+author might have used Devtools, or if you're impressed by what Mihai has
+overcome, there's &lt;a href="http://ebresearch.org/"&gt;EB Research&lt;/a&gt; which
+investigates the root causes and solutions to the problem of EB.&lt;/p&gt;&lt;p&gt;Mihai always wants to do more, but he needs your help with this bit:
+&lt;a href="http://ebresearch.org/"&gt;EB Research&lt;/a&gt;.&lt;/p&gt;&lt;iframe src="https://www.youtube-nocookie.com/embed/Evliw540068" allowfullscreen="" frameborder="0" height="360" width="640"&gt;&lt;/iframe&gt;&lt;p&gt;(The video in this post is from a series created for
+&lt;a href="http://www.debra-international.org/homepage.html"&gt;DEBRA&lt;/a&gt;
+international by Lowe GGK. The full set of
+&lt;a href="http://www.debra-international.org/media-center/media-center/eb-awareness-campaign-images.html"&gt;images&lt;/a&gt; and
+&lt;a href="http://www.debra-international.org/media-center/media-center/eb-awareness-campaign-videos.html"&gt;videos&lt;/a&gt;
+is well worth a look)&lt;/p&gt;</content>
+  </entry><entry>
     <title>Combatting Self-XSS (Part 2)</title>
-    <link href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/" />
+    <link href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">
     <updated>2014-04-24T17:30:00+00:00</updated>
     <id>http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/</id>
     <content type="html">&lt;p&gt;The immediate context to this post is
@@ -26,7 +80,7 @@ someone to do the attacker’s bidding, probably to their own detriment. If you'
 writing a scam script, you need to keep the scripts simple enough to avoid
 the victims’ scam-detection, timeouts and errors.&lt;/p&gt;&lt;p&gt;These problems mean that we might be able to draw a graph of script
 complexity vs completion rate (where ‘completion’ is a scam that succeeded).
-It might look like this:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off" /&gt;&lt;p&gt;I’d like to suggest that humans are not that simple and that we shouldn’t
+It might look like this:&lt;/p&gt;&lt;img src="../images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off"&gt;&lt;p&gt;I’d like to suggest that humans are not that simple and that we shouldn’t
 expect something as predictable as that.&lt;/p&gt;&lt;p&gt;Many (most?) of the tasks that we complete on computers can be done purely
 using unconcious / heuristic / system 1 processing (in &lt;a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems"&gt;dual process&lt;/a&gt;)
 terms. That is to say using parts of the brain that are fast, pattern-based and
@@ -37,7 +91,7 @@ So forcing use of system 2 to prevent scams might help. (Obviously this is at
 odds with the “&lt;a href="http://www.amazon.com/Think-Common-Sense-Approach-Usability/dp/0789723107/"&gt;don’t make me think&lt;/a&gt;”
 approach to good UX design - I’m obviously not arguing that bad design is a
 good thing).&lt;/p&gt;&lt;p&gt;We don’t have a lot of data for Self-XSS. The data that I know of is:&lt;/p&gt;&lt;table&gt;
-  &lt;tr&gt;
+  &lt;tbody&gt;&lt;tr&gt;
     &lt;th&gt;Attack&lt;/th&gt;
     &lt;th&gt;Completion Rate&lt;/th&gt;
     &lt;th&gt;Complexity&lt;/th&gt;
@@ -57,7 +111,7 @@ good thing).&lt;/p&gt;&lt;p&gt;We don’t have a lot of data for Self-XSS. The d
     &lt;td&gt;&amp;lt;1%&lt;/td&gt;
     &lt;td&gt;4+ steps&lt;/td&gt;
   &lt;/tr&gt;
-&lt;/table&gt;&lt;p&gt;It seems reasonable that an infinitely simple script would always succeed,
+&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;It seems reasonable that an infinitely simple script would always succeed,
 and that at some point of complexity the completion rate will drop to 0. So
 that something like 5 data points.&lt;/p&gt;&lt;p&gt;It would be fair to criticise this as ‘not much data’, which is part of the
 point:&lt;/p&gt;&lt;ul&gt;
@@ -67,7 +121,7 @@ point:&lt;/p&gt;&lt;ul&gt;
 drop-off in completion rate with increasing script complexity. There isn’t much
 any evidence for attacks that were somewhat complex, and got some people - it
 looks as though all attacks that were somewhat complex were surprisingly
-unsuccessful.&lt;/p&gt;&lt;p&gt;So the drop-off rate might look something a bit more like this:&lt;/p&gt;&lt;img src="http://incompleteness.me/images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before" /&gt;&lt;p&gt;Which might in some small way indicate a point in script complexity where
+unsuccessful.&lt;/p&gt;&lt;p&gt;So the drop-off rate might look something a bit more like this:&lt;/p&gt;&lt;img src="../images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before"&gt;&lt;p&gt;Which might in some small way indicate a point in script complexity where
 system 2 needed to get involved, and where the analytical part of system 2 said
 “Wait, am I being scammed?”&lt;/p&gt;&lt;p&gt;Summary: We shouldn't think of scams purely in terms of smart people not
 getting scammed, and some sort of level of intellegence providing scam
@@ -89,7 +143,7 @@ also Chromium &lt;a href="https://code.google.com/p/chromium/issues/detail?id=34
 &lt;/p&gt;</content>
   </entry><entry>
     <title>Work for Mozilla building Developer Tools</title>
-    <link href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/" />
+    <link href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">
     <updated>2013-03-7T16:30:00+00:00</updated>
     <id>http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/</id>
     <content type="html">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: We've hired now, and very happy that Brian and
@@ -123,7 +177,7 @@ and contact me directly (&lt;a href="https://twitter.com/joewalker"&gt;twitter&l
 the system, or to ask questions.&lt;/p&gt;</content>
   </entry><entry>
     <title>Hackathon Summary</title>
-    <link href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/" />
+    <link href="http://incompleteness.me/blog/2012/06/27/hackathon-summary/">
     <updated>2012-06-27T13:00:00+00:00</updated>
     <id>http://incompleteness.me/blog/2012/06/27/hackathon-summary/</id>
     <content type="html">&lt;p&gt;So yesterday a whole bunch of people to together to hack on some commands for
@@ -131,7 +185,7 @@ the new &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-lin
 Tools Command Line&lt;/a&gt;. Thanks to everyone that took part.&lt;/p&gt;&lt;p&gt;This is a quick summary of the commands and hacks that we created. We've now
 got to work out what to do with them. Some we'll clean up, localize, test and
 ship, and some we'll do some we'll suggest putting onto AMO.&lt;/p&gt;&lt;table&gt;
- &lt;tr&gt;
+ &lt;tbody&gt;&lt;tr&gt;
    &lt;th&gt;Command&lt;/th&gt;
    &lt;th&gt;Description&lt;/th&gt;
    &lt;th&gt;Author(s)&lt;/th&gt;
@@ -269,14 +323,14 @@ ship, and some we'll do some we'll suggest putting onto AMO.&lt;/p&gt;&lt;table&
   &lt;td&gt;&lt;a href="http://www.robodesign.ro/mihai/blog"&gt;Mihai Sucan&lt;/a&gt;&lt;/td&gt;
   &lt;td&gt;&lt;a href="https://github.com/joewalker/mozcmd/pull/1"&gt;Pull&lt;/a&gt;&lt;/td&gt;
  &lt;/tr&gt;
-&lt;/table&gt;&lt;p style="text-align: center;"&gt;
+&lt;/tbody&gt;&lt;/table&gt;&lt;p style="text-align:center;"&gt;
   &lt;a href="http://www.flickr.com/photos/robceemoz/322394517"&gt;
-    &lt;img src="http://incompleteness.me/images/posts/hackathon2.jpg" alt="people hacking" /&gt;
+    &lt;img src="../images/posts/hackathon2.jpg" alt="people hacking"&gt;
   &lt;/a&gt;
 &lt;/p&gt;</content>
   </entry><entry>
     <title>Command Line Hackathon Details</title>
-    <link href="http://incompleteness.me/blog/2012/06/25/hackathon-details/" />
+    <link href="http://incompleteness.me/blog/2012/06/25/hackathon-details/">
     <updated>2012-06-24T13:00:00+00:00</updated>
     <id>http://incompleteness.me/blog/2012/06/25/hackathon-details/</id>
     <content type="html">&lt;p&gt;I &lt;a href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/"&gt;promised&lt;/a&gt;
@@ -302,92 +356,60 @@ and we'll keep that updated during the day to coordinate things.&lt;/p&gt;&lt;p&
 docs&lt;/a&gt; or use IRC on the web at &lt;a href="http://chat.mibbit.com"&gt;mibbit.com&lt;/a&gt;
 (Connect to Mozilla, Channel: #devtools).&lt;/p&gt;&lt;div&gt;
   &lt;a href="http://www.flickr.com/photos/robhawkes/7231923050/"&gt;
-    &lt;img src="http://incompleteness.me/images/posts/hackathon3.jpg" alt="people hacking" /&gt;
+    &lt;img src="../images/posts/hackathon3.jpg" alt="people hacking"&gt;
   &lt;/a&gt;
 &lt;/div&gt;&lt;h2&gt;How to raise a bug&lt;/h2&gt;&lt;p&gt;Use &lt;a href="https://bugzilla.mozilla.org/enter_bug.cgi?alias=&amp;amp;assigned_to=nobody%40mozilla.org&amp;amp;blocked=&amp;amp;bug_file_loc=http%3A%2F%2F&amp;amp;bug_severity=normal&amp;amp;bug_status=NEW&amp;amp;cf_blocking_basecamp=---&amp;amp;cf_blocking_kilimanjaro=---&amp;amp;cf_crash_signature=&amp;amp;cf_status_esr10=---&amp;amp;cf_status_firefox13=---&amp;amp;cf_status_firefox14=---&amp;amp;cf_status_firefox15=---&amp;amp;cf_status_firefox16=---&amp;amp;cf_tracking_esr10=---&amp;amp;cf_tracking_firefox13=---&amp;amp;cf_tracking_firefox14=---&amp;amp;cf_tracking_firefox15=---&amp;amp;cf_tracking_firefox16=---&amp;amp;comment=%0D%0AWhat%20did%20you%20do%20%28steps%20to%20reproduce%29%3F%0D%0A%0D%0A%0D%0AWhat%20happened%3F%0D%0A%0D%0A%0D%0AWhat%20should%20have%20happened%3F%0D%0A%0D%0A&amp;amp;component=Developer%20Tools%3A%20Console&amp;amp;contenttypeentry=&amp;amp;contenttypemethod=autodetect&amp;amp;contenttypeselection=text%2Fplain&amp;amp;data=&amp;amp;defined_groups=1&amp;amp;dependson=&amp;amp;description=&amp;amp;flag_type-203=X&amp;amp;flag_type-325=X&amp;amp;flag_type-37=X&amp;amp;flag_type-41=X&amp;amp;flag_type-5=X&amp;amp;flag_type-607=X&amp;amp;flag_type-720=X&amp;amp;flag_type-721=X&amp;amp;flag_type-737=X&amp;amp;flag_type-748=X&amp;amp;flag_type-775=X&amp;amp;flag_type-780=X&amp;amp;flag_type-781=X&amp;amp;form_name=enter_bug&amp;amp;keywords=&amp;amp;maketemplate=Remember%20values%20as%20bookmarkable%20template&amp;amp;op_sys=All&amp;amp;priority=--&amp;amp;product=Firefox&amp;amp;qa_contact=developer.tools.console%40firefox.bugs&amp;amp;rep_platform=All&amp;amp;requestee_type-203=&amp;amp;requestee_type-325=&amp;amp;requestee_type-41=&amp;amp;requestee_type-5=&amp;amp;requestee_type-607=&amp;amp;requestee_type-748=&amp;amp;requestee_type-781=&amp;amp;short_desc=GCLI&amp;amp;status_whiteboard=&amp;amp;target_milestone=---&amp;amp;version=Trunk"&gt;this link&lt;/a&gt;
-to tell us about any problems with the command line.&lt;/p&gt;&lt;h2&gt;Submitting a Command&lt;/h2&gt;&lt;p&gt;You can submit a command any of the following ways:&lt;p&gt;
+to tell us about any problems with the command line.&lt;/p&gt;&lt;h2&gt;Submitting a Command&lt;/h2&gt;&lt;p&gt;You can submit a command any of the following ways:&lt;/p&gt;&lt;p&gt;
 
-&lt;ol&gt;
+&lt;/p&gt;&lt;ol&gt;
   &lt;li&gt;Fork &lt;a href="https://github.com/joewalker/mozcmd"&gt;this repo&lt;/a&gt; and
   create a pull request (preferred)&lt;/li&gt;
   &lt;li&gt;Create a new etherpad containing your submission and put a link to your
   new etherpad in the &lt;a href="https://etherpad.mozilla.org/command-line-hackathon"&gt;main
   etherpad&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Email it to jwalker at mozilla.com.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Whichever way you choose, please include the following in your submission so
-we know you're happy for us to distribute your work:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Signed-off-by: Your Name &amp;lt;email@example.com&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Adding this text is a statement that you have the right to contribute the
-code under the MPLv2 for inclusion in the Mozilla codebase.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hope to see you on June 26th&lt;/strong&gt;&lt;/p&gt;
-
-&lt;/p&gt;&lt;/p&gt;</content>
+&lt;/ol&gt;&lt;p&gt;Whichever way you choose, please include the following in your submission so
+we know you're happy for us to distribute your work:&lt;/p&gt;&lt;p&gt;&lt;code&gt;Signed-off-by: Your Name &amp;lt;email@example.com&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;Adding this text is a statement that you have the right to contribute the
+code under the MPLv2 for inclusion in the Mozilla codebase.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hope to see you on June 26th&lt;/strong&gt;&lt;/p&gt;</content>
   </entry><entry>
     <title>Firefox Command Line Hackathon</title>
-    <link href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/" />
+    <link href="http://incompleteness.me/blog/2012/06/20/command-line-hackathon/">
     <updated>2012-06-20T12:00:00+00:00</updated>
     <id>http://incompleteness.me/blog/2012/06/20/command-line-hackathon/</id>
     <content type="html">&lt;p&gt;TL;DR: On June 26th, the Firefox developer tools team is holding a hackathon to
-add to the list of commands for the Firefox developers toolbar.
-
-&lt;/p&gt;&lt;aside&gt;
+add to the list of commands for the Firefox developers toolbar.&lt;/p&gt;&lt;aside&gt;
   &lt;a href="http://www.flickr.com/photos/donotlick/5272510170"&gt;
-    &lt;img src="http://incompleteness.me/images/posts/hackathon1.jpg" alt="people hacking" /&gt;
+    &lt;img src="../images/posts/hackathon1.jpg" alt="people hacking"&gt;
   &lt;/a&gt;
-&lt;/aside&gt;&lt;p&gt;See this recent &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;blog post for context on the new developers command line&lt;/a&gt;.
-
-&lt;/p&gt;&lt;p&gt;I'm in the process of finishing off &lt;a href="https://bugzilla.mozilla.org/show_bug.cgi?id=724055"&gt;bug 724055&lt;/a&gt; which will make it as
+&lt;/aside&gt;&lt;p&gt;See this recent &lt;a href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/"&gt;blog post for context on the new developers command line&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;I'm in the process of finishing off &lt;a href="https://bugzilla.mozilla.org/show_bug.cgi?id=724055"&gt;bug 724055&lt;/a&gt; which will make it as
 easy as is possible to create new commands, just set a pref to point to a
-directory where your commands are stored in JSON (ish) files, and you're done.
-
-&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post (Update: &lt;a href="http://incompleteness.me/blog/2012/06/25/hackathon-details/"&gt;see here&lt;/a&gt;)
+directory where your commands are stored in JSON (ish) files, and you're done.&lt;/p&gt;&lt;p&gt;In the next few days I'll update this post (Update: &lt;a href="http://incompleteness.me/blog/2012/06/25/hackathon-details/"&gt;see here&lt;/a&gt;)
 with a set of resources for creating commands and ideas for commands.
 We'll hang out in IRC and crank away and see how many commands we can get
-written in a day.
-
-&lt;/p&gt;&lt;p&gt;If you can spare some time, we'd love to have some help.
-
-&lt;/p&gt;&lt;p&gt;&lt;small&gt;Update: Originally this post had a date typo and said the 27th. The real date
-is the 26th.&lt;/small&gt;
-
-&lt;/p&gt;</content>
+written in a day.&lt;/p&gt;&lt;p&gt;If you can spare some time, we'd love to have some help.&lt;/p&gt;&lt;p&gt;&lt;small&gt;Update: Originally this post had a date typo and said the 27th. The real date
+is the 26th.&lt;/small&gt;&lt;/p&gt;</content>
   </entry><entry>
     <title>Firefox Command Line for Developers</title>
-    <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/" />
+    <link href="http://incompleteness.me/blog/2012/06/18/firefox-command-line/">
     <updated>2012-06-18T12:00:00+00:00</updated>
     <id>http://incompleteness.me/blog/2012/06/18/firefox-command-line/</id>
     <content type="html">&lt;p&gt;TL;DR: We're adding a toolbar to Firefox, for developers, which includes a
 command line.
 It's a great place to add small tools and experimental features, and we're
-making it easy to add your own commands.
-
-&lt;/p&gt;&lt;p&gt;The toolbar should land in Firefox 16 or 17 and will look like this:
-
-&lt;/p&gt;&lt;div style="overflow-x: hidden;"&gt;
-  &lt;img src="http://incompleteness.me/images/posts/gcli-look-mac.png" alt="GCLI on a Mac" /&gt;
+making it easy to add your own commands.&lt;/p&gt;&lt;p&gt;The toolbar should land in Firefox 16 or 17 and will look like this:&lt;/p&gt;&lt;div style="overflow-x:hidden;"&gt;
+  &lt;img src="../images/posts/gcli-look-mac.png" alt="GCLI on a Mac"&gt;
 &lt;/div&gt;&lt;p&gt;The buttons are useful, but I'm most excited about the commands.
 We can add an almost unlimited set of commands here without cluttering up the
 UI, or making things slow, and we've done lots of work to make the command line
-easy to use.
-
-&lt;/p&gt;&lt;p&gt;The challenge: It might be stretching things a little to call the command line
+easy to use.&lt;/p&gt;&lt;p&gt;The challenge: It might be stretching things a little to call the command line
 a 'platform', and commands 'apps', but the command line still needs commands to
 be successful. There's a list of commands that we're working on for
 manipulating Firefox developer tools, and we'll be expanding this list to
-include system level commands too.
-
-&lt;/p&gt;&lt;p&gt;We're planning on a hackathon in a couple of weeks to add to the list of
+include system level commands too.&lt;/p&gt;&lt;p&gt;We're planning on a hackathon in a couple of weeks to add to the list of
 commands and to check that it really as as easy as we think it is to extend.
-Details soon.
-
-&lt;/p&gt;&lt;p&gt;If you want to try it out, it's in Nightly now, you'll need to flip the
-&lt;code&gt;devtools.toolbar.enable&lt;/code&gt; preference in &lt;code&gt;about:config&lt;/code&gt;.
-&lt;/p&gt;</content>
+Details soon.&lt;/p&gt;&lt;p&gt;If you want to try it out, it's in Nightly now, you'll need to flip the
+&lt;code&gt;devtools.toolbar.enable&lt;/code&gt; preference in &lt;code&gt;about:config&lt;/code&gt;.&lt;/p&gt;</content>
   </entry>
 
 </feed>
+</body></html>

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/">
+
   <title>2 articles on Reverse Ajax - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,8 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/">2 articles on Reverse Ajax</a></h1><section class="content"><p>I came across a nice intro to Reverse Ajax with a whole set of simple graphics to explain the interaction.</p><p><a href="http://gmapsdotnetcontrol.blogspot.com/2006/08/exploring-reverse-ajax-ajax.html">The blog entry</a> is on the curiously named gmapsdotnetcontrol blog, and we go through the classic and Ajax models (JJG style) with polling and comet before getting to the piggyback model:</p><img src="http://incompleteness.me/images/posts/gmaps/ra5_thumb.png" /><p>And finally the Full Monty Reverse Ajax</p><img src="http://incompleteness.me/images/posts/gmaps/ra6_thumb.png" /><p>For me Reverse Ajax is not so much about the technology on how we get the message to the browser, but more about the programmers interface.</p><p><a href="http://directwebremoting.org/dwr/">DWR</a> gives you a dead simple set of APIs that dynamically generate Javascript and send the Javascript to one or many browsers asynchronously.</p><p>The DWR Chat example has to be the simplest code to do chat anywhere. The full source <a href="http://fisheye5.cenqua.com/browse/dwr/demo/uk/ltd/getahead/dwrdemo/chat/JavaChat.java?r=1.2">can be seen through fisheye</a>, but the core goes like this:</p><pre>
-WebContext wctx = WebContextFactory.get();
+
+      <h1><a href="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/">2 articles on Reverse Ajax</a></h1>
+
+      <section class="content"><p>I came across a nice intro to Reverse Ajax with a whole set of simple graphics to explain the interaction.</p><p><a href="http://gmapsdotnetcontrol.blogspot.com/2006/08/exploring-reverse-ajax-ajax.html">The blog entry</a> is on the curiously named gmapsdotnetcontrol blog, and we go through the classic and Ajax models (JJG style) with polling and comet before getting to the piggyback model:</p><img src="../images/posts/gmaps/ra5_thumb.png"><p>And finally the Full Monty Reverse Ajax</p><img src="../images/posts/gmaps/ra6_thumb.png"><p>For me Reverse Ajax is not so much about the technology on how we get the message to the browser, but more about the programmers interface.</p><p><a href="http://directwebremoting.org/dwr/">DWR</a> gives you a dead simple set of APIs that dynamically generate Javascript and send the Javascript to one or many browsers asynchronously.</p><p>The DWR Chat example has to be the simplest code to do chat anywhere. The full source <a href="http://fisheye5.cenqua.com/browse/dwr/demo/uk/ltd/getahead/dwrdemo/chat/JavaChat.java?r=1.2">can be seen through fisheye</a>, but the core goes like this:</p><pre>WebContext wctx = WebContextFactory.get();
 String currentPage = wctx.getCurrentPage();
 
 // Find all the browsers on the current page:
@@ -36,19 +48,24 @@ DwrUtil utilAll = new DwrUtil(sessions);
 // Manipulate all the browsers to repopulate the message list
 utilAll.removeAllOptions("chatlog");
 utilAll.addOptions("chatlog", messages, "text");
-</pre><h2>Wikipedia</h2><p>The other article is <a href="http://en.wikipedia.org/wiki/Reverse_Ajax">based on this one at Wikipedia</a> and they are both based on <a href="http://prokata.com/reverseajax">Jon's original article</a>.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-09-5T14:52:00+00:00" pubdate="pubdate">
-    <span class="day">5</span>
-    <span class="month">Sep</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/" data-counturl="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre><h2>Wikipedia</h2><p>The other article is <a href="http://en.wikipedia.org/wiki/Reverse_Ajax">based on this one at Wikipedia</a> and they are both based on <a href="http://prokata.com/reverseajax">Jon's original article</a>.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-09-5T14:52:00+00:00" pubdate="">
+          <span class="day">5</span>
+          <span class="month">Sep</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/" data-counturl="http://incompleteness.me/blog/2006/09/05/2-articles-on-reverse-ajax/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -68,15 +85,15 @@ utilAll.addOptions("chatlog", messages, "text");
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -87,8 +104,8 @@ utilAll.addOptions("chatlog", messages, "text");
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -131,6 +148,8 @@ utilAll.addOptions("chatlog", messages, "text");
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -148,8 +167,6 @@ utilAll.addOptions("chatlog", messages, "text");
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -177,7 +194,7 @@ utilAll.addOptions("chatlog", messages, "text");
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -195,5 +212,6 @@ utilAll.addOptions("chatlog", messages, "text");
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

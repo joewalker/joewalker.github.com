@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/">
+
   <title>Closures: Cheers, Library Issues and Solutions - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,14 +35,15 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/">Closures: Cheers, Library Issues and Solutions</a></h1><section class="content"><p><a href="http://gafter.blogspot.com/2006/08/closures-for-java.html">At last</a>. But there is a problem...</p><p>I think the addition of Closures are the biggest change yet made to Java. Closures change the way you think about programs - a step change rather than a simple evolution like Generics were.</p><p>It's good to be able to do this:</p><pre>
-int total = 0;
+
+      <h1><a href="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/">Closures: Cheers, Library Issues and Solutions</a></h1>
+
+      <section class="content"><p><a href="http://gafter.blogspot.com/2006/08/closures-for-java.html">At last</a>. But there is a problem...</p><p>I think the addition of Closures are the biggest change yet made to Java. Closures change the way you think about programs - a step change rather than a simple evolution like Generics were.</p><p>It's good to be able to do this:</p><pre>int total = 0;
 void(int) totalizer = (int i) : total = total + i;
 totalizer(1);
 totalizer(2);
 System.out.println(total); // Prints 3
-</pre><p>But what you really want is to be able to do things like this:</p><pre>
-int[] numbers = new int[] { 100, 200 };
+</pre><p>But what you really want is to be able to do things like this:</p><pre>int[] numbers = new int[] { 100, 200 };
 numbers.each(totalizer);
 System.out.println(total); // Now prints 303;
 </pre><p>This is a fairly serious problem. Without support from many of the system classes - especially Collections, closures are really quite limited. So this is why it's a real shame that it has taken so long to get Closures into Java.</p><p>I think the most useful additional collection methods would be:</p><ul>
@@ -44,25 +55,28 @@ System.out.println(total); // Now prints 303;
 <li>break backward compatibility</li>
 <li>break closures by lack of collection support</li>
 <li>add static methods like <code>Collections.each(Collection c, Closure x);</code></li>
-</ol><p>Option 1 may seem like a good idea to many, but it won't happen. Sun are very strong on keeping backwards compatibility.</p><p>Option 2 is just giving in without trying.</p><p>Option 3 maybe the best, but it's not really a great answer.</p><p>However I wonder if there isn't a fourth option: Some extra syntax sugar like this could replace the need for things like <code>Collection.each(Closure c)</code>:</p><pre>
-for (numbers : totalizer);
-</pre><p>Behind the scenes the compiler does this:</p><pre>
-for (Object obj : numbers.iterator) {
+</ol><p>Option 1 may seem like a good idea to many, but it won't happen. Sun are very strong on keeping backwards compatibility.</p><p>Option 2 is just giving in without trying.</p><p>Option 3 maybe the best, but it's not really a great answer.</p><p>However I wonder if there isn't a fourth option: Some extra syntax sugar like this could replace the need for things like <code>Collection.each(Closure c)</code>:</p><pre>for (numbers : totalizer);
+</pre><p>Behind the scenes the compiler does this:</p><pre>for (Object obj : numbers.iterator) {
   totalizer(obj);
 }
-</pre><p>Clearly this should work with anything that is Iterable and not just lists.</p><p>However, this doesn't fix the lack of <code>all()</code>  and <code>any()</code> methods or <code>transform()</code> (unless we allow a return value from the new for loop). Might it be possible to create a syntax like this to cope with all eventualities? Maybe the new for syntax could optionally take 2 closures, the first was an action to take on each collection element and the second was a combiner that allowed you to specify how the loop functioned???</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-08-19T15:35:04+00:00" pubdate="pubdate">
-    <span class="day">19</span>
-    <span class="month">Aug</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/" data-counturl="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</pre><p>Clearly this should work with anything that is Iterable and not just lists.</p><p>However, this doesn't fix the lack of <code>all()</code>  and <code>any()</code> methods or <code>transform()</code> (unless we allow a return value from the new for loop). Might it be possible to create a syntax like this to cope with all eventualities? Maybe the new for syntax could optionally take 2 closures, the first was an action to take on each collection element and the second was a combiner that allowed you to specify how the loop functioned???</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-08-19T15:35:04+00:00" pubdate="">
+          <span class="day">19</span>
+          <span class="month">Aug</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/" data-counturl="http://incompleteness.me/blog/2006/08/19/closures-cheers-library-issues-and-solutions/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -82,15 +96,15 @@ for (Object obj : numbers.iterator) {
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -101,8 +115,8 @@ for (Object obj : numbers.iterator) {
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -145,6 +159,8 @@ for (Object obj : numbers.iterator) {
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -162,8 +178,6 @@ for (Object obj : numbers.iterator) {
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -191,7 +205,7 @@ for (Object obj : numbers.iterator) {
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -209,5 +223,6 @@ for (Object obj : numbers.iterator) {
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

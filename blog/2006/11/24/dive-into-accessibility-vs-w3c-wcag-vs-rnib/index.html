@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/">
+
   <title>Dive Into Accessibility vs W3C WCAG vs RNIB - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,22 +35,30 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/">Dive Into Accessibility vs W3C WCAG vs RNIB</a></h1><section class="content"><p>Suppose you want some text on your page that is read by screen readers, but not by sighted people - how do you do it?</p><p>There are a couple of good examples why you'd want to do this:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/">Dive Into Accessibility vs W3C WCAG vs RNIB</a></h1>
+
+      <section class="content"><subtitle>Contradictory accessibility advice</subtitle><meta name="published" content="24 Nov 2006 09:52:00:0 +0000"><meta name="tags" content="accessibility"><p>Suppose you want some text on your page that is read by screen readers, but not by sighted people - how do you do it?</p><p>There are a couple of good examples why you'd want to do this:</p><ul>
 <li>The more common is a "Skip links" feature to allow screen readers to jump over a menu system (though there are better solutions to this problem)</li>
 <li>A better example is the need to voice something like this: "This list of people will refresh when the 'add person' button is clicked. Use the ALT+6 access key to re-read the list". It’s vital to the user of a screen reader, but pointless and confusing to a sighted person.</li>
-</ul><h2>So how do you do it?</h2><h3>diveintoaccessibility.org: <a href="http://diveintoaccessibility.org/day_11_skipping_over_navigation_links.html">Use "display:none;"</a></h3><p>This might have been good advice some time ago, but most screen readers skip over invisible text on the assumption that it is hidden for a reason. There are a few places where Dive Into Accessibility needs updating, which is not surprising since it was originally written back when the world was young, dinosaurs roamed the land, and when people still thought Netscape Navigator what a good thing.</p><h3>W3C accessibility guidelines: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/#content-structure-separation-programmatic-intent-head">"Don't do it"</a></h3><p>It's not particularly clear what the W3C mean by this:</p><p class="quote">"Information and relationships conveyed through presentation can be programmatically determined, and notification of changes to these is available to user agents, including assistive technologies. <em>(Level 1)"</em></p><p>Writing on "A List Apart", <a href="http://alistapart.com/articles/tohellwithwcag2">Joe Clark interprets the W3C like this</a>:</p><p class="quote">"You can’t use offscreen positioning to add labels (e.g., to forms) that only some people, like users of assistive technology, can perceive. <em>Everybody</em> has to see them".</p><p>If he's right, the advice is bizarre – you'd be required to confuse sighted people by describing access keys. Joe does have a bit of an axe to grind though, so while many of his points have merit, I'm not sure he's right on his reading here. However the very fact that it's not clear to smart web professionals is a condemnation of the W3C ability to follow their own recommendations is making things clear to everyone including those with "cognitive limitations". There is something ironic in them using a phrase that is way too complex while telling people to keep things simple.</p><p>I notice that <a href="http://juicystudio.com/article/wcag-myth-accessibility.php">some</a> <a href="http://alistapart.com/articles/tohellwithwcag2">people</a> <a href="http://alex.dojotoolkit.org/06/EuroOSCON/BetterAjaxApps/part3.html#show_SlideNo_5">advocate</a> ignoring these W3C guidelines.</p><h3><a href="http://www.rnib.org.uk/">RNIB</a> (UK Blind Institute): Use "top:-999em;"</h3><p>This advice seems most reasonable to me. No visual browser will display text with this style for visual reasons (it’s off screen). This is good because the whole point in hiding the text is hide it from people that have no visual disability. Using top is better than using left, right or bottom because the other can cause scroll-bars in some circumstances.</p><p>Not that this technique is not without fault however. Sometimes partially-sighted people will read the web with styles turned off, so it's not always perfect.</p><p>What do you use?</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-11-24T09:52:00+00:00" pubdate="pubdate">
-    <span class="day">24</span>
-    <span class="month">Nov</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/" data-counturl="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><h2>So how do you do it?</h2><h3>diveintoaccessibility.org: <a href="http://diveintoaccessibility.org/day_11_skipping_over_navigation_links.html">Use "display:none;"</a></h3><p>This might have been good advice some time ago, but most screen readers skip over invisible text on the assumption that it is hidden for a reason. There are a few places where Dive Into Accessibility needs updating, which is not surprising since it was originally written back when the world was young, dinosaurs roamed the land, and when people still thought Netscape Navigator what a good thing.</p><h3>W3C accessibility guidelines: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/#content-structure-separation-programmatic-intent-head">"Don't do it"</a></h3><p>It's not particularly clear what the W3C mean by this:</p><p class="quote">"Information and relationships conveyed through presentation can be programmatically determined, and notification of changes to these is available to user agents, including assistive technologies. <em>(Level 1)"</em></p><p>Writing on "A List Apart", <a href="http://alistapart.com/articles/tohellwithwcag2">Joe Clark interprets the W3C like this</a>:</p><p class="quote">"You can’t use offscreen positioning to add labels (e.g., to forms) that only some people, like users of assistive technology, can perceive. <em>Everybody</em> has to see them".</p><p>If he's right, the advice is bizarre – you'd be required to confuse sighted people by describing access keys. Joe does have a bit of an axe to grind though, so while many of his points have merit, I'm not sure he's right on his reading here. However the very fact that it's not clear to smart web professionals is a condemnation of the W3C ability to follow their own recommendations is making things clear to everyone including those with "cognitive limitations". There is something ironic in them using a phrase that is way too complex while telling people to keep things simple.</p><p>I notice that <a href="http://juicystudio.com/article/wcag-myth-accessibility.php">some</a> <a href="http://alistapart.com/articles/tohellwithwcag2">people</a> <a href="http://alex.dojotoolkit.org/06/EuroOSCON/BetterAjaxApps/part3.html#show_SlideNo_5">advocate</a> ignoring these W3C guidelines.</p><h3><a href="http://www.rnib.org.uk/">RNIB</a> (UK Blind Institute): Use "top:-999em;"</h3><p>This advice seems most reasonable to me. No visual browser will display text with this style for visual reasons (it’s off screen). This is good because the whole point in hiding the text is hide it from people that have no visual disability. Using top is better than using left, right or bottom because the other can cause scroll-bars in some circumstances.</p><p>Not that this technique is not without fault however. Sometimes partially-sighted people will read the web with styles turned off, so it's not always perfect.</p><p>What do you use?</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-11-24T09:52:00+00:00" pubdate="">
+          <span class="day">24</span>
+          <span class="month">Nov</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/" data-counturl="http://incompleteness.me/blog/2006/11/24/dive-into-accessibility-vs-w3c-wcag-vs-rnib/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -54,7 +72,7 @@
               </strong>
               <span class="comment-title">Re: Dive Into Accessibility vs W3C WCAG vs RNIB</span>
             </div>
-            <p class="comment-body"><div>I am the author of "Dive Into Accessibility" and I can confirm that its skip-link advice is obsolete.  I apologize for the confusion.  ("So why don't you fix it?" I hear you cry.  Well, it's complicated.)  The best current reference for skip link techniques is from WebAIM: <a href="http://www.webaim.org/techniques/skipnav/">http://www.webaim.org/techniques/skipnav/</a><div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>I am the author of "Dive Into Accessibility" and I can confirm that its skip-link advice is obsolete.  I apologize for the confusion.  ("So why don't you fix it?" I hear you cry.  Well, it's complicated.)  The best current reference for skip link techniques is from WebAIM: <a href="http://www.webaim.org/techniques/skipnav/">http://www.webaim.org/techniques/skipnav/</a></div></body></html></p>
           </div>
           <section class="comments">
             <p>Comments have been turned off on old posts</p>
@@ -69,15 +87,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -88,8 +106,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -132,6 +150,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -149,8 +169,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -178,7 +196,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -196,5 +214,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/">
+
   <title>The 4 States of Ajax Adoption - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,19 +35,27 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/">The 4 States of Ajax Adoption</a></h1><section class="content"><p>So the 4 states of Ajax adoption are as follows ...</p><h3>1. Denial</h3><p>Usually accompanied with an explanation like "<a href="http://searchwebservices.techtarget.com/qna/0,289202,sid26_gci1215525,00.html">Java Applets are better</a>", or "Javascript makes your website inaccessible to blind people". (Generally I don't buy either argument although I can see a diminishing case for WebStart).</p><h3>2. <a href="http://en.wikipedia.org/wiki/Progressive_Enhancement">Progressive Enhancement</a></h3><p>Means taking an existing JavaScript free website and adding some tweaks. It's a conservative approach that won't worry or annoy anyone, but it won't turn any heads either. The BBC, Wikipedia and EBay all use this approach because it's a safe thing to do with a big website.</p><h3>3. Second Site</h3><p>The problem with progressive enhancement is that it treats the minority noscript case first. The second site approach provides the best it can for the majority and for the minority too. Google, Yahoo and Amazon create far more advanced systems with this approach. It's likely to cost a bit more, but you're probably going to get a much better site out of it.</p><h3>4. Accessible JavaScript</h3><p>The full on approach tries to create accessible sites, but only when JavaScript is turned on. Microsoft's live.com, YouTube and some Google sites do this, and there are some UIs for which there is little choice. Anyone fancy creating office type functionallity without JavaScript?</p><p>You can work up the tree, starting out small and getting bigger, and the good news from a <a href="http://directwebremoting.org/dwr/">DWR</a> point of view is that it can help you each step of the way. DWR is good for small tweaks and a more full on style.</p><p>What's your prefered approach?</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-09-20T19:14:36+00:00" pubdate="pubdate">
-    <span class="day">20</span>
-    <span class="month">Sep</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/" data-counturl="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+      <h1><a href="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/">The 4 States of Ajax Adoption</a></h1>
+
+      <section class="content"><p>So the 4 states of Ajax adoption are as follows ...</p><h3>1. Denial</h3><p>Usually accompanied with an explanation like "<a href="http://searchwebservices.techtarget.com/qna/0,289202,sid26_gci1215525,00.html">Java Applets are better</a>", or "Javascript makes your website inaccessible to blind people". (Generally I don't buy either argument although I can see a diminishing case for WebStart).</p><h3>2. <a href="http://en.wikipedia.org/wiki/Progressive_Enhancement">Progressive Enhancement</a></h3><p>Means taking an existing JavaScript free website and adding some tweaks. It's a conservative approach that won't worry or annoy anyone, but it won't turn any heads either. The BBC, Wikipedia and EBay all use this approach because it's a safe thing to do with a big website.</p><h3>3. Second Site</h3><p>The problem with progressive enhancement is that it treats the minority noscript case first. The second site approach provides the best it can for the majority and for the minority too. Google, Yahoo and Amazon create far more advanced systems with this approach. It's likely to cost a bit more, but you're probably going to get a much better site out of it.</p><h3>4. Accessible JavaScript</h3><p>The full on approach tries to create accessible sites, but only when JavaScript is turned on. Microsoft's live.com, YouTube and some Google sites do this, and there are some UIs for which there is little choice. Anyone fancy creating office type functionallity without JavaScript?</p><p>You can work up the tree, starting out small and getting bigger, and the good news from a <a href="http://directwebremoting.org/dwr/">DWR</a> point of view is that it can help you each step of the way. DWR is good for small tweaks and a more full on style.</p><p>What's your prefered approach?</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-09-20T19:14:36+00:00" pubdate="">
+          <span class="day">20</span>
+          <span class="month">Sep</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/" data-counturl="http://incompleteness.me/blog/2006/09/20/the-4-states-of-ajax-adoption/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -57,15 +75,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -76,8 +94,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -120,6 +138,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -137,8 +157,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -166,7 +184,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -184,5 +202,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

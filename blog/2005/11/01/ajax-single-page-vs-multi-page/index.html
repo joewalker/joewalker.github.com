@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">
+
   <title>Ajax: Single-page vs. Multi-page - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">Ajax: Single-page vs. Multi-page</a></h1><section class="content"><p>You've designing an Ajax web application, do you plan to have multiple pages or a single page? So far I've not seen much informed debate about how to decide, so here are the pointers that I've gathered from the several Ajax web applications that I've developed so far.</p><h2>Multi-page is easier</h2><p>There are 3 reasons why starting with multi-page is easier:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">Ajax: Single-page vs. Multi-page</a></h1>
+
+      <section class="content"><p>You've designing an Ajax web application, do you plan to have multiple pages or a single page? So far I've not seen much informed debate about how to decide, so here are the pointers that I've gathered from the several Ajax web applications that I've developed so far.</p><h2>Multi-page is easier</h2><p>There are 3 reasons why starting with multi-page is easier:</p><ul>
 <li>It's what you're used to</li>
 <li>Bookmarking comes for free with multi-page</li>
 <li>History (Back button support) also comes for free</li>
@@ -33,19 +46,24 @@
 <li><a href="http://dojotoolkit.org/docs/intro_to_dojo_io.html#bookmarking">Dojo</a></li>
 <li><a href="http://codinginparadise.org/weblog/2005/09/ajax-history-libraries.html">RSH</a></li>
 <li><a href="http://contentwithstyle.co.uk/Articles/38/fixing-the-back-button-and-enabling-bookmarking-for-ajax-apps">Roll-your-own</a></li>
-</ul><p>If you are prepared to put in the extra effort (even with Dojo or RSH you need to do some work yourself, you can create some neat value added tools like a "Things you've looked at" section which enables the user to jump around to any point in the history with a single mouse click and too see where they are going.</p><h2>Faster Rendering</h2><p>One of the benefits of Ajax is faster page load times. The single page approach can get pages in front of the user faster, and it enables you to add neat effects like using Script.aculo.us effects to fade page section in and out. This kind of technique isn't just pure eye-candy, there has been a fair bit of research to demonstrate that users perceive the wait time as the time when nothing is happening on the screen, some simple animation can make the web application feel faster even when it's not.</p><h2>Shared Components</h2><p>In a recent web application I had a number of dialogs that where relevant in multiple sections of the site, single page design made the sharing easier, and gave the users less to download.</p><h2>Recommendations</h2><p>It's probably fairly obvious from this that there is no one correct answer. The best route for you will depend on what you are trying to do.</p><p>I've painted it a bit of an all or nothing so far - one page or many. In reality there is often a reduced-page option that keeps the advantages of automatic history and bookmarking, but adds some of the advantages of a single page design.</p><p>Depending on how you code, it might be possible to change make changes in direction during development, so it is a good idea to make sure your HTML ids are unique across your entire web application. I have taken to giving each section of my web apps a name to prefix HTML ids to help keeping things unique.</p><p>I've recently taken a 74 page JSP application and turned it into a single page DWR application. This has been a very interesting process. The result is surprisingly small – 450 lines of HTML and 200 of CSS – this isn't the behemoth that you might expect.</p><p>If I were to start again I'd probably create a 3 or 4 page application. This would create a simple solution to the back button and book-marking issues without needing support from RSH or Dojo.</p><p>In summary - there is no "correct" answer, but more of an it-depends.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-11-1T09:01:32+00:00" pubdate="pubdate">
-    <span class="day">1</span>
-    <span class="month">Nov</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/" data-counturl="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><p>If you are prepared to put in the extra effort (even with Dojo or RSH you need to do some work yourself, you can create some neat value added tools like a "Things you've looked at" section which enables the user to jump around to any point in the history with a single mouse click and too see where they are going.</p><h2>Faster Rendering</h2><p>One of the benefits of Ajax is faster page load times. The single page approach can get pages in front of the user faster, and it enables you to add neat effects like using Script.aculo.us effects to fade page section in and out. This kind of technique isn't just pure eye-candy, there has been a fair bit of research to demonstrate that users perceive the wait time as the time when nothing is happening on the screen, some simple animation can make the web application feel faster even when it's not.</p><h2>Shared Components</h2><p>In a recent web application I had a number of dialogs that where relevant in multiple sections of the site, single page design made the sharing easier, and gave the users less to download.</p><h2>Recommendations</h2><p>It's probably fairly obvious from this that there is no one correct answer. The best route for you will depend on what you are trying to do.</p><p>I've painted it a bit of an all or nothing so far - one page or many. In reality there is often a reduced-page option that keeps the advantages of automatic history and bookmarking, but adds some of the advantages of a single page design.</p><p>Depending on how you code, it might be possible to change make changes in direction during development, so it is a good idea to make sure your HTML ids are unique across your entire web application. I have taken to giving each section of my web apps a name to prefix HTML ids to help keeping things unique.</p><p>I've recently taken a 74 page JSP application and turned it into a single page DWR application. This has been a very interesting process. The result is surprisingly small – 450 lines of HTML and 200 of CSS – this isn't the behemoth that you might expect.</p><p>If I were to start again I'd probably create a 3 or 4 page application. This would create a simple solution to the back button and book-marking issues without needing support from RSH or Dojo.</p><p>In summary - there is no "correct" answer, but more of an it-depends.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-11-1T09:01:32+00:00" pubdate="">
+          <span class="day">1</span>
+          <span class="month">Nov</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/" data-counturl="http://incompleteness.me/blog/2005/11/01/ajax-single-page-vs-multi-page/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -65,15 +83,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -84,8 +102,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -128,6 +146,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -145,8 +165,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -174,7 +192,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -192,5 +210,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

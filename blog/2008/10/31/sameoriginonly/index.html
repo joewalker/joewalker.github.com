@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2008/10/31/sameoriginonly/">
+
   <title>SameOriginOnly - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2008/10/31/sameoriginonly/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,19 +35,27 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2008/10/31/sameoriginonly/">SameOriginOnly</a></h1><section class="content"><p>Web security is horribly broken. No news there. Some time ago <a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">I proposed SameRefererOnly</a> as a potential solution to the problems of CSRF. This is a quick update in what's happening with the proposal.</p><p>Recap: I think we could adapt an idea like HttpOnly to tackle CSRF - The original idea was to have a "<a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">SameRefererOnly</a>" marker for cookies. It would be an indication that a cookie should only be sent to a Site when the referring domain matches the destination domain.</p><p>As a result of <a href="http://crypto.stanford.edu/websec/csrf/csrf.pdf">this paper on Login CSRF</a>, it seems that several browser manufacturers would like to implement the Origin: header. The Origin header is very similar to the Referer header, except that it does not contain the full URL. Referer checking is no use against CSRF attacks because many proxies remove it for privacy reasons, and an attacker can force it's removal by redirecting through an FTP URL (see the paper for details). So both default deny and default allow are broken.</p><p>Whilst the Origin header does help, I'm not convinced that it is a complete solution. Firstly it depends on privacy concerns being all about the path of a URL and not the domain. I'm not convinced that's correct. Secondly it still requires action (i.e. Origin header checking) on the part of the server.</p><p>So I still believe that the original idea makes sense, however in deference to the obvious (<a href="http://en.wikipedia.org/wiki/Referrer">semi-deliberate</a>) spelling mistake, and a growing belief that 'Origin is the new Referer', I'm now calling it SameOriginOnly, otherwise the basic ideas are <a href="http://directwebremoting.org/blog/joe/2007/08/07/fixing_browser_security_samerefereronly.html">the same as they were originally</a>.</p><p>Mark Goodwin has <a href="http://code.google.com/p/same-origin-only/">created a FireFox plugin</a> that allows Firefox to obey the principles behind SameOriginOnly, and I've done a very quick hack on Jetty that allows it to emit cookies marked SameOriginOnly when you ask it for an HttpOnly cookie. Both are a work in progress.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2008-10-31T14:50:00+00:00" pubdate="pubdate">
-    <span class="day">31</span>
-    <span class="month">Oct</span>
-    <span class="year">2008</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/10/31/sameoriginonly/" data-counturl="http://incompleteness.me/blog/2008/10/31/sameoriginonly/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+      <h1><a href="http://incompleteness.me/blog/2008/10/31/sameoriginonly/">SameOriginOnly</a></h1>
+
+      <section class="content"><p>Web security is horribly broken. No news there. Some time ago <a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">I proposed SameRefererOnly</a> as a potential solution to the problems of CSRF. This is a quick update in what's happening with the proposal.</p><p>Recap: I think we could adapt an idea like HttpOnly to tackle CSRF - The original idea was to have a "<a href="http://incompleteness.me/blog/2007/08/07/fixing-browser-security-samerefereronly/">SameRefererOnly</a>" marker for cookies. It would be an indication that a cookie should only be sent to a Site when the referring domain matches the destination domain.</p><p>As a result of <a href="http://crypto.stanford.edu/websec/csrf/csrf.pdf">this paper on Login CSRF</a>, it seems that several browser manufacturers would like to implement the Origin: header. The Origin header is very similar to the Referer header, except that it does not contain the full URL. Referer checking is no use against CSRF attacks because many proxies remove it for privacy reasons, and an attacker can force it's removal by redirecting through an FTP URL (see the paper for details). So both default deny and default allow are broken.</p><p>Whilst the Origin header does help, I'm not convinced that it is a complete solution. Firstly it depends on privacy concerns being all about the path of a URL and not the domain. I'm not convinced that's correct. Secondly it still requires action (i.e. Origin header checking) on the part of the server.</p><p>So I still believe that the original idea makes sense, however in deference to the obvious (<a href="http://en.wikipedia.org/wiki/Referrer">semi-deliberate</a>) spelling mistake, and a growing belief that 'Origin is the new Referer', I'm now calling it SameOriginOnly, otherwise the basic ideas are <a href="http://directwebremoting.org/blog/joe/2007/08/07/fixing_browser_security_samerefereronly.html">the same as they were originally</a>.</p><p>Mark Goodwin has <a href="http://code.google.com/p/same-origin-only/">created a FireFox plugin</a> that allows Firefox to obey the principles behind SameOriginOnly, and I've done a very quick hack on Jetty that allows it to emit cookies marked SameOriginOnly when you ask it for an HttpOnly cookie. Both are a work in progress.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2008-10-31T14:50:00+00:00" pubdate="">
+          <span class="day">31</span>
+          <span class="month">Oct</span>
+          <span class="year">2008</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2008/10/31/sameoriginonly/" data-counturl="http://incompleteness.me/blog/2008/10/31/sameoriginonly/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -57,15 +75,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -76,8 +94,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -120,6 +138,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -137,8 +157,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -166,7 +184,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -184,5 +202,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

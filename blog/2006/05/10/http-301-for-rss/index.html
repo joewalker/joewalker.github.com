@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">
+
   <title>HTTP-301 for RSS - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">HTTP-301 for RSS</a></h1><section class="content"><a href="http://directwebremoting.org/dwr/"><img src="http://incompleteness.me/images/posts/autoresubscribe.png" align="right" style="margin: 10px 10px;" border="0" /></a><p>RSS feeds are way too static. A blogger can’t easily change feed URL without the co-operation of their entire subscriber base.</p><p>2 examples:</p><p><a href="http://scobleizer.wordpress.com/">Robert Scoble</a> <a href="http://radio.weblogs.com/0001011/2005/11/27.html#a11433">changed</a> his feed URL, and six months later his subscriber count is under half of his original subscriber count (according to Bloglines). I'm sure Robert would have loved to have automatically moved the thousands of subscribers to his new blog automatically, and I would prefer not to need to re-subscribe.</p><p>Russell Beattie decided to stop blogging, but his several thousand subscribers couldn't be bothered to unsubscribe - and why would they; he might start blogging again, and anyway it's only a hassle to unsubscribe. However for Russell, this means his server gets perpetually swamped by hundreds of update checks for an update that will probably never happen.</p><p>The reality of the situation is that you can't change your feed URL without a huge effort. How long does it take one person to change the feed URL for one blog? Maybe 30 secs or less if you are quick, but the average is probably longer and it depends a lot on how simple your aggregator it. So it's easy to understand why people don't bother, and that's if they noticed the "re-subscribe over there" message in the first place.</p><p>I'm sure Robert would like to aggregate his 2 subscriber lists. I'm sure Russell would really quite like to point his subscribers at a holding blog hosted somewhere else so he doesn't get the traffic and maybe that even gives him the option to start again at a later date.</p><p>These problems make sites like Feedburner both very valuable and a "sell your soul" type service. But what happens if Feedburner gets greedy? Maybe the Feedburner servers get "overloaded" and it takes a long time for your updates to get propagated, and maybe they introduce a premium service to help people get the word out fast. Would you want to pay? If your feed URL is very hard to change don't you want to control it yourself?</p><p>These problems are compounded by the how ill defined your feed URL actually is. The RSS feed I’d prefer people to use for my blog is <a href="http://getahead.org/blog/joe/rss.xml">http://getahead.org/blog/joe/rss.xml</a> but you can also get it via <a href="http://getahead.org/blog/joe/rss.xml">http://getahead.org/blog/joe/rss.xml</a> or <a href="http://getahead.org/blog/joe/atom.xml">http://getahead.org/blog/joe/atom.xml</a> or <a href="http://getahead.org/blog/joe/atom.xml">http://getahead.org/blog/joe/atom.xml</a> and all have subscribers at Bloglines.</p><p>We need a way to say, "this is not the feed you are looking for", a bit like an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3">HTTP-301</a>, but one that you can create simply by editing the text of a blog.</p><p>We need a micro-format for blog redirecting.</p><p>This new micro-format must:</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">HTTP-301 for RSS</a></h1>
+
+      <section class="content"><a href="http://directwebremoting.org/dwr/"><img src="../images/posts/autoresubscribe.png" align="right" style="margin:10px 10px" border="0"></a><p>RSS feeds are way too static. A blogger can’t easily change feed URL without the co-operation of their entire subscriber base.</p><p>2 examples:</p><p><a href="http://scobleizer.wordpress.com/">Robert Scoble</a> <a href="http://radio.weblogs.com/0001011/2005/11/27.html#a11433">changed</a> his feed URL, and six months later his subscriber count is under half of his original subscriber count (according to Bloglines). I'm sure Robert would have loved to have automatically moved the thousands of subscribers to his new blog automatically, and I would prefer not to need to re-subscribe.</p><p>Russell Beattie decided to stop blogging, but his several thousand subscribers couldn't be bothered to unsubscribe - and why would they; he might start blogging again, and anyway it's only a hassle to unsubscribe. However for Russell, this means his server gets perpetually swamped by hundreds of update checks for an update that will probably never happen.</p><p>The reality of the situation is that you can't change your feed URL without a huge effort. How long does it take one person to change the feed URL for one blog? Maybe 30 secs or less if you are quick, but the average is probably longer and it depends a lot on how simple your aggregator it. So it's easy to understand why people don't bother, and that's if they noticed the "re-subscribe over there" message in the first place.</p><p>I'm sure Robert would like to aggregate his 2 subscriber lists. I'm sure Russell would really quite like to point his subscribers at a holding blog hosted somewhere else so he doesn't get the traffic and maybe that even gives him the option to start again at a later date.</p><p>These problems make sites like Feedburner both very valuable and a "sell your soul" type service. But what happens if Feedburner gets greedy? Maybe the Feedburner servers get "overloaded" and it takes a long time for your updates to get propagated, and maybe they introduce a premium service to help people get the word out fast. Would you want to pay? If your feed URL is very hard to change don't you want to control it yourself?</p><p>These problems are compounded by the how ill defined your feed URL actually is. The RSS feed I’d prefer people to use for my blog is <a href="http://getahead.org/blog/joe/rss.xml">http://getahead.org/blog/joe/rss.xml</a> but you can also get it via <a href="http://getahead.org/blog/joe/rss.xml">http://getahead.org/blog/joe/rss.xml</a> or <a href="http://getahead.org/blog/joe/atom.xml">http://getahead.org/blog/joe/atom.xml</a> or <a href="http://getahead.org/blog/joe/atom.xml">http://getahead.org/blog/joe/atom.xml</a> and all have subscribers at Bloglines.</p><p>We need a way to say, "this is not the feed you are looking for", a bit like an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3">HTTP-301</a>, but one that you can create simply by editing the text of a blog.</p><p>We need a micro-format for blog redirecting.</p><p>This new micro-format must:</p><ul>
 <li>Be readable by the worlds feed aggregators.</li>
 
 <li>Allow bloggers to point subscribers to a new feed URL.</li>
@@ -37,19 +50,24 @@
 <li>The honchos at MySpace couldn't block it easily.</li>
 
 <li>It gave people that have had their blogs hacked a chance to change their minds.</li>
-</ul><p>So how about this for a solution; the micro-format looks like this:</p><p style="margin-left: 20px;"><code>&lt;p&gt;autoresubscribe using &lt;a href="url"&gt;url&lt;/a&gt;&lt;/p&gt;</code></p><p>In fact we could probably dispense with the <code>&lt;p&gt;&lt;/p&gt;</code> elements to make life simple.</p><p>The rule could be that the "autoresubscribe" blog entry must remain on in the RSS feed of the blog for 30 days or more to become permanent. If it is removed before then, it is assumed that the blog was tampered with and the redirect is cancelled.</p><p>There is a slight worry about false positives. What happens if the text above matches somewhere else by mistake? As far as I can tell, so far the web it totally devoid of any mentions of the phrase <a href="http://www.google.com/search?&amp;q=%22autoresubscribe+using%22">"autoresubscribe using"</a>, so if we combine that with a requirement to have a url in a link to that url, I think we should be safe. Even this blog entry describing the micro-format with examples shouldn't match.</p><p>There is the issue of internationalization; the proposed solution is great for the English speaking world but not so good for non-English blogs. On the other hand "autoresubscribe" isn't exactly a real English word in the first place. Maybe the spec would define a number of languages in which this could be written. Probably support for every one of the worlds 300 trillion languages is over the top, and we could limit ourselves to the top few. It is only 2 words after all. Or am I being too colonialist?</p><p>All we need to make this work is the support of all the world's feed-readers. Surely that's a simple problem?</p><p>Right?</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2006-05-10T18:48:12+00:00" pubdate="pubdate">
-    <span class="day">10</span>
-    <span class="month">May</span>
-    <span class="year">2006</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/" data-counturl="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</ul><p>So how about this for a solution; the micro-format looks like this:</p><p style="margin-left:20px"><code>&lt;p&gt;autoresubscribe using &lt;a href="url"&gt;url&lt;/a&gt;&lt;/p&gt;</code></p><p>In fact we could probably dispense with the <code>&lt;p&gt;&lt;/p&gt;</code> elements to make life simple.</p><p>The rule could be that the "autoresubscribe" blog entry must remain on in the RSS feed of the blog for 30 days or more to become permanent. If it is removed before then, it is assumed that the blog was tampered with and the redirect is cancelled.</p><p>There is a slight worry about false positives. What happens if the text above matches somewhere else by mistake? As far as I can tell, so far the web it totally devoid of any mentions of the phrase <a href="http://www.google.com/search?&amp;q=%22autoresubscribe+using%22">"autoresubscribe using"</a>, so if we combine that with a requirement to have a url in a link to that url, I think we should be safe. Even this blog entry describing the micro-format with examples shouldn't match.</p><p>There is the issue of internationalization; the proposed solution is great for the English speaking world but not so good for non-English blogs. On the other hand "autoresubscribe" isn't exactly a real English word in the first place. Maybe the spec would define a number of languages in which this could be written. Probably support for every one of the worlds 300 trillion languages is over the top, and we could limit ourselves to the top few. It is only 2 words after all. Or am I being too colonialist?</p><p>All we need to make this work is the support of all the world's feed-readers. Surely that's a simple problem?</p><p>Right?</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2006-05-10T18:48:12+00:00" pubdate="">
+          <span class="day">10</span>
+          <span class="month">May</span>
+          <span class="year">2006</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/" data-counturl="http://incompleteness.me/blog/2006/05/10/http-301-for-rss/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -63,7 +81,7 @@
               </strong>
               <span class="comment-title">Re: HTTP-301 for RSS</span>
             </div>
-            <p class="comment-body"><div><p>Hi Joe. Believe it or not, something like this has existed since 2002, but not many readers support it. Check it out here: <a href="http://radio.userland.com/stories/storyReader$19964">Bootstrap: How to redirect an RSS feed</a>.</p><p>We also talk about how to use FeedBurner without selling your soul in our post <a href="http://blogs.feedburner.com/feedburner/archives/001251.html">"Ciao, FeedBurner"</a>.</p><p>Thanks for thinking about this stuff!</p><p>Eric Lunt<br />CTO, FeedBurner</p><div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div><p>Hi Joe. Believe it or not, something like this has existed since 2002, but not many readers support it. Check it out here: <a href="http://radio.userland.com/stories/storyReader$19964">Bootstrap: How to redirect an RSS feed</a>.</p><p>We also talk about how to use FeedBurner without selling your soul in our post <a href="http://blogs.feedburner.com/feedburner/archives/001251.html">"Ciao, FeedBurner"</a>.</p><p>Thanks for thinking about this stuff!</p><p>Eric Lunt<br>CTO, FeedBurner</p></div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
@@ -72,7 +90,7 @@
               </strong>
               <span class="comment-title">Re: HTTP-301 for RSS</span>
             </div>
-            <p class="comment-body"><div>Thanks Eric I wasn't aware of either of those posts.<p>The redirect document is neat, but it fails to be usable by normal people. How many bloggers know about RSS? I'd suggest a shrinking percentage. If the redirect document proposal didn't work 3 years ago, it's even less likely to work now when less people could make use of it.<p>I'm not sure how many feed readers actually respond properly to 301. My guess is not many, from what I can tell Bloglines doesn't for example.<p>Your Feedburner exit strategy certainly makes the argument for Feedburner stronger. Thanks.<p>Joe.</p></p></p></p><div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>Thanks Eric I wasn't aware of either of those posts.<p>The redirect document is neat, but it fails to be usable by normal people. How many bloggers know about RSS? I'd suggest a shrinking percentage. If the redirect document proposal didn't work 3 years ago, it's even less likely to work now when less people could make use of it.</p><p>I'm not sure how many feed readers actually respond properly to 301. My guess is not many, from what I can tell Bloglines doesn't for example.</p><p>Your Feedburner exit strategy certainly makes the argument for Feedburner stronger. Thanks.</p><p>Joe.</p><p></p><p></p><p></p></div></body></html></p>
           </div>
           <section class="comments">
             <p>Comments have been turned off on old posts</p>
@@ -87,15 +105,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -106,8 +124,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -150,6 +168,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -167,8 +187,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -196,7 +214,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -214,5 +232,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

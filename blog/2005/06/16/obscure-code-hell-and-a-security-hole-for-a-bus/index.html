@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/">
+
   <title>Obscure code hell and a security hole for a bus - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,7 +35,10 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/">Obscure code hell and a security hole for a bus</a></h1><section class="content"><p>
+
+      <h1><a href="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/">Obscure code hell and a security hole for a bus</a></h1>
+
+      <section class="content"><p>
 It would be nice to be able to say "only joking" about this code; however this code was live, on the internet. Spot the bus sized security hole.</p><p>The code sample is color coded because I needed to demonstrate to some non-techies what a mess things were, and showing them the language mish-mash like this worked well. Sorry if you only have a narrow screen; I didn't fancy trying to word-wrap it ...</p><p>Answer to the security hole below:</p><style>
   .code { font-family: monospace; }
   .html { color: #333333; background: #DDDDDD; }
@@ -35,47 +48,52 @@ It would be nice to be able to say "only joking" about this code; however this c
   .css { color: #008800; background: #DDFFDD; }
   .sql { color: #FF0000; background: #FFDDDD; }
   </style><div>
-  <b>Key:</b><br />
-  <span class="jsp">JSP</span>	Server-side scripting language<br />
-  <span class="html">HTML</span>	Client display layout<br />
-  <span class="java">Java</span>	Server-side programming language<br />
-  <span class="javascript">JavaScript</span>	Client scripting language<br />
-  <span class="sql">SQL</span>	Database programming language<br />
-  <span class="css">CSS</span>	Client display style<br />
+  <b>Key:</b><br>
+  <span class="jsp">JSP</span>	Server-side scripting language<br>
+  <span class="html">HTML</span>	Client display layout<br>
+  <span class="java">Java</span>	Server-side programming language<br>
+  <span class="javascript">JavaScript</span>	Client scripting language<br>
+  <span class="sql">SQL</span>	Database programming language<br>
+  <span class="css">CSS</span>	Client display style<br>
 </div><p><b>Code:</b></p><div class="code">
-  <span class="html">...</span><br />
-  <span class="html">&lt;script&gt;</span><br />
-  <span class="javascript">function saveSnippet(controlname) {</span><br />
-  <span class="javascript">var myvalue = document.all[controlname].value;</span><br />
-  <span class="javascript">mysql = "<span class="sql">update mgruat.conf_component set </span><span class="jsp">&lt;%=</span><span class="java">locale</span><span class="jsp">%&gt;</span><span class="sql">='</span>"+cleanvalue(myvalue)+"<span class="sql">' where id=</span>"+(controlname.substring(5));</span><br />
-  <span class="javascript"> processQueue(mysql);</span><br />
-  <span class="javascript"> document.all[controlname].style.backgroundColor="#ffffff";</span><br />
-  <span class="javascript">  }</span><br />
-  <span class="html">&lt;/script&gt;</span><br />
-  <span class="html">...</span><br />
-  <span class="jsp">&lt;%<span class="java">for (int i = 0; i &lt; queryResult.length; i++) {</span> %&gt;</span><br />
-  <span class="html">...</span><br />
-  <span class="html"> &lt;TD width="10"&gt;&lt;INPUT style="<span class="css">width:300px;</span>" onfocus="<span class="javascript">spansave</span><span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span><span class="javascript">.style.visibility='</span><span class="css">visible</span><span class="javascript">';this.style.background='#ffffcc'</span>" value="<span class="jsp">&lt;%=</span><span class="java">codedResult</span><span class="jsp">%&gt;</span>" type="Text" name="value<span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span>"&gt;&lt;/TD&gt;</span><br />
-  <span class="html"> &lt;TD&gt;&lt;span id="spansave<span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span>" style="<span class="css">visibility:hidden;</span>"&gt;&lt;NOBR&gt;&lt;a href='javascript:<span class="javascript">;</span>' onclick='<span class="javascript">spansave</span><span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span><span class="javascript">.style.visibility="</span><span class="css">hidden</span><span class="javascript">";saveSnippet("value</span><span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span><span class="javascript">")</span>'&gt;&lt;img src="/contenteditor/icons/save.gif" width="18" height="18" alt="" border="0" align="absmiddle"/&gt; save&lt;/a&gt;&lt;/NOBR&gt;&lt;/span&gt;&lt;/TD&gt;</span><br />
-  <span class="jsp"><span class="html">...</span></span><br />
-  <span class="jsp">&lt;%<span class="java">}</span> %&gt;</span><br />
-  <span class="html">...</span><br />
-  <span class="html">...</span><br />
-</div><p>It's not there any more ;-P.</p><p>Digging the project out of this hole is what inspired me to write <a href="http://directwebremoting.org/dwr/">DWR</a>.</p><p>Curious to the security hole? Answer in white on a white background below, select the text to view:</p><p style="color: white;">
+  <span class="html">...</span><br>
+  <span class="html">&lt;script&gt;</span><br>
+  <span class="javascript">function saveSnippet(controlname) {</span><br>
+  <span class="javascript">var myvalue = document.all[controlname].value;</span><br>
+  <span class="javascript">mysql = "<span class="sql">update mgruat.conf_component set </span><span class="jsp">&lt;%=</span><span class="java">locale</span><span class="jsp">%&gt;</span><span class="sql">='</span>"+cleanvalue(myvalue)+"<span class="sql">' where id=</span>"+(controlname.substring(5));</span><br>
+  <span class="javascript"> processQueue(mysql);</span><br>
+  <span class="javascript"> document.all[controlname].style.backgroundColor="#ffffff";</span><br>
+  <span class="javascript">  }</span><br>
+  <span class="html">&lt;/script&gt;</span><br>
+  <span class="html">...</span><br>
+  <span class="jsp">&lt;%<span class="java">for (int i = 0; i &lt; queryResult.length; i++) {</span> %&gt;</span><br>
+  <span class="html">...</span><br>
+  <span class="html"> &lt;TD width="10"&gt;&lt;INPUT style="<span class="css">width:300px;</span>" onfocus="<span class="javascript">spansave</span><span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span><span class="javascript">.style.visibility='</span><span class="css">visible</span><span class="javascript">';this.style.background='#ffffcc'</span>" value="<span class="jsp">&lt;%=</span><span class="java">codedResult</span><span class="jsp">%&gt;</span>" type="Text" name="value<span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span>"&gt;&lt;/TD&gt;</span><br>
+  <span class="html"> &lt;TD&gt;&lt;span id="spansave<span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span>" style="<span class="css">visibility:hidden;</span>"&gt;&lt;NOBR&gt;&lt;a href='javascript:<span class="javascript">;</span>' onclick='<span class="javascript">spansave</span><span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span><span class="javascript">.style.visibility="</span><span class="css">hidden</span><span class="javascript">";saveSnippet("value</span><span class="jsp">&lt;%=</span><span class="java">queryResult[i][0]</span><span class="jsp">%&gt;</span><span class="javascript">")</span>'&gt;&lt;img src="/contenteditor/icons/save.gif" width="18" height="18" alt="" border="0" align="absmiddle"/&gt; save&lt;/a&gt;&lt;/NOBR&gt;&lt;/span&gt;&lt;/TD&gt;</span><br>
+  <span class="jsp"><span class="html">...</span></span><br>
+  <span class="jsp">&lt;%<span class="java">}</span> %&gt;</span><br>
+  <span class="html">...</span><br>
+  <span class="html">...</span><br>
+</div><p>It's not there any more ;-P.</p><p>Digging the project out of this hole is what inspired me to write <a href="http://directwebremoting.org/dwr/">DWR</a>.</p><p>Curious to the security hole? Answer in white on a white background below, select the text to view:</p><p style="color:white;">
 The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it is passed to send the Javascript back to the server for execution. So altering the SQL to 'DROP DATABASE' is rather easy.
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-06-16T11:30:21+00:00" pubdate="pubdate">
-    <span class="day">16</span>
-    <span class="month">Jun</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/" data-counturl="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-06-16T11:30:21+00:00" pubdate="">
+          <span class="day">16</span>
+          <span class="month">Jun</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/" data-counturl="http://incompleteness.me/blog/2005/06/16/obscure-code-hell-and-a-security-hole-for-a-bus/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -89,7 +107,7 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
               </strong>
               <span class="comment-title">Re: Obscure code hell and a security hole for a bus</span>
             </div>
-            <p class="comment-body"><div>At my previous job we JSP's like that were a regular thing. Its amazing how those kind of things were just developed because its "always been done that way".<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>At my previous job we JSP's like that were a regular thing. Its amazing how those kind of things were just developed because its "always been done that way".</div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
@@ -98,7 +116,7 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
               </strong>
               <span class="comment-title">Why?!</span>
             </div>
-            <p class="comment-body"><div>What do you suppose goes through the mind of the programmer that so blatantly gives the client SQL? The only reason I can think of they don't give a toss, just so long as they can pass it off with the least personal effort. That attitude probably goes for the vast majority of programmers.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>What do you suppose goes through the mind of the programmer that so blatantly gives the client SQL? The only reason I can think of they don't give a toss, just so long as they can pass it off with the least personal effort. That attitude probably goes for the vast majority of programmers.</div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
@@ -107,7 +125,7 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
               </strong>
               <span class="comment-title">Re: Obscure code hell and a security hole for a bus</span>
             </div>
-            <p class="comment-body"><div>The strange thing is, I've met the programmer in question and he is a *very* smart bloke, and I'm fairly sure he knew exactly what he was doing.<br />So here's an interesting perspective; I don't totally agree with it but it is worth noting:<br /><i>The programmer was under pressure to get a job done as quickly as possible, and (with the benefit of hindsight) correctly judged that noone would find the security hole. So he took a gamble (albeit a potentially costly one) and it paid off.</i><div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>The strange thing is, I've met the programmer in question and he is a *very* smart bloke, and I'm fairly sure he knew exactly what he was doing.<br>So here's an interesting perspective; I don't totally agree with it but it is worth noting:<br><i>The programmer was under pressure to get a job done as quickly as possible, and (with the benefit of hindsight) correctly judged that noone would find the security hole. So he took a gamble (albeit a potentially costly one) and it paid off.</i></div></body></html></p>
           </div>
           <section class="comments">
             <p>Comments have been turned off on old posts</p>
@@ -122,15 +140,15 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -141,8 +159,8 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -185,6 +203,8 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -202,8 +222,6 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -231,7 +249,7 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -249,5 +267,6 @@ The SQL is embedded in <b>Javascript</b> and not Java, so the functions that it 
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

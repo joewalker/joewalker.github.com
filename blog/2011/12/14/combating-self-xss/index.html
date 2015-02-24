@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">
+
   <title>Combating Self-XSS - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,40 +35,31 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a></h1><section class="content"><aside>
-  <img src="http://incompleteness.me/images/posts/self-xss-gun.png" alt="gun with barrel pointing at user" />
+
+      <h1><a href="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Combating Self-XSS</a></h1>
+
+      <section class="content"><aside>
+  <img src="../images/posts/self-xss-gun.png" alt="gun with barrel pointing at user">
   <div>Friends don't let friends etc</div>
-</aside><h3>What is Self-XSS?</h3><p>Dr. Evil has several options for getting his script to execute in the page of
+</aside><h3 id="what-is-self-xss-">What is Self-XSS?</h3><p>Dr. Evil has several options for getting his script to execute in the page of
 another site. Generically we call this <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS</a>. Self-XSS involves using
 social engineering to coerce a user into manually executing JavaScript using
 the location bar or developer tools.
-For more, see <a href="https://blogs.msdn.com/themes/blogs/generic/post.aspx?WeblogApp=ieinternals&amp;WeblogPostName=socially-engineered-xss-attacks-and-pasting-javascript-in-the-address-bar-in-ie9">socially-engineered XSS attacks</a>.
-
-</p><p>The <a href="http://blog.commtouch.com/cafe/web-security/nasty-facebook-picture-attack-based-on-self-xss/">recent Facebook attack</a> signals that something needs to be done, but
-knowing the right response is tricky.
-
-</p><h3>What is Mozilla doing about it?</h3><p>We're proposing adding a directive to <a href="https://developer.mozilla.org/en/Security/CSP">CSP</a> that says <em>'Please disallow
-user supplied JavaScript in the context of this resource'</em>.
-
-</p><p>It will probably look something like this:
-
-</p><pre><code>X-Content-Security-Policy: no-user-js</code></pre><p>We're also going to add a way for developers to opt out of this protection.
+For more, see <a href="https://blogs.msdn.com/themes/blogs/generic/post.aspx?WeblogApp=ieinternals&amp;WeblogPostName=socially-engineered-xss-attacks-and-pasting-javascript-in-the-address-bar-in-ie9">socially-engineered XSS attacks</a>.</p><p>The <a href="http://blog.commtouch.com/cafe/web-security/nasty-facebook-picture-attack-based-on-self-xss/">recent Facebook attack</a> signals that something needs to be done, but
+knowing the right response is tricky.</p><h3 id="what-is-mozilla-doing-about-it-">What is Mozilla doing about it?</h3><p>We're proposing adding a directive to <a href="https://developer.mozilla.org/en/Security/CSP">CSP</a> that says <em>'Please disallow
+user supplied JavaScript in the context of this resource'</em>.</p><p>It will probably look something like this:</p><pre><code>X-Content-Security-Policy: no-user-js
+</code></pre><p>We're also going to add a way for developers to opt out of this protection.
 Effectively saying <em>'I can take care of the JavaScript that I ask my browser to
-execute'</em>.
-
-
-</p><h3>How does this affect other Firefox developer tools?</h3><p>It doesn't. <a href="https://hacks.mozilla.org/2011/11/developer-tools-in-firefox-aurora-10/">The Highligher, Style Inspector</a>, <a href="https://wiki.mozilla.org/DevTools/Features/CSSEditor">Style Editor</a> and
+execute'</em>.</p><h3 id="how-does-this-affect-other-firefox-developer-tools-">How does this affect other Firefox developer tools?</h3><p>It doesn't. <a href="https://hacks.mozilla.org/2011/11/developer-tools-in-firefox-aurora-10/">The Highligher, Style Inspector</a>, <a href="https://wiki.mozilla.org/DevTools/Features/CSSEditor">Style Editor</a> and
 <a href="https://blog.mozilla.com/tilt/">Tilt</a> are all unaffected. This is only about JavaScript executed via
-the Web Console and <a href="https://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/">Scratchpad</a>.
-
-</p><h3>How does this affect users?</h3><div>
+the Web Console and <a href="https://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/">Scratchpad</a>.</p><h3 id="how-does-this-affect-users-">How does this affect users?</h3><div>
 <style>
 table.custom { border-collapse: collapse; }
 table.custom td, table.custom th { border: 1px solid #aaa; padding: 5px; }
 table.custom th { text-align: center; }
 </style>
 </div><table class="custom">
-  <tr>
+  <tbody><tr>
     <th colspan="2" rowspan="2">User</th>
     <th colspan="2">Is a developer?</th>
   </tr>
@@ -77,41 +78,35 @@ table.custom th { text-align: center; }
     <td>Unchanged</td>
     <td>Minor inconvenience of having to set a preference (one time only) to enable user JavaScript on sites using this Self-XSS protection.</td>
   </tr>
-</table><p>I think this is a fairly clear net win: Minor, one time only, inconvenience to
+</tbody></table><p>I think this is a fairly clear net win: Minor, one time only, inconvenience to
 a sub-set of web developers, vs. full-time protection for the many that
-wouldn't recognize a self-xss attack.
-
-
-</p><h3>Objections: This is a user problem</h3><p>The goal of educating 7 billion people about what JavaScript can do is lofty,
-grandiose, ambitious and utterly unattainable. There has to be another solution.
-
-
-</p><h3>Objections: This is a Facebook problem</h3><p>While it's true that allowing untrusted, unvetted, third party, dynamic content
+wouldn't recognize a self-xss attack.</p><h3 id="objections-this-is-a-user-problem">Objections: This is a user problem</h3><p>The goal of educating 7 billion people about what JavaScript can do is lofty,
+grandiose, ambitious and utterly unattainable. There has to be another solution.</p><h3 id="objections-this-is-a-facebook-problem">Objections: This is a Facebook problem</h3><p>While it's true that allowing untrusted, unvetted, third party, dynamic content
 onto your site is something to avoid, I don't think that fixing this either is
 going to happen, or would fix the problem. The attack could easily forward you
 to another site to see the clipboard injecting flash, before returning you to
-the original site for the 'paste' step.
-
-
-</p><h3>Objections: This is a Flash problem</h3><p>While it's true that Adobe's clipboard policies are more relaxed than those of
+the original site for the 'paste' step.</p><h3 id="objections-this-is-a-flash-problem">Objections: This is a Flash problem</h3><p>While it's true that Adobe's clipboard policies are more relaxed than those of
 major web browsers, we've seen people caught by instructions that ask people to
 select/copy their own attack script. We think that the level of pain caused to
 developers by the CSP solution is low enough that we can justify the additional
-protection.
+protection.</p></section>
 
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2011-12-14T12:00:00+00:00" pubdate="pubdate">
-    <span class="day">14</span>
-    <span class="month">Dec</span>
-    <span class="year">2011</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2011/12/14/combating-self-xss/" data-counturl="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2011-12-14T12:00:00+00:00" pubdate="">
+          <span class="day">14</span>
+          <span class="month">Dec</span>
+          <span class="year">2011</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2011/12/14/combating-self-xss/" data-counturl="http://incompleteness.me/blog/2011/12/14/combating-self-xss/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -125,7 +120,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>I like the proposal, but wonder if the syntax should be script-src: 'no-user' ... anticipating that sites that want this will also have a script-src directive.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>I like the proposal, but wonder if the syntax should be script-src: 'no-user' ... anticipating that sites that want this will also have a script-src directive.</div></body></html></p>
           </div><div class="comment comment-indent-1">
             <div>
               <strong>
@@ -134,7 +129,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>That sounds like a good idea. We need to make sure that it fits with the opt-in / opt-out semantics of script-src.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>That sounds like a good idea. We need to make sure that it fits with the opt-in / opt-out semantics of script-src.</div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
@@ -143,7 +138,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>Please include an option in preferences with some scary text such as "I don't care about becoming a victim of socially engineered attacks, neither about being infected by malware, opt me out from every security policy including future ones" to disable or restore every feature added or removed because of socially engineered attacks and you have my vote in favor.<br />Unfortunately Firefox is becoming more and more uncomfortable for developers and power users with every security-related downgrade (because there's no way to call them updates), specially because the development team never provides a way to get the old behavior back "for the sake of security".<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>Please include an option in preferences with some scary text such as "I don't care about becoming a victim of socially engineered attacks, neither about being infected by malware, opt me out from every security policy including future ones" to disable or restore every feature added or removed because of socially engineered attacks and you have my vote in favor.<br>Unfortunately Firefox is becoming more and more uncomfortable for developers and power users with every security-related downgrade (because there's no way to call them updates), specially because the development team never provides a way to get the old behavior back "for the sake of security".</div></body></html></p>
           </div><div class="comment comment-indent-1">
             <div>
               <strong>
@@ -152,7 +147,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>about:config provides lots of prefs to turn security features off, and this will be another.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>about:config provides lots of prefs to turn security features off, and this will be another.</div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
@@ -161,7 +156,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>Ew. Please don't break the Web Console. I actually vastly prefer it to Firebug, and making it disable-able out of the box is goofy. People who would do this will also do pretty much anything a website tells them to. This is an education problem.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>Ew. Please don't break the Web Console. I actually vastly prefer it to Firebug, and making it disable-able out of the box is goofy. People who would do this will also do pretty much anything a website tells them to. This is an education problem.</div></body></html></p>
           </div><div class="comment comment-indent-1">
             <div>
               <strong>
@@ -170,7 +165,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>We think that the large majority of sites will not use this csp directive unless they detect a problem with self-xss. So you will be largely unaffected, and even when affected as a developer you have only to set a pref once to be totally free of this restriction.<br />Educating 7 billion users is virtually never a practical option.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>We think that the large majority of sites will not use this csp directive unless they detect a problem with self-xss. So you will be largely unaffected, and even when affected as a developer you have only to set a pref once to be totally free of this restriction.<br>Educating 7 billion users is virtually never a practical option.</div></body></html></p>
           </div><div class="comment comment-indent-2">
             <div>
               <strong>
@@ -179,7 +174,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>I believe that part of Mozilla's mission is to remind the everyday user that the web is interactive, and to encourage hacking and remixing. Projects like Hackasaurus reaffirm this. I reject things like Safari hiding their developer functionality behind an "advanced" preference, and this feels like a step in that direction.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>I believe that part of Mozilla's mission is to remind the everyday user that the web is interactive, and to encourage hacking and remixing. Projects like Hackasaurus reaffirm this. I reject things like Safari hiding their developer functionality behind an "advanced" preference, and this feels like a step in that direction.</div></body></html></p>
           </div><div class="comment comment-indent-3">
             <div>
               <strong>
@@ -188,16 +183,16 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>We're all unanimous that we don't want to go the Safari way. Here's why this is different:<ul><li>This should rarely take effect - only on sites with self-xss problems, which today is mostly just large social networks</li><li>Even when it does, we're planning on hiding nothing, instead showing a link to an MDN page with an explanation, and instructions on disabling</li></ul><div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>We're all unanimous that we don't want to go the Safari way. Here's why this is different:<ul><li>This should rarely take effect - only on sites with self-xss problems, which today is mostly just large social networks</li><li>Even when it does, we're planning on hiding nothing, instead showing a link to an MDN page with an explanation, and instructions on disabling</li></ul></div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
-                <a href="Sorry, but I'll have to say I find this a little silly. Yes the inconvenience/pain is low, but so is the protection. All this adds is that the attacked will have to get one additional step:&lt;br/&gt;">Cork</a>
+                <a href="Sorry, but I'll have to say I find this a little silly. Yes the inconvenience/pain is low, but so is the protection. All this adds is that the attacked will have to get one additional step:<br/>">Cork</a>
                 
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>1. Go into options and enable user js<br />2. Run attack<br />Only way around this is to make the disable option something like a compilation option, but then it goes from a minor inconvenience/pain to a major.<br />I find this so easy to engineer around, that i think it adds more pain then it adds protection, and a better solution should be looked at.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>1. Go into options and enable user js<br>2. Run attack<br>Only way around this is to make the disable option something like a compilation option, but then it goes from a minor inconvenience/pain to a major.<br>I find this so easy to engineer around, that i think it adds more pain then it adds protection, and a better solution should be looked at.</div></body></html></p>
           </div><div class="comment comment-indent-1">
             <div>
               <strong>
@@ -206,7 +201,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>We can't protect against all levels of zombie behavior, but our indications are that writing Self-XSS instructions to go into about:config is likely to be complex enough that the majority will get bored or confused before they complete the task. So many people will be saved.<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>We can't protect against all levels of zombie behavior, but our indications are that writing Self-XSS instructions to go into about:config is likely to be complex enough that the majority will get bored or confused before they complete the task. So many people will be saved.</div></body></html></p>
           </div><div class="comment comment-indent-undefined">
             <div>
               <strong>
@@ -215,7 +210,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>I do agree this is a real problem. But then I have two questions :<br />- Why do you forget javascript from bookmarklets, and from javascript: URLs in the address bar ?<br />- And why doing things differently for the sites which don't have "X-Content-Security-Policy: no-user-js" ?<div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>I do agree this is a real problem. But then I have two questions :<br>- Why do you forget javascript from bookmarklets, and from javascript: URLs in the address bar ?<br>- And why doing things differently for the sites which don't have "X-Content-Security-Policy: no-user-js" ?</div></body></html></p>
           </div><div class="comment comment-indent-1">
             <div>
               <strong>
@@ -224,7 +219,7 @@ protection.
               </strong>
               <span class="comment-title"></span>
             </div>
-            <p class="comment-body"><div>bookmarklets - The jury is currenly out on those. Our current plan is to leave them as they are. We don't have evidence that they are being used as a vector. If they do become a problem then we could include them with an opt-out at a later date.<br />javascript:URLs - Firefox already block javascript URLs. My understanding is that Webkit based browsers will be doing the same soon.<br />Why are we ignoring sites that don't have 'X-Content-Security-Policy: no-user-js'. Because we want to disrupt the web as little as possible, and because most sites don't need it. Currently this is overwhelmingly a problem for very large social networks.<br /><div></div></div></p>
+            <p class="comment-body"><html><head></head><body><div>bookmarklets - The jury is currenly out on those. Our current plan is to leave them as they are. We don't have evidence that they are being used as a vector. If they do become a problem then we could include them with an opt-out at a later date.<br>javascript:URLs - Firefox already block javascript URLs. My understanding is that Webkit based browsers will be doing the same soon.<br>Why are we ignoring sites that don't have 'X-Content-Security-Policy: no-user-js'. Because we want to disrupt the web as little as possible, and because most sites don't need it. Currently this is overwhelmingly a problem for very large social networks.<br></div></body></html></p>
           </div>
           <section class="comments">
             <p>Comments have been turned off on old posts</p>
@@ -239,15 +234,15 @@ protection.
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -258,8 +253,8 @@ protection.
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -302,6 +297,8 @@ protection.
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -319,8 +316,6 @@ protection.
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -348,7 +343,7 @@ protection.
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -366,5 +361,6 @@ protection.
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

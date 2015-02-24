@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/">
+
   <title>Comparing Java Ajax Frameworks - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,20 +35,28 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/">Comparing Java Ajax Frameworks</a></h1><section class="content"><p>Matt recenty blogged about the <a href="http://raibledesigns.com/page/rd?anchor=what_s_the_best_way3">best way to integrate Ajax into a Java webapp</a> and promoted DWR: "<i>The best thing that I've seen is to use <a href="http://dwr.dev.java.net">DWR</a>, <a href="http://prototype.conio.net/">Prototype</a> and <a href="http://script.aculo.us">Scriptaculous</a></i>". As the main developer of DWR clearly I'm going to agree that it's a great solution.</p><p>Every now and again someone asks about adding a JSP layer on top on DWR, so here's my take.</p><p>First I'm not against the idea. If you are using JSP as your view layer and neither know nor want to know Javascript, then an Ajax tag solution could help you a lot.</p><p>The biggest reason that DWR has not addressed the issue is that I believe in doing one thing and doing it well. DWR does the RPC thing and it lets you put your data on a page, but we try really hard not to get sidetracked.</p><p>I've been tempted to add JSP layer to DWR and I've been tempted to add a widget library to DWR, but resisted both.</p><p>So if <a href="http://javawebparts.sf.net">JavaWebParts</a>, <a href="http://ajaxanywhere.sf.net">AjaxAnywhere</a> or <a href="http://ajaxtags.sf.net">AjaxTags</a> or anyone else
-wants to build a tag library using DWR's abilities to marshall data over XHR then give me a shout, I'll help where I can.</p><p>However that said, don't give up on Javascript. It will give you the ability to stretch your web page in ways that a tag library never will, and libraries like Dojo, Scriptaculous and DWRUtil can really help give your pages some serious extra juice very easily.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-10-17T19:08:20+00:00" pubdate="pubdate">
-    <span class="day">17</span>
-    <span class="month">Oct</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/" data-counturl="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+      <h1><a href="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/">Comparing Java Ajax Frameworks</a></h1>
+
+      <section class="content"><p>Matt recenty blogged about the <a href="http://raibledesigns.com/page/rd?anchor=what_s_the_best_way3">best way to integrate Ajax into a Java webapp</a> and promoted DWR: "<i>The best thing that I've seen is to use <a href="http://dwr.dev.java.net">DWR</a>, <a href="http://prototype.conio.net/">Prototype</a> and <a href="http://script.aculo.us">Scriptaculous</a></i>". As the main developer of DWR clearly I'm going to agree that it's a great solution.</p><p>Every now and again someone asks about adding a JSP layer on top on DWR, so here's my take.</p><p>First I'm not against the idea. If you are using JSP as your view layer and neither know nor want to know Javascript, then an Ajax tag solution could help you a lot.</p><p>The biggest reason that DWR has not addressed the issue is that I believe in doing one thing and doing it well. DWR does the RPC thing and it lets you put your data on a page, but we try really hard not to get sidetracked.</p><p>I've been tempted to add JSP layer to DWR and I've been tempted to add a widget library to DWR, but resisted both.</p><p>So if <a href="http://javawebparts.sf.net">JavaWebParts</a>, <a href="http://ajaxanywhere.sf.net">AjaxAnywhere</a> or <a href="http://ajaxtags.sf.net">AjaxTags</a> or anyone else
+wants to build a tag library using DWR's abilities to marshall data over XHR then give me a shout, I'll help where I can.</p><p>However that said, don't give up on Javascript. It will give you the ability to stretch your web page in ways that a tag library never will, and libraries like Dojo, Scriptaculous and DWRUtil can really help give your pages some serious extra juice very easily.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-10-17T19:08:20+00:00" pubdate="">
+          <span class="day">17</span>
+          <span class="month">Oct</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/" data-counturl="http://incompleteness.me/blog/2005/10/17/comparing-java-ajax-frameworks/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -58,15 +76,15 @@ wants to build a tag library using DWR's abilities to marshall data over XHR the
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -77,8 +95,8 @@ wants to build a tag library using DWR's abilities to marshall data over XHR the
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -121,6 +139,8 @@ wants to build a tag library using DWR's abilities to marshall data over XHR the
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -138,8 +158,6 @@ wants to build a tag library using DWR's abilities to marshall data over XHR the
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -167,7 +185,7 @@ wants to build a tag library using DWR's abilities to marshall data over XHR the
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -185,5 +203,6 @@ wants to build a tag library using DWR's abilities to marshall data over XHR the
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/">
+
   <title>Idea for new Servlet spec - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,26 +35,34 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/">Idea for new Servlet spec</a></h1><section class="content"><p><a href="http://weblogs.java.net/blog/gmurray71/archive/2005/07/got_servlets.html">Some weeks ago</a> Greg Murray wanted ideas for the next version of the servlet spec. I had an idea that would really help with working with many frameworks.</p><p>Originally J2EE was designed with componentization at a WAR and EJB-JAR file level. I think the idea was that you'd get a set of WAR and EJB-JAR files bundle them up in an EAR and poof! Radical new web-app. I'm sure someone will correct me and tell me that wasn't the plan, but that's certainly the way is looks to me right now.</p><p>What has happened is that things have been componentized at a more granular level. For example <a href="http://www.springframework.org/">Spring</a> contributes an OpenSessionInViewFilter, <a href="http://directwebremoting.org/dwr/">DWR</a> contributes an Ajax servlet, Struts, Webwork, etc contribute controller servlets. All of these come with instructions about a whole set of incantations to put into your <code>WEB-INF/web.xml</code> file.</p><p>So the solution is simple - We need a new element like this:</p><pre>&lt;include src="WEB-INF/lib/dwr.jar!ajax.xml"/&gt;</pre><p>This would allow web frameworks and libraries to export a set of web.xml insert files. And you could make use of some functionality with a single line.</p><p>It might be a good idea to have a <code>&lt;param...&gt;</code> mechanism to allow you to customize the action of the web.xml insert file.</p><p>Benefits</p><ul>
+
+      <h1><a href="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/">Idea for new Servlet spec</a></h1>
+
+      <section class="content"><p><a href="http://weblogs.java.net/blog/gmurray71/archive/2005/07/got_servlets.html">Some weeks ago</a> Greg Murray wanted ideas for the next version of the servlet spec. I had an idea that would really help with working with many frameworks.</p><p>Originally J2EE was designed with componentization at a WAR and EJB-JAR file level. I think the idea was that you'd get a set of WAR and EJB-JAR files bundle them up in an EAR and poof! Radical new web-app. I'm sure someone will correct me and tell me that wasn't the plan, but that's certainly the way is looks to me right now.</p><p>What has happened is that things have been componentized at a more granular level. For example <a href="http://www.springframework.org/">Spring</a> contributes an OpenSessionInViewFilter, <a href="http://directwebremoting.org/dwr/">DWR</a> contributes an Ajax servlet, Struts, Webwork, etc contribute controller servlets. All of these come with instructions about a whole set of incantations to put into your <code>WEB-INF/web.xml</code> file.</p><p>So the solution is simple - We need a new element like this:</p><pre>&lt;include src="WEB-INF/lib/dwr.jar!ajax.xml"/&gt;</pre><p>This would allow web frameworks and libraries to export a set of web.xml insert files. And you could make use of some functionality with a single line.</p><p>It might be a good idea to have a <code>&lt;param...&gt;</code> mechanism to allow you to customize the action of the web.xml insert file.</p><p>Benefits</p><ul>
 <li>Less typing, and less cut and paste errors.</li>
 <li>Clearer demarcation about what does what in your web.xml file.</li>
 <li>Much simpler web.xml files, you only need to define what you have written, and just link to the stuff you are re-using.</li>
 <li>The ability to have several different configs and switch between them without getting lost in comments. This is particularly good for altering security settings.</li>
 </ul><p>What do you think?</p><p>Technorati tags:
 <a href="http://technorati.com/tag/servlet" rel="tag">servlet</a>
-</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2005-09-1T12:30:50+00:00" pubdate="pubdate">
-    <span class="day">1</span>
-    <span class="month">Sep</span>
-    <span class="year">2005</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/" data-counturl="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2005-09-1T12:30:50+00:00" pubdate="">
+          <span class="day">1</span>
+          <span class="month">Sep</span>
+          <span class="year">2005</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/" data-counturl="http://incompleteness.me/blog/2005/09/01/idea-for-new-servlet-spec/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -64,15 +82,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -83,8 +101,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -127,6 +145,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -144,8 +164,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -173,7 +191,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -191,5 +209,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
 
-<html lang="en">
-<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Joe Walker">
+
+  <link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml">
+  <link href="http://incompleteness.me/favicon.png" rel="shortcut icon">
+  <link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <link rel="canonical" href="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/">
+
   <title>DWR for Maps in New York - Incompleteness</title>
-  <link rel="canonical" href="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/" />
-  <meta name="author" content="Joe Walker" /><link href="http://incompleteness.me/blog/atom.xml" rel="alternate" title="Incompleteness" type="application/atom+xml" /><link href="http://incompleteness.me/favicon.png" rel="shortcut icon" /><link href="http://incompleteness.me/styles/normalize.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/blog.css" media="screen, projection" rel="stylesheet" type="text/css" /><link href="http://incompleteness.me/styles/twitter.css" media="screen, projection" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="320" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -14,8 +24,8 @@
   </ul>
   <form action="http://google.com/search" method="get">
     <fieldset role="site-search">
-      <input type="hidden" name="q" value="site:incompleteness.me" />
-      <input class="search" type="text" name="q" results="0" placeholder="Search" />
+      <input type="hidden" name="q" value="site:incompleteness.me">
+      <input class="search" type="text" name="q" results="0" placeholder="Search">
     </fieldset>
   </form>
   <ul role="main-navigation">
@@ -25,19 +35,27 @@
 
   <div id="main">
     <article>
-      <h1><a href="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/">DWR for Maps in New York</a></h1><section class="content"><p>I see that the City of New York has taken up using DWR for its <a href="http://www.nyc.gov/citymap">city map</a>.</p><a href="../images/posts/newyork-screen.png"><img src="http://incompleteness.me/images/posts/newyork-thumb.png" align="left" style="margin: 0 20px 10px 0;" border="0" /></a><p>Click for a larger version, or <a href="http://www.nyc.gov/citymap">head on over to the site</a>.</p><p>The site is designed for IE6 and there are some scrolling issues with Firefox, but I'm sure they will fix those soon.</p><p>Like Google Maps, there are the usual scroll/zoom features, but the New York mapping tool adds overlays for looking up zip codes and for landmarks, and allows you to pick which are shown or hidden:</p><img src="http://incompleteness.me/images/posts/newyork-detail1.png" align="left" style="margin: 0 10px 10px 0;" /><img src="http://incompleteness.me/images/posts/newyork-detail2.png" /><p>The view is very customizable, here showing a satellite view with a pop-up showing the location of a free Wi-Fi hotspot.</p><img src="http://incompleteness.me/images/posts/newyork-detail3.jpg" /><p>I asked Mario Gouvea about developing the website:</p><p class="quote">We have been developing 'traditional' web based mapping/GIS applications for about 4 years, those applications rendered the map image on the fly, retrieving all the spatial data needed from the database server and actually creating the jpg/gif images on a map server. On that model map images had to be relatively small in order for the application to scale (support hundreds of concurrent users) and to give the users a relatively good experience (they usually had to wait a couple of seconds for the map to be generated and shown on the browsers).</p><p class="quote">We decided to develop NYCityMap using Ajax, the first prototype was developed generating the maps on the fly (old model) and using XMLHttpRequest directly, it all worked fine but the code was a nightmare to maintain and the response time for generating a large map was unacceptable. I decided to look for a simpler way of using Ajax and for way to optimize our map generation, that is how I found about DWR, it made developing the application much easier.</p><p>I also asked why they'd not chosen to use Google Maps as a base:</p><p class="quote">We developed the application leveraging several spatial datasets that the City of New York has, including ortho-rectified aerial photographs. (Take a look at downtown Manhattan; you will see the top of the tall buildings. On Google maps they use satellite photographs which show the top of the building along with their side, when you look at the satellite photos from Google on midtown or downtown Manhattan you will see buildings leaning on all directions, on our photos you will see only the rooftop of the buildings which allows us to overlay other layers on top of it).</p><p class="quote">The main reason we did not use the Google maps API is that we had to leverage several of the spatial datasets we have and also a mainframe system we use for address validation and geocoding and all those datasets and mainframe system use a different coordinate system and map projection than the one used by Google, we simply did not have the time to research a way to convert the XY coordinates returned by the mainframe to the coordinate system used by Google maps, what is more we would have to find a way to re-project all the spatial datasets we have and then generate the image tiles to a format acceptable that could be used with the map API.</p><p>Mario Gouvea and his team will be looking into adding functionality using the Google Maps API in the future to get the best possible UI.</p></section><section class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Joe Walker</span>
-  </span>
-  <time datetime="2007-01-17T15:38:25+00:00" pubdate="pubdate">
-    <span class="day">17</span>
-    <span class="month">Jan</span>
-    <span class="year">2007</span>
-  </time>
-</section><section class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/" data-counturl="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/">Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-</section>
+
+      <h1><a href="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/">DWR for Maps in New York</a></h1>
+
+      <section class="content"><p>I see that the City of New York has taken up using DWR for its <a href="http://www.nyc.gov/citymap">city map</a>.</p><a href="../images/posts/newyork-screen.png"><img src="../images/posts/newyork-thumb.png" align="left" style="margin:0 20px 10px 0" border="0"></a><p>Click for a larger version, or <a href="http://www.nyc.gov/citymap">head on over to the site</a>.</p><p>The site is designed for IE6 and there are some scrolling issues with Firefox, but I'm sure they will fix those soon.</p><p>Like Google Maps, there are the usual scroll/zoom features, but the New York mapping tool adds overlays for looking up zip codes and for landmarks, and allows you to pick which are shown or hidden:</p><img src="../images/posts/newyork-detail1.png" align="left" style="margin:0 10px 10px 0;"><img src="../images/posts/newyork-detail2.png"><p>The view is very customizable, here showing a satellite view with a pop-up showing the location of a free Wi-Fi hotspot.</p><img src="../images/posts/newyork-detail3.jpg"><p>I asked Mario Gouvea about developing the website:</p><p class="quote">We have been developing 'traditional' web based mapping/GIS applications for about 4 years, those applications rendered the map image on the fly, retrieving all the spatial data needed from the database server and actually creating the jpg/gif images on a map server. On that model map images had to be relatively small in order for the application to scale (support hundreds of concurrent users) and to give the users a relatively good experience (they usually had to wait a couple of seconds for the map to be generated and shown on the browsers).</p><p class="quote">We decided to develop NYCityMap using Ajax, the first prototype was developed generating the maps on the fly (old model) and using XMLHttpRequest directly, it all worked fine but the code was a nightmare to maintain and the response time for generating a large map was unacceptable. I decided to look for a simpler way of using Ajax and for way to optimize our map generation, that is how I found about DWR, it made developing the application much easier.</p><p>I also asked why they'd not chosen to use Google Maps as a base:</p><p class="quote">We developed the application leveraging several spatial datasets that the City of New York has, including ortho-rectified aerial photographs. (Take a look at downtown Manhattan; you will see the top of the tall buildings. On Google maps they use satellite photographs which show the top of the building along with their side, when you look at the satellite photos from Google on midtown or downtown Manhattan you will see buildings leaning on all directions, on our photos you will see only the rooftop of the buildings which allows us to overlay other layers on top of it).</p><p class="quote">The main reason we did not use the Google maps API is that we had to leverage several of the spatial datasets we have and also a mainframe system we use for address validation and geocoding and all those datasets and mainframe system use a different coordinate system and map projection than the one used by Google, we simply did not have the time to research a way to convert the XY coordinates returned by the mainframe to the coordinate system used by Google maps, what is more we would have to find a way to re-project all the spatial datasets we have and then generate the image tiles to a format acceptable that could be used with the map API.</p><p>Mario Gouvea and his team will be looking into adding functionality using the Google Maps API in the future to get the best possible UI.</p></section>
+
+      <section class="meta">
+        <span class="byline author vcard">
+          Posted by <span class="fn">Joe Walker</span>
+        </span>
+        <time datetime="2007-01-17T15:38:25+00:00" pubdate="">
+          <span class="day">17</span>
+          <span class="month">Jan</span>
+          <span class="year">2007</span>
+        </time>
+      </section>
+
+      <section class="sharing">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-via="joewalker" data-url="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/" data-counturl="http://incompleteness.me/blog/2007/01/17/dwr-for-maps-in-new-york/">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+      </section>
+
       <section class="comments">
         <h2>Comments</h2>
         
@@ -57,15 +75,15 @@
   <h2>Incompleteness</h2>
 
   <p>
-    <a href="http://incompleteness.me/blog/" style="float: right;">
-      <img src="http://incompleteness.me/images/rss_icon.png" />
+    <a href="http://incompleteness.me/blog/" style="float:right">
+      <img src="http://incompleteness.me/images/rss_icon.png">
     </a>
     The <a href="http://incompleteness.me/blog/">blog</a> is about general web development.
     (<a href="http://incompleteness.me/blog/atom.xml">Atom feed</a>)
   </p>
   <p>
-    <a href="http://incompleteness.me/mozblog/" style="float: right;">
-      <img src="http://incompleteness.me/images/firefox_40.png" />
+    <a href="http://incompleteness.me/mozblog/" style="float:right">
+      <img src="http://incompleteness.me/images/firefox_40.png">
     </a>
     <a href="http://incompleteness.me/mozblog/">MozBlog</a> contains Mozilla stuff - i.e
     stuff for <a href="http://planet.mozilla.org/">planet</a>
@@ -76,8 +94,8 @@
     See also the <a href="http://incompleteness.me/blog/archives/">Archives</a>
   </p>
   <p>
-    If it's a choice between<br />
-    incomplete or wrong,<br />
+    If it's a choice between<br>
+    incomplete or wrong,<br>
     side with <a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel</a>.
   </p>
 
@@ -120,6 +138,8 @@
   <h2>Recent Posts</h2>
   <ul id="recent_posts">
     <li class="post">
+      <a href="http://incompleteness.me/blog/2015/02/09/console-dot-mihai/">console.mihai();</a>
+    </li><li class="post">
       <a href="http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/">Combatting Self-XSS (Part 2)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2013/03/07/work-for-mozilla-building-developer-tools/">Work for Mozilla building Developer Tools</a>
@@ -137,8 +157,6 @@
       <a href="http://incompleteness.me/blog/2010/09/13/marketing-according-to-the-browser-makers/">Marketing (according to the browser makers)</a>
     </li><li class="post">
       <a href="http://incompleteness.me/blog/2010/02/01/apple-and-adobe-obituaries-and-idealism/">Apple and Adobe, Obituaries and Idealism</a>
-    </li><li class="post">
-      <a href="http://incompleteness.me/blog/2009/08/13/collaboration-in-bespin/">Collaboration in Bespin</a>
     </li>
   </ul>
 </section>
@@ -166,7 +184,7 @@
     Copyright © 2011 - Joe Walker -
     <span class="credit">Powered by <a href="https://github.com/joewalker/jspress/">JSPress</a></span>
   </p>
-</footer><script type="text/javascript">
+</footer><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript">
   (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -184,5 +202,6 @@
     document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
   })();
 </script>
-</body>
-</html>
+
+
+</body></html>

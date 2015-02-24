@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--?xml version='1.0' encoding='UTF-8'?--><html><head></head><body><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://incompleteness.me/blog/</loc>
   </url>
@@ -11,6 +10,9 @@
     <loc>http://incompleteness.me/blog/archives/</loc>
   </url>
   <url>
+    <loc>http://incompleteness.me/blog/2015/02/09/console-dot-mihai/</loc>
+    <lastmod>2015-02-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://incompleteness.me/blog/2014/04/24/combatting-self-xss-part-2/</loc>
     <lastmod>2014-04-24T17:30:00+00:00</lastmod>
   </url><url>
@@ -384,3 +386,4 @@
     <lastmod>2005-04-28T13:50:52+00:00</lastmod>
   </url>
 </urlset>
+</body></html>
