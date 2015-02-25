@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!--?xml version='1.0' encoding='UTF-8'?--><html><head></head><body><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://incompleteness.me/blog/</loc>
   </url>
@@ -386,4 +386,3 @@
     <lastmod>2005-04-28T13:50:52+00:00</lastmod>
   </url>
 </urlset>
-</body></html>
