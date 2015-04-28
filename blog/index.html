@@ -40,7 +40,7 @@
       <section class="content"><p><strong>Update:</strong> Mihai consistently defied people that told him how
 long he had. It's over 3 months since he was given
 <a href="https://twitter.com/robodesign/status/556369539886501888">several weeks</a>,
-and years since he was given months. He died on 23 April 2015.</p><p>A few days ago <a href="http://www.robodesign.ro/mihai/blog/thanks">Mihai Șucan</a>
+and years since he was given months. He died on 23 April 2015.</p><hr><p>A few days ago <a href="http://www.robodesign.ro/mihai/blog/thanks">Mihai Șucan</a>
 went home to Romania. We're not expecting him to fix any more bugs in Firefox,
 but I'd like to raise a glass of
 <a href="https://en.wikipedia.org/wiki/%C8%9Auic%C4%83">Țuică</a>, to the
@@ -75,7 +75,7 @@ Mihai, who has made developer tools for the web a personal mission. There
 aren't many things you can do when the outside is so dangerous, but Mihai found
 something he could do and did it with a passion.</p><p>Mihai's illness has meant he hasn't been able to work on the console
 recently, and we've probably not adjusted properly, but that's temporary.</p><p>Mihai's legacy is that there are hundreds of millions of people using a
-product, Firefox, that Mihai contributed to, hundreds of thousands of them of
+product, Firefox, that Mihai contributed to, hundreds of thousands of
 them spend a significant proportion of their time in the console that was his
 responsibility. And there are billions of people using websites created by
 people directly helped by Mihai's work.</p><p>In all but his darkest moments, Mihai copes without complaining. The
@@ -124,9 +124,9 @@ the victims’ scam-detection, timeouts and errors.</p><p>These problems mean th
 complexity vs completion rate (where ‘completion’ is a scam that succeeded).
 It might look like this:</p><img src="../images/posts/self-xss-graph1.png" alt="Graph of complexity vs completion rate showing exponential drop off"><p>I’d like to suggest that humans are not that simple and that we shouldn’t
 expect something as predictable as that.</p><p>Many (most?) of the tasks that we complete on computers can be done purely
-using unconcious / heuristic / system 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
+using unconscious / heuristic / system 1 processing (in <a href="https://en.wikipedia.org/wiki/Dual_process_theory#Systems">dual process</a>)
 terms. That is to say using parts of the brain that are fast, pattern-based and
-non-analytical. Its less common that we need to use concious / systematic /
+non-analytical. Its less common that we need to use conscious / systematic /
 system 2 processing (slow, lazy, analytical). (“Thinking, Fast and Slow” is
 probably the canonical work to understand these terms in more depth)</p><p>I’d suggest that, for most people, scam detection is a system 2 operation.
 So forcing use of system 2 to prevent scams might help. (Obviously this is at
@@ -166,7 +166,7 @@ looks as though all attacks that were somewhat complex were surprisingly
 unsuccessful.</p><p>So the drop-off rate might look something a bit more like this:</p><img src="../images/posts/self-xss-graph2.png" alt="Graph of complexity vs completion rate showing more sudden drop-off than before"><p>Which might in some small way indicate a point in script complexity where
 system 2 needed to get involved, and where the analytical part of system 2 said
 “Wait, am I being scammed?”</p><p>Summary: We shouldn't think of scams purely in terms of smart people not
-getting scammed, and some sort of level of intellegence providing scam
+getting scammed, and some sort of level of intelligence providing scam
 protection. Perhaps for many people, scams are detected when system 2 gets
 involved, and there may be ways in which we can design software to protect
 people.</p><p>How does this affect browser developer tools? I believe that we have
@@ -424,7 +424,7 @@ setting <code>devtools.toolbar.enabled</code> to true and restarting.</p><p>Then
 press <code>Ctrl+Shift+V</code> (Win/Linux) or <code>Alt+Cmd+V</code> (Mac) to
 open the toolbar</p><p>If you want a way to keep your commands around, you'll want to use the
 command directory method, if you just want a quick hack, use scratchpad.</p><h3>Creating commands with Scratchpad</h3><p>Make sure you've <a href="http://antennasoft.net/robcee/2011/05/10/scratchpad-nee-workspace-web-developer-menu-landed/">enabled
-chrome privilages on your scratchpad</a>. Then <a href="https://gist.github.com/2944612">start
+chrome privileges on your scratchpad</a>. Then <a href="https://gist.github.com/2944612">start
 with a template like this</a>, and your ready to play.</p><p>See the docs <a href="https://developer.mozilla.org/en/Tools/GCLI/Scratchpad">creating
 commands with scratchpad</a> on MDN for more.</p><h3>Creating commands from a Command Directory</h3><p>Find somewhere to store commands and copy <a href="https://github.com/joewalker/mozcmd/blob/master/hello.mozcmd">this template</a>
 to a file called <code>hello.mozcmd</code> (or you could clone the repo which
